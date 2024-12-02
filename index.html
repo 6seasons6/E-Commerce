@@ -32,6 +32,12 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script>
+    function searchClick(){
+        var click=document.getElementById("search").innerHTML;
+    }
+
+</script>
 <style>.text-center {
     position: relative;
 }
@@ -243,7 +249,7 @@
     <div class="top-search">
         <div class="container">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <span class="input-group-addon"><i class="fa fa-search" id="search" onclick="searchClick()"></i></span>
                 <input type="text" class="form-control" placeholder="Search">
                 <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
             </div>
@@ -479,7 +485,6 @@
             </div>
         </div>
     </div>
-    
     <!-- End Blog  -->
 
 
@@ -583,8 +588,6 @@
                             <div id="response-message" style="display:none;"></div>
                         </div>
                     </div>
-                    
-                    
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
                             <h3>Social Media</h3>
@@ -600,7 +603,6 @@
                                         <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                     </a>
                                 </li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -627,7 +629,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">             
+                    <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-link-contact">
                             <h4>Contact Us</h4>
                             <ul>
