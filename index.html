@@ -32,12 +32,6 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<script>
-    function searchClick(){
-        var click=document.getElementById("search").innerHTML;
-    }
-
-</script>
 <style>.text-center {
     position: relative;
 }
@@ -78,7 +72,6 @@
 }
 </style>
 </head>
-
 <body>
     <!-- Start Main Top -->
     <div class="main-top">
@@ -103,7 +96,6 @@
                                   <i class="fas fa-location-arrow"></i> Our location
                                 </a>
                               </li>
-                              
                             <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
                         </ul>
                     </div>
@@ -119,12 +111,11 @@
                             document.getElementById('account-dropdown').addEventListener('change', function() {
                                 const selectedValue = this.value;
                                 if (selectedValue) {
-                                    window.location.href = selectedValue;  
+                                    window.location.href = selectedValue;
                                 }
                             });
                         </script>
                     </div>
-                    
                     <div class="text-slid-box">
                         <div id="offer-box" class="carouselTicker">
                             <ul class="offer-box">
@@ -194,11 +185,33 @@
                 </div>
                 <!-- /.navbar-collapse -->
 
+                 <!-- Start Top Search -->
+                  <div class="top-search">
+                     <div class="container">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search" ></i></span>
+                            <input type="text" class="form-control"   placeholder="Search"/>
+                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                        </div>
+                     </div>
+                    </div>
+                 <!-- End Top Search -->
+
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+<<<<<<< HEAD
                         <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i></a></li>                       
+=======
+                        <li class="side-menu"><a href="#">
+						<i class="fa fa-shopping-bag"></i>
+                            <span class="badge">
+                            </span>
+							<p>My Cart</p>
+					</a></li>
+                        <li class="nav-item"><a class="nav-link" href="wishlist.html"> ♡ </a></li>                       
+>>>>>>> 37eb92f443a84772db27957ee2cbb59ea246570f
                          <li class="side-menu">
 							<a href="#">
 								<i class="fa fa-shopping-bag"></i>
@@ -242,18 +255,6 @@
         <!-- End Navigation -->
     </header>
     <!-- End Main Top -->
-
-    <!-- Start Top Search -->
-    <div class="top-search">
-        <div class="container">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search" id="search" onclick="searchClick()"></i></span>
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-            </div>
-        </div>
-    </div>
-    <!-- End Top Search -->
 
     <!-- Start Slider -->
     <div id="slides-shop" class="cover-slides">
