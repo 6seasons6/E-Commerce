@@ -153,7 +153,7 @@
                 <div class="attr-nav">
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="nav-item"><a class="nav-link" href="wishlist.html"> ♡ </a></li>                       
+                        <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i> </a></li>                       
 
                         <li class="side-menu"><a href="#">
 						<i class="fa fa-shopping-bag"></i>
@@ -263,9 +263,17 @@
                         <h5> <del>$ 60.00</del> $40.79</h5>
                         <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span><p>
 						<h4>Short Description:</h4>
-						<p>Nam sagittis a augue eget scelerisque. Nullam lacinia consectetur sagittis. Nam sed neque id eros fermentum dignissim quis at tortor. Nullam ultricies urna quis sem sagittis pharetra. Nam erat turpis, cursus in ipsum at,
-							tempor imperdiet metus. In interdum id nulla tristique accumsan. Ut semper in quam nec pretium. Donec egestas finibus suscipit. Curabitur tincidunt convallis arcu. </p>
-						<ul>
+						<div class="second-product-details">
+                            <p>Organic honey is a pure and natural product, carefully crafted by bees that pollinate organically 
+                                grown flowers. This honey is free from pesticides, chemicals, and artificial additives, making it 
+                                a healthier choice compared to conventional honey. Rich in essential vitamins, minerals, and antioxidants,
+                                 organic honey provides numerous health benefits, including boosting immunity, improving digestion, 
+                                 and promoting healthy skin. It has natural antimicrobial properties, making it an effective remedy for 
+                                 sore throats and minor wounds. Additionally, organic honey can be used as a versatile sweetener for tea,
+                                  smoothies, and baked goods or enjoyed on its own as a spread. </p>
+                        </div>
+                     
+                            <ul>
 							<li>
 								<div class="form-group quantity-box">
 									<label class="control-label">Quantity</label>
@@ -295,7 +303,9 @@
 							</div>
 						</div>
                     </div>
+                    
                 </div>
+
             </div>
 			
 			<div class="row my-5">
@@ -710,19 +720,19 @@
             return urlParams.get(param);
         }
     
-        // Get product details from the URL
+     /* // Get product details from the URL
         const productID = getQueryParameter('productID');
         const productName = getQueryParameter('name');
         const productPrice = getQueryParameter('price');
-        const productDescription = getQueryParameter('desc');
-        const productImage = getQueryParameter('img');
-    
-        // Update product details on the page
-        if (productID) {
+       const productDescription = getQueryParameter('desc');
+
+       const productImage = getQueryParameter('img');
+       // Update product details on the page
+       if (productID) {
             document.querySelector('.single-product-details h2').textContent = productName || "Product Name";
             document.querySelector('.single-product-details h5').textContent = `$${productPrice || "0.00"}`;
             document.querySelector('.single-product-details p').textContent = productDescription || "No description available.";
-    
+
             // Update image carousel - assuming you want a single main image to update
             const carouselImages = document.querySelectorAll('.carousel-item img');
             carouselImages.forEach(img => {
@@ -730,7 +740,38 @@
             });
         } else {
             document.querySelector('.single-product-details h2').textContent = "Product not found";
-        }
+        }*/
+        // Get product details from the URL
+const productID = getQueryParameter('productID');
+const productName = getQueryParameter('name');
+const productPrice = getQueryParameter('price');
+const productDescription = getQueryParameter('desc');
+const secondDescription = getQueryParameter('second');  // This retrieves the second product description
+const productImage = getQueryParameter('img');
+
+// Update product details on the page
+if (productID) {
+    // Update main product details
+    document.querySelector('.single-product-details h2').textContent = productName || "Product Name";
+    document.querySelector('.single-product-details h5').textContent = `$${productPrice || "0.00"}`;
+    document.querySelector('.single-product-details p').textContent = productDescription || "No description available.";
+
+    // Update second product description dynamically
+    if (secondDescription) {
+        document.querySelector('.second-product-details p').textContent = secondDescription;
+    } else {
+        document.querySelector('.second-product-details p').textContent = "No additional description available.";  // Fallback if no second description is provided
+    }
+
+    // Update image carousel - assuming you want a single main image to update
+    const carouselImages = document.querySelectorAll('.carousel-item img');
+    carouselImages.forEach(img => {
+        img.src = `images/${productImage || 'default.jpg'}`; // Fallback to default image if none is provided
+    });
+} else {
+    document.querySelector('.single-product-details h2').textContent = "Product not found";
+}
+       
     </script>
     
     
