@@ -32,11 +32,21 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        function searchText(){
+            let text=document.getElementById("search").value;
+            let find=document.getElementById("searchWord");
+            text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
+            let pattern = new RegExp(`${text}`, "gi");
+            find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
+        }
+    </script>
 
 </head>
 
 <body>
     <!-- Start Main Top -->
+     <div class="searchWord">
     <div class="main-top">
         <div class="container-fluid">
             <div class="row">
@@ -131,24 +141,26 @@
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                             <ul class="dropdown-menu">
                                 <li><a href="shop.html">Sidebar Shop</a></li>
-                                <li><a href="shop-detail.html">Shop Detail</a></li>
                                 <li><a href="cart.html">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                        <li class="nav-item">
+                            <div class="input-group">
+                              <input type="text" id="search" style=" border: solid 3px black; height: 40px; font-size:18px; vertical-align:9px" placeholder="Search" size="10" width="5"/>
+                             </div>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
-                
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu"><a href="#">
+                        <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="wishlist.html"> ♡ </a></li>
+                           <li class="side-menu"><a href="#">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge"></span>
                                 <p>My Cart</p>
@@ -263,18 +275,20 @@
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <img src="images/honey.jpg" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-detail.html?productID=1&name=Carrot&price=20.00&desc=Fresh+and+juicy+grapes&img=logo1.png"
-                                                                    data-toggle="tooltip" data-placement="right"
+                                                                <a  id="view-link" href="shop-detail.html?productID=1&name=Honey&price=20.00&desc=Fresh+and+juicy+honey &img=logo1.png "
+                                                                    data-toggle="tooltip" data-placement="right" 
                                                                     title="View">
                                                                     <i class="fas fa-eye"></i>
                                                                 </a>
                                                             </li>
                                                             <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i></a>
+                                                                    title="Compare"><i class="fas fa-sync-alt"></i>
+                                                                  
+                                                                </a>
                                                             </li>
                                                             <li><a href="#" data-toggle="tooltip" data-placement="right"
                                                                     title="Add to Wishlist"><i
@@ -282,11 +296,14 @@
                                                         </ul>
                                                         <a class="cart" href="#">Add to Cart</a>
                                                     </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>carrot</h4>
+                                                 </div>
+                                                <div class="why-text" >
+                                                    <h4>Honey</h4>
                                                     <h5>20</h5>
-                                                </div>
+                                                   
+                                                   </div>
+                                                   
+                                               
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -295,11 +312,11 @@
                                                     <div class="type-lb">
                                                         <p class="new">New</p>
                                                     </div>
-                                                    <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
+                                                    <img src="images/ghee.jpg" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-detail.html?productID=2&name=Tomato&price=30.00&desc=Fresh+and+juicy+grapes&img=logo1.png"
+                                                                <a href="shop-detail.html?productID=2&name=Ghee&price=30.00&desc=Fresh+ ghee&img=logo1.png "
                                                                     data-toggle="tooltip" data-placement="right"
                                                                     title="View">
                                                                     <i class="fas fa-eye"></i>
@@ -316,8 +333,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4>Tomato</h4>
+                                                    <h4>Ghee</h4>
                                                     <h5> 20</h5>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -327,14 +345,14 @@
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
+                                                    <img src="images/brown sugar.jpg" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <!-- Example product item in shop.html -->
                                                             <li>
-                                                                <a href="shop-detail.html?productID=3&name=Grapes&price=10.00&desc=Fresh+and+juicy+grapes&img=logo1.png"
-                                                                    data-toggle="tooltip" data-placement="right"
-                                                                    title="View">
+                                                                <a href="shop-detail.html?productID=3&name=Brown Sugar&price=10.00&desc=Fresh+ brown sugar&img=logo1.png"
+                                                                    data-toggle="tooltip" data-placement="right" 
+                                                                     title="View">
                                                                     <i class="fas fa-eye"></i>
                                                                 </a>
                                                             </li>
@@ -351,7 +369,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4>Grapes</h4>
+                                                    <h4>Brown Sugar</h4>
                                                     <h5> $9.79</h5>
                                                 </div>
                                             </div>
@@ -362,11 +380,11 @@
                                                     <div class="type-lb">
                                                         <p class="new">New</p>
                                                     </div>
-                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <img src="images/crystal sugar.jpg" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-detail.html?productID=1&name=Carrot&price=20.00&desc=Fresh+and+juicy+grapes&img=logo1.png"
+                                                                <a href="shop-detail.html?productID=1&name=Crystal Sugar&price=20.00&desc=Fresh+crystal sugar&img=logo1.png"
                                                                     data-toggle="tooltip" data-placement="right"
                                                                     title="View">
                                                                     <i class="fas fa-eye"></i>
@@ -382,7 +400,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4>Carrot</h4>
+                                                    <h4>Crystal Sugar</h4>
                                                     <h5>20</h5>
                                                 </div>
                                             </div>
@@ -393,11 +411,11 @@
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
+                                                    <img src="images/dal.jpg" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-detail.html?productID=2&name=Tomato&price=30.00&desc=Fresh+and+juicy+grapes&img=logo1.png"
+                                                                <a href="shop-detail.html?productID=2&name=Organtior Dal&price=30.00&desc=Fresh+dal&img=logo1.png"
                                                                     data-toggle="tooltip" data-placement="right"
                                                                     title="View">
                                                                     <i class="fas fa-eye"></i>
@@ -414,7 +432,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4>Toamto</h4>
+                                                    <h4>Organtior Dal</h4>
                                                     <h5>30</h5>
                                                 </div>
                                             </div>
@@ -425,11 +443,11 @@
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
+                                                    <img src="images/masala tea.jpg" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-detail.html?productID=3&name=Grapes&price=10.00&desc=Fresh+and+juicy+grapes&img=logo1.png"
+                                                                <a href="shop-detail.html?productID=3&name=Masala Tea&price=10.00&desc=Fresh+masala tea&img=logo1.png"
                                                                     data-toggle="tooltip" data-placement="right"
                                                                     title="View">
                                                                     <i class="fas fa-eye"></i>
@@ -446,21 +464,23 @@
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4>Grapes</h4>
+                                                    <h4>Masala Tea</h4>
                                                     <h5>10</h5>
                                                 </div>
                                             </div>
                                         </div>
+                                       
+                                    
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <img src="images/dal.jpg" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                            <li><a href="shop-detail.html?productID=1&name=Lorem ipsum dolor sit amet&price=20.00&desc=Fresh+dal&img=logo1.png" data-toggle="tooltip" data-placement="right"
                                                                     title="View"><i class="fas fa-eye"></i></a></li>
                                                             <li><a href="#" data-toggle="tooltip" data-placement="right"
                                                                     title="Compare"><i class="fas fa-sync-alt"></i></a>
@@ -484,10 +504,10 @@
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
+                                                    <img src="images/pink salt.jpg" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                            <li><a href="shop-detail.html?productID=1&name=Pink Salt&price=20.00&desc=Fresh+pink salt&img=logo1.png" data-toggle="tooltip" data-placement="right"
                                                                     title="View"><i class="fas fa-eye"></i></a></li>
                                                             <li><a href="#" data-toggle="tooltip" data-placement="right"
                                                                     title="Compare"><i class="fas fa-sync-alt"></i></a>
@@ -500,7 +520,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4>Lorem ipsum dolor sit amet</h4>
+                                                    <h4>Pink Salt</h4>
                                                     <h5> $9.79</h5>
                                                 </div>
                                             </div>
@@ -511,10 +531,10 @@
                                                     <div class="type-lb">
                                                         <p class="new">New</p>
                                                     </div>
-                                                    <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
+                                                    <img src="images/toor dal.jpg" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                            <li><a href="shop-detail.html?productID=1&name=Toor Dal&price=20.00&desc=Fresh+toor dal&img=logo1.png" data-toggle="tooltip" data-placement="right"
                                                                     title="View"><i class="fas fa-eye"></i></a></li>
                                                             <li><a href="#" data-toggle="tooltip" data-placement="right"
                                                                     title="Compare"><i class="fas fa-sync-alt"></i></a>
@@ -527,7 +547,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4>Lorem ipsum dolor sit amet</h4>
+                                                    <h4>Toor Dal</h4>
                                                     <h5> $9.79</h5>
                                                 </div>
                                             </div>
@@ -961,8 +981,8 @@
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>    
-    
+    <script src="js/custom.js"></script>
+    </div>
 </body>
 
 </html>

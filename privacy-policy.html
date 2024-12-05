@@ -30,6 +30,15 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        function searchText(){
+            let text=document.getElementById("search").value;
+            let find=document.getElementById("searchWord");
+            text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
+            let pattern = new RegExp(`${text}`, "gi");
+            find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
+        }
+    </script>
     <style>
         .container1 {
         display: flex;
@@ -44,6 +53,7 @@
 </head>
 <body>
     <!-- Start Main Top -->
+    <div id="searchWord">
     <div class="main-top">
         <div class="container-fluid">
             <div class="row">
@@ -147,15 +157,17 @@
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                             <ul class="dropdown-menu">
 								<li><a href="shop.html">Sidebar Shop</a></li>
-								<li><a href="shop-detail.html">Shop Detail</a></li>
                                 <li><a href="cart.html">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                        <li class="nav-item">
+                            <div class="input-group">
+                              <input type="text" id="search" style=" border: solid 3px black;  height: 40px;  font-size:18px; vertical-align:9px" placeholder="Search" size="10" width="5"/>
+                             </div>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -163,11 +175,12 @@
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                        <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="wishlist.html"> ♡ </a></li>                       
                         <li class="side-menu">
 							<a href="#">
 								<i class="fa fa-shopping-bag"></i>
-								<span class="badge">3</span>
+								<span class="badge"></span>
 								<p>My Cart</p>
 							</a>
 						</li>
@@ -425,5 +438,6 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+</div>
 </body>
 </html>
