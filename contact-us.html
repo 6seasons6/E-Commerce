@@ -32,10 +32,20 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        function searchText(){
+            let text=document.getElementById("search").value;
+            let find=document.getElementById("searchWord");
+            text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
+            let pattern = new RegExp(`${text}`, "gi");
+            find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
+        }
+    </script>
 
 </head>
 
 <body>
+    <div id="searchWord">
     <!-- Start Main Top -->
     <div class="main-top">
         <div class="container-fluid">
@@ -145,6 +155,11 @@
 						</li>
 						<li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
 						<li class="nav-item active"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                        <li class="nav-item">
+                            <div class="input-group">
+                              <input type="text" id="search" style=" border: solid 3px black; height: 40px; font-size:18px; " placeholder="Search" size="10" width="5"/>
+                             </div>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -156,7 +171,7 @@
                         <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i> </a></li>                       
                         <li class="side-menu"><a href="#">
 						<i class="fa fa-shopping-bag"></i>
-                            <span class="badge">3</span>
+                            <span class="badge"></span>
 							<p>My Cart</p>
 					</a></li>
                     </ul>
@@ -475,6 +490,7 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+    </div>
 </body>
 
 </html>
