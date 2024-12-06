@@ -27,6 +27,18 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <style>
+        #sign{
+            color:black ;
+            font-size:25px;
+            font-weight: bold;
+        }
+        #sign:hover{
+            color:rgb(205, 197, 50) ;
+            font-size:25px;
+            font-weight: bold;
+        }
+    </style>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -41,6 +53,14 @@
             find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
         }
     </script>
+    <script>
+        function convertData(){
+            var emailid=document.getElementById("email").value;
+            var res=emailid.toLowerCase();
+            document.getElementById("email").value=res;
+        }
+    </script>
+
 
 </head>
 
@@ -227,15 +247,15 @@
     <!-- End Top Search -->
 
     <div class="container py-5">
-        <h2 class="text-center mb-4">Sign In</h2>
+        <h2 class="text-center mb-4" id="sign">Sign In</h2>
         <form id="signin-form">
             <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                <label form="email" id="mail">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email"  required="required" onkeyup="convertData()"/>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required="required">
             </div>
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
         </form>
