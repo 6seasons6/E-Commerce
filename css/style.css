@@ -135,7 +135,7 @@
      outline: none !important;
 }
  .form-control::-moz-placeholder {
-     color: #ffffff;
+     color: #e0cdcd;
      opacity: 1;
 }
  .bootstrap-select .dropdown-toggle:focus{
@@ -162,7 +162,7 @@
 }
 /*------------------------------------------------------------------ HEADER -------------------------------------------------------------------*/
  .main-top{
-     background: #000000;
+    background: #817575;
      padding: 10px 0px;
 }
  .custom-select-box{
@@ -817,8 +817,8 @@
      position: relative;
      padding: 3px;
      overflow: hidden;
-     border: 0px solid #000000;
-	 box-shadow: 9px 9px 30px 0px rgba(0, 0, 0, 0.3);
+     border: 0px solid #968787;
+	 box-shadow: 9px 9px 30px 0px rgba(141, 127, 127, 0.3);
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease-in-out 0s;
 }
@@ -1255,13 +1255,13 @@
      height: 100%;
 }
  .hov-in i{
-     color: #000000;
+    color: #000000;
      font-size: 48px;
      position: relative;
      z-index: 2;
 }
  .hov-in a i:hover{
-     color: #ffffff;
+    color: #ffffff;
 }
  .ins-inner-box:hover .hov-in{
      bottom: 0;
@@ -1534,8 +1534,8 @@
      background: #b0b435;
      margin: 0px;
      display: inline-block;
+     justify-content: flex-end;
      border-radius: 0px;
-	 float: right;
 }
  .all-title-box .breadcrumb li{
      display: inline-block;
@@ -1756,13 +1756,13 @@
      position: relative;
 }
  .search-product input[type="text"] {
-     background: #333333;
+    background: #8b7d7dc9;
      border: 0;
      box-shadow: none;
      border-radius: 0;
-     color: #ffffff;
+     color: #0f0707;
      height: 55px;
-     font-weight: 300;
+     font-weight: 500;
      font-size: 16px;
      margin-bottom: 15px;
      padding: 0 20px;
@@ -1773,12 +1773,12 @@
      outline: 0;
 }
  .search-product .form-control::-moz-placeholder {
-     color: #ffffff;
+    color: #ffffff;
      opacity: 1;
 }
  .search-product button {
-     background: #000000;
-     color: #ffffff;
+    background: #947b7b;
+    color: #1a1616;
      font-size: 18px;
      position: absolute;
      right: 0px;
@@ -1936,8 +1936,8 @@
      padding-left: 15px;
 }
  .toolbar-sorter-right .btn-light{
-     background: #000000;
-     color: #ffffff;
+     background: #726c6c;
+     color: #080101f5;
 }
  .toolbar-sorter-right .btn-light:hover{
      background: #b0b435;
@@ -2096,7 +2096,6 @@
      box-shadow: none;
      color: #fff;
      display: inline-block;
-     float: right;
      cursor: pointer;
      font-size: 16px;
      font-weight: 500;
@@ -2189,7 +2188,7 @@
 }
  .new-account-login h5 {
      font-size: 18px;
-     color: #1111111;
+     color: #11111111;
      font-weight: 600;
 }
  .new-account-login h5 a:hover{
