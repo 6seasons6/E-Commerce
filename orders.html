@@ -25,9 +25,19 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <script>
+        function searchText(){
+            let text=document.getElementById("search").value;
+            let find=document.getElementById("searchWord");
+            text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
+            let pattern = new RegExp(`${text}`, "gi");
+            find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
+        }
+    </script>
 </head>
 <body>
 <!-- Start Main Top -->
+ <div id="searchWord">
 <div class="main-top">
     <div class="container-fluid">
         <div class="row">
@@ -136,6 +146,11 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                    <li class="nav-item">
+                        <div class="input-group">
+                          <input type="text" id="search" style=" border: solid 3px black;  height: 40px;  font-size:18px; vertical-align:9px" placeholder="Search" size="10" width="5"/>
+                         </div>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -143,11 +158,11 @@
             <!-- Start Atribute Navigation -->
             <div class="attr-nav">
                 <ul>
-                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                    <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
                     <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i> </a></li>                       
                     <li class="side-menu"><a href="#">
                     <i class="fa fa-shopping-bag"></i>
-                        <span class="badge">3</span>
+                        <span class="badge"></span>
                         <p>My Cart</p>
                 </a></li>
                 </ul>
@@ -497,5 +512,6 @@
 <!-- Include any JS libraries like Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+ </div>
 </body>
 </html>
