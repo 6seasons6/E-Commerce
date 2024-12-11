@@ -25,7 +25,14 @@ const User = mongoose.model("User", userSchema);
 
 // Middleware
 app.use(express.json()); // For parsing JSON
-app.use(cors()); // Enable CORS for all origins
+app.use(
+    cors({
+      origin: /http:\/\/127\.0\.0\.1:\d{4}$/, // Regex to match all localhost ports
+      methods: ["GET", "POST"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+    })
+  );
+    // Enable CORS for all origins
 
 // Routes
 app.post("/api/auth/signup", async (req, res) => {
