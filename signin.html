@@ -8,6 +8,7 @@
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="23564592532-c5aceb9sq0dfkh68hnj66ur47qeqd505.apps.googleusercontent.com">
 
     <!-- Site Metas -->
     <title>6 Seasons Organic</title>
@@ -25,6 +26,7 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../E-Commerce/node_modules/bootstrap/dist/css/bootstrap.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
     <style>
@@ -38,12 +40,41 @@
             font-size:25px;
             font-weight: bold;
         }
+        .data{
+            display: none;
+        }
+        .g-signin2{
+            left: 50%;
+        }
     </style>
+    <link rel="stylesheet" href="../E-Commerce/node_modules/bootstrap/dist/css/bootstrap.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="../E-Commerce/node_modules/jquery/dist/jquery.js"></script>
+    <script src="../E-Commerce/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        function onSignIn(googleUser) {
+             var profile = googleUser.getBasicProfile();
+             $("#name").text(profile.getName());
+             $("#email").text(profile.getEmail());
+             $("#image").attr('src',profile.getImageUrl());
+             $(".data").css("display","block");
+             $(".g-signin2").css("disply","none");
+        }
+    </script>
+      <script>
+        function myFunc(){
+            var pass=document.getElementById("password");
+            if(pass.type==="password"){
+                pass.type="text";
+            }else{
+                pass.type="password";
+            }
+        }
+      </script>
     <script>
         function searchText(){
             let text=document.getElementById("search").value;
@@ -60,6 +91,7 @@
             document.getElementById("email").value=res;
         }
     </script>
+    <script src="../E-Commerce/node_modules/jquery/dist/jquery.js"></script>
 
 
 </head>
@@ -89,7 +121,6 @@
                                   <i class="fas fa-location-arrow"></i> Our location
                                 </a>
                               </li>
-                              
                             <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
                         </ul>
                     </div>
@@ -255,13 +286,33 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password" required="required">
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required="required"/>
+                <button  type="button" onclick="myFunc()">ShowPassword</button>
             </div>
             <button type="submit" class="btn btn-primary btn-block" >Sign In</button>
+                <button  type="button"class="mt-3" data-bs-toggle="modal" data-bs-target="#myData">Forgot password</button>
+            <div class="modal" id="myData" data-bs-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5>Password Recovery</h5>
+                            <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label>Enter your Username/EmailId</label>
+                            <input type="text" />
+                        </div>
+                        <div class="modal-footer">
+                            <button  class="btn btn-primary">Reset Password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-signin2 m-5" data-onsuccess="onSignIn"></div>
+            </div>
         </form>
         <p id="message" class="mt-3 text-center"></p>
     </div>
-    
     <script>
         document.getElementById("signin-form").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -295,86 +346,70 @@
 });
 
     </script>
-    <!--start instagram feed-->
+    <!-- Start Instagram Feed  -->
     <div class="instagram-box">
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
+                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div> 
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
+                    <img src="images/insta3.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
+                    <img src="images/insta4.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
+                    <img src="images/insta5.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
+                    <img src="images/insta6.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
+                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
+                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -465,7 +500,6 @@
             </div>
         </div>
     </footer>
-    
     <!-- End Footer  -->
 
     <!-- Start copyright  -->
@@ -479,6 +513,8 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="../E-Commerce/node_modules/jquery/dist/jquery.min.js" crossorigin="anonymous"></script>
     <!-- ALL PLUGINS -->
     <script src="js/jquery.superslides.min.js"></script>
     <script src="js/bootstrap-select.js"></script>
