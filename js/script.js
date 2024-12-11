@@ -86,3 +86,4 @@ const products = {
             // If no product found, display a message
             document.getElementById('product-name').textContent = "Product not found.";
         }
+        
