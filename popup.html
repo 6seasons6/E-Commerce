@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6SeasonsOrganic Offers</title>
+    <style>
+        
+
+        #close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+            background: none;
+            border: none;
+            outline: none;
+        }
+
+        #close-btn:hover {
+            color: red;
+        }
+   
+
+        #popup button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #popup button:hover {
+            background-color: #218838;
+        }
+        /* Popup Styling */
+        .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex; /* Enables flexbox layout */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    z-index: 1000;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 1100px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    background-image: url('nature-background.jpg'); /* Replace with nature image */
+    background-size: cover;
+    background-position: center;
+    color: #4c4e4d;
+    border: 2px solid #a5d6a7; /* Light green border for organic look */
+}
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 25px;
+            color: #4c4e4d;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 36px;
+            font-family: 'Georgia', serif;
+            color: #2a7f1f; /* Dark green for a natural look */
+            margin-bottom: 20px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #a3b48c; /* Light olive green */
+        }
+
+        /* Product Grid */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 20px;
+            color: #333;
+        }
+
+        .product {
+            background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover Effect */
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Circular Product Image */
+        .product img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%; /* Circular Image */
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            font-size: 20px;
+            color: #2a7f1f; /* Dark green text for product name */
+        }
+
+        .price {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            text-decoration: line-through;
+            margin-bottom: 10px;
+            color: #7c7c7c; /* Grey for original price */
+        }
+
+        .offer-price {
+            font-size: 22px;
+            color: #2b7a3a; /* Earthy green for the offer price */
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .discount-tag {
+            background-color: #ff9800;
+            color: white;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+        }
+
+        .cta-button {
+            background-color: #2b7a3a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #21632c;
+        }
+
+        /* Footer Styling */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            color: #4c4e4d;
+        }
+
+        .footer p {
+            margin: 5px;
+        }
+
+        .footer a {
+            color: #2b7a3a;
+            text-decoration: none;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #2b7a3a;
+            border-radius: 4px;
+        }
+       
+    </style>
+</head>
+<body>
+    <!-- Popup Container -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <!-- Close Button -->
+            <button id="close-btn" onclick="parent.hidePopup()">×</button>
+            <!-- Header Section -->
+            <div class="header">
+                <h1>Exclusive Organic Offers!</h1>
+                <p>Pure, Fresh, Organic – Unbelievable Discounts Just for You!</p>
+            </div>
+            <!-- Product Grid -->
+            <div class="products">
+                <!-- Product 1 - Organic Honey -->
+                <div class="product">
+                    <div class="discount-tag">50% OFF</div>
+                    <img src="images/honey.jpg" alt="Organic Honey"> <!-- Replace with product image -->
+                    <h3>Organic Honey</h3>
+                    <div class="price">₹500 <span class="offer-price">₹250</span></div>
+                    <a href="#" class="cta-button">Shop Now</a>
+                </div>
+                <!-- Product 2 - Organic Ghee -->
+                <div class="product">
+                    <div class="discount-tag">40% OFF</div>
+                    <img src="images/ghee.jpg" alt="Organic Ghee"> <!-- Replace with product image -->
+                    <h3>Organic Ghee</h3>
+                    <div class="price">₹800 <span class="offer-price">₹480</span></div>
+                    <a href="#" class="cta-button">Shop Now</a>
+                </div>
+                <!-- Product 3 - Organic Toor Dal -->
+                <div class="product">
+                    <div class="discount-tag">35% OFF</div>
+                    <img src="images/toor dal.jpg" alt="Organic Toor Dal"> <!-- Replace with product image -->
+                    <h3>Organic Toor Dal</h3>
+                    <div class="price">₹300 <span class="offer-price">₹195</span></div>
+                    <a href="#" class="cta-button">Shop Now</a>
+                </div>
+                <!-- Repeat the above structure for additional products if needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+   <!-- Footer Section -->
+  
+   <script>
+    const popupFrame = document.getElementById("popup");
+   
+    // Show the popup and overlay when the page loads
+    window.onload = () => {
+        popupFrame.style.display = "block";
+        
+    };
+
+    // Hide the popup and overlay when the overlay is clicked
+    overlay.addEventListener("click", () => {
+        popupFrame.style.display = "none";
+       
+    });
+</script>
+   
+</body>
+</html>
