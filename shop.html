@@ -33,9 +33,9 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
-        function searchText(){
-            let text=document.getElementById("search").value;
-            let find=document.getElementById("searchWord");
+        function searchText() {
+            let text = document.getElementById("search").value;
+            let find = document.getElementById("searchWord");
             text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
             let pattern = new RegExp(`${text}`, "gi");
             find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
@@ -46,128 +46,131 @@
 
 <body>
     <!-- Start Main Top -->
-     <div class="searchWord">
-    <div class="main-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                            <option>INR</option>
-                            <option>USD</option>
-                            <option>EUR</option>
-                        </select>
-                    </div>
-                    <div class="right-phone-box">
-                        <p>Call US :- <a href="#"> +91 9100066659</a></p>
-                    </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a href="signin.html"><i class="fa fa-user s_color"></i> My Account</a></li>
-                            <li>
-                                <a href=" https://maps.app.goo.gl/WAmF8TErCU9FDNVj9" target="_blank">
-                                  <i class="fas fa-location-arrow"></i> Our location
-                                </a>
-                              </li>
-                              
-                            <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="login-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                            <option>Register Here</option>
-                            <option>Sign In</option>
-                        </select>
-                    </div>
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
+    <div class="searchWord">
+        <div class="main-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="custom-select-box">
+                            <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                                <option>INR</option>
+                                <option>USD</option>
+                                <option>EUR</option>
+                            </select>
+                        </div>
+                        <div class="right-phone-box">
+                            <p>Call US :- <a href="#"> +91 9100066659</a></p>
+                        </div>
+                        <div class="our-link">
+                            <ul>
+                                <li><a href="signin.html"><i class="fa fa-user s_color"></i> My Account</a></li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
+                                    <a href=" https://maps.app.goo.gl/WAmF8TErCU9FDNVj9" target="_blank">
+                                        <i class="fas fa-location-arrow"></i> Our location
+                                    </a>
                                 </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                                </li>
+
+                                <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="login-box">
+                            <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
+                                <option>Register Here</option>
+                                <option>Sign In</option>
+                            </select>
+                        </div>
+                        <div class="text-slid-box">
+                            <div id="offer-box" class="carouselTicker">
+                                <ul class="offer-box">
+                                    <li>
+                                        <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> Off 50%! Shop Now
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> Off 50%! Shop Now
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Main Top -->
+        <!-- End Main Top -->
 
-    <!-- Start Main Top -->
-    <header class="main-header">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
-                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" alt=""></a>
-                </div>
-                <!-- End Header Navigation -->
+        <!-- Start Main Top -->
+        <header class="main-header">
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+                <div class="container">
+                    <!-- Start Header Navigation -->
+                    <div class="navbar-header">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                            aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" alt=""></a>
+                    </div>
+                    <!-- End Header Navigation -->
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="dropdown active">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="shop.html">Sidebar Shop</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-                        <li class="nav-item">
-                            <div class="input-group">
-                              <input type="text" id="search" style=" border: solid 3px black; height: 40px; font-size:18px; vertical-align:9px" placeholder="Search" size="10" width="5"/>
-                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
-                        <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i> </a></li>                       
-                           <li class="side-menu"><a href="#">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span class="badge"></span>
-                                <p>My Cart</p>
-                            </a></li>
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navbar-menu">
+                        <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="shop.html">Sidebar Shop</a></li>
+                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                            <li class="nav-item">
+                                <div class="input-group">
+                                    <input type="text" id="search"
+                                        style=" border: solid 3px black; height: 40px; font-size:18px; vertical-align:9px"
+                                        placeholder="Search" size="10" width="5" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                    <!-- Start Atribute Navigation -->
+                    <div class="attr-nav">
+                        <ul>
+                            <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
+                            <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i>
+                                </a></li>
+                            <li class="side-menu"><a href="#">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    <span class="badge"></span>
+                                    <p>My Cart</p>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <!-- End Atribute Navigation -->
                 </div>
                 <!-- Start Side Menu -->
                 <div class="side">
@@ -175,17 +178,20 @@
                     <li class="cart-box">
                         <ul class="cart-list">
                             <li>
-                                <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
+                                <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb"
+                                        alt="" /></a>
                                 <h6><a href="#">Delica omtantur </a></h6>
                                 <p>1x - <span class="price">80.00</span></p>
                             </li>
                             <li>
-                                <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
+                                <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb"
+                                        alt="" /></a>
                                 <h6><a href="#">Omnes ocurreret</a></h6>
                                 <p>1x - <span class="price">60.00</span></p>
                             </li>
                             <li>
-                                <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
+                                <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb"
+                                        alt="" /></a>
                                 <h6><a href="#">Agam facilisis</a></h6>
                                 <p>1x - <span class="price">40.00</span></p>
                             </li>
@@ -196,773 +202,880 @@
                         </ul>
                     </li>
                 </div>
-            <!-- End Side Menu -->
-        </nav>
-        <!-- End Navigation -->
-    </header>
-    <!-- End Main Top -->
+                <!-- End Side Menu -->
+            </nav>
+            <!-- End Navigation -->
+        </header>
+        <!-- End Main Top -->
 
-    <!-- Start Top Search -->
-    <div class="top-search">
-        <div class="container">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-            </div>
-        </div>
-    </div>
-    <!-- End Top Search -->
-
-    <!-- Start All Title Box -->
-    <div class="all-title-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Shop</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Shop</li>
-                    </ul>
+        <!-- Start Top Search -->
+        <div class="top-search">
+            <div class="container">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search">
+                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End All Title Box -->
+        <!-- End Top Search -->
 
-    <!-- Start Shop Page  -->
-    <div class="shop-box-inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
-                    <div class="right-product-box">
-                        <div class="product-item-filter row">
-                            <div class="col-12 col-sm-8 text-center text-sm-left">
-                                <div class="toolbar-sorter-right">
-                                    <span>Sort by </span>
-                                    <select id="basic" class="selectpicker show-tick form-control"
-                                        data-placeholder="$ USD">
-                                        <option data-display="Select">Nothing</option>
-                                        <option value="1">Popularity</option>
-                                        <option value="2">High Price → High Price</option>
-                                        <option value="3">Low Price → High Price</option>
-                                        <option value="4">Best Selling</option>
-                                    </select>
+        <!-- Start All Title Box -->
+        <div class="all-title-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Shop</h2>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Shop</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End All Title Box -->
+
+        <!-- Start Shop Page  -->
+        <div class="shop-box-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                        <div class="right-product-box">
+                            <div class="product-item-filter row">
+                                <div class="col-12 col-sm-8 text-center text-sm-left">
+                                    <div class="toolbar-sorter-right">
+                                        <span>Sort by </span>
+                                        <select id="priceSort" class="selectpicker show-tick form-control"
+                                            data-placeholder="$ USD">
+                                            <option data-display="Select">Nothing</option>
+                                            <option value="1">Popularity</option>
+                                            <option value="2">High Price → Low Price</option>
+                                            <option value="3">Low Price → High Price</option>
+                                            <option value="4">Best Selling</option>
+                                        </select>
+                                    </div>
+                                     <p>Showing all 4 results</p>
+                                     
+                                        <div class="filter-container">
+                                            <label for="filterPrice">Filter by Price:</label>
+                                            <select id="filterPrice">
+                                                <option value="all">All</option>
+                                                <option value="low">₹0 - ₹100</option>
+                                                <option value="medium">₹101 - ₹500</option>
+                                                <option value="high">Above ₹1000</option>
+                                            </select>
+                                        </div>
+                                        
                                 </div>
-                                <p>Showing all 4 results</p>
+                                <div class="col-12 col-sm-4 text-center text-sm-right">
+                                    <ul class="nav nav-tabs ml-auto">
+                                        <li>
+                                            <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i
+                                                    class="fa fa-th"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link" href="#list-view" data-toggle="tab"> <i
+                                                    class="fa fa-list-ul"></i> </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="col-12 col-sm-4 text-center text-sm-right">
-                                <ul class="nav nav-tabs ml-auto">
+
+                            <div class="product-categorie-box">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                        <div class="products-container">
+                                            <div class="row">
+
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
+                                                    data-price="80">
+                                                    <div id="product-item">
+                                                        <div class="products-single fix">
+                                                            <div class="box-img-hover">
+                                                                <div class="type-lb">
+                                                                    <p class="sale">Sale</p>
+                                                                </div>
+                                                                <img src="images/honey.jpg" class="img-fluid"
+                                                                    alt="Image">
+                                                                <div class="mask-icon">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="shop-detail.html?productID=1"
+                                                                                data-toggle="tooltip"
+                                                                                data-placement="right" title="View">
+                                                                                <i class="fas fa-eye"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li><a href="#" data-toggle="tooltip"
+                                                                                data-placement="right"
+                                                                                title="Compare"><i
+                                                                                    class="fas fa-sync-alt"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li><a href="#" data-toggle="tooltip"
+                                                                                data-placement="right"
+                                                                                title="Add to Wishlist"><i
+                                                                                    class="far fa-heart"></i></a></li>
+                                                                    </ul>
+                                                                    <a class="cart" href="#">Add to Cart</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="why-text">
+                                                                <h4>Honey</h4>
+                                                                <h5>&#8377;80.00(100gms)</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
+                                                    data-price="200">
+                                                    <div id="product-item">
+                                                        <div class="products-single fix">
+                                                            <div class="box-img-hover">
+                                                                <div class="type-lb">
+                                                                    <p class="new">New</p>
+                                                                </div>
+                                                                <img src="images/ghee.jpg" class="img-fluid"
+                                                                    alt="Image">
+                                                                <div class="mask-icon">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="shop-detail.html?productID=2&name=Ghee&price=30.00&desc=Fresh+ghee&second=Organic+ghee+is+ pure+and +natural +product&img=logo1.png"
+                                                                                data-toggle="tooltip"
+                                                                                data-placement="right" title="View">
+                                                                                <i class="fas fa-eye"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li><a href="#" data-toggle="tooltip"
+                                                                                data-placement="right"
+                                                                                title="Compare"><i
+                                                                                    class="fas fa-sync-alt"></i></a>
+                                                                        </li>
+                                                                        <li><a href="#" data-toggle="tooltip"
+                                                                                data-placement="right"
+                                                                                title="Add to Wishlist"><i
+                                                                                    class="far fa-heart"></i></a></li>
+                                                                    </ul>
+                                                                    <a class="cart" href="#">Add to Cart</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="why-text">
+                                                                <h4>Ghee</h4>
+                                                                <h5>&#8377;200.00(250gms)</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
+                                                    product-sortable data-price="80">
+                                                    <div id="product-item">
+                                                        <div class="products-single fix">
+                                                            <div class="box-img-hover">
+                                                                <div class="type-lb">
+                                                                    <p class="sale">Sale</p>
+                                                                </div>
+                                                                <img src="images/brown sugar.jpg" class="img-fluid"
+                                                                    alt="Image">
+                                                                <div class="mask-icon">
+                                                                    <ul>
+                                                                        <!-- Example product item in shop.html -->
+                                                                        <li>
+                                                                            <a href="shop-detail.html?productID=3&name=Brown Sugar&price=10.00&desc=Fresh+ brown sugar&second=Organic+brown sugar+is+pure+ and +natural +product&img=logo1.png"
+                                                                                data-toggle="tooltip"
+                                                                                data-placement="right" title="View">
+                                                                                <i class="fas fa-eye"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li><a href="#" data-toggle="tooltip"
+                                                                                data-placement="right"
+                                                                                title="Compare"><i
+                                                                                    class="fas fa-sync-alt"></i></a>
+                                                                        </li>
+                                                                        <li><a href="#" data-toggle="tooltip"
+                                                                                data-placement="right"
+                                                                                title="Add to Wishlist"><i
+                                                                                    class="far fa-heart"></i></a></li>
+                                                                    </ul>
+                                                                    <a class="cart" href="#">Add to Cart</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="why-text">
+                                                                <h4>Brown Sugar</h4>
+                                                                <h5> &#8377;80.00(500gm)</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
+                                                    product-sortable data-price="80">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="new">New</p>
+                                                            </div>
+                                                            <img src="images/crystal sugar.jpg" class="img-fluid"
+                                                                alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="shop-detail.html?productID=4&name=Crystal Sugar&price=20.00&desc=Fresh+crystal sugar&second=Organic+crystal sugar+is+pure+ and +natural +product&\&img=logo1.png"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="View">
+                                                                            <i class="fas fa-eye"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="Compare"><i
+                                                                                class="fas fa-sync-alt"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Add to Wishlist"><i
+                                                                                class="far fa-heart"></i></a></li>
+                                                                </ul>
+                                                                <a class="cart" href="#">Add to Cart</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text">
+                                                            <h4>Crystal Sugar</h4>
+                                                            <h5>&#8377;80.00(1kg)</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
+                                                    product-sortable data-price="200">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="sale">Sale</p>
+                                                            </div>
+                                                            <img src="images/dal.jpg" class="img-fluid" alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="shop-detail.html?productID=5&name=Organtior Dal&price=30.00&desc=Fresh+dal&second=Organic+organtior dal+is+pure+ and +natural +product&img=logo1.png"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="View">
+                                                                            <i class="fas fa-eye"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="Compare"><i
+                                                                                class="fas fa-sync-alt"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Add to Wishlist"><i
+                                                                                class="far fa-heart"></i></a></li>
+                                                                </ul>
+                                                                <a class="cart" href="#">Add to Cart</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text">
+                                                            <h4>Organtior Dal</h4>
+                                                            <h5>&#8377;200.00(1kg)</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
+                                                    data-price="100">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="sale">Sale</p>
+                                                            </div>
+                                                            <img src="images/masala tea.jpg" class="img-fluid"
+                                                                alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="shop-detail.html?productID=6&name=Masala Tea&price=10.00&desc=Fresh+masala tea&second=Organic+masala tea+is+pure+ and +natural +product&img=logo1.png"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="View">
+                                                                            <i class="fas fa-eye"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="Compare"><i
+                                                                                class="fas fa-sync-alt"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Add to Wishlist"><i
+                                                                                class="far fa-heart"></i></a></li>
+                                                                </ul>
+                                                                <a class="cart" href="#">Add to Cart</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text">
+                                                            <h4>Masala Tea</h4>
+                                                            <h5>&#8377;100.00(150gms)</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
+                                                    product-sortable data-price="250">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="sale">Sale</p>
+                                                            </div>
+                                                            <img src="images/dal.jpg" class="img-fluid" alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="shop-detail.html?productID=7&name=organtior dal&price=20.00&desc=Fresh+dal&second=Organic+organtior dal+is+pure+ and +natural +product&img=logo1.png"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="View"><i class="fas fa-eye"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="Compare"><i
+                                                                                class="fas fa-sync-alt"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Add to Wishlist"><i
+                                                                                class="far fa-heart"></i></a></li>
+                                                                </ul>
+                                                                <a class="cart" href="#">Add to Cart</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text">
+                                                            <h4>Organtior dal</h4>
+                                                            <h5>&#8377;250(1kg)</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
+                                                    product-sortable data-price="100">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="sale">Sale</p>
+                                                            </div>
+                                                            <img src="images/pink salt.jpg" class="img-fluid"
+                                                                alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="shop-detail.html?productID=8&name=Pink Salt&price=20.00&desc=Fresh+pink salt&second=Organic+pink salt+is+ pure+and +natural +product&img=logo1.png"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="View"><i class="fas fa-eye"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="Compare"><i
+                                                                                class="fas fa-sync-alt"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Add to Wishlist"><i
+                                                                                class="far fa-heart"></i></a></li>
+                                                                </ul>
+                                                                <a class="cart" href="#">Add to Cart</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text">
+                                                            <h4>Pink Salt</h4>
+                                                            <h5>&#8377;100.00(1Kg)</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
+                                                    product-sortable data-price="150">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="new">New</p>
+                                                            </div>
+                                                            <img src="images/toor dal.jpg" class="img-fluid"
+                                                                alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="shop-detail.html?productID=9&name=Toor Dal&price=20.00&desc=Fresh+toor dal&second=Organic+tool dal+is+pure+ and +natural +product&img=logo1.png"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="View"><i class="fas fa-eye"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="Compare"><i
+                                                                                class="fas fa-sync-alt"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Add to Wishlist"><i
+                                                                                class="far fa-heart"></i></a></li>
+                                                                </ul>
+                                                                <a class="cart" href="#">Add to Cart</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text">
+                                                            <h4>Toor Dal</h4>
+                                                            <h5>&#8377;150.00(1kg)</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                        <div class="list-view-box">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="new">New</p>
+                                                            </div>
+                                                            <img src="images/img-pro-01.jpg" class="img-fluid"
+                                                                alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="View"><i
+                                                                                class="fas fa-eye"></i></a></li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="Compare"><i
+                                                                                class="fas fa-sync-alt"></i></a></li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Add to Wishlist"><i
+                                                                                class="far fa-heart"></i></a></li>
+                                                                </ul>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-8 col-xl-5">
+                                                    <div class="why-text full-width">
+                                                        <h4>Carrot</h4>
+                                                        <h5> <del>&#8377;90.00</del>&#8377; 70.00</h5>
+                                                        <p>Integer tincidunt aliquet nibh vitae dictum. In turpis
+                                                            sapien,
+                                                            imperdiet quis magna nec, iaculis ultrices ante. Integer
+                                                            vitae
+                                                            suscipit nisi. Morbi dignissim risus sit amet orci porta,
+                                                            eget
+                                                            aliquam purus
+                                                            sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis
+                                                            in
+                                                            blandit eu, imperdiet sit amet eros. Donec accumsan nisi
+                                                            purus,
+                                                            quis euismod ex volutpat in. Vestibulum eleifend eros ac
+                                                            lobortis aliquet.
+                                                            Suspendisse at ipsum vel lacus vehicula blandit et
+                                                            sollicitudin
+                                                            quam. Praesent vulputate semper libero pulvinar consequat.
+                                                            Etiam
+                                                            ut placerat lectus.</p>
+                                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="list-view-box">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="sale">Sale</p>
+                                                            </div>
+                                                            <img src="images/img-pro-02.jpg" class="img-fluid"
+                                                                alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="View"><i
+                                                                                class="fas fa-eye"></i></a></li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="Compare"><i
+                                                                                class="fas fa-sync-alt"></i></a></li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Add to Wishlist"><i
+                                                                                class="far fa-heart"></i></a></li>
+                                                                </ul>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                    <div class="why-text full-width">
+                                                        <h4>Tomato</h4>
+                                                        <h5> <del>&#8377; 100.00</del> &#8377;80.00 </h5>
+                                                        <p>Integer tincidunt aliquet nibh vitae dictum. In turpis
+                                                            sapien,
+                                                            imperdiet quis magna nec, iaculis ultrices ante. Integer
+                                                            vitae
+                                                            suscipit nisi. Morbi dignissim risus sit amet orci porta,
+                                                            eget
+                                                            aliquam purus
+                                                            sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis
+                                                            in
+                                                            blandit eu, imperdiet sit amet eros. Donec accumsan nisi
+                                                            purus,
+                                                            quis euismod ex volutpat in. Vestibulum eleifend eros ac
+                                                            lobortis aliquet.
+                                                            Suspendisse at ipsum vel lacus vehicula blandit et
+                                                            sollicitudin
+                                                            quam. Praesent vulputate semper libero pulvinar consequat.
+                                                            Etiam
+                                                            ut placerat lectus.</p>
+                                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="list-view-box">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="sale">Sale</p>
+                                                            </div>
+                                                            <img src="images/img-pro-03.jpg" class="img-fluid"
+                                                                alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="View"><i
+                                                                                class="fas fa-eye"></i></a></li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right" title="Compare"><i
+                                                                                class="fas fa-sync-alt"></i></a></li>
+                                                                    <li><a href="#" data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Add to Wishlist"><i
+                                                                                class="far fa-heart"></i></a></li>
+                                                                </ul>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                    <div class="why-text full-width">
+                                                        <h4>Green Grapes</h4>
+                                                        <h5> <del>&#8377;120.00</del> &#8377;90.00</h5>
+                                                        <p>Integer tincidunt aliquet nibh vitae dictum. In turpis
+                                                            sapien,
+                                                            imperdiet quis magna nec, iaculis ultrices ante. Integer
+                                                            vitae
+                                                            suscipit nisi. Morbi dignissim risus sit amet orci porta,
+                                                            eget
+                                                            aliquam purus
+                                                            sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis
+                                                            in
+                                                            blandit eu, imperdiet sit amet eros. Donec accumsan nisi
+                                                            purus,
+                                                            quis euismod ex volutpat in. Vestibulum eleifend eros ac
+                                                            lobortis aliquet.
+                                                            Suspendisse at ipsum vel lacus vehicula blandit et
+                                                            sollicitudin
+                                                            quam. Praesent vulputate semper libero pulvinar consequat.
+                                                            Etiam
+                                                            ut placerat lectus.</p>
+                                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                        <div class="product-categori">
+                            <div class="search-product">
+                                <form action="#">
+                                    <input class="form-control" placeholder="Search here..." type="text">
+                                    <button type="submit"> <i class="fa fa-search"></i> </button>
+                                </form>
+                            </div>
+                            <div class="filter-sidebar-left">
+                                <div class="title-left">
+                                    <h3>Categories</h3>
+                                </div>
+                                <div class="list-group list-group-collapse list-group-sm list-group-tree"
+                                    id="list-group-men" data-children=".sub-men">
+                                    <div class="list-group-collapse sub-men">
+                                        <a class="list-group-item list-group-item-action" href="#sub-men1"
+                                            data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Fruits
+                                            &
+                                            Drinks <small class="text-muted">(100)</small>
+                                        </a>
+                                        <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item list-group-item-action active">Fruits
+                                                    1
+                                                    <small class="text-muted">(50)</small></a>
+                                                <a href="#" class="list-group-item list-group-item-action">Fruits 2
+                                                    <small class="text-muted">(30)</small></a>
+                                                <a href="#" class="list-group-item list-group-item-action">Fruits 3
+                                                    <small class="text-muted">(10)</small></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-collapse sub-men">
+                                        <a class="list-group-item list-group-item-action" href="#sub-men2"
+                                            data-toggle="collapse" aria-expanded="false"
+                                            aria-controls="sub-men2">Vegetables
+                                            <small class="text-muted">(50)</small>
+                                        </a>
+                                        <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item list-group-item-action">Vegetables 1
+                                                    <small class="text-muted">(10)</small></a>
+                                                <a href="#" class="list-group-item list-group-item-action">Vegetables 2
+                                                    <small class="text-muted">(20)</small></a>
+                                                <a href="#" class="list-group-item list-group-item-action">Vegetables 3
+                                                    <small class="text-muted">(20)</small></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small
+                                            class="text-muted">(150) </small></a>
+                                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small
+                                            class="text-muted">(11)</small></a>
+                                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small
+                                            class="text-muted">(22)</small></a>
+                                </div>
+                            </div>
+                            <div class="filter-price-left">
+                                <div class="title-left">
+                                    <h3>Price</h3>
+                                </div>
+                                <div class="price-box-slider">
+                                    <div id="slider-range"></div>
+                                    <p>
+                                        <input type="text" id="amount" readonly
+                                            style="border:0; color:#fbb714; font-weight:bold;">
+                                        <button class="btn hvr-hover" type="submit">Filter</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Shop Page -->
+
+        <!-- Start Instagram Feed  -->
+        <div class="instagram-box">
+            <div class="main-instagram owl-carousel owl-theme">
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta1.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta3.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta4.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta5.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta6.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta1.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Instagram Feed  -->
+
+
+        <!-- Start Footer  -->
+        <footer>
+            <div class="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-top-box">
+                                <h3>Business Time</h3>
+                                <ul class="list-time">
+                                    <li>Monday - Friday: 08.00am to 05.00pm</li>
+                                    <li>Saturday: 10.00am to 08.00pm</li>
+                                    <li>Sunday: <span>Closed</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-top-box">
+                                <h3>Newsletter</h3>
+                                <form class="newsletter-box">
+                                    <div class="form-group">
+                                        <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <button class="btn hvr-hover" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-top-box">
+                                <h3>Social Media</h3>
+                                <p>Follow us for updates on seasonal and organic products.</p>
+                                <ul>
+                                    <li><a href="https://www.facebook.com/6seasonsorganic"><i class="fab fa-facebook"
+                                                aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.twitter.com/6seasonsorganic"><i class="fab fa-twitter"
+                                                aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/6seasonsorganic"><i
+                                                class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.instagram.com/6_seasons_organic/?hl=en"><i
+                                                class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.youtube.com/@6seasonsorganics"><i class="fab fa-youtube"
+                                                aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.whatsapp.com"><i class="fab fa-whatsapp"
+                                                aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-widget">
+                                <h4>ABOUT 6SEASONSORGANIC</h4>
+                                <p>6seasonsorganic is dedicated to providing the highest quality organic and seasonal
+                                    products. Our mission is to bring health and sustainability to every customer.</p>
+                                <p>Our organic products are sourced with care, ensuring the best for you and your
+                                    family.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-link">
+                                <h4>Information</h4>
+                                <ul>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Customer Service</a></li>
+                                    <li><a href="#">Our Sitemap</a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Delivery Information</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-link-contact">
+                                <h4>Contact Us</h4>
+                                <ul>
                                     <li>
-                                        <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i
-                                                class="fa fa-th"></i> </a>
+                                        <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic H.no
+                                            4-59/6/19,<br>Srinivasa Nagar Colony Mandaipally Road<br>Thumukunta,
+                                            Shamirpet<br>Secunderabad, Telangana 500078</p>
                                     </li>
                                     <li>
-                                        <a class="nav-link" href="#list-view" data-toggle="tab"> <i
-                                                class="fa fa-list-ul"></i> </a>
+                                        <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+91-9100066659">+91
+                                                9100066659</a></p>
+                                    </li>
+                                    <li>
+                                        <p><i class="fas fa-envelope"></i>Email: <a
+                                                href="mailto:info@6seasonsorganic.com">info@6seasonsorganic.com</a></p>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-
-                        <div class="product-categorie-box">
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-                                    <div class="row">
-                                        
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div id="product-item">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img src="images/honey.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li>
-                                                                <a  href="shop-detail.html?productID=1"
-                                                                    data-toggle="tooltip" data-placement="right" 
-                                                                    title="View">
-                                                                    <i class="fas fa-eye"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Add to Wishlist"><i
-                                                                        class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                 </div>
-                                                <div class="why-text" >
-                                                    <h4>Honey</h4>
-                                                    <h5>&#8377;80.00(100gms)</h5>
-                                                   </div>
-                                                   </div>
-                                        </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div id="product-item">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img src="images/ghee.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-detail.html?productID=2&name=Ghee&price=30.00&desc=Fresh+ghee&second=Organic+ghee+is+ pure+and +natural +product&img=logo1.png" 
-                                                                   data-toggle="tooltip" 
-                                                                    data-placement="right" 
-                                                                        title="View">
-                                                                       <i class="fas fa-eye"></i>
-                                                                         </a>
-                                                                          </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i></a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Add to Wishlist"><i
-                                                                        class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Ghee</h4>
-                                                    <h5>&#8377;200.00(250gms)</h5>
-                                              </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div id="product-item">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img src="images/brown sugar.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <!-- Example product item in shop.html -->
-                                                            <li>
-                                                                <a href="shop-detail.html?productID=3&name=Brown Sugar&price=10.00&desc=Fresh+ brown sugar&second=Organic+brown sugar+is+pure+ and +natural +product&img=logo1.png"
-                                                                    data-toggle="tooltip" data-placement="right" 
-                                                                     title="View">
-                                                                    <i class="fas fa-eye"></i>
-                                                                </a>
-                                                            </li>
-                                                             <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i></a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Add to Wishlist"><i
-                                                                        class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Brown Sugar</h4>
-                                                    <h5> &#8377;80.00(500gm)</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img src="images/crystal sugar.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-detail.html?productID=4&name=Crystal Sugar&price=20.00&desc=Fresh+crystal sugar&second=Organic+crystal sugar+is+pure+ and +natural +product&\&img=logo1.png"
-                                                                    data-toggle="tooltip" data-placement="right"
-                                                                    title="View">
-                                                                    <i class="fas fa-eye"></i>
-                                                                </a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i></a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Add to Wishlist"><i
-                                                                        class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Crystal Sugar</h4>
-                                                    <h5>&#8377;80.00(1kg)</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img src="images/dal.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-detail.html?productID=5&name=Organtior Dal&price=30.00&desc=Fresh+dal&second=Organic+organtior dal+is+pure+ and +natural +product&img=logo1.png"
-                                                                    data-toggle="tooltip" data-placement="right"
-                                                                    title="View">
-                                                                    <i class="fas fa-eye"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i></a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Add to Wishlist"><i
-                                                                        class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Organtior Dal</h4>
-                                                    <h5>&#8377;200.00(1kg)</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img src="images/masala tea.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-detail.html?productID=6&name=Masala Tea&price=10.00&desc=Fresh+masala tea&second=Organic+masala tea+is+pure+ and +natural +product&img=logo1.png"
-                                                                    data-toggle="tooltip" data-placement="right"
-                                                                    title="View">
-                                                                    <i class="fas fa-eye"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i></a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Add to Wishlist"><i
-                                                                        class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Masala Tea</h4>
-                                                    <h5>&#8377;100.00(150gms)</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img src="images/dal.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="shop-detail.html?productID=7&name=organtior dal&price=20.00&desc=Fresh+dal&second=Organic+organtior dal+is+pure+ and +natural +product&img=logo1.png" data-toggle="tooltip" data-placement="right"
-                                                                    title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i></a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Add to Wishlist"><i
-                                                                        class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Organtior dal</h4>
-                                                    <h5>&#8377;250(1kg)</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img src="images/pink salt.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="shop-detail.html?productID=8&name=Pink Salt&price=20.00&desc=Fresh+pink salt&second=Organic+pink salt+is+ pure+and +natural +product&img=logo1.png" data-toggle="tooltip" data-placement="right"
-                                                                    title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i></a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Add to Wishlist"><i
-                                                                        class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Pink Salt</h4>
-                                                    <h5>&#8377;100.00(1Kg)</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img src="images/toor dal.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="shop-detail.html?productID=9&name=Toor Dal&price=20.00&desc=Fresh+toor dal&second=Organic+tool dal+is+pure+ and +natural +product&img=logo1.png" data-toggle="tooltip" data-placement="right"
-                                                                    title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Compare"><i class="fas fa-sync-alt"></i></a>
-                                                            </li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                                    title="Add to Wishlist"><i
-                                                                        class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Toor Dal</h4>
-                                                    <h5>&#8377;150.00(1kg)</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="list-view">
-                                    <div class="list-view-box">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="new">New</p>
-                                                        </div>
-                                                        <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right" title="View"><i
-                                                                            class="fas fa-eye"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right" title="Compare"><i
-                                                                            class="fas fa-sync-alt"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right"
-                                                                        title="Add to Wishlist"><i
-                                                                            class="far fa-heart"></i></a></li>
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text full-width">
-                                                    <h4>Carrot</h4>
-                                                    <h5> <del>&#8377;90.00</del>&#8377; 70.00</h5>
-                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien,
-                                                        imperdiet quis magna nec, iaculis ultrices ante. Integer vitae
-                                                        suscipit nisi. Morbi dignissim risus sit amet orci porta, eget
-                                                        aliquam purus
-                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in
-                                                        blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus,
-                                                        quis euismod ex volutpat in. Vestibulum eleifend eros ac
-                                                        lobortis aliquet.
-                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin
-                                                        quam. Praesent vulputate semper libero pulvinar consequat. Etiam
-                                                        ut placerat lectus.</p>
-                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-view-box">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="sale">Sale</p>
-                                                        </div>
-                                                        <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right" title="View"><i
-                                                                            class="fas fa-eye"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right" title="Compare"><i
-                                                                            class="fas fa-sync-alt"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right"
-                                                                        title="Add to Wishlist"><i
-                                                                            class="far fa-heart"></i></a></li>
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text full-width">
-                                                    <h4>Tomato</h4>
-                                                    <h5> <del>&#8377; 100.00</del> &#8377;80.00 </h5>
-                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien,
-                                                        imperdiet quis magna nec, iaculis ultrices ante. Integer vitae
-                                                        suscipit nisi. Morbi dignissim risus sit amet orci porta, eget
-                                                        aliquam purus
-                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in
-                                                        blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus,
-                                                        quis euismod ex volutpat in. Vestibulum eleifend eros ac
-                                                        lobortis aliquet.
-                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin
-                                                        quam. Praesent vulputate semper libero pulvinar consequat. Etiam
-                                                        ut placerat lectus.</p>
-                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-view-box">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="sale">Sale</p>
-                                                        </div>
-                                                        <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right" title="View"><i
-                                                                            class="fas fa-eye"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right" title="Compare"><i
-                                                                            class="fas fa-sync-alt"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right"
-                                                                        title="Add to Wishlist"><i
-                                                                            class="far fa-heart"></i></a></li>
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text full-width">
-                                                    <h4>Green Grapes</h4>
-                                                    <h5> <del>&#8377;120.00</del> &#8377;90.00</h5>
-                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien,
-                                                        imperdiet quis magna nec, iaculis ultrices ante. Integer vitae
-                                                        suscipit nisi. Morbi dignissim risus sit amet orci porta, eget
-                                                        aliquam purus
-                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in
-                                                        blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus,
-                                                        quis euismod ex volutpat in. Vestibulum eleifend eros ac
-                                                        lobortis aliquet.
-                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin
-                                                        quam. Praesent vulputate semper libero pulvinar consequat. Etiam
-                                                        ut placerat lectus.</p>
-                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
-                    <div class="product-categori">
-                        <div class="search-product">
-                            <form action="#">
-                                <input class="form-control" placeholder="Search here..." type="text">
-                                <button type="submit"> <i class="fa fa-search"></i> </button>
-                            </form>
-                        </div>
-                        <div class="filter-sidebar-left">
-                            <div class="title-left">
-                                <h3>Categories</h3>
-                            </div>
-                            <div class="list-group list-group-collapse list-group-sm list-group-tree"
-                                id="list-group-men" data-children=".sub-men">
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men1"
-                                        data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Fruits &
-                                        Drinks <small class="text-muted">(100)</small>
-                                    </a>
-                                    <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action active">Fruits 1
-                                                <small class="text-muted">(50)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Fruits 2 <small
-                                                    class="text-muted">(30)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Fruits 3 <small
-                                                    class="text-muted">(10)</small></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men2"
-                                        data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables
-                                        <small class="text-muted">(50)</small>
-                                    </a>
-                                    <div class="collapse" id="sub-men2" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">Vegetables 1
-                                                <small class="text-muted">(10)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Vegetables 2
-                                                <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Vegetables 3
-                                                <small class="text-muted">(20)</small></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#" class="list-group-item list-group-item-action"> Grocery <small
-                                        class="text-muted">(150) </small></a>
-                                <a href="#" class="list-group-item list-group-item-action"> Grocery <small
-                                        class="text-muted">(11)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action"> Grocery <small
-                                        class="text-muted">(22)</small></a>
-                            </div>
-                        </div>
-                        <div class="filter-price-left">
-                            <div class="title-left">
-                                <h3>Price</h3>
-                            </div>
-                            <div class="price-box-slider">
-                                <div id="slider-range"></div>
-                                <p>
-                                    <input type="text" id="amount" readonly
-                                        style="border:0; color:#fbb714; font-weight:bold;">
-                                    <button class="btn hvr-hover" type="submit">Filter</button>
-                                </p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
+        </footer>
+        <!-- End Footer  -->
+
+        <!-- Start copyright  -->
+        <div class="footer-copyright">
+            <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
+                <a href="https://html.design/">6SeasonsOrganic</a>
+            </p>
+            </p>
         </div>
-    </div>
-    <!-- End Shop Page -->
+        <!-- End copyright  -->
 
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div> 
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta3.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta4.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta5.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta6.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
+        <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
-
-    <!-- Start Footer  -->
-    <footer>
-        <div class="footer-main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Business Time</h3>
-                            <ul class="list-time">
-                                <li>Monday - Friday: 08.00am to 05.00pm</li>
-                                <li>Saturday: 10.00am to 08.00pm</li>
-                                <li>Sunday: <span>Closed</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Newsletter</h3>
-                            <form class="newsletter-box">
-                                <div class="form-group">
-                                    <input class="" type="email" name="Email" placeholder="Email Address*" />
-                                    <i class="fa fa-envelope"></i>
-                                </div>
-                                <button class="btn hvr-hover" type="submit">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Social Media</h3>
-                            <p>Follow us for updates on seasonal and organic products.</p>
-                            <ul>
-                                <li><a href="https://www.facebook.com/6seasonsorganic"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.twitter.com/6seasonsorganic"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.linkedin.com/company/6seasonsorganic"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.instagram.com/6_seasons_organic/?hl=en"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.youtube.com/@6seasonsorganics"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.whatsapp.com"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-widget">
-                            <h4>ABOUT 6SEASONSORGANIC</h4>
-                            <p>6seasonsorganic is dedicated to providing the highest quality organic and seasonal products. Our mission is to bring health and sustainability to every customer.</p> 
-                            <p>Our organic products are sourced with care, ensuring the best for you and your family.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link">
-                            <h4>Information</h4>
-                            <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Customer Service</a></li>
-                                <li><a href="#">Our Sitemap</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Delivery Information</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link-contact">
-                            <h4>Contact Us</h4>
-                            <ul>
-                                <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic H.no 4-59/6/19,<br>Srinivasa Nagar Colony Mandaipally Road<br>Thumukunta, Shamirpet<br>Secunderabad, Telangana 500078</p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+91-9100066659">+91 9100066659</a></p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a
-                                            href="mailto:info@6seasonsorganic.com">info@6seasonsorganic.com</a></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer  -->
-
-    <!-- Start copyright  -->
-    <div class="footer-copyright">
-        <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
-            <a href="https://html.design/">6SeasonsOrganic</a></p>
-        </p>
-    </div>
-    <!-- End copyright  -->
-
-    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-
-    <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="js/jquery.superslides.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="script.js"></script>
-
+        <!-- ALL JS FILES -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- ALL PLUGINS -->
+        <script src="js/jquery.superslides.min.js"></script>
+        <script src="js/bootstrap-select.js"></script>
+        <script src="js/inewsticker.js"></script>
+        <script src="js/bootsnav.js."></script>
+        <script src="js/images-loded.min.js"></script>
+        <script src="js/isotope.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/baguetteBox.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script src="js/form-validator.min.js"></script>
+        <script src="js/contact-form-script.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="script.js"></script>
+        <!--sorting products price high-to and low-high-->
+        <script src="js/sorting.js"></script>
+        <!--filtering functionality-->
+     <script src="js/filtering.js"></script>
     </div>
 </body>
 
