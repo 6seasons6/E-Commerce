@@ -48,7 +48,7 @@ app.use(
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID, // Your Google OAuth Client ID
   process.env.CLIENT_SECRET, // Your Google OAuth Client Secret
-  "https://euphonious-maamoul-f82320.netlify.app/my-account" // Redirect URI
+  "https://euphonious-maamoul-f82320.netlify.app/auth/google/callback" // Redirect URI
 );
 
 // Route to initiate the Google OAuth login
