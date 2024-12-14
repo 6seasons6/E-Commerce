@@ -7,7 +7,9 @@ const products = {
         description: "Fresh organic honey.",
         price: "&#8377;80.00",
         image: "images/honey.jpg",
+       
         datadesc: "This organic honey is harvested straight from natural hives, ensuring purity and natural goodness. Packed with antioxidants, vitamins, and minerals, it serves as a healthy alternative to refined sugars. Perfect for sweetening tea, drizzling on pancakes, or adding to skincare routines. Known for its soothing and healing properties, it supports overall immunity and wellness. A must-have in every kitchen for its versatility and health benefits."
+        
     },
     2: {
         name: "Ghee",
@@ -68,22 +70,143 @@ const products = {
 }
 // Dynamically set the content
 
-        // Get the product ID from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('productID');
+// Get the product ID from the URL
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('productID');
 
-        // Get the product details from the 'products' object
-        const product = products[productId];
+// Get the product details from the 'products' object
+const product = products[productId];
 
-        if (product) {
-            // Update the page with the product details
-            document.getElementById('product-name').textContent = product.name;
-            document.getElementById('product-description').textContent = product.description;
-            document.getElementById('product-price').innerHTML = product.price;
-            document.getElementById('product-image').src = product.image;
-            document.getElementById('product-datadesc').textContent = product.datadesc;
-        } else {
-            // If no product found, display a message
-            document.getElementById('product-name').textContent = "Product not found.";
-        }
-        
+if (product) {
+    // Update the page with the product details
+    document.getElementById('product-name').textContent = product.name;
+    document.getElementById('product-description').textContent = product.description;
+    document.getElementById('product-price').innerHTML = product.price;
+    document.getElementById('product-image').src = product.image;
+    document.getElementById('product-datadesc').textContent = product.datadesc;
+    
+} else {
+    // If no product found, display a message
+    document.getElementById('product-name').textContent = "Product not found.";
+}
+//add to cart functionalities to products in shop details page
+
+//shopdetailscode
+const addToCartButton = document.getElementById("add-to-cart-btn");
+const cartCount = document.getElementById("cart-count");
+const cartList = document.getElementById("cart-list");
+const productName = document.getElementById("product-name").innerText;
+const productPrice = document.getElementById("product-price").innerText;
+const productImage = document.getElementById("product-image").src;
+
+// Reference to the "View Cart" button (ensure correct selection after DOM is ready)
+let viewCartButton = null;
+
+// Handle Add to Cart button click
+addToCartButton.addEventListener("click", function () {
+    // Create a new cart item object
+    const cartItem = {
+        name: productName,
+        price: parseFloat(productPrice.replace(/[^\d.-]/g, "")), // Convert price to a number
+        image: productImage,
+    };
+
+    // Retrieve existing cart items from localStorage, or create an empty array if not present
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    // Add the new cart item to the array
+    cartItems.push(cartItem);
+
+    // Save the updated cart items to localStorage
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+    // Update the cart UI
+    updateCartUI();
+
+    // Show success message
+    showSuccessMessage("Successfully  product added to cart!");
+});
+
+// Function to show a success message
+function showSuccessMessage(message) {
+    // Create a div element for the success message
+    const successMessageDiv = document.createElement("div");
+    successMessageDiv.classList.add("success-message");
+    successMessageDiv.textContent = message;
+
+    // Append the success message to the body
+    document.body.appendChild(successMessageDiv);
+
+    // Remove the message after 3 seconds
+    setTimeout(function () {
+        successMessageDiv.remove();
+    }, 3000);
+}
+
+// Update Cart UI
+function updateCartUI() {
+    // Clear the current cart list
+    cartList.innerHTML = "";
+
+    // Get cart items from localStorage
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    // Calculate total amount
+    const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
+
+    // Update the cart item count
+    cartCount.innerText = cartItems.length;
+
+    // Add each cart item to the list
+    cartItems.forEach(function (item, index) {
+        const cartItemElement = document.createElement("li");
+        cartItemElement.classList.add("cart-item");
+
+        cartItemElement.innerHTML = `
+            <a href="#" class="photo"><img src="${item.image}" class="cart-thumb" alt="${item.name}" /></a>
+            <h6><a href="#">${item.name}</a></h6>
+            <div class="price-and-remove">
+                <p>1x - <span class="price">${item.price.toFixed(2)}</span></p>
+                <button class="remove-item" data-index="${index}">X</button> <!-- Close button beside the price -->
+            </div>
+        `;
+
+        // Append the cart item to the list
+        cartList.appendChild(cartItemElement);
+    });
+
+    // Add total amount to the "View Cart" button if the cart is not empty
+    const totalElement = document.querySelector('.cart-total-amount');
+    if (totalAmount > 0) {
+        totalElement.textContent = `$${totalAmount.toFixed(2)}`;
+    } else {
+        totalElement.textContent = ''; // If the cart is empty, show nothing
+    }
+
+    // Add event listeners for the remove buttons (close buttons)
+    document.querySelectorAll(".remove-item").forEach(button => {
+        button.addEventListener("click", function () {
+            const index = button.getAttribute("data-index");
+            removeCartItem(index);
+        });
+    });
+}
+
+// Remove Cart Item
+function removeCartItem(index) {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    cartItems.splice(index, 1);
+
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+    // Update the cart UI
+    updateCartUI();
+}
+
+// On page load, update the cart UI to display items stored in localStorage
+document.addEventListener("DOMContentLoaded", function () {
+    // Ensure viewCartButton is selected
+    viewCartButton = document.querySelector('.total .btn-cart');
+    updateCartUI();
+});

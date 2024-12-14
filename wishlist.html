@@ -41,7 +41,9 @@
             find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
         }
     </script>
-
+<style>
+    
+</style>
 </head>
 
 <body>
@@ -170,10 +172,10 @@
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
                         <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i> </a></li>                       
-                        <li class="side-menu"><a href="#">
+                        <li class="nav-item"><a href="cart.html">
 						<i class="fa fa-shopping-bag"></i>
                             <span class="badge"></span>
-							<p>My Cart</p>
+							<span>My Cart</span>
 					</a></li>
                     </ul>
                 </div>
@@ -251,85 +253,14 @@
                                 <tr>
                                     <th>Images</th>
                                     <th>Product Name</th>
-                                    <th>Unit Price </th>
+                                    <th>Unit Price</th>
                                     <th>Stock</th>
                                     <th>Add Item</th>
                                     <th>Remove</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="quantity-box">In Stock</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-02.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 60.0</p>
-                                    </td>
-                                    <td class="quantity-box">In Stock</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-03.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 30.0</p>
-                                    </td>
-                                    <td class="quantity-box">In Stock</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
+                            <tbody id="wishlist-body">
+                                <!-- Wishlist items will be dynamically added here -->
                             </tbody>
                         </table>
                     </div>
@@ -536,7 +467,57 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
-    </div>
+    <script src="js/wishlist.js"></script>
+    <script src="js/shopdetailswishlist.js"></script>
+    <!--wish button code-->
+ <!-- <script>
+  window.onload = function() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const wishlistBody = document.getElementById('wishlist-body');
+
+    // Loop through the wishlist and add each product to the table
+    wishlist.forEach(product => {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><img src="${product.image}" alt="${product.name}" style="width: 100px; height: auto;"></td>
+            <td>${product.name}</td>
+            <td>${product.price}</td>
+            <td>In Stock</td>
+            <td><button class="btn btn-primary">Add Item</button></td>
+            <td><button class="btn btn-danger remove-wishlist-item">Remove</button></td>
+        `;
+
+        // Append the new row to the wishlist table
+        wishlistBody.appendChild(newRow);
+
+        // Add event listener for "Remove" button
+        newRow.querySelector('.remove-wishlist-item').addEventListener('click', function () {
+            // Remove the product from localStorage
+            const updatedWishlist = wishlist.filter(p => p.name !== product.name);
+            localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+
+            // Remove the row from the table
+            wishlistBody.removeChild(newRow);
+        });
+    });
+};
+
+</script>-->
+<Script>
+    function showWishlistMessage(message) {
+        const wishlistMessage = document.createElement('div');
+        wishlistMessage.className = 'wishlist-message';
+        wishlistMessage.innerText = message;
+
+        document.body.appendChild(wishlistMessage);
+
+        setTimeout(() => {
+            wishlistMessage.remove();
+        }, 3000);
+    }
+
+</Script>
+</div>
 </body>
 
 </html>
