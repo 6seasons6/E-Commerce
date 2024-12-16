@@ -74,20 +74,6 @@
     <![endif]-->
     <script src="../E-Commerce/node_modules/jquery/dist/jquery.js"></script>
     <script src="../E-Commerce/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <script>
-        var startTime = new Date(milliseconds),
-            timeoutLength = 60000;
-        
-        var interval = setInterval("checkTimeout()",1000);
-        function checkTimeout() {
-            var currentTime = new Date(millisecond);
-            if (currentTime > startTime + timeoutLength) {
-                clearInterval(interval);
-                alert ("Your current Session is over due to inactivity.");
-            }
-        }
-        checkTimeout();
-        </script>
     </script>
     <script>
         function onSignIn(googleUser) {
@@ -249,11 +235,11 @@
                 <div class="attr-nav">
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
-                        <li class="nav-item">
-							<a href="cart.html">
+                        <li class="side-menu">
+							<a href="#">
 								<i class="fa fa-shopping-bag"></i>
 								<span class="badge"></span>
-								<span>My Cart</span>
+								<p>My Cart</p>
 							</a>
 						</li>
                     </ul>
