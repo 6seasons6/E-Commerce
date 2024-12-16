@@ -42,7 +42,27 @@
             find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
         }
     </script>
+<style>
+    .cart-thumb {
+    width: 50%;
+    height: 50%;
+    object-fit: cover; /* Ensures the image maintains its aspect ratio */
+}
+table {
+        width: 100%; /* Ensures the table takes up the full width */
+        table-layout: fixed;  /* Forces equal width for all columns */
+    }
 
+    th, td {
+        padding: 10px;  /* Adds padding inside each cell for better readability */
+        text-align: center; /* Centers text in each cell */
+    }
+
+    th {
+        width: 16.66%;  /* Ensures each <th> gets an equal width (for 6 columns) */
+    }
+    
+</style>
 </head>
 
 <body>
@@ -171,10 +191,7 @@
                         <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
                         <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i> </a></li>                       
                        <li class="side-menu"><a href="#">
-						<i class="fa fa-shopping-bag"></i>
-                            <span class="badge"></span>
-							<p>My Cart</p>
-					</a></li>
+						
                     </ul>
                 </div>
                 <!-- End Atribute Navigation -->
@@ -183,7 +200,8 @@
             <div class="side">
                 <a href="#" class="close-side"><i class="fa fa-times"></i></a>
                 <li class="cart-box">
-                    <ul class="cart-list">
+                
+                    <ul class="cart-list" id="cart-list">
                         <li>
                             <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
                             <h6><a href="#">Delica omtantur </a></h6>
@@ -199,6 +217,7 @@
                             <h6><a href="#">Agam facilisis</a></h6>
                             <p>1x - <span class="price">$40.00</span></p>
                         </li>
+                        
                         <li class="total">
                             <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
                             <span class="float-right"><strong>Total</strong>: $180.00</span>
@@ -239,7 +258,7 @@
         </div>
     </div>
     <!-- End All Title Box -->
-
+<!--add to cart code-->
     <!-- Start Cart  -->
     <div class="cart-box-main">
         <div class="container">
@@ -257,86 +276,29 @@
                                     <th>Remove</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-02.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 60.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-03.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 30.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
+                            <tbody id="cart-body">
+                                <!-- Cart items will be dynamically inserted here -->
                             </tbody>
                         </table>
+                        <!-- Total Section -->
+                        <div class="total-section">
+                            <ul>
+                                <li class="total">
+                                    <a href="#" class="btn btn-default hvr-hover btn-cart">
+                                        <span>Total Amount</span> </a>
+                                        <span class="cart-total-amount" >$0.00</span>
+                                </li>
+                            </ul>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row my-5">
+        </div>
+    </div>
+    
+    
+            <div class="row my-5" style="margin-left:10rem">
                 <div class="col-lg-6 col-sm-6">
                     <div class="coupon-box">
                         <div class="input-group input-group-sm">
@@ -579,6 +541,8 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
     </div>
 </body>
 
