@@ -22,7 +22,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    
     <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Responsive CSS -->
@@ -66,15 +65,6 @@
             text-align: center;
             color: black;
             font-weight: bold;
-        .center-container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .pass{
-            display: flex;
-            justify-content: right;
-            align-items: center;
         }
     </style>
     <!--[if lt IE 9]>
@@ -320,34 +310,6 @@
                         <input type="password"   style="width: 400px;height:35px;margin: 0;" id="password" placeholder="Enter your password" required>
                         <div class="pass">
                             <button  type="button" class="btn btn-white weight" onclick="myFunc()"><i class="bi bi-eye"></i></button>
-
-    <div class="container py-5">
-        <h2 class="text-center mb-4" id="sign">Sign In</h2>
-        <form id="signin-form">
-            <div class="form-group">
-                <label form="email" id="mail">Email address</label>
-                <input type="email" class="form-control " id="email" placeholder="Enter your email" class="bi bi-person-square"  required="required" onkeyup="convertData()" />
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required="required"/>
-            </div>
-            <div class="pass">
-                <button  type="button" class="btn btn-white" onclick="myFunc()"><i class="bi bi-eye"></i></button>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block" >Sign In</button>
-            <div class="pass">
-            <button  type="button"class=" btn btn-white mt-3" data-bs-toggle="modal" data-bs-target="#myData">Forgot password?</button>
-            <div class="modal" id="myData" data-bs-backdrop="static">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 style="color: rgb(170, 167, 12);">Password Recovery</h5>
-                            <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <label>Enter your Username/EmailId</label>
-                            <input type="text" class="border border-2 border-dark" required="required" />
                         </div>
                         <button  type="button "class=" btn btn-white weight " data-bs-toggle="modal" data-bs-target="#myData">Forgot password?</button>
                         <button type="button" class="btn btn-success btn-sm head">Sign In</button>
@@ -376,10 +338,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            <div class="center-container">
-            <div class="g-signin2" style="height: 50px;width:200px;" data-onsuccess="onSignIn"></div>
             </div>
             </div>
         </form>
