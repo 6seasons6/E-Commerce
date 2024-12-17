@@ -22,7 +22,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    
     <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Responsive CSS -->
@@ -33,17 +32,13 @@
     <link rel="stylesheet" href="../E-Commerce/node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <style>
         #sign{
-            color:black ;
-            font-size:25px;
+            color:rgb(169, 169, 17) ;
+            font-size:15px;
             font-weight: bold;
         }
-        #sign:hover{
+        #sign1:hover{
             color:rgb(205, 197, 50) ;
-            font-size:25px;
             font-weight: bold;
-        }
-        .data{
-            display: none;
         }
         .center-container{
             display: flex;
@@ -55,6 +50,22 @@
             justify-content: right;
             align-items: center;
         }
+        .weight{
+            font-weight: bold;
+            text-align: right;
+        }
+        .card{
+            width: 450px;
+            height: 510px;
+        }
+        .head{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+        }
     </style>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -62,6 +73,7 @@
     <![endif]-->
     <script src="../E-Commerce/node_modules/jquery/dist/jquery.js"></script>
     <script src="../E-Commerce/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </script>
     <script>
         function onSignIn(googleUser) {
              var profile = googleUser.getBasicProfile();
@@ -277,44 +289,55 @@
         </div>
     </div>
     <!-- End Top Search -->
-
-    <div class="container py-5">
-        <h2 class="text-center mb-4" id="sign">Sign In</h2>
-        <form id="signin-form">
-            <div class="form-group">
-                <label form="email" id="mail">Email address</label>
-                <input type="email" class="form-control " id="email" placeholder="Enter your email" class="bi bi-person-square"  required="required" onkeyup="convertData()" />
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required="required"/>
-            </div>
-            <div class="pass">
-                <button  type="button" class="btn btn-white" onclick="myFunc()"><i class="bi bi-eye"></i></button>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block" >Sign In</button>
-            <div class="pass">
-            <button  type="button"class=" btn btn-white mt-3" data-bs-toggle="modal" data-bs-target="#myData">Forgot password?</button>
-            <div class="modal" id="myData" data-bs-backdrop="static">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 style="color: rgb(170, 167, 12);">Password Recovery</h5>
-                            <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+    <div class="center-container">
+        <div class="row">
+            <div class="card  me-5">
+                <div class="card-header">
+                        <h3 class="card-title content head" id="sign1">
+                            Sign In
+                        </h3>
+                        <h6 class="card-subtitle content head" id="sign1">
+                            to your 6SeasonsOrganic Account
+                        </h6>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <label form="email" style="margin: 0;"><h4 class="weight mt-2">Email address</h4></label><br/>
+                        <input type="email"  class="card-text" id="email"  style="width:400px;height:35px;margin: 0;" placeholder="Enter your email" required onkeyup="convertData()">
+                    </div>
+                    <div class="card-text">
+                        <label for="password" style="margin: 0;"><h4 class="weight">Password</h4></label>
+                        <input type="password"   style="width: 400px;height:35px;margin: 0;" id="password" placeholder="Enter your password" required>
+                        <div class="pass">
+                            <button  type="button" class="btn btn-white weight" onclick="myFunc()"><i class="bi bi-eye"></i></button>
                         </div>
-                        <div class="modal-body">
-                            <label>Enter your Username/EmailId</label>
-                            <input type="text" class="border border-2 border-dark" required="required" />
-                        </div>
-                        <div class="modal-footer">
-                            <button  class="btn btn-primary">Reset Password</button>
+                        <button  type="button "class=" btn btn-white weight " data-bs-toggle="modal" data-bs-target="#myData">Forgot password?</button>
+                        <button type="button" class="btn btn-success btn-sm head">Sign In</button>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p class="head">Don't have an account? <a href="signup.html" id="sign" >  Sign Up</a></p>
+                    <div class="center-container">
+                        <div class="g-signin2" style="height: 30px; width:150px;" data-onsuccess="onSignIn"></div>
+                    </div>
+                </div>
+                <div class="modal" id="myData" data-bs-backdrop="static">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 style="color: rgb(170, 167, 12);">Password Recovery</h5>
+                                <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <label>Enter your Username/EmailId</label>
+                                <input type="text" class="border border-2 border-dark" required="required" />
+                            </div>
+                            <div class="modal-footer">
+                                <button  class="btn btn-primary">Reset Password</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            <div class="center-container">
-            <div class="g-signin2" style="height: 50px;width:200px;" data-onsuccess="onSignIn"></div>
             </div>
             </div>
         </form>
@@ -354,7 +377,7 @@
 
     </script>
     <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
+    <div class="instagram-box mt-4">
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
