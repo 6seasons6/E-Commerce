@@ -1,8 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const authRoutes = require('./routes/auth');
+const app = express();
 
-const port = 5000;
+app.use('/api/auth', authRoutes);
+
+const port = 5001;
 
 // Connect to MongoDB
 mongoose
@@ -20,15 +24,12 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 // Middleware
 app.use(express.json()); // For parsing JSON
-const express = require("express");
-const cors = require("cors");
+app.use(express.json()); // For parsing JSON
 const { google } = require("googleapis");
-
-const app = express();
 
 app.use(express.json()); // For parsing JSON
 
@@ -74,7 +75,7 @@ app.get("/auth/google/callback", async (req, res) => {
   }
 });
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

@@ -75,15 +75,48 @@
     <script src="../E-Commerce/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     </script>
     <script>
-        function onSignIn(googleUser) {
-             var profile = googleUser.getBasicProfile();
-             $("#name").text(profile.getName());
-             $("#email").text(profile.getEmail());
-             $("#image").attr('src',profile.getImageUrl());
-             $(".data").css("display","block");
-             $(".g-signin2").css("disply","none");
-        }
-    </script>
+        document.addEventListener('DOMContentLoaded', function () {
+         const signinForm = document.getElementById('signinForm');
+         const messageElement = document.getElementById('message');
+      
+         if (signinForm) {
+             signinForm.addEventListener('submit', function (event) {
+                 event.preventDefault(); // Prevent the default form submission
+                 const email = document.getElementById('email').value.trim();
+                 const password = document.getElementById('password').value.trim();
+      
+                 // Retrieve user data from localStorage
+                 const userData = localStorage.getItem(email);
+                 if (userData) {
+                     const user = JSON.parse(userData);
+                     // Check if the password matches
+                     if (user.password === password) {
+                         window.location.href = 'index.html'; // Redirect to a welcome page or dashboard
+                     } else {
+                         messageElement.innerText = 'Incorrect password. Please try again.';
+                         messageElement.style.display = 'block';
+                     }
+                 } else {
+                     messageElement.innerText = 'No account found with this email. Please sign up.';
+                     messageElement.style.display = 'block';
+                 }
+             });
+         }
+     });
+     function onSignIn(googleUser) {
+       var profile = googleUser.getBasicProfile();
+       console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+       console.log('Name: ' + profile.getName());
+       console.log('Image URL: ' + profile.getImageUrl());
+       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+     }
+     function signOut() {
+         var auth2 = gapi.auth2.getAuthInstance();
+         auth2.signOut().then(function () {
+           console.log('User signed out.');
+         });
+       }
+     </script>
       <script>
         function myFunc(){
             var pass=document.getElementById("password");
@@ -311,31 +344,14 @@
                         <div class="pass">
                             <button  type="button" class="btn btn-white weight" onclick="myFunc()"><i class="bi bi-eye"></i></button>
                         </div>
-                        <button  type="button "class=" btn btn-white weight " data-bs-toggle="modal" data-bs-target="#myData">Forgot password?</button>
-                        <button type="button" class="btn btn-success btn-sm head">Sign In</button>
+                        <a href="forgot-password.html">Forgot Password?</a>
+                        <button type="submit" class="btn btn-success btn-sm head">Sign In</button>
                     </div>
                 </div>
                 <div class="card-footer">
                     <p class="head">Don't have an account? <a href="signup.html" id="sign" >  Sign Up</a></p>
                     <div class="center-container">
                         <div class="g-signin2" style="height: 30px; width:150px;" data-onsuccess="onSignIn"></div>
-                    </div>
-                </div>
-                <div class="modal" id="myData" data-bs-backdrop="static">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 style="color: rgb(170, 167, 12);">Password Recovery</h5>
-                                <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <label>Enter your Username/EmailId</label>
-                                <input type="text" class="border border-2 border-dark" required="required" />
-                            </div>
-                            <div class="modal-footer">
-                                <button  class="btn btn-primary">Reset Password</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -377,7 +393,7 @@
 
     </script>
     <!-- Start Instagram Feed  -->
-    <div class="instagram-box mt-4">
+    <div class="instagram-box mt-5">
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
