@@ -105,8 +105,9 @@ function updateCartPage() {
              <td>${item.name}</td>
              <td><span class="price">$${item.price.toFixed(2)}</span></td>
              <td>${item.weight}</td> 
-             <td> ${item.quantity}</td>
-             <td><span class="price">$${item.price.toFixed(2)}</span></td>
+   <td class="quantity-pr">
+                <p>${item.quantity}</p> <!-- Display quantity as text --></td>      
+                <td><span class="price">$${item.price.toFixed(2)}</span></td>
              <td><button class="remove-item" data-index="${index}">X</button></td>
             
         `;
@@ -142,10 +143,13 @@ document.querySelectorAll('.qty').forEach(input => {
 });
 // Function to update the quantity of an item in the cart
 function updateCartItemQuantity(index, quantity) {
-    let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Update the quantity and total for the selected item
     const item = cart[index];
     item.quantity = parseInt(quantity, 10);
-    item.total = item.price * item.quantity; // Update the total price
+    item.total = item.price * item.quantity;
+
     localStorage.setItem('cartItems', JSON.stringify(cart));
     renderCartItems(); 
 }

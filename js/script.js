@@ -137,20 +137,22 @@ const productImage = document.getElementById("product-image").src;
 const productImage1 = document.getElementById("product-image1").src;
 const productImage2 = document.getElementById("product-image2").src;
 const weightSelect = document.getElementById("weight-select");
-const quantityInput = document.querySelector(".quantity-box input");
-const quantityValue = parseInt(quantityInput.value, 10);
+const quantityInput = document.getElementById("quantity-input");
+const quantityValue = parseInt(quantityInput.value, 10) || 0; // Ensure it is a number, fallback to 0 if empty or invalid
+
 let viewCartButton = null;
 
 // Handle Add to Cart button click
 addToCartButton.addEventListener("click", function () {
     const selectedWeight = weightSelect.value;
+    const quantityValue = parseInt(quantityInput.value, 10);
+
     const cartItem = {
         name: productName,
         price: parseFloat(productPrice.replace(/[^\d.-]/g, "")),
         image: productImage,
         weight: selectedWeight,
-        quantity: quantityValue
-
+        quantity: quantityValue // Use the value of the quantity input
     };
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartItems.push(cartItem);

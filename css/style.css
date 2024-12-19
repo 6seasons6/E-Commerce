@@ -2623,12 +2623,15 @@
     justify-content: flex-start;
 }
 
-
-
-
-
-
-
+#product-name {
+    font-weight: 700;
+}
+label[for="weight-select"] {
+    font-weight: 700;
+}
+#quantity-input{
+    font-weight: 700;
+}
 
 
 
