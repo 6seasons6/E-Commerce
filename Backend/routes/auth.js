@@ -4,9 +4,14 @@ const User = require("../models/user");
 const nodemailer = require('nodemailer');
 const bcrypt = require("bcryptjs");
 const punycode = require('punycode/');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 const router = express.Router();
 // Signup Route
+const forgotPasswordLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
 router.post("/signup", async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
 
@@ -21,7 +26,7 @@ router.post("/signup", async (req, res) => {
 
   try {
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: { $eq: email } });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists." });
     }
@@ -48,12 +53,12 @@ router.post("/signup", async (req, res) => {
 
 // Forgot Password Route
 
-router.post('/forgot-password', async (req, res) => {
+router.post('/forgot-password',forgotPasswordLimiter, async (req, res) => {
 
   const { email } = req.body;
 
   try {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email: { $eq: email } });
       if (!user) return res.status(404).json({ message: 'User not found' });
       const resetToken = jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: '15m' });
       const resetLink = `http://localhost:3000/reset-password.html?token=${resetToken}`;
@@ -81,7 +86,7 @@ router.post('/forgot-password', async (req, res) => {
   }
 });
 // Reset Password Route
-router.post('/reset-password', async (req, res) => {
+router.post('/reset-password',forgotPasswordLimiter, async (req, res) => {
   const { token, newPassword } = req.body;
   try {
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
