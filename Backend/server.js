@@ -52,7 +52,7 @@ const forgotPasswordLimiter = rateLimit({
 // ==================== Authentication Routes ====================
 
 // Signup Route
-app.post("/api/auth/signup", async (req, res) => {
+app.post("/api/auth/signup",forgotPasswordLimiter, async (req, res) => {
   console.log("Request Body:", req.body);
 
   const { username, email, password, confirmPassword } = req.body;
@@ -83,7 +83,7 @@ app.post("/api/auth/signup", async (req, res) => {
 });
 
 // Signin Route
-app.post("/api/auth/signin", async (req, res) => {
+app.post("/api/auth/signin", forgotPasswordLimiter,async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -151,7 +151,7 @@ app.post("/api/auth/forgot-password", forgotPasswordLimiter, async (req, res) =>
 });
 
 // Reset Password Route
-app.post("/api/auth/reset-password", async (req, res) => {
+app.post("/api/auth/reset-password",forgotPasswordLimiter, async (req, res) => {
   const { token, newPassword } = req.body;
 
   try {
