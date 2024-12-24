@@ -22,7 +22,7 @@ document.getElementById('add-to-wishlist-btn').addEventListener('click', functio
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
 
     // Show success message
-    showSuccessMessage(`${productName} has been successfully added to your wishlist!`);
+    showSuccessMessage(`${productName}  successfully added to  wishlist!`);
 });
 
 // Function to show a success message

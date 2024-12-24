@@ -6,36 +6,36 @@ const productName = document.getElementById("product-name").innerText;
 const productPrice = document.getElementById("product-price").innerText;
 const productImage = document.getElementById("product-image").src;
 const weightSelect = document.getElementById("weight-select");
-const quantityInput = document.querySelector(".quantity-box input"); // Corrected to use querySelector
+const quantityInput = document.getElementById("quantity-input");
 let viewCartButton = null;
-// Handle Add to Cart button click
 addToCartButton.addEventListener("click", function () {
     const selectedWeight = weightSelect.value;
-    const quantityValue = parseInt(quantityInput.value, 10); 
-    const cartItem = {
+     const quantityValue = parseInt(quantityInput.value, 10);
+     const priceForSelectedWeight = (basePrice / 250) * selectedWeight; 
+     const totalPrice = priceForSelectedWeight * quantityValue; 
+if (quantityValue <= 0) {
+    showSuccessMessage("Please enter a valid quantity."); 
+    return;
+}
+const cartItem = {
         name: productName,
         price: parseFloat(productPrice.replace(/[^\d.-]/g, "")), 
         image: productImage,
         weight: selectedWeight,
-        quantity: quantityValue 
+        quantity: quantityValue ,
+        total: totalPrice,
+
 
     };
-    // Validate the quantity value
-    if (isNaN(quantityValue) || quantityValue <= 0) {
-        showSuccessMessage("Please enter a valid quantity.");
-        return;
-    }
-    if (existingItemIndex > -1) {
-        cartItems[existingItemIndex].quantity += quantityValue;
-    } else {
-        cartItems.push(cartItem);
-    }
-
-    // Reset the quantity input to its default value (optional)
-    quantityInput.value = 0;
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+   // Validate quantity
+   if (isNaN(quantityValue) || quantityValue <= 0 || quantityValue > 20) {
+    alert("Please enter a valid quantity (1-20).");
+    return;
+}
+     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartItems.push(cartItem);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    quantityInput.value = 1;
     updateCartUI();
 });
 // Update Cart UI
@@ -56,7 +56,10 @@ function updateCartUI() {
              <td class="weight-pr">
              <span>${item.weight || 'Not specified'}</span> <!-- Display only the selected weight -->
              </td>
-             <p>${item.quantity}x - <span class="price">${(item.price * item.quantity).toFixed(2)}</span></p>
+              <td class="total-pr">
+                <p>₹${totalPrice.toFixed(2)}</p>
+            </td>
+                <p>${item.quantity}x - <span class="price">${(item.price * item.quantity).toFixed(2)}</span></p>
              <button class="remove-item" data-index="${index}">X</button> <!-- Close button beside the price -->
              </div>
         `;
@@ -83,7 +86,6 @@ function removeCartItem(index) {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     updateCartUI();
 }
-// On page load, update the cart UI to display items stored in localStorage
 document.addEventListener("DOMContentLoaded", function () {
     viewCartButton = document.querySelector('.total .btn-cart');
     updateCartUI();
