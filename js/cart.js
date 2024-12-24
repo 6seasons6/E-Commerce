@@ -1,24 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
     updateCartCount();
-    // Render the cart items in the table
     renderCartItems();
     function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         document.getElementById('cart-count').innerText = cart.length;
     }
     function renderCartItems() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const cartBody = document.getElementById('cart-body');
-
-        // Clear existing cart table content
         cartBody.innerHTML = '';
-
-        // Check if the cart is empty
         if (cart.length === 0) {
             cartBody.innerHTML = `<tr><td colspan="6" class="text-center">Your cart is empty.</td></tr>`;
             return;
         }
         cart.forEach((item, index) => {
+            const weightInGrams = parseInt(item.weight || 250, 10); 
+        const calculatedPrice = calculatePrice(item.basePrice, weightInGrams); 
+        const totalPrice = calculateTotalPrice(item.basePrice, weightInGrams, item.quantity); 
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td class="thumbnail-img">
@@ -27,17 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td class="name-pr">
                     <a href="#">${item.name}</a>
                 </td>
-                <td class="price-pr">
-                    <p>$ ${parseFloat(item.price).toFixed(2)}</p>
-                </td>
-
-
-               <td class="quantity-box">
+                <td class="quantity-box">
                 ${item.quantity} <!-- Display only the quantity as text -->
             </td>
-                <td class="total-pr">
-                    <p>$ ${(item.total).toFixed(2)}</p>
-                </td>
                 <td class="remove-pr">
                     <a href="#" class="remove-item" data-index="${index}">
                         <i class="fas fa-times"></i>
@@ -58,8 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 removeCartItem(index);
             });
         });
-
-        // Add event listeners to the quantity inputs
         document.querySelectorAll('.qty').forEach(input => {
             input.addEventListener('input', function (event) {
                 const index = input.getAttribute('data-index');
@@ -67,58 +55,54 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-
-
-    function removeCartItem(index) {
+     function removeCartItem(index) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.splice(index, 1); // Remove the item from the cart
+        cart.splice(index, 1); 
         localStorage.setItem('cart', JSON.stringify(cart));
-        renderCartItems(); // Re-render the cart table
-        updateCartCount(); // Update the cart count
+        renderCartItems(); 
+        updateCartCount(); 
     }
-
-
-
-    function updateCartItemQuantity(index, quantity) {
+      function updateCartItemQuantity(index, quantity) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const item = cart[index];
         item.quantity = parseInt(quantity);
-        item.total = item.price * item.quantity; // Update the total price
+        item.total = item.price * item.quantity; 
         localStorage.setItem('cart', JSON.stringify(cart));
-        renderCartItems(); // Re-render the cart table
+        renderCartItems(); 
     }
 });
-
-
-// Update Cart UI for Cart Page
+// Function to update the cart page
 function updateCartPage() {
     const cartBody = document.getElementById("cart-body");
     const totalAmountElement = document.querySelector(".cart-total-amount");
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartBody.innerHTML = "";
     let totalAmount = 0;
-    cartItems.forEach((item, index) => {
+      cartItems.forEach((item, index) => {
+        const pricePer250Grams = parseFloat(item.price); 
+        const weightInGrams = parseInt(item.weight || 250, 10); 
+        const quantity = parseInt(item.quantity || 1, 10);
+     // Calculate price based on the selected weight and quantity
+        const itemTotalPrice = calculatePrice(pricePer250Grams, weightInGrams) * quantity;
+       totalAmount += itemTotalPrice; // Add to the total cart amount
+       // Create the table row for each cart item
         const cartRow = document.createElement("tr");
-
         cartRow.innerHTML = `
-             <td><img src="${item.image}" class="cart-thumb" alt="${item.name}" /></td>
-             <td>${item.name}</td>
-             <td><span class="price">$${item.price.toFixed(2)}</span></td>
-             <td>${item.weight}</td> 
-   <td class="quantity-pr">
-                <p>${item.quantity}</p> <!-- Display quantity as text --></td>      
-                <td><span class="price">$${item.price.toFixed(2)}</span></td>
-             <td><button class="remove-item" data-index="${index}">X</button></td>
-            
+            <td><img src="${item.image}" class="cart-thumb" alt="${item.name}" /></td>
+            <td>${item.name}</td>
+            <td><span class="price">₹${calculatePrice(pricePer250Grams, weightInGrams).toFixed(2)}</span></td> <!-- Price based on weight -->
+            <td>${weightInGrams}g</td> <!-- Selected weight -->
+            <td class="quantity-pr">
+                <p>${quantity}</p> <!-- Display quantity -->
+            </td>      
+            <td class="total-pr">
+                <p>₹${itemTotalPrice.toFixed(2)}</p> <!-- Display total price -->
+            </td>
+            <td><button class="remove-item" data-index="${index}">X</button></td>
         `;
         cartBody.appendChild(cartRow);
-
-        // Add total price
-        totalAmount += item.price;
     });
-
-
-    totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
+    totalAmountElement.textContent = `₹${totalAmount.toFixed(2)}`;
     document.querySelectorAll(".remove-item").forEach(button => {
         button.addEventListener("click", function () {
             const index = button.getAttribute("data-index");
@@ -126,7 +110,6 @@ function updateCartPage() {
         });
     });
 }
-
 document.querySelectorAll('.weight-edit').forEach(input => {
     input.addEventListener('change', function (event) {
         const index = input.getAttribute('data-index');
@@ -134,23 +117,18 @@ document.querySelectorAll('.weight-edit').forEach(input => {
         updateCartItemWeight(index, newWeight);
     });
 });
-
 document.querySelectorAll('.qty').forEach(input => {
     input.addEventListener('input', function (event) {
         const index = input.getAttribute('data-index');
         updateCartItemQuantity(index, input.value);
     });
 });
-// Function to update the quantity of an item in the cart
 function updateCartItemQuantity(index, quantity) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Update the quantity and total for the selected item
     const item = cart[index];
     item.quantity = parseInt(quantity, 10);
     item.total = item.price * item.quantity;
-
-    localStorage.setItem('cartItems', JSON.stringify(cart));
+     localStorage.setItem('cartItems', JSON.stringify(cart));
     renderCartItems(); 
 }
 
@@ -158,33 +136,26 @@ function updateCartItemQuantity(index, quantity) {
 function updateCartItemWeight(index, newWeight) {
     let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
     const item = cart[index];
-
-
-    item.weight = newWeight;
-
-
+     item.weight = newWeight;
     localStorage.setItem('cartItems', JSON.stringify(cart));
-
-
     updateCartUI();
 }
-
 // Remove Cart Item
 function removeCartItem(index) {
-
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-
-    cartItems.splice(index, 1);
-
-
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
-
-    updateCartPage();
+ let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+cartItems.splice(index, 1);
+localStorage.setItem("cartItems", JSON.stringify(cartItems));
+updateCartPage();
 }
-
-
 document.addEventListener("DOMContentLoaded", function () {
     updateCartPage();
 });
+function calculateTotalPrice(pricePer250Grams, weightInGrams, quantity) {
+    const priceForSelectedWeight = (pricePer250Grams / 250) * weightInGrams;
+    return priceForSelectedWeight * quantity;
+}
+// Function to calculate price based on weight
+function calculatePrice(price, weight) {
+    const multiplier = weight / 250; 
+    return price * multiplier;
+}

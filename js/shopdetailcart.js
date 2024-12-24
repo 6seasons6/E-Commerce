@@ -7,24 +7,24 @@ const productPrice = document.getElementById("product-price").innerText;
 const productImage = document.getElementById("product-image").src;
 const weightSelect = document.getElementById("weight-select");
 const quantityInput = document.getElementById("quantity-input");
-
 let viewCartButton = null;
-// Handle Add to Cart button click
 addToCartButton.addEventListener("click", function () {
     const selectedWeight = weightSelect.value;
-     // Get the quantity value from the input dynamically
      const quantityValue = parseInt(quantityInput.value, 10);
-// Get the quantity value from the input
+     const priceForSelectedWeight = (basePrice / 250) * selectedWeight; 
+     const totalPrice = priceForSelectedWeight * quantityValue; 
 if (quantityValue <= 0) {
-    showSuccessMessage("Please enter a valid quantity."); // Validation message for invalid quantity
+    showSuccessMessage("Please enter a valid quantity."); 
     return;
 }
-   const cartItem = {
+const cartItem = {
         name: productName,
         price: parseFloat(productPrice.replace(/[^\d.-]/g, "")), 
         image: productImage,
         weight: selectedWeight,
-        quantity: quantityValue // Use the value of the quantity input
+        quantity: quantityValue ,
+        total: totalPrice,
+
 
     };
    // Validate quantity
@@ -32,11 +32,7 @@ if (quantityValue <= 0) {
     alert("Please enter a valid quantity (1-20).");
     return;
 }
-
-
-    // Reset the quantity input to its default value (optional)
-   
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartItems.push(cartItem);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     quantityInput.value = 1;
@@ -60,6 +56,9 @@ function updateCartUI() {
              <td class="weight-pr">
              <span>${item.weight || 'Not specified'}</span> <!-- Display only the selected weight -->
              </td>
+              <td class="total-pr">
+                <p>₹${totalPrice.toFixed(2)}</p>
+            </td>
                 <p>${item.quantity}x - <span class="price">${(item.price * item.quantity).toFixed(2)}</span></p>
              <button class="remove-item" data-index="${index}">X</button> <!-- Close button beside the price -->
              </div>
@@ -87,7 +86,6 @@ function removeCartItem(index) {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     updateCartUI();
 }
-// On page load, update the cart UI to display items stored in localStorage
 document.addEventListener("DOMContentLoaded", function () {
     viewCartButton = document.querySelector('.total .btn-cart');
     updateCartUI();

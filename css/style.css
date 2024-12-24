@@ -2624,7 +2624,18 @@ label[for="weight-select"] {
 }
 
 
+.total-price-heading h3 {
+    color: black; 
+    font-size: 15px;
+    font-weight: 700;
 
+}
+
+.underline-price {
+    text-decoration: underline;
+    font-weight: 800;
+font-size: 20px;
+}
 
 
 

@@ -3,7 +3,7 @@ const products = {
     1: {
         name: "Honey",
         description: "Fresh organic honey.",
-        price: "&#8377;80.00",
+        price: "80.00",
         image: "images/honey.jpg",
         image1: "images/honey.jpg",
         image2: "images/honey.jpg",
@@ -13,7 +13,7 @@ const products = {
     2: {
         name: "Ghee",
         description: "Fresh organic Ghee.",
-        price: "&#8377;200.00",
+        price: "200.00",
         image: "images/ghee.jpg",
         image1: "images/ghee.jpg",
         image2: "images/ghee.jpg",
@@ -22,7 +22,7 @@ const products = {
     3: {
         name: "Brown Sugar",
         description: "Fresh organic Brown sugar.",
-        price: "&#8377;80.00",
+        price: "80.00",
         image: "images/brown sugar.jpg",
         image1: "images/brown sugar.jpg",
         image2: "images/brown sugar.jpg",
@@ -31,7 +31,7 @@ const products = {
     4: {
         name: "Crystal sugar",
         description: "Fresh organic Crystal sugar.",
-        price: "&#8377;80.00",
+        price: "80.00",
         image: "images/crystal sugar.jpg",
         image1: "images/crystal sugar.jpg",
         image2: "images/crystal sugar.jpg",
@@ -40,7 +40,7 @@ const products = {
     5: {
         name: "Organtior dal",
         description: "Fresh organic Organtior dal",
-        price: "&#8377;200.00",
+        price: "200.00",
         image: "images/dal.jpg",
         image1: "images/dal.jpg",
         image2: "images/dal.jpg",
@@ -49,7 +49,7 @@ const products = {
     6: {
         name: "Masala Tea",
         description: "Fresh organic Masala Tea",
-        price: "&#8377;100.00",
+        price: "100.00",
         image: "images/masala tea.jpg",
         image1: "images/masala tea.jpg",
         image2: "images/masala tea.jpg",
@@ -58,7 +58,7 @@ const products = {
     7: {
         name: "Organtior dal",
         description: "Fresh organic Organtior dal",
-        price: "&#8377;250.00",
+        price: "250.00",
         image: "images/dal.jpg",
         image1: "images/dal.jpg",
         image2: "images/dal.jpg",
@@ -67,7 +67,7 @@ const products = {
     8: {
         name: "Pink salt",
         description: "Fresh organic Pink salt",
-        price: "&#8377;100.00",
+        price: "100.00",
         image: "images/pink salt.jpg",
         image1: "images/pink salt.jpg",
         image2: "images/pink salt.jpg",
@@ -76,7 +76,7 @@ const products = {
     9: {
         name: "Toor dal",
         description: "Fresh organic Toor dal",
-        price: "&#8377;150.00",
+        price: "150.00",
         image: "images/toor dal.jpg",
         image1: "images/toor dal.jpg",
         image2: "images/toor dal.jpg",
@@ -84,14 +84,9 @@ const products = {
     }
 }
 // Dynamically set the content
-
-// Get the product ID from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('productID');
-
-// Get the product details from the 'products' object
 const product = products[productId];
-
 if (product) {
     document.getElementById('product-name').textContent = product.name;
     document.getElementById('product-description').textContent = product.description;
@@ -100,7 +95,6 @@ if (product) {
     document.getElementById('product-datadesc').textContent = product.datadesc;
     document.getElementById('product-image1').src = product.image1;
     document.getElementById('product-image2').src = product.image2;
-
 } else {
     document.getElementById('product-name').textContent = "Product not found.";
 }
@@ -138,28 +132,25 @@ const productImage1 = document.getElementById("product-image1").src;
 const productImage2 = document.getElementById("product-image2").src;
 const weightSelect = document.getElementById("weight-select");
 const quantityInput = document.getElementById("quantity-input");
-const quantityValue = parseInt(quantityInput.value, 10) || 0; // Ensure it is a number, fallback to 0 if empty or invalid
-
+const priceValue = parseFloat(productPrice.replace(/[^\d.-]/g, ""));
 let viewCartButton = null;
-
-// Handle Add to Cart button click
 addToCartButton.addEventListener("click", function () {
     const selectedWeight = weightSelect.value;
-    const quantityValue = parseInt(quantityInput.value, 10);
-
+    const quantityValue = parseInt(quantityInput.value, 10) || 1;  // Default to 1 if empty or invalid quantity
     const cartItem = {
         name: productName,
-        price: parseFloat(productPrice.replace(/[^\d.-]/g, "")),
+        price: priceValue,
         image: productImage,
         weight: selectedWeight,
-        quantity: quantityValue // Use the value of the quantity input
-    };
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        quantity: quantityValue,
+      };
+let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartItems.push(cartItem);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    updateCartUI();
-    showSuccessMessage("Successfully  product added to cart!");
+    updateCartUI(); 
+    showSuccessMessage("Successfully added product to cart!");
 });
+// Show success message
 function showSuccessMessage(message) {
     const successMessageDiv = document.createElement("div");
     successMessageDiv.classList.add("success-message");
@@ -171,13 +162,12 @@ function showSuccessMessage(message) {
         successMessageDiv.remove();
     }, 3000);
 }
-
 // Update Cart UI
 function updateCartUI() {
-    cartList.innerHTML = "";
+    cartList.innerHTML = ""; 
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
-    cartCount.innerText = cartItems.length;
+    const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);  
+    cartCount.innerText = cartItems.length; 
     cartItems.forEach(function (item, index) {
         const cartItemElement = document.createElement("li");
         cartItemElement.classList.add("cart-item");
@@ -185,23 +175,22 @@ function updateCartUI() {
             <a href="#" class="photo"><img src="${item.image}" class="cart-thumb" alt="${item.name}" /></a>
             <h6><a href="#">${item.name}</a></h6>
             <div class="price-and-remove">
-                <p>1x - <span class="price">${item.price.toFixed(2)}</span></p>
-                                <p>Weight: <span class="weight">${item.weight}</span></p> <!-- Display the selected weight -->
-                <p>Quantity: ${item.quantity}</p>
-
-                <button class="remove-item" data-index="${index}">X</button> <!-- Close button beside the price -->
-            
-                </div>
+                <p>${item.price}</p> <!-- Correct price display -->
+                <p>Weight: <span class="weight">${item.weight}</span></p> <!-- Display the selected weight -->
+                <p>Quantity: ${item.quantity}</p> <!-- Display quantity -->
+                 <button class="remove-item" data-index="${index}">X</button> <!-- Close button beside the price -->
+            </div>
         `;
         cartList.appendChild(cartItemElement);
     });
-
+   // Update the total price of the cart
     const totalElement = document.querySelector('.cart-total-amount');
     if (totalAmount > 0) {
-        totalElement.textContent = `$${totalAmount.toFixed(2)}`;
+        totalElement.textContent = `₹${totalAmount.toFixed(2)}`;
     } else {
-        totalElement.textContent = ''; // If the cart is empty, show nothing
+        totalElement.textContent = '';
     }
+    // Add event listener for remove button
     document.querySelectorAll(".remove-item").forEach(button => {
         button.addEventListener("click", function () {
             const index = button.getAttribute("data-index");
@@ -209,14 +198,83 @@ function updateCartUI() {
         });
     });
 }
+
 // Remove Cart Item
 function removeCartItem(index) {
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let cartItems = JSON.parse(localStorage.getItem("cartItem")) || [];
     cartItems.splice(index, 1);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    updateCartUI();
+    updateCartUI(); 
 }
 document.addEventListener("DOMContentLoaded", function () {
     viewCartButton = document.querySelector('.total .btn-cart');
-    updateCartUI();
+    updateCartUI(); 
 });
+// this is price based on weight
+let currentProductId = productId; 
+function calculatePrice(price, weight) {
+    const multiplier = weight / 250; 
+    return price * multiplier;
+}
+function updateProductDetails(productId) {
+    const product = products[productId];
+if (!product) {
+        console.error("Invalid product ID:", productId);
+        return;
+    }
+    document.getElementById("product-name").textContent = product.name;
+    document.getElementById("product-description").textContent = product.description;
+    document.getElementById("product-datadesc").textContent = product.datadesc;
+    const defaultWeight = 250;
+    const price = calculatePrice(product.price, defaultWeight);
+    document.getElementById("product-price").textContent = "₹" + price.toFixed(2);
+}
+document.getElementById("weight-select").addEventListener("change", function () {
+    const weightInGrams = parseInt(this.value, 10);
+
+    if (isNaN(weightInGrams)) {
+        console.error("Invalid weight selected.");
+        return;
+    }
+    const product = products[currentProductId];
+    if (!product || !product.price) {
+        console.error("Product not found or missing price.");
+        return;
+    }
+// Calculate price based on the selected weight
+    const price = calculatePrice(product.price, weightInGrams); 
+    document.getElementById("product-price").textContent = "₹" + price.toFixed(2);
+});
+function changeProduct(productId) {
+    currentProductId = productId;
+    updateProductDetails(currentProductId);
+}
+updateProductDetails(currentProductId);
+//calculate price based on weight and quantity
+function calculateTotalPrice(pricePer250Grams, weightInGrams, quantity) {
+    const priceForSelectedWeight = (pricePer250Grams / 250) * weightInGrams;
+    return priceForSelectedWeight * quantity;
+}
+
+document.getElementById("weight-select").addEventListener("change", updateTotalPrice);
+document.getElementById("quantity-input").addEventListener("input", updateTotalPrice);
+function updateTotalPrice() {
+    const weightSelect = document.getElementById("weight-select");
+    const quantityInput = document.getElementById("quantity-input");
+
+    const selectedWeight = parseInt(weightSelect.value.replace('g', ''), 10);
+    const quantity = parseInt(quantityInput.value, 10) || 1;
+    const product = products[currentProductId];
+
+    if (product && product.price) {
+        const pricePer250Grams = parseFloat(product.price);
+        const totalPrice = calculateTotalPrice(pricePer250Grams, selectedWeight, quantity); // Calculate total price
+        const totalPriceDiv = document.querySelector(".form-group > div:last-child");
+        totalPriceDiv.innerHTML = `<h3>Total Price :<br><br> <span class="underline-price">₹${totalPrice.toFixed(2)}</span></h3>`;
+    }
+}
+document.addEventListener("DOMContentLoaded", function () {
+    updateProductDetails(currentProductId);
+    updateTotalPrice();
+});
+
