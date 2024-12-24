@@ -15,7 +15,7 @@ const forgotPasswordLimiter = rateLimit({
 });
 
 // Signup Route
-router.post("/signup", async (req, res) => {
+router.post("/signup",forgotPasswordLimiter, async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
 
   if (!username || !email || !password || !confirmPassword) {
@@ -27,7 +27,7 @@ router.post("/signup", async (req, res) => {
   }
 
   try {
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email : { $eq: email }});
     if (existingUser) {
       return res.status(400).json({ message: "User already exists." });
     }
@@ -44,7 +44,7 @@ router.post("/signup", async (req, res) => {
 });
 
 // Signin Route
-router.post("/signin", async (req, res) => {
+router.post("/signin",forgotPasswordLimiter, async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -52,7 +52,7 @@ router.post("/signin", async (req, res) => {
   }
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: { $eq: email } });
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
@@ -77,10 +77,10 @@ router.post("/forgot-password", forgotPasswordLimiter, async (req, res) => {
   const { email } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email : { $eq: email }});
     if (!user) return res.status(404).json({ message: "User not found." });
 
-    const resetToken = jwt.sign({ email }, process.env.SECRET_KEY, {
+    const resetToken = jwt.sign({ email: { $eq: email } }, process.env.SECRET_KEY, {
       expiresIn: "15m",
     });
 
@@ -108,7 +108,7 @@ router.post("/forgot-password", forgotPasswordLimiter, async (req, res) => {
 });
 
 // Reset Password
-router.post("/reset-password", async (req, res) => {
+router.post("/reset-password", forgotPasswordLimiter,async (req, res) => {
   const { token, newPassword } = req.body;
 
   try {
