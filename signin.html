@@ -324,75 +324,76 @@
     <!-- End Top Search -->
     <div class="center-container">
         <div class="row">
-            <div class="card  me-5">
+            <div class="card me-5">
                 <div class="card-header">
-                        <h3 class="card-title content head" id="sign1">
-                            Sign In
-                        </h3>
-                        <h6 class="card-subtitle content head" id="sign1">
-                            to your 6SeasonsOrganic Account
-                        </h6>
+                    <h3 class="card-title content head">Sign In</h3>
+                    <h6 class="card-subtitle content head">to your 6SeasonsOrganic Account</h6>
                 </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <label form="email" style="margin: 0;"><h4 class="weight mt-2">Email address</h4></label><br/>
-                        <input type="email"  class="card-text" id="email"  style="width:400px;height:35px;margin: 0;" placeholder="Enter your email" required onkeyup="convertData()">
-                    </div>
-                    <div class="card-text">
-                        <label for="password" style="margin: 0;"><h4 class="weight">Password</h4></label>
-                        <input type="password"   style="width: 400px;height:35px;margin: 0;" id="password" placeholder="Enter your password" required>
-                        <div class="pass">
-                            <button  type="button" class="btn btn-white weight" onclick="myFunc()"><i class="bi bi-eye"></i></button>
+                <!-- Form starts here -->
+                <form id="signin-form">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <label for="email" style="margin: 0;">
+                                <h4 class="weight mt-2">Email address</h4>
+                            </label><br/>
+                            <input type="email" class="card-text" id="email" style="width:400px;height:35px;margin: 0;" placeholder="Enter your email" required onkeyup="convertData()">
                         </div>
-                        <a href="forgot-password.html">Forgot Password?</a>
-                        <button type="submit" class="btn btn-success btn-sm head">Sign In</button>
+                        <div class="card-text">
+                            <label for="password" style="margin: 0;">
+                                <h4 class="weight">Password</h4>
+                            </label>
+                            <input type="password" style="width: 400px;height:35px;margin: 0;" id="password" placeholder="Enter your password" required>
+                            <div class="pass">
+                                <button type="button" class="btn btn-white weight" onclick="myFunc()"><i class="bi bi-eye"></i></button>
+                            </div>
+                            <a href="forgot-password.html">Forgot Password?</a>
+                            <button type="submit" class="btn btn-success btn-sm head">Sign In</button>
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <p class="head">Don't have an account? <a href="signup.html" id="sign" >  Sign Up</a></p>
-                    <div class="center-container">
-                        <div class="g-signin2" style="height: 30px; width:150px;" data-onsuccess="onSignIn"></div>
+                    <div class="card-footer">
+                        <p class="head">Don't have an account? <a href="signup.html" id="sign">Sign Up</a></p>
+                        <div class="center-container">
+                            <div class="g-signin2" style="height: 30px; width:150px;" data-onsuccess="onSignIn"></div>
+                        </div>
                     </div>
-                </div>
+                </form>
+                <p id="message" class="mt-3 text-center"></p>
             </div>
-            </div>
-        </form>
-        <p id="message" class="mt-3 text-center"></p>
+        </div>
     </div>
+    
     <script>
-        document.getElementById("signin-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    try {
-        const response = await fetch("http://localhost:5000/api/auth/signin", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            document.getElementById("message").textContent = data.message;
-            document.getElementById("message").style.color = "green";
-            window.location.href = "my-account.html";
-        } else {
-            document.getElementById("message").textContent = data.message;
+    document.getElementById("signin-form").addEventListener("submit", async (e) => {
+        e.preventDefault(); // Prevent default form submission
+    
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+    
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/signin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                document.getElementById("message").textContent = data.message;
+                document.getElementById("message").style.color = "green";
+                window.location.href = "my-account.html";  // Redirect to a new page after successful login
+            } else {
+                document.getElementById("message").textContent = data.message;
+                document.getElementById("message").style.color = "red";
+            }
+        } catch (error) {
+            document.getElementById("message").textContent = "Error: Unable to connect to the server.";
             document.getElementById("message").style.color = "red";
         }
-    } catch (error) {
-        document.getElementById("message").textContent = "Error: Unable to connect to the server.";
-        document.getElementById("message").style.color = "red";
-    }
-});
-
-    </script>
-    <!-- Start Instagram Feed  -->
+    });
+</script>
     <div class="instagram-box mt-5">
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
