@@ -2618,9 +2618,15 @@
 }
 label[for="weight-select"] {
     font-weight: 700;
+    width:5rem
+}
+#weight-select {
+    width: 2rem; 
+    font-weight: 700; 
 }
 #quantity-input{
     font-weight: 700;
+    width: 10px;
 }
 
 
@@ -2638,6 +2644,19 @@ font-size: 20px;
 }
 
 
+
+.hvr-hover {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #b0b435; 
+    color: white;
+    text-decoration: none;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    
+}
 
 
 
