@@ -41,7 +41,29 @@
             find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
         }
     </script>
+<Style>
+    .success-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 1000; /* Make sure it's on top of other elements */
+}
 
+.success-message.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+</Style>
 </head>
 
 <body>
@@ -141,7 +163,7 @@
                                 <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="shop.html">Sidebar Shop</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
+                                    <!--<li><a href="cart.html">Cart</a></li>-->
                                     <li><a href="checkout.html">Checkout</a></li>
                                 </ul>
                             </li>
@@ -289,7 +311,7 @@
                                             <div class="row">
 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    data-price="80">
+                                                    data-price="80" id="product-item-1"class="product-item" data-product-id="1">
                                                     <div id="product-item">
                                                         <div class="products-single fix">
                                                             <div class="box-img-hover">
@@ -318,19 +340,43 @@
                                                                                 title="Add to Wishlist"><i
                                                                                     class="far fa-heart"></i></a></li>
                                                                     </ul>
-                                                                    <a class="cart" href="#">Add to Cart</a>
                                                                 </div>
                                                             </div>
                                                             <div class="why-text">
                                                                 <h4>Honey</h4>
-                                                                <h5>&#8377;80.00(100gms)</h5>
+                                                                <h5 id="price-display-1">&#8377;80.00</h5>
+                                                                 <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                                                    <!-- Weight Selection -->
+                                                                    <div style="margin-right: 1rem; width: 2rem;">
+                                                                        <label for="weight-select-1">Weight</label>
+                                                                        <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                                                                            <option value="250g">250 gms</option>
+                                                                            <option value="500g">500 gms</option>
+                                                                            <option value="1000g">1 kg</option>
+                                                                            <option value="2000g">2 kg</option>
+                                                                        </select>
+                                                                    </div>
+                                                            
+                                                                    <!-- Quantity Input -->
+                                                                    <div>
+                                                                        <label for="quantity-input-1" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+                                                                        <input id="quantity-input-1" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            
+                                                                <div class="cart-and-bay-btn">
+                                                                    <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                </div>
+                                                                
                                                             </div>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    data-price="200">
+                                                    data-price="200" id="product-item-2">
                                                     <div id="product-item">
                                                         <div class="products-single fix">
                                                             <div class="box-img-hover">
@@ -358,18 +404,40 @@
                                                                                 title="Add to Wishlist"><i
                                                                                     class="far fa-heart"></i></a></li>
                                                                     </ul>
-                                                                    <a class="cart" href="#">Add to Cart</a>
                                                                 </div>
                                                             </div>
                                                             <div class="why-text">
                                                                 <h4>Ghee</h4>
-                                                                <h5>&#8377;200.00(250gms)</h5>
+                                                                <h5 id="price-display-2">&#8377;200.00</h5>
+                                                                 <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                                                    <!-- Weight Selection -->
+                                                                    <div style="margin-right: 1rem; width: 2rem;">
+                                                                        <label for="weight-select-2">Weight</label>
+                                                                        <select id="weight-select-2" class="form-control" style="width:6.5rem;">
+                                                                            <option value="250g">250 gms</option>
+                                                                            <option value="500g">500 gms</option>
+                                                                            <option value="1000g">1 kg</option>
+                                                                            <option value="2000g">2 kg</option>
+                                                                        </select>
+                                                                    </div>
+                                                            
+                                                                    <!-- Quantity Input -->
+                                                                    <div>
+                                                                        <label for="quantity-input-2" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+                                                                        <input id="quantity-input-2" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            
+                                                                <div class="cart-and-bay-btn">
+                                                                    <a class="btn hvr-hover add-to-cart-btn" data-product-id="2" href="#">Add to cart</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="80">
+                                                    product-sortable data-price="80" id="product-item-3">
                                                     <div id="product-item">
                                                         <div class="products-single fix">
                                                             <div class="box-img-hover">
@@ -398,18 +466,38 @@
                                                                                 title="Add to Wishlist"><i
                                                                                     class="far fa-heart"></i></a></li>
                                                                     </ul>
-                                                                    <a class="cart" href="#">Add to Cart</a>
                                                                 </div>
                                                             </div>
                                                             <div class="why-text">
                                                                 <h4>Brown Sugar</h4>
-                                                                <h5> &#8377;80.00(500gm)</h5>
+                                                                <h5 id="price-display-3">&#8377;80.00</h5>
+                                                                 <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                                                    <!-- Weight Selection -->
+                                                                    <div style="margin-right: 1rem; width: 2rem;">
+                                                                        <label for="weight-select-3">Weight</label>
+                                                                        <select id="weight-select-3" class="form-control" style="width:6.5rem;">
+                                                                            <option value="250g">250 gms</option>
+                                                                            <option value="500g">500 gms</option>
+                                                                            <option value="1000g">1 kg</option>
+                                                                            <option value="2000g">2 kg</option>
+                                                                        </select>
+                                                                    </div>
+                                                            
+                                                                    <!-- Quantity Input -->
+                                                                    <div>
+                                                                        <label for="quantity-input-3" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+                                                                        <input id="quantity-input-3" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="cart-and-bay-btn">
+                                                                    <a class="btn hvr-hover add-to-cart-btn" data-product-id="3" href="#">Add to cart</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                            </div>
+                                                       </div>
+                                                     </div>
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="80">
+                                                    product-sortable data-price="80" id="product-item-4">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -435,17 +523,38 @@
                                                                             title="Add to Wishlist"><i
                                                                                 class="far fa-heart"></i></a></li>
                                                                 </ul>
-                                                                <a class="cart" href="#">Add to Cart</a>
                                                             </div>
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Crystal Sugar</h4>
-                                                            <h5>&#8377;80.00(1kg)</h5>
+                                                            <h5 id="price-display-4">&#8377;80.00</h5>
+                                                             <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                                                <!-- Weight Selection -->
+                                                                <div style="margin-right: 1rem; width: 2rem;">
+                                                                    <label for="weight-select-4">Weight</label>
+                                                                    <select id="weight-select-4" class="form-control" style="width:6.5rem;">
+                                                                        <option value="250g">250 gms</option>
+                                                                        <option value="500g">500 gms</option>
+                                                                        <option value="1000g">1 kg</option>
+                                                                        <option value="2000g">2 kg</option>
+                                                                    </select>
+                                                                </div>
+                                                        
+                                                                <!-- Quantity Input -->
+                                                                <div>
+                                                                    <label for="quantity-input-4" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+                                                                    <input id="quantity-input-4" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="cart-and-bay-btn">
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="4" href="#">Add to cart</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                        </div>
+                                                   </div>
+                                                 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="200">
+                                                    product-sortable data-price="200"id="product-item-5">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -470,17 +579,38 @@
                                                                             title="Add to Wishlist"><i
                                                                                 class="far fa-heart"></i></a></li>
                                                                 </ul>
-                                                                <a class="cart" href="#">Add to Cart</a>
                                                             </div>
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Organtior Dal</h4>
-                                                            <h5>&#8377;200.00(1kg)</h5>
+                                                            <h5 id="price-display-5">&#8377;200.00</h5>
+                                                             <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                                                <!-- Weight Selection -->
+                                                                <div style="margin-right: 1rem; width: 2rem;">
+                                                                    <label for="weight-select-5">Weight</label>
+                                                                    <select id="weight-select-5" class="form-control" style="width:6.5rem;">
+                                                                        <option value="250g">250 gms</option>
+                                                                        <option value="500g">500 gms</option>
+                                                                        <option value="1000g">1 kg</option>
+                                                                        <option value="2000g">2 kg</option>
+                                                                    </select>
+                                                                </div>
+                                                        
+                                                                <!-- Quantity Input -->
+                                                                <div>
+                                                                    <label for="quantity-input-5" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+                                                                    <input id="quantity-input-5" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="cart-and-bay-btn">
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="5" href="#">Add to cart</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                        </div>
+                                                   </div>
+                                                 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    data-price="100">
+                                                    data-price="100" id="product-item-6">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -506,17 +636,38 @@
                                                                             title="Add to Wishlist"><i
                                                                                 class="far fa-heart"></i></a></li>
                                                                 </ul>
-                                                                <a class="cart" href="#">Add to Cart</a>
                                                             </div>
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Masala Tea</h4>
-                                                            <h5>&#8377;100.00(150gms)</h5>
+                                                            <h5 id="price-display-6">&#8377;100.00</h5>
+                                                             <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                                                <!-- Weight Selection -->
+                                                                <div style="margin-right: 1rem; width: 2rem;">
+                                                                    <label for="weight-select-6">Weight</label>
+                                                                    <select id="weight-select-6" class="form-control" style="width:6.5rem;">
+                                                                        <option value="250g">250 gms</option>
+                                                                        <option value="500g">500 gms</option>
+                                                                        <option value="1000g">1 kg</option>
+                                                                        <option value="2000g">2 kg</option>
+                                                                    </select>
+                                                                </div>
+                                                        
+                                                                <!-- Quantity Input -->
+                                                                <div>
+                                                                    <label for="quantity-input-6" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+                                                                    <input id="quantity-input-6" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="cart-and-bay-btn">
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="6" href="#">Add to cart</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                        </div>
+                                                   </div>
+                                                
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="250">
+                                                    product-sortable data-price="250" id="product-item-7">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -538,17 +689,38 @@
                                                                             title="Add to Wishlist"><i
                                                                                 class="far fa-heart"></i></a></li>
                                                                 </ul>
-                                                                <a class="cart" href="#">Add to Cart</a>
                                                             </div>
                                                         </div>
                                                         <div class="why-text">
-                                                            <h4>Organtior dal</h4>
-                                                            <h5>&#8377;250(1kg)</h5>
+                                                            <h4>Organtior Dal</h4>
+                                                            <h5 id="price-display-7">&#8377;250.00</h5>
+                                                             <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                                                <!-- Weight Selection -->
+                                                                <div style="margin-right: 1rem; width: 2rem;">
+                                                                    <label for="weight-select-7">Weight</label>
+                                                                    <select id="weight-select-7" class="form-control" style="width:6.5rem;">
+                                                                        <option value="250g">250 gms</option>
+                                                                        <option value="500g">500 gms</option>
+                                                                        <option value="1000g">1 kg</option>
+                                                                        <option value="2000g">2 kg</option>
+                                                                    </select>
+                                                                </div>
+                                                        
+                                                                <!-- Quantity Input -->
+                                                                <div>
+                                                                    <label for="quantity-input-7" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+                                                                    <input id="quantity-input-7" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="cart-and-bay-btn">
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="7" href="#">Add to cart</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                        </div>
+                                                   </div>
+                                                
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="100">
+                                                    product-sortable data-price="100"id="product-item-8">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -571,17 +743,38 @@
                                                                             title="Add to Wishlist"><i
                                                                                 class="far fa-heart"></i></a></li>
                                                                 </ul>
-                                                                <a class="cart" href="#">Add to Cart</a>
                                                             </div>
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Pink Salt</h4>
-                                                            <h5>&#8377;100.00(1Kg)</h5>
+                                                            <h5 id="price-display-8">&#8377;100.00</h5>
+                                                             <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                                                <!-- Weight Selection -->
+                                                                <div style="margin-right: 1rem; width: 2rem;">
+                                                                    <label for="weight-select-8">Weight</label>
+                                                                    <select id="weight-select-8" class="form-control" style="width:6.5rem;">
+                                                                        <option value="250g">250 gms</option>
+                                                                        <option value="500g">500 gms</option>
+                                                                        <option value="1000g">1 kg</option>
+                                                                        <option value="2000g">2 kg</option>
+                                                                    </select>
+                                                                </div>
+                                                        
+                                                                <!-- Quantity Input -->
+                                                                <div>
+                                                                    <label for="quantity-input-8" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+                                                                    <input id="quantity-input-8" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="cart-and-bay-btn">
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="8" href="#">Add to cart</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                        </div>
+                                                   </div>
+                                                 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="150">
+                                                    product-sortable data-price="150" id="product-item-9">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -604,12 +797,32 @@
                                                                             title="Add to Wishlist"><i
                                                                                 class="far fa-heart"></i></a></li>
                                                                 </ul>
-                                                                <a class="cart" href="#">Add to Cart</a>
                                                             </div>
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Toor Dal</h4>
-                                                            <h5>&#8377;150.00(1kg)</h5>
+                                                            <h5 id="price-display-9">&#8377;150.00</h5>
+                                                            <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                                                <!-- Weight Selection -->
+                                                                <div style="margin-right: 1rem; width: 2rem;">
+                                                                    <label for="weight-select-9">Weight</label>
+                                                                    <select id="weight-select-9" class="form-control" style="width:6.5rem;">
+                                                                        <option value="250g">250 gms</option>
+                                                                        <option value="500g">500 gms</option>
+                                                                        <option value="1000g">1 kg</option>
+                                                                        <option value="2000g">2 kg</option>
+                                                                    </select>
+                                                                </div>
+                                                        
+                                                                <!-- Quantity Input -->
+                                                                <div>
+                                                                    <label for="quantity-input-9" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+                                                                    <input id="quantity-input-9" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="cart-and-bay-btn">
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="9" href="#">Add to cart</a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1071,12 +1284,34 @@
         <script src="js/form-validator.min.js"></script>
         <script src="js/contact-form-script.js"></script>
         <script src="js/custom.js"></script>
-        <script src="script.js"></script>
         <!--sorting products price high-to and low-high-->
         <script src="js/sorting.js"></script>
         <!--filtering functionality-->
      <script src="js/filtering.js"></script>
+ <script src="js/shopdescription.js"></script>
+ <div class="why-text">
+    <h4>Honey</h4>
+    <h5 id="price-display-1">&#8377;80.00 (250gms)</h5>
+    <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+        <!-- Weight Selection -->
+        <div style="margin-right: 1rem; width: 2rem;">
+            <label for="weight-select-1">Weight</label>
+            <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                <option value="250g" data-price="80">250 gms</option>
+                <option value="500g" data-price="150">500 gms</option>
+                <option value="1000g" data-price="280">1 kg</option>
+                <option value="2000g" data-price="520">2 kg</option>
+            </select>
+        </div>
+
+        <!-- Quantity Input -->
+        <div>
+            <label for="quantity-input-1" class="control-label" style="font-weight: 700;width:2rem">Quantity</label>
+            <input id="quantity-input-1" class="form-control" value="1" min="1" max="20" type="number" style="width: 5rem;">
+        </div>
     </div>
+</div>
+</div>
 </body>
 
 </html>
