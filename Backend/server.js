@@ -8,31 +8,31 @@ const rateLimit = require("express-rate-limit");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const { google } = require("googleapis");
- 
+
 // Import Routes
 const authRoutes = require("./routes/auth");
-const paymentRoutes = require("./checkout");
- 
+const paymentRoutes = require("./routes/checkout");
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
- 
+
 // Middleware
 app.use(express.json());
 app.use(bodyParser.json());
- 
+
 app.use(
   cors({
     origin: [
-"http://127.0.0.1:5500", // Local development
-"http://127.0.0.1:3000", // Local development
-"https://euphonious-maamoul-f82320.netlify.app", // Production
+      "http://127.0.0.1:5500", // Local development
+      "http://127.0.0.1:5000", // Local development
+      "https://euphonious-maamoul-f82320.netlify.app", // Production
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
- 
+
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI || "mongodb://localhost:27017/authDB", {
@@ -41,85 +41,83 @@ mongoose
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
- 
+
 // User Schema
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 });
- 
+
 const User = mongoose.models.User || mongoose.model("User", userSchema);
- 
+
 // Rate Limiter for sensitive routes
 const forgotPasswordLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests
 });
- 
+
 // ==================== Authentication Routes ====================
- 
 // Signup Route
 app.post("/api/auth/signup", forgotPasswordLimiter, async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
- 
+
   if (!username || !email || !password || !confirmPassword) {
     return res.status(400).json({ message: "All fields are required." });
   }
- 
+
   if (password !== confirmPassword) {
     return res.status(400).json({ message: "Passwords do not match." });
   }
- 
+
   try {
-    const existingUser = await User.findOne({ email : { $eq: email }});
+    const existingUser = await User.findOne({ email: { $eq: email } });
     if (existingUser) {
       return res.status(400).json({ message: "Email already exists." });
     }
- 
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
- 
+
     res.status(201).json({ message: "User registered successfully!" });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
 });
- 
+
 // Signin Route
 app.post("/api/auth/signin", forgotPasswordLimiter, async (req, res) => {
   const { email, password } = req.body;
- 
+
   if (!email || !password) {
     return res.status(400).json({ message: "Email and password are required." });
   }
- 
+
   try {
-    const user = await User.findOne({ email : { $eq: email }});
+    const user = await User.findOne({ email: { $eq: email } });
     if (!user) {
       return res.status(404).json({ message: "User not found. Please sign up." });
     }
- 
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid password." });
     }
- 
+
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
- 
+
     res.status(200).json({
       message: "Signin successful!",
       token,
-user: { username: user.username, email: user.email },
+      user: { username: user.username, email: user.email },
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
 });
- 
 // Forgot Password Route
 app.post("/api/auth/forgot-password", forgotPasswordLimiter, async (req, res) => {
   const { email } = req.body;
@@ -198,12 +196,15 @@ app.get("/auth/google/callback", async (req, res) => {
     res.status(500).send("Authentication failed");
   }
 });
- 
+
 // Additional Routes
 app.use("/api/auth", authRoutes);
 app.use("/api", paymentRoutes);
- 
+
+// Handle undefined routes (404 error)
+
+
 // Start the Server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server is running on http://127.0.0.1:${PORT}`);
 });
