@@ -72,7 +72,7 @@ app.post("/api/auth/signup", forgotPasswordLimiter, async (req, res) => {
   }
  
   try {
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email : { $eq: email }});
     if (existingUser) {
       return res.status(400).json({ message: "Email already exists." });
     }
@@ -96,7 +96,7 @@ app.post("/api/auth/signin", forgotPasswordLimiter, async (req, res) => {
   }
  
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email : { $eq: email }});
     if (!user) {
       return res.status(404).json({ message: "User not found. Please sign up." });
     }
@@ -125,7 +125,7 @@ app.post("/api/auth/forgot-password", forgotPasswordLimiter, async (req, res) =>
   const { email } = req.body;
  
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: { $eq: email } });
     if (!user) return res.status(404).json({ message: "User not found." });
  
     const resetToken = jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: "15m" });
