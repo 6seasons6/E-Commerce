@@ -442,12 +442,12 @@
                         <div class="col-12 d-flex shopping-box">
                             <button id="rzp-button" class="ml-auto btn hvr-hover">Pay Now</button>
                             <div id="payment-message"></div>
-                           
+                          
                             <script>
                               document.getElementById('rzp-button').onclick = function (e) {
                                 e.preventDefault();
-                           
-                                fetch('/api/create-order', {
+                          
+                                fetch('http://127.0.0.1:5000/api/create-order', {
                                   method: 'POST',
                                   headers: {
                                     'Content-Type': 'application/json',
@@ -461,21 +461,21 @@
                                     return response.json();
                                   })
                                   .then(data => {
-                          console.log("Order ID from API:", data.id);
-                           
+                                    console.log("Order ID from API:", data.id);
+                          
                                     var options = {
                                       key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
                                       amount: data.amount,
                                       currency: "INR",
                                       name: "Your Company Name",
                                       description: "Test Transaction",
-                          order_id: data.id,
+                                      order_id: data.id,
                                       handler: function (response) {
-                                        showModal("Payment successful! Payment ID: " + response.razorpay_payment_id, "success");
+                                        alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
                                       },
                                       prefill: {
                                         name: "Your Name",
-                                         email: "your.email@example.com",
+                                        email: "your.email@example.com",
                                         contact: "9999999999"
                                       }
                                     };
@@ -484,23 +484,9 @@
                                   })
                                   .catch(function (error) {
                                     console.error('Error:', error);
-                                    showModal("Error in payment: " + (error.message || error), "error");
+                                    alert("Error in payment: " + (error.message || error));
                                   });
                               };
-                           
-                              function showModal(message, type) {
-                                const modal = document.createElement("div");
-                                modal.className = "modal";
-                                const modalContent = document.createElement("div");
-                                modalContent.className = "modal-content";
-                                modalContent.innerHTML = `
-                          <span class="close" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
-                                  <p class="${type}-message">${message}</p>
-                                `;
-                                modal.appendChild(modalContent);
-                                document.body.appendChild(modal);
-                          modal.style.display = "block";
-                              }
                             </script>
                           </div>
                     </div>
