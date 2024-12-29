@@ -9,7 +9,7 @@ const razorpay = new Razorpay({
 });
 
 // Create Order Route
-router.post("https://euphonious-maamoul-f82320.netlify.app/api/create-order", async (req, res) => {
+router.post("/create-order", async (req, res) => {
   console.log("Received create order request"); 
   console.log("Received create order request");
   console.log("Request body:", req.body);

@@ -1,0 +1,10 @@
+[build]
+  publish = "."
+
+[dev]
+  port = 8888
+
+[[redirects]]
+  from = "/api/*"
+  to = "http://localhost:5000/:splat"
+  status = 200
