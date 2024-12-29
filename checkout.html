@@ -439,55 +439,57 @@
                                 </div>
                                 <hr> </div>
                         </div>
+                       
                         <div class="col-12 d-flex shopping-box">
                             <button id="rzp-button" class="ml-auto btn hvr-hover">Pay Now</button>
                             <div id="payment-message"></div>
                           
                             <script>
-                              document.getElementById('rzp-button').onclick = function (e) {
-                                e.preventDefault();
-                          
-                                fetch('https://euphonious-maamoul-f82320.netlify.app/api/create-order', {
-                                  method: 'POST',
-                                  headers: {
-                                    'Content-Type': 'application/json',
-                                  },
-                                  body: JSON.stringify({ amount: 50000 }) // Amount in paise
-                                })
-                                  .then(response => {
-                                    if (!response.ok) {
-                                      throw new Error('Network response was not ok');
-                                    }
-                                    return response.json();
+                                document.getElementById('rzp-button').onclick = function (e) {
+                                  e.preventDefault();
+                              
+                                  fetch(`https://euphonious-maamoul-f82320.netlify.app/api/create-order`, { // Use backticks here
+                                    method: 'POST',
+                                    headers: {
+                                      'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ amount: 50000 }) // Amount in paise
                                   })
-                                  .then(data => {
-                                    console.log("Order ID from API:", data.id);
-                          
-                                    var options = {
-                                      key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
-                                      amount: data.amount,
-                                      currency: "INR",
-                                      name: "Your Company Name",
-                                      description: "Test Transaction",
-                                      order_id: data.id,
-                                      handler: function (response) {
-                                        alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
-                                      },
-                                      prefill: {
-                                        name: "Your Name",
-                                        email: "your.email@example.com",
-                                        contact: "9999999999"
+                                    .then(response => {
+                                      if (!response.ok) {
+                                        throw new Error('Network response was not ok');
                                       }
-                                    };
-                                    var rzp1 = new Razorpay(options);
-                                    rzp1.open();
-                                  })
-                                  .catch(function (error) {
-                                    console.error('Error:', error);
-                                    alert("Error in payment: " + (error.message || error));
-                                  });
-                              };
-                            </script>
+                                      return response.json();
+                                    })
+                                    .then(data => {
+                                      console.log("Order ID from API:", data.id);
+                              
+                                      var options = {
+                                        key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
+                                        amount: data.amount,
+                                        currency: "INR",
+                                        name: "Your Company Name",
+                                        description: "Test Transaction",
+                                        order_id: data.id,
+                                        handler: function (response) {
+                                          alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+                                        },
+                                        prefill: {
+                                          name: "Your Name",
+                                          email: "your.email@example.com",
+                                          contact: "9999999999"
+                                        }
+                                      };
+                                      var rzp1 = new Razorpay(options);
+                                      rzp1.open();
+                                    })
+                                    .catch(function (error) {
+                                      console.error('Error:', error);
+                                      alert("Error in payment: " + (error.message || error));
+                                    });
+                                };
+                              </script>
+                              
                           </div>
                     </div>
                 </div>
