@@ -27,433 +27,293 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
-        function searchText(){
-            let text=document.getElementById("search").value;
-            let find=document.getElementById("searchWord");
+        function searchText() {
+            let text = document.getElementById("search").value;
+            let find = document.getElementById("searchWord");
             text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
             let pattern = new RegExp(`${text}`, "gi");
             find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
         }
     </script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
 
 </head>
 
 <body>
     <div id="searchWord">
-    <!-- Start Main Top -->
-    <div class="main-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-							<option>INR</option>
-							<option>USD</option>
-							<option>EUR</option>
-						</select>
-                    </div>
-                    <div class="right-phone-box">
-                        <p>Call US :- <a href="#"> +91 9100066659</a></p>
-                    </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a href="signin.html"><i class="fa fa-user s_color"></i> My Account</a></li>
-                            <li>
-                                <a href=" https://maps.app.goo.gl/WAmF8TErCU9FDNVj9" target="_blank">
-                                  <i class="fas fa-location-arrow"></i> Our location
-                                </a>
-                              </li>
-                              
-                            <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="login-box">
-						<select id="account-dropdown" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                            <option value="">My Account</option>
-                            <option value="signup.html">Sign Up</option>
-                            <option value="signin.html">Sign In</option>
-                        </select>
-                        <script>
-                            document.getElementById('account-dropdown').addEventListener('change', function() {
-                                const selectedValue = this.value;
-                                if (selectedValue) {
-                                    window.location.href = selectedValue;  // Redirect to the selected page
-                                }
-                            });
-                        </script>
-					</div>
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now 
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Main Top -->
-
-    <!-- Start Main Top -->
-    <header class="main-header">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" alt=""></a>
-                </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-						<li class="dropdown">
-							<a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-							<ul class="dropdown-menu">
-								<li><a href="shop.html">Sidebar Shop</a></li>
-								<!--<li><a href="cart.html">Cart</a></li>-->
-								<li><a href="checkout.html">Checkout</a></li>
-							</ul>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-						<li class="nav-item active"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-                        <li class="nav-item">
-                            <div class="input-group">
-                              <input type="text" id="search" style=" border: solid 3px black; height: 40px; font-size:18px; " placeholder="Search" size="10" width="5"/>
-                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
-                        <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i> </a></li>                       
-                        <li class="nav-item"><a href="cart.html">
-						<i class="fa fa-shopping-bag"></i>
-                            <span class="badge"></span>
-							<span>My Cart</span>
-					</a></li>
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
-            </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <!-- End Side Menu -->
-        </nav>
-        <!-- End Navigation -->
-    </header>
-    <!-- End Main Top -->
-
-    <!-- Start Top Search -->
-    <div class="top-search">
-        <div class="container">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-            </div>
-        </div>
-    </div>
-    <!-- End Top Search -->
-
-    <!-- Start All Title Box -->
-    <div class="all-title-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Contact Us</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active"> Contact Us </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End All Title Box -->
-
-    <!-- Start Contact Us  -->
-    <div class="contact-box-main">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="contact-form-right">
-                        <h2>GET IN TOUCH</h2>
-                        <p>We at 6seasonsorganic are dedicated to delivering the finest organic and seasonal products. If you have any inquiries or need assistance, feel free to reach out to us. Let's grow together sustainably.</p>
-                        <form id="contactForm">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required data-error="Please enter your name">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Your Email" id="email" class="form-control" name="name" required data-error="Please enter your email">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="subject" name="name" placeholder="Subject" required data-error="Please enter your Subject">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="message" placeholder="Your Message" rows="4" data-error="Write your message" required></textarea>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                    <div class="submit-button text-center">
-                                        <button class="btn hvr-hover" id="submit" type="submit">Send Message</button>
-                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-12">
-                    <div class="contact-info-left">
-                        <h2>CONTACT INFO</h2>
-                        <p>6seasonsorganic is committed to promoting a healthy lifestyle by providing premium organic products. We value your feedback and inquiries. Contact us for more information on our offerings or to share your suggestions.</p>
-                        <ul>
-                            <li>
-                                <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic, Plot No. 45,<br> Green Valley Avenue, Hyderabad,<br> Telangana, 500032.</p>
-                            </li>
-                            <li>
-                                <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+91-9876543210">+91-9100066659</a></p>
-                            </li>
-                            <li>
-                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:support@6seasonsorganic.com">support@6seasonsorganic.com</a></p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- End Cart -->
-         <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div> 
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta3.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta4.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta5.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta6.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
-    <footer>
-        <div class="footer-main">
-            <div class="container">
+        <!-- Start Main Top -->
+        <div class="main-top">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Business Time</h3>
-                            <ul class="list-time">
-                                <li>Monday - Friday: 08.00am to 05.00pm</li> 
-                                <li>Saturday: 10.00am to 08.00pm</li> 
-                                <li>Sunday: <span>Closed</span></li>
-                            </ul>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="custom-select-box">
+                            <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                                <option>INR</option>
+                                <option>USD</option>
+                                <option>EUR</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Newsletter</h3>
-                            <form class="newsletter-box">
-                                <div class="form-group">
-                                    <input class="" type="email" name="Email" placeholder="Email Address*" />
-                                    <i class="fa fa-envelope"></i>
-                                </div>
-                                <button class="btn hvr-hover" type="submit">Submit</button>
-                            </form>
+                        <div class="right-phone-box">
+                            <p>Call US :- <a href="#"> +91 9100066659</a></p>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Social Media</h3>
-                            <p>Follow us for updates on seasonal and organic products.</p>
+                        <div class="our-link">
                             <ul>
-                                <li><a href="https://www.facebook.com/people/6-seasons/61552154805127/?sfnsn=wiwspmo&mibextid=vk8aRt"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="https://twitter.com/i/flow/login?redirect_after_login=%2F6seasonsorganic"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.linkedin.com/in/6seasons-organic-286223299?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.instagram.com/6_seasons_organic/?hl=en"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.youtube.com/@6seasonsorganics"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                                <li><a href="signin.html"><i class="fa fa-user s_color"></i> My Account</a></li>
                                 <li>
-                                    <a href="https://wa.me/919100066659" target="_blank">
-                                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                    <a href=" https://maps.app.goo.gl/WAmF8TErCU9FDNVj9" target="_blank">
+                                        <i class="fas fa-location-arrow"></i> Our location
                                     </a>
                                 </li>
-                            </ul>
 
+                                <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="login-box">
+                            <select id="account-dropdown" class="selectpicker show-tick form-control"
+                                data-placeholder="Sign In">
+                                <option value="">My Account</option>
+                                <option value="signup.html">Sign Up</option>
+                                <option value="signin.html">Sign In</option>
+                            </select>
+                            <script>
+                                document.getElementById('account-dropdown').addEventListener('change', function () {
+                                    const selectedValue = this.value;
+                                    if (selectedValue) {
+                                        window.location.href = selectedValue;  // Redirect to the selected page
+                                    }
+                                });
+                            </script>
+                        </div>
+                        <div class="text-slid-box">
+                            <div id="offer-box" class="carouselTicker">
+                                <ul class="offer-box">
+                                    <li>
+                                        <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> Off 50%! Shop Now
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-opencart"></i> Off 50%! Shop Now
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <hr>
+            </div>
+        </div>
+        <!-- End Main Top -->
+
+        <!-- Start Main Top -->
+        <header class="main-header">
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+                <div class="container">
+                    <!-- Start Header Navigation -->
+                    <div class="navbar-header">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                            aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" alt=""></a>
+                    </div>
+                    <!-- End Header Navigation -->
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navbar-menu">
+                        <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="shop.html">Sidebar Shop</a></li>
+                                    <!--<li><a href="cart.html">Cart</a></li>-->
+                                    <li><a href="checkout.html">Checkout</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                            <li class="nav-item">
+                                <div class="input-group">
+                                    <input type="text" id="search"
+                                        style=" border: solid 3px black; height: 40px; font-size:18px; "
+                                        placeholder="Search" size="10" width="5" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+
+                    <!-- Start Atribute Navigation -->
+                    <div class="attr-nav">
+                        <ul>
+                            <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
+                            <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i>
+                                </a></li>
+                            <li class="nav-item"><a href="cart.html">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    <span class="badge"></span>
+                                    <span>My Cart</span>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <!-- End Atribute Navigation -->
+                </div>
+                <!-- Start Side Menu -->
+                <div class="side">
+                    <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+                    <li class="cart-box">
+                        <ul class="cart-list">
+                            <li>
+                                <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb"
+                                        alt="" /></a>
+                                <h6><a href="#">Delica omtantur </a></h6>
+                                <p>1x - <span class="price">$80.00</span></p>
+                            </li>
+                            <li>
+                                <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb"
+                                        alt="" /></a>
+                                <h6><a href="#">Omnes ocurreret</a></h6>
+                                <p>1x - <span class="price">$60.00</span></p>
+                            </li>
+                            <li>
+                                <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb"
+                                        alt="" /></a>
+                                <h6><a href="#">Agam facilisis</a></h6>
+                                <p>1x - <span class="price">$40.00</span></p>
+                            </li>
+                            <li class="total">
+                                <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                                <span class="float-right"><strong>Total</strong>: $180.00</span>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+                <!-- End Side Menu -->
+            </nav>
+            <!-- End Navigation -->
+        </header>
+        <!-- End Main Top -->
+
+        <!-- Start Top Search -->
+        <div class="top-search">
+            <div class="container">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search">
+                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+        </div>
+        <!-- End Top Search -->
+
+        <!-- Start All Title Box -->
+        <div class="all-title-box">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-widget">
-                            <h4>About 6seasonsorganic</h4>
-                            <p>6seasonsorganic is dedicated to providing the highest quality organic and seasonal products. Our mission is to bring health and sustainability to every customer.</p> 
-                            <p>Our organic products are sourced with care, ensuring the best for you and your family.</p> 							
+                    <div class="col-lg-12">
+                        <h2>Contact Us</h2>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active"> Contact Us </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End All Title Box -->
+
+        <!-- Start Contact Us  -->
+        <div class="contact-box-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="contact-form-right" >
+                            <h2>GET IN TOUCH</h2>
+                            <p>We at 6seasonsorganic are dedicated to delivering the finest organic and seasonal
+                                products. If you have any inquiries or need assistance, feel free to reach out to us.
+                                Let's grow together sustainably.</p>
+                            <!-- Contact Form -->
+                            <form id="contactForm" onsubmit="sendEmail(event)" >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Your Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="email" placeholder="Your Email" id="email" class="form-control"
+                                                name="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="subject" name="subject"
+                                                placeholder="Subject" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="message" name="message"
+                                                placeholder="Your Message" rows="4" required></textarea>
+                                        </div>
+                                        <div class="submit-button text-center">
+                                            <button class="btn hvr-hover" id="submit" type="submit">Send
+                                                Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link">
-                            <h4>Information</h4>
-                            <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact-us.html">Customer Service</a></li>
-                                <li><a href="https://maps.app.goo.gl/WAmF8TErCU9FDNVj9">Our Sitemap</a></li>
-                                <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="delivery-info.html">Delivery Information</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">             
-                        <div class="footer-link-contact">
-                            <h4>Contact Us</h4>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="contact-info-left">
+                            <h2>CONTACT INFO</h2>
+                            <p>6seasonsorganic is committed to promoting a healthy lifestyle by providing premium
+                                organic products. We value your feedback and inquiries. Contact us for more information
+                                on our offerings or to share your suggestions.</p>
                             <ul>
                                 <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic H.no 4-59/6/19,<br>Srinivasa Nagar Colony Mandaipally Road<br>Thumukunta, Shamirpet<br>Secunderabad, Telangana 500078</p>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic, Plot No. 45,<br>
+                                        Green Valley Avenue, Hyderabad,<br> Telangana, 500032.</p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+91-9100066659">+91-9100066659</a></p>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a
+                                            href="tel:+91-9876543210">+91-9100066659</a></p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:info@6seasonsorganic.com">info@6seasonsorganic.com</a></p>
+                                    <p><i class="fas fa-envelope"></i>Email: <a
+                                            href="mailto:info@6seaosnsorganic.com">info@6seaosnsorganic.com</a>
+                                    </p>
                                 </li>
                             </ul>
                         </div>
@@ -461,35 +321,223 @@
                 </div>
             </div>
         </div>
-    </footer>
-    
-    <!-- End Footer  -->
 
-    <!-- Start copyright  -->
-    <div class="footer-copyright">
-        <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
-            <a href="https://html.design/">6SeasonsOrganic</a></p>
-    </div>
-    <!-- End copyright  -->
+        <!-- End Cart -->
+        <!-- Start Instagram Feed  -->
+        <div class="instagram-box">
+            <div class="main-instagram owl-carousel owl-theme">
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta1.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta3.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta4.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta5.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta6.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta1.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                        <div class="hov-in">
+                            <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Instagram Feed  -->
+        <footer>
+            <div class="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-top-box">
+                                <h3>Business Time</h3>
+                                <ul class="list-time">
+                                    <li>Monday - Friday: 08.00am to 05.00pm</li>
+                                    <li>Saturday: 10.00am to 08.00pm</li>
+                                    <li>Sunday: <span>Closed</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-top-box">
+                                <h3>Newsletter</h3>
+                                <form class="newsletter-box">
+                                    <div class="form-group">
+                                        <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <button class="btn hvr-hover" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-top-box">
+                                <h3>Social Media</h3>
+                                <p>Follow us for updates on seasonal and organic products.</p>
+                                <ul>
+                                    <li><a
+                                            href="https://www.facebook.com/people/6-seasons/61552154805127/?sfnsn=wiwspmo&mibextid=vk8aRt"><i
+                                                class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a
+                                            href="https://twitter.com/i/flow/login?redirect_after_login=%2F6seasonsorganic"><i
+                                                class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a
+                                            href="https://www.linkedin.com/in/6seasons-organic-286223299?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                                                class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.instagram.com/6_seasons_organic/?hl=en"><i
+                                                class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.youtube.com/@6seasonsorganics"><i class="fab fa-youtube"
+                                                aria-hidden="true"></i></a></li>
+                                    <li>
+                                        <a href="https://wa.me/919100066659" target="_blank">
+                                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
 
-    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-widget">
+                                <h4>About 6seasonsorganic</h4>
+                                <p>6seasonsorganic is dedicated to providing the highest quality organic and seasonal
+                                    products. Our mission is to bring health and sustainability to every customer.</p>
+                                <p>Our organic products are sourced with care, ensuring the best for you and your
+                                    family.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-link">
+                                <h4>Information</h4>
+                                <ul>
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="contact-us.html">Customer Service</a></li>
+                                    <li><a href="https://maps.app.goo.gl/WAmF8TErCU9FDNVj9">Our Sitemap</a></li>
+                                    <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>
+                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="delivery-info.html">Delivery Information</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-link-contact">
+                                <h4>Contact Us</h4>
+                                <ul>
+                                    <li>
+                                        <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic H.no
+                                            4-59/6/19,<br>Srinivasa Nagar Colony Mandaipally Road<br>Thumukunta,
+                                            Shamirpet<br>Secunderabad, Telangana 500078</p>
+                                    </li>
+                                    <li>
+                                        <p><i class="fas fa-phone-square"></i>Phone: <a
+                                                href="tel:+91-9100066659">+91-9100066659</a></p>
+                                    </li>
+                                    <li>
+                                        <p><i class="fas fa-envelope"></i>Email: <a
+                                                href="mailto:info@6seasonsorganic.com">info@6seasonsorganic.com</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-    <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="js/jquery.superslides.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+        <!-- End Footer  -->
+
+        <!-- Start copyright  -->
+        <div class="footer-copyright">
+            <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
+                <a href="https://html.design/">6SeasonsOrganic</a>
+            </p>
+        </div>
+        <!-- End copyright  -->
+
+        <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+        <!-- ALL JS FILES -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- ALL PLUGINS -->
+        <script src="js/jquery.superslides.min.js"></script>
+        <script src="js/bootstrap-select.js"></script>
+        <script src="js/inewsticker.js"></script>
+        <script src="js/bootsnav.js."></script>
+        <script src="js/images-loded.min.js"></script>
+        <script src="js/isotope.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/baguetteBox.min.js"></script>
+        <script src="js/form-validator.min.js"></script>
+        <script src="js/contact-form-script.js"></script>
+        <script src="js/custom.js"></script>
+        <!-- Include EmailJS SDK -->
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script src="js/email-form.js"></script>
+
+
+
     </div>
 </body>
 
