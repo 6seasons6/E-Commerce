@@ -278,3 +278,31 @@ document.addEventListener("DOMContentLoaded", function () {
     updateTotalPrice();
 });
 
+
+
+//cart page buy now total
+// Product Page Script
+document.getElementById('buy-now-button').addEventListener('click', function() {
+    const selectedWeight = parseInt(document.getElementById('weight-select').value, 10);
+    const quantity = parseInt(document.getElementById('quantity-input').value, 10) || 1;
+    const pricePer250Grams = parseFloat(product.price);
+
+    const totalPrice = calculateTotalPrice(pricePer250Grams, selectedWeight, quantity);
+    localStorage.setItem('totalPrice', totalPrice.toFixed(2));
+    window.location.href = 'cart.html'; // Redirect to the cart page
+});
+
+function calculateTotalPrice(pricePer250Grams, selectedWeight, quantity) {
+    const priceForSelectedWeight = (pricePer250Grams / 250) * selectedWeight;
+    return priceForSelectedWeight * quantity;
+}
+//checkpout paage total
+document.getElementById('checkout-button').addEventListener('click', function(event) {
+    const totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+    if (totalPrice > 0) {
+        window.location.href = 'checkout.html'; 
+    } else {
+        event.preventDefault(); 
+        alert('Your cart is empty. Please add items to proceed to checkout.');
+    }
+});

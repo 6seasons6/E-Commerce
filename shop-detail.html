@@ -420,8 +420,11 @@
 
                                         <a class="btn hvr-hover" id="add-to-cart-btn" data-fancybox-close=""
                                             href="#">Add to cart</a>
+                                            <a id="buy-now-button" class="btn hvr-hover" data-fancybox-close="" href="#">Buy Now</a>
+
                                     </div>
                                 </div>
+                               
 
                                 <div class="add-to-btn">
                                     <div class="add-comp">
@@ -953,35 +956,7 @@
     <script src="js/shopdetailswishlist.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/shopdetailcart.js"></script>
-    <!--wishlist button code-->
-    <!--<script>
-    document.getElementById('add-to-wishlist-btn').addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default anchor behavior
-
-    const productImage = document.getElementById('product-image').src;
-    const productName = document.getElementById('product-name').textContent;
-    const productPrice = document.getElementById('product-price').textContent;
-
-    // Create an object representing the product
-    const product = {
-        image: productImage,
-        name: productName,
-        price: productPrice
-    };
-
-    // Get the wishlist from localStorage or initialize it
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-    // Add the new product to the wishlist
-    wishlist.push(product);
-
-    // Save the updated wishlist to localStorage
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-
-    alert(`${productName} has been added to your wishlist.`);
-});
-
-</script>-->
+  
 </body>
 
 </html>

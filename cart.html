@@ -337,37 +337,37 @@
             <div class="col-lg-8 col-sm-12"></div>
             <div class="col-lg-4 col-sm-12">
                 <div class="order-box">
-                    <h3>Order summary</h3>
-                    <div class="d-flex">
+                    <h3>Order Summary</h3>
+                    <div class="total-price-heading d-flex">
                         <h4>Sub Total</h4>
-                        <div class="ml-auto font-weight-bold"> $ 130 </div>
+                        <p id="order-total-price" class="ml-auto font-weight-bold">₹0.00</p> <!-- Total price will be displayed here -->
                     </div>
                     <div class="d-flex">
                         <h4>Discount</h4>
-                        <div class="ml-auto font-weight-bold"> $ 40 </div>
+                        <div id="order-discount" class="ml-auto font-weight-bold">₹40</div>
                     </div>
                     <hr class="my-1">
                     <div class="d-flex">
                         <h4>Coupon Discount</h4>
-                        <div class="ml-auto font-weight-bold"> $ 10 </div>
+                        <div id="coupon-discount" class="ml-auto font-weight-bold">₹10</div>
                     </div>
                     <div class="d-flex">
                         <h4>Tax</h4>
-                        <div class="ml-auto font-weight-bold"> $ 2 </div>
+                        <div id="order-tax" class="ml-auto font-weight-bold">₹2</div>
                     </div>
                     <div class="d-flex">
                         <h4>Shipping Cost</h4>
-                        <div class="ml-auto font-weight-bold"> Free </div>
+                        <div id="order-shipping" class="ml-auto font-weight-bold">Free</div>
                     </div>
                     <hr>
                     <div class="d-flex gr-total">
                         <h5>Grand Total</h5>
-                        <div class="ml-auto h5"> $ 388 </div>
+                        <div id="grand-total" class="ml-auto h5">₹0</div>
                     </div>
                     <hr>
                 </div>
             </div>
-            <div class="col-12 d-flex shopping-box"><a href="checkout.html" class="ml-auto btn hvr-hover">Checkout</a>
+            <div class="col-12 d-flex shopping-box"><a href="checkout.html" id="checkout-button" class="ml-auto btn hvr-hover">Checkout</a>
             </div>
         </div>
 
@@ -585,6 +585,31 @@
     <script src="js/cart.js"></script>
     <script src="js/shopdetailcart.js"></script>
 <script src="js/shopdescription.js"></script>
+<!--<script>
+    // Cart Page Script
+document.addEventListener('DOMContentLoaded', function() {
+    const totalPrice = localStorage.getItem('totalPrice');
+    if (totalPrice) {
+        document.getElementById('order-total-price').textContent = '₹' + totalPrice;
+    } else {
+        document.getElementById('order-total-price').textContent = '₹0.00';
+    }
+});
+document.addEventListener("DOMContentLoaded", function() {
+    // Get values from the DOM
+    const totalProductPrice = parseFloat(document.getElementById("order-total-price").textContent.replace('₹', '')) || 0;
+    const discount = parseFloat(document.getElementById("order-discount").textContent.replace('₹', '')) || 0;
+    const couponDiscount = parseFloat(document.getElementById("coupon-discount").textContent.replace('₹', '')) || 0;
+    const tax = parseFloat(document.getElementById("order-tax").textContent.replace('₹', '')) || 0;
+
+    // Calculate the grand total (subtracting the discount)
+    const grandTotal = totalProductPrice - discount - couponDiscount + tax;
+
+    // Update the Grand Total in the DOM
+    document.getElementById("grand-total").textContent = `₹${grandTotal.toFixed(2)}`;
+});
+
+</script>
     </div>
 </body>
 
