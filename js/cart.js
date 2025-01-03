@@ -159,3 +159,25 @@ function calculatePrice(price, weight) {
     const multiplier = weight / 250; 
     return price * multiplier;
 }
+//buy now button code
+  // Cart Page Script
+  document.addEventListener('DOMContentLoaded', function() {
+    const totalPrice = localStorage.getItem('totalPrice');
+    if (totalPrice) {
+        document.getElementById('order-total-price').textContent = '₹' + totalPrice;
+    } else {
+        document.getElementById('order-total-price').textContent = '₹0.00';
+    }
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const totalProductPrice = parseFloat(document.getElementById("order-total-price").textContent.replace('₹', '')) || 0;
+    const discount = parseFloat(document.getElementById("order-discount").textContent.replace('₹', '')) || 0;
+    const couponDiscount = parseFloat(document.getElementById("coupon-discount").textContent.replace('₹', '')) || 0;
+    const tax = parseFloat(document.getElementById("order-tax").textContent.replace('₹', '')) || 0;
+
+    // Calculate the grand total (subtracting the discount)
+    const grandTotal = totalProductPrice - discount - couponDiscount + tax;
+
+    // Update the Grand Total in the DOM
+    document.getElementById("grand-total").textContent = `₹${grandTotal.toFixed(2)}`;
+});
