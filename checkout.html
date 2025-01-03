@@ -436,24 +436,33 @@
                                     <h5>Grand Total</h5>
                                     <div id="grand-total" class="ml-auto h5">₹0.00</div>
                                 </div>
-                                
+                                <div>
+                                    <label><h5 style="color: rgb(177, 175, 33); font-weight: bold;font-size: 20px;">Enter the  Bill amount given in Grand Total to pay :  </h5></label>
+                                    <input type="text" id="price" placeholder="&#8377;" required style="font-weight: bold;"/>
+                                </div>
                                 <hr> </div>
                         </div>
                        
-                        <div class="col-12 d-flex shopping-box">
+                        <div class="col-12 d-flex shopping-box mt-4">
                             <button id="rzp-button" class="ml-auto btn hvr-hover">Pay Now</button>
                             <div id="payment-message"></div>
                           
                             <script>
                                 document.getElementById('rzp-button').onclick = function (e) {
                                   e.preventDefault();
+                                  const priceInput=document.getElementById("price");
+                                  const amount=parseFloat(priceInput.value) * 100;
+                                  if (isNaN(amount)|| amount<=0){
+                                    alert("Please enter a valid amount.");
+                                    return;
+                                  }
                               
                                   fetch(`http://127.0.0.1:5000/api/create-order`, { // Use backticks here
                                     method: 'POST',
                                     headers: {
                                       'Content-Type': 'application/json',
                                     },
-                                    body: JSON.stringify({ amount: 50000 }) // Amount in paise
+                                    body: JSON.stringify({ amount: amount}) // Amount in paise
                                   })
                                     .then(response => {
                                       if (!response.ok) {
