@@ -2647,7 +2647,7 @@ font-size: 20px;
 
 .hvr-hover {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 6px 8px;
     background-color: #b0b435; 
     color: white;
     text-decoration: none;
@@ -2658,10 +2658,47 @@ font-size: 20px;
     
 }
 
+#product-quantity,
+    #total-price {
+        font-weight: 800;
+    }
 
+    .product-details {
+        display: flex;
+        align-items: center;
+        gap: 10px; 
+        font-weight: 800; 
+    }
 
+    .product-details h1, 
+    .product-details p, 
+    .product-details span {
+        margin: 0;
+        display: inline;
+    }
 
+.title-left h3{
+    color:#b0b435;
+}
 
+.title-left h1{
+    font-size: 18px;
+}
+.product-details h1{
+       font-weight: 700;
+    font-size: 18px;
+    color: gray;
+    margin-top: 8px;
+}
+.carousel-control-prev-icon{
+    margin-bottom: 12rem;
+    color:rgb(136, 108, 117);
+    margin-right: 6rem;
+}
+.carousel-control-prev {
+    width:0rem;
+}
+.carousel-control-next{
+    width:5%;
 
-
-
+}
