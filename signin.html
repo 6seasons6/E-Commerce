@@ -36,10 +36,6 @@
             font-size:15px;
             font-weight: bold;
         }
-        #sign1:hover{
-            color:rgb(205, 197, 50) ;
-            font-weight: bold;
-        }
         .center-container{
             display: flex;
             justify-content: center;
@@ -64,6 +60,18 @@
             align-items: center;
             text-align: center;
             color: black;
+            font-weight: bold;
+        }
+        .head1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+        }
+        .head:hover{
+            color: rgb(169, 169, 17);
             font-weight: bold;
         }
     </style>
@@ -145,8 +153,8 @@
     <script src="../E-Commerce/node_modules/jquery/dist/jquery.js"></script>
 </head>
 <body>
+    <div id="searchWord">
     <!-- Start Main Top -->
-     <div id="searchWord">
     <div class="main-top">
         <div class="container-fluid">
             <div class="row">
@@ -324,7 +332,7 @@
             <div class="card me-5">
                 <div class="card-header">
                     <h3 class="card-title content head">Sign In</h3>
-                    <h6 class="card-subtitle content head">to your 6SeasonsOrganic Account</h6>
+                    <h5 class="card-subtitle content head">to your 6SeasonsOrganic Account</h5>
                 </div>
                 <!-- Form starts here -->
                 <form id="signin-form">
@@ -348,7 +356,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <p class="head">Don't have an account? <a href="signup.html" id="sign">Sign Up</a></p>
+                        <p class="head1">Don't have an account? <a href="signup.html" id="sign">Sign Up</a></p>
                         <div class="center-container">
                             <div class="g-signin2" style="height: 30px; width:150px;" data-onsuccess="onSignIn"></div>
                         </div>
