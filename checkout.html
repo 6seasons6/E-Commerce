@@ -380,31 +380,23 @@
                         <div class="col-md-12 col-lg-12">
                             <div class="odr-box">
                                 <div class="title-left">
-                                    <h3>your Bill</h3>
-                                </div>
-                                <div class="rounded p-2 bg-light">
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $80.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $80.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $60.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $60.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $40.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $40.00</div>
-                                        </div>
+                                    <h3>Your Orders</h3>
+                                    <div class="product-details">
+                                        <br>
+                                        <h1 id="product-name">Product Name</h1>
+                                        <span>|</span>
+                                        <p id="product-quantity"></p>
+                                        <span>|</span>
+                                        <p id="total-price"></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-md-12 col-lg-12">
                             <div class="order-box">
                                 <div class="title-left">
-                                    <h3>Your order</h3>
+                                    <h3>Your Bill</h3>
                                 </div>
                                 <div class="d-flex">
                                     <div class="font-weight-bold">Product</div>
@@ -477,7 +469,7 @@
                                         key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
                                         amount: data.amount,
                                         currency: "INR",
-                                        name: "Your Company Name",
+                                        name: "6SeasonsOrganic",
                                         description: "Test Transaction",
                                         order_id: data.id,
                                         handler: function (response) {
@@ -708,8 +700,27 @@
     const grandTotal = totalPrice - discount - couponDiscount + tax + shippingCost;
     document.getElementById('grand-total').textContent = `₹${grandTotal.toFixed(2)}`;
 });
-
-        </script>
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const productName = localStorage.getItem('productName');
+        const totalPrice = localStorage.getItem('totalPrice');
+        const quantity = localStorage.getItem('quantity');
+        const productNameElement = document.getElementById('product-name');
+        const totalPriceElement = document.getElementById('total-price');
+        const quantityElement = document.getElementById('product-quantity'); 
+        if (productNameElement) {
+            productNameElement.textContent = productName || "Product Not Found";
+        }
+        if (totalPriceElement) {
+            totalPriceElement.textContent = totalPrice ? `Total Price: ₹${totalPrice}` : "Total Price Not Available";
+        }
+         if (quantityElement) {
+            quantityElement.textContent = quantity ? `Quantity: ${quantity}` : "Quantity Not Available";
+        }
+    });
+    </script>
+    
     </div>
 </body>
 
