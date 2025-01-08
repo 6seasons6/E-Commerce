@@ -41,11 +41,20 @@
             color:rgb(188, 179, 18) ;
             font-size:15px;
         }
-        #sign1:hover{
+        .head:hover{
             color:rgb(188, 179, 18)  ;
             font-weight: bold;
         }
         .head{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .head1{
             display: flex;
             justify-content: center;
             align-items: center;
@@ -89,9 +98,6 @@
 							<option>USD</option>
 							<option>EUR</option>
 						</select>
-                    </div>
-                    <div class="right-phone-box">
-                        <p>Call US :- <a href="#">+91 9100066659</a></p>
                     </div>
                     <div class="our-link">
                         <ul>
@@ -258,7 +264,7 @@
             <div class="card me-5">
                 <div class="card-header">
                     <h3 class="card-title content head">Sign Up</h3>
-                    <h6 class="card-subtitle content head">for your 6SeasonsOrganic account</h6>
+                    <h5 class="card-subtitle content head">for your 6SeasonsOrganic account</h5>
                 </div>
                 <!-- Form starts here -->
                 <form id="signup-form">
@@ -284,7 +290,7 @@
                         <button type="submit" class="btn btn-success btn-sm head mt-2">Sign Up</button>
                     </div>
                 <div class="card-footer">
-                    <p class="head">Already have an account? <a href="../E-Commerce/signin.html" id="sign">Sign in</a></p>
+                    <p class="head1">Already have an account? <a href="../E-Commerce/signin.html" id="sign">Sign in</a></p>
                 </div>
             </form>
             <p id="response-message" class="mt-3 text-center"></p>
