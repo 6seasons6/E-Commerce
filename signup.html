@@ -325,7 +325,12 @@
         const data = await response.json();
 
         if (response.ok) {
-            document.getElementById("response-message").innerText = "Sign up successful!";
+            if (data.user && data.user.username) {
+                localStorage.setItem("username", data.user.username); // ✅ Store username in localStorage
+                console.log("Stored username:", data.user.username);
+            } else {
+                console.warn("Username not found in response!");
+            }            document.getElementById("response-message").innerText = "Sign up successful!";
             document.getElementById("response-message").style.color = "green";
             window.location.href = "signin.html";
         } else {
