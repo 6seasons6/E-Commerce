@@ -27,6 +27,7 @@ app.use(
       "http://127.0.0.1:5500", // Local development
       "http://127.0.0.1:5000", // Local development
       "https://euphonious-maamoul-f82320.netlify.app", // Production
+   
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -35,7 +36,7 @@ app.use(
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/authDB", {
+  .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/authDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
