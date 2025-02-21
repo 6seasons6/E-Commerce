@@ -271,6 +271,11 @@
     width: 120px;
     margin-left: 20px;
 }
+.btn-light.dropdown-toggle {
+    background-color: #b0b435 !important;
+    color: white !important;
+    border: none;
+}
 
 .login-box .form-control{
      background: none;
@@ -289,7 +294,7 @@
      line-height: 15px;
 }
 .login-box .dropdown-toggle::after {
-     display: inline-block;
+     
      width: 0;
      height: 0;
      margin-left: .255em;
@@ -1411,19 +1416,7 @@
      -o-transition: all .3s ease-in-out;
      -ms-transition: all .3s ease-in-out;
 }
- .footer-link ul li a::before {
-     font-family: FontAwesome;
-     content: "\f105";
-     position: absolute;
-     left: 5px;
-     line-height: 35px;
-     font-size: 16px;
-     transition: all .3s ease-in-out;
-     -webkit-transition: all .3s ease-in-out;
-     -moz-transition: all .3s ease-in-out;
-     -o-transition: all .3s ease-in-out;
-     -ms-transition: all .3s ease-in-out;
-}
+ 
  .footer-link ul li a:hover::before {
      left: 5px;
 }
@@ -2702,3 +2695,21 @@ font-size: 20px;
     width:5%;
 
 }
+.dot-list {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+  }
+  .dot-list li {
+    position: relative;
+    padding-left: 20px; 
+    margin: 10px 0;
+  }
+  .dot-list li::before {
+    content: "•"; 
+    color: white; 
+    font-size: x-large;;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
