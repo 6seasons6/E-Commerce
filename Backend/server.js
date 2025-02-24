@@ -36,7 +36,7 @@ app.use(
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/authDB", {
+  .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/authDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -172,7 +172,7 @@ app.post("/api/auth/signin", forgotPasswordLimiter, async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid password." });
     }
-  
+
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
