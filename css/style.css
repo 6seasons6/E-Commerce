@@ -309,8 +309,14 @@
      right: 10px;
 }
 
-.login-box .dropdown-item{
+.login-box .dropdown-item :hover{
 	padding: 5px 10px;
+    
+}
+
+.dropdown-item:hover {
+    background-color: #b0b435 !important;
+    color: white !important;
 }
 
 .bootstrap-select.btn-group .dropdown-menu a.dropdown-item span.dropdown-item-inner span.text{
