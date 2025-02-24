@@ -86,81 +86,7 @@
 
 <body>
     <!-- Include Header -->
-    <!-- Start Main Top -->
-     <div id="searchWord">
-    <div class="main-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-							<option>INR</option>
-							<option>USD</option>
-							<option>EUR</option>
-						</select>
-                    </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a href="signin.html"><i class="fa fa-user s_color"></i> My Account</a></li>
-                            <li>
-                                <a href=" https://maps.app.goo.gl/WAmF8TErCU9FDNVj9" target="_blank">
-                                  <i class="fas fa-location-arrow"></i> Our location
-                                </a>
-                            </li>
-                            <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="login-box">
-						<select id="account-dropdown" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                            <option value="signin.html">Sign In</option>
-                            <option value="#">Sign Up</option>
-                        </select>
-                        <script>
-                            document.getElementById('account-dropdown').addEventListener('change', function() {
-                                const selectedValue = this.value;
-                                if (selectedValue) {
-                                    window.location.href = selectedValue;  // Redirect to the selected page
-                                }
-                            });
-                        </script>
-					</div>
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now 
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Main Top -->
+   
 
     <!-- Start Main Top -->
     <header class="main-header">
@@ -331,7 +257,12 @@
         const data = await response.json();
 
         if (response.ok) {
-            document.getElementById("response-message").innerText = "Sign up successful!";
+            if (data.user && data.user.username) {
+                localStorage.setItem("username", data.user.username); // ✅ Store username in localStorage
+                console.log("Stored username:", data.user.username);
+            } else {
+                console.warn("Username not found in response!");
+            }                   document.getElementById("response-message").innerText = "Sign up successful!";
             document.getElementById("response-message").style.color = "green";
             window.location.href = "signin.html";
         } else {
@@ -470,7 +401,7 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-link">
                             <h4>Information</h4>
-                            <ul>
+                            <ul class="dot-list">
                                 <li><a href="#">About Us</a></li>
                                 <li><a href="#">Customer Service</a></li>
                                 <li><a href="#">Our Sitemap</a></li>

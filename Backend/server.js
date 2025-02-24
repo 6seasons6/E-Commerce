@@ -8,6 +8,7 @@ const rateLimit = require("express-rate-limit");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const { google } = require("googleapis");
+const axios = require('axios');
 
 // Import Routes
 const authRoutes = require("./routes/auth");
@@ -35,7 +36,7 @@ app.use(
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/authDB", {
+  .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/authDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -50,6 +51,73 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
+//orders
+// Order Schema
+const OrderSchema = new mongoose.Schema({
+  username:  String,  
+
+  paymentId: String,
+  amount: Number,
+  productName: String,
+  quantity: String,
+  totalPrice: String,
+  status: { type: String, default: "Paid" },
+});
+
+const Order = mongoose.model("Order", OrderSchema);
+
+// Admin Dashboard API URL
+const ADMIN_DASHBOARD_API = "http://127.0.0.1:5001/api/sync-order";
+
+
+// Store Order Route
+app.post('/api/store-order', async (req, res) => {
+  try {
+      console.log('Received create order request');
+      console.log('Request body:', req.body);
+
+      // Extract order data from request
+      const { username,paymentId, amount, productName, quantity, totalPrice } = req.body;
+
+      // Validate required fields
+      if (!paymentId || !amount || !productName || !quantity || !totalPrice) {
+          return res.status(400).json({ error: "Missing required fields" });
+      }
+
+      // Store order in e-commerce database
+      const newOrder = new Order({
+        username,
+          paymentId,
+          amount,
+          productName,
+          quantity,
+          totalPrice,
+          status: "Paid",
+      });
+
+      await newOrder.save();
+
+      // ✅ Explicitly structure the order data before syncing
+      const orderToSync = {
+        username,
+          paymentId,
+          amount,
+          productName,
+          quantity,
+          totalPrice,
+          status: "Paid",
+      };
+
+      // Send order data to the admin dashboard
+      const response = await axios.post(ADMIN_DASHBOARD_API, orderToSync);
+      console.log('Sync Response:', response.data);
+
+      res.json({ message: 'Order stored and synced successfully!', order: newOrder });
+  } catch (err) {
+      console.error('Error syncing order with admin dashboard:', err.message);
+      res.status(500).json({ error: 'Failed to sync with admin dashboard', details: err.message });
+  }
+});
 
 // Rate Limiter for sensitive routes
 const forgotPasswordLimiter = rateLimit({
