@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>6SeasonsOrganic Offers</title>
+    <!-- Linking swiper js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        
-
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         #close-btn {
             position: absolute;
             top: 10px;
@@ -23,7 +29,7 @@
         #close-btn:hover {
             color: red;
         }
-   
+
 
         #popup button {
             margin-top: 10px;
@@ -38,40 +44,46 @@
         #popup button:hover {
             background-color: #218838;
         }
+
         /* Popup Styling */
         .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex; /* Enables flexbox layout */
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Centers content vertically */
-    z-index: 1000;
-}
+            width: 70vw;
+            height: 80vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            /* Enables flexbox layout */
+            justify-content: center;
+            /* Centers content horizontally */
+            align-items: center;
+            /* Centers content vertically */
+            z-index: 1000;
+           margin-top: 80px;
+           margin-right: 6%;
+        }
 
-.popup-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 1100px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-    background-image: url('nature-background.jpg'); /* Replace with nature image */
-    background-size: cover;
-    background-position: center;
-    color: #4c4e4d;
-    border: 2px solid #a5d6a7; /* Light green border for organic look */
-}
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            height: 100%;
+            max-width: 1100px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            background-image: url('nature-background.jpg');
+            /* Replace with nature image */
+            background-size: cover;
+            background-position: center;
+            color: #4c4e4d;
+            border: 2px solid #a5d6a7;
+            /* Light green border for organic look */
+        }
 
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 10px;
+            right: 10px;
             font-size: 25px;
             color: #4c4e4d;
             cursor: pointer;
@@ -82,70 +94,47 @@
             text-align: center;
             font-size: 36px;
             font-family: 'Georgia', serif;
-            color: #2a7f1f; /* Dark green for a natural look */
-            margin-bottom: 20px;
+            color: #2a7f1f;
+            /* Dark green for a natural look */
+            /* margin-bottom: 10px; */
         }
 
         .header p {
             font-size: 18px;
-            color: #a3b48c; /* Light olive green */
+            color: #a3b48c;
+            /* Light olive green */
         }
 
         /* Product Grid */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            padding: 20px;
-            color: #333;
-        }
-
-        .product {
-            background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Hover Effect */
-        .product:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Circular Product Image */
-        .product img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%; /* Circular Image */
-            margin-bottom: 10px;
-        }
-
-        .product h3 {
-            font-size: 20px;
-            color: #2a7f1f; /* Dark green text for product name */
-        }
-
-        .price {
+        
+        .card-list .card-item .card-box {
+            user-select: none;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 16px;
-            text-decoration: line-through;
-            margin-bottom: 10px;
-            color: #7c7c7c; /* Grey for original price */
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 18px;
+            border-radius: 12px;
+            position: relative;
+            list-style: none;
+            flex-direction: column;
+            box-shadow: 0 0 2px 2px #f1efef;
+        }
+        
+        .card-wrapper{
+            max-width: 1100px;           
+            padding:20px 10px;
+            overflow: hidden;       
+        }
+        .card-list .card-item {
+            list-style: none;
+            
         }
 
-        .offer-price {
-            font-size: 22px;
-            color: #2b7a3a; /* Earthy green for the offer price */
-            font-weight: bold;
-            margin-left: 10px;
+        .card-list .card-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
         }
 
         .discount-tag {
@@ -160,7 +149,26 @@
             z-index: 1;
         }
 
-        .cta-button {
+        .card-box h3 {
+            font-size: 20px;
+            color: #2a7f1f;
+            /* Dark green text for product name */
+        }
+
+        .offer-price {
+            font-size: 22px;
+            color: #2b7a3a;
+            /* Earthy green for the offer price */
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .price {
+            color: #7c7c7c;
+            font-size: 16px;
+        }
+
+        .card-item a {
             background-color: #2b7a3a;
             color: white;
             padding: 10px 20px;
@@ -172,9 +180,34 @@
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
-
-        .cta-button:hover {
-            background-color: #21632c;
+        @media screen and (max-width: 600px){
+            .header h1{
+                font-size: 28px;
+            font-family: 'Georgia', serif;
+            color: #2a7f1f;
+            margin-bottom: 0px;
+            margin-top: 40px;
+            }
+            .header p{
+                font-size: 14px;
+            }
+            .card-list .card-item img{
+                height:80px;
+                width:80px;
+            }
+            #close-btn {
+                font-size: 15px;
+            }
+            .popup{
+                height: 70vh;
+                margin-top: 200px;
+            }
+        } 
+        @media screen and (min-width:600px) and (max-width:900px){
+                .popup{
+                    margin-top: 200px;
+                    height:70vh;
+                }
         }
 
         /* Footer Styling */
@@ -204,9 +237,9 @@
             background-color: #2b7a3a;
             border-radius: 4px;
         }
-       
     </style>
 </head>
+
 <body>
     <!-- Popup Container -->
     <div class="popup" id="popup">
@@ -219,54 +252,96 @@
                 <p>Pure, Fresh, Organic – Unbelievable Discounts Just for You!</p>
             </div>
             <!-- Product Grid -->
-            <div class="products">
-                <!-- Product 1 - Organic Honey -->
-                <div class="product">
-                    <div class="discount-tag">50% OFF</div>
-                    <img src="images/honey.jpg" alt="Organic Honey"> <!-- Replace with product image -->
-                    <h3>Organic Honey</h3>
-                    <div class="price">₹500 <span class="offer-price">₹250</span></div>
-                    <a href="#" class="cta-button">Shop Now</a>
+            <div class="container swiper ">
+                <div class="card-wrapper">
+                    <ul class="card-list swiper-wrapper">
+                        <li class="card-item swiper-slide">
+                            <div class="card-box">
+                                <span class="discount-tag">50% OFF</span>
+                                <img src="images/honey.jpg">
+                                <h3>Organic Honey</h3>
+                                <div class="offer-price">₹250 <span class="price"><del>₹500</del></span></div>
+                                <a href="shop-detail.html?productID=1">Shop Now</a>
+                            </div>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <div class="card-box">
+                                <span class="discount-tag">40% OFF</span>
+                                <img src="images/ghee.jpg">
+                                <h3>Organic Ghee</h3>
+                                <div class="offer-price">₹480 <span class="price"><del>₹800</del></span></div>
+                                <a
+                                    href="shop-detail.html?productID=2&name=Ghee&price=30.00&desc=Fresh+ghee&second=Organic+ghee+is+ pure+and +natural +product&img=logo1.png">Shop
+                                    Now</a>
+                            </div>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <div class="card-box">
+                                <span class="discount-tag">35% OFF</span>
+                                <img src="images/toor dal.jpg">
+                                <h3>Organic Toor Dal</h3>
+                                <div class="offer-price">₹195 <span class="price"><del>₹300</del></span></div>
+                                <a
+                                    href="shop-detail.html?productID=5&name=Organtior Dal&price=30.00&desc=Fresh+dal&second=Organic+organtior dal+is+pure+ and +natural +product&img=logo1.png">Shop
+                                    Now</a>
+                            </div>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <div class="card-box">
+                                <span class="discount-tag">50% OFF</span>
+                                <img src="images/honey.jpg">
+                                <h3>Organic Honey</h3>
+                                <div class="offer-price">₹250 <span class="price"><del>₹500</del></span></div>
+                                <a href="shop-detail.html?productID=1">Shop Now</a>
+                            </div>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <div class="card-box">
+                                <span class="discount-tag">50% OFF</span>
+                                <img src="images/honey.jpg">
+                                <h3>Organic Honey</h3>
+                                <div class="offer-price">₹250 <span class="price"><del>₹500</del></span></div>
+                                <a href="shop-detail.html?productID=1">Shop Now</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
                 </div>
-                <!-- Product 2 - Organic Ghee -->
-                <div class="product">
-                    <div class="discount-tag">40% OFF</div>
-                    <img src="images/ghee.jpg" alt="Organic Ghee"> <!-- Replace with product image -->
-                    <h3>Organic Ghee</h3>
-                    <div class="price">₹800 <span class="offer-price">₹480</span></div>
-                    <a href="#" class="cta-button">Shop Now</a>
-                </div>
-                <!-- Product 3 - Organic Toor Dal -->
-                <div class="product">
-                    <div class="discount-tag">35% OFF</div>
-                    <img src="images/toor dal.jpg" alt="Organic Toor Dal"> <!-- Replace with product image -->
-                    <h3>Organic Toor Dal</h3>
-                    <div class="price">₹300 <span class="offer-price">₹195</span></div>
-                    <a href="#" class="cta-button">Shop Now</a>
-                </div>
-                <!-- Repeat the above structure for additional products if needed -->
+
             </div>
         </div>
     </div>
 
     <!-- Footer Section -->
-   <!-- Footer Section -->
-  
-   <script>
-    const popupFrame = document.getElementById("popup");
-   
-    // Show the popup and overlay when the page loads
-    window.onload = () => {
-        popupFrame.style.display = "block";
-        
-    };
+    <!-- Footer Section -->
 
-    // Hide the popup and overlay when the overlay is clicked
-    overlay.addEventListener("click", () => {
-        popupFrame.style.display = "none";
-       
-    });
-</script>
-   
+    <script>
+        const popupFrame = document.getElementById("popup");
+
+        // Show the popup and overlay when the page loads
+        window.onload = () => {
+            popupFrame.style.display = "block";
+
+        };
+
+        // Hide the popup and overlay when the overlay is clicked
+        overlay.addEventListener("click", () => {
+            popupFrame.style.display = "none";
+
+        });
+
+        //swiper
+
+
+
+    </script>
+    <!-- linking swiper js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/popup.js"></script>
 </body>
+
 </html>
