@@ -849,7 +849,12 @@
      font-size: 18px;
      font-weight: 700;
      padding: 12px 0px;
+     background-color: #b0b435;
 }
+.shop-cat-box a:hover{
+    background-color: #000000;
+}
+
 
 .box-add-products{
 	padding: 70px 0px;
