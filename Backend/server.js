@@ -53,71 +53,153 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 //orders
 // Order Schema
+// Order Schema
 const OrderSchema = new mongoose.Schema({
-  username:  String,  
-
-  paymentId: String,
-  amount: Number,
-  productName: String,
-  quantity: String,
-  totalPrice: String,
+  username: { type: String, required: true },
+  email: { type: String, required: true },
+  deliveryAddress: {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    address: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+    country: { type: String, required: true },
+  },
+  paymentId: { type: String, required: true },
+  amount: { type: Number, required: true },
+  products: [
+    {
+        productName: { type: String, required: true },  // Change "name" to "productName"
+        image: { type: String, required: true },
+        price: { type: Number, required: true },
+        weight: { type: Number, required: true },
+        quantity: { type: Number, required: true },
+        totalPrice: { type: Number, required: true }  // Change "total" to "totalPrice"
+    }
+],
   status: { type: String, default: "Paid" },
-});
+},{timestamps:true});
 
 const Order = mongoose.model("Order", OrderSchema);
 
 // Admin Dashboard API URL
-const ADMIN_DASHBOARD_API = "http://127.0.0.1:5001/api/sync-order";
+const ADMIN_DASHBOARD_API = "http://127.0.0.1:5000/api/sync-order";
 
+
+// Admin Email Configuration
+const adminEmail = process.env.ADMIN_EMAIL; // Set this in .env
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER, // Your email
+    pass: process.env.EMAIL_PASS, // Your app password
+  },
+});
 
 // Store Order Route
 app.post('/api/store-order', async (req, res) => {
-  try {
-      console.log('Received create order request');
-      console.log('Request body:', req.body);
+  console.log('Received create order request');
+  console.log('Request body:', req.body);
+ 
+  let username, email, deliveryAddress, paymentId, amount, productName, quantity, totalPrice;
+  // Destructure and validate required fields
+  try{
+   ({
+    username,
+    email,
+    deliveryAddress,
+    paymentId,
+    amount,
+    products,
+  } = req.body);
+  console.log("Extracted Order Data:", { deliveryAddress,products });
+  // Validate required fields
+  if (!paymentId || !amount || !products || !deliveryAddress) {
+    console.warn("⚠️ Missing required fields in the request body.");
+  }
 
-      // Extract order data from request
-      const { username,paymentId, amount, productName, quantity, totalPrice } = req.body;
+    // Store order in the database
+    const newOrder = new Order({
+      username: username || "Unknown User",
+      email: email || "N/A",
+      deliveryAddress: {
+        firstName: deliveryAddress.firstName || "N/A",
+        lastName: deliveryAddress.lastName || "N/A",
+        address: deliveryAddress.address || "N/A",
+        city: deliveryAddress.city || "N/A",
+        state: deliveryAddress.state || "N/A",
+        zip: deliveryAddress.zip || "N/A",
+        country: deliveryAddress.country || "N/A",
+      },
+      paymentId: paymentId || "N/A",
+      amount: amount || 0,
+          products,
+      status: "Paid",
+    });
 
-      // Validate required fields
-      if (!paymentId || !amount || !productName || !quantity || !totalPrice) {
-          return res.status(400).json({ error: "Missing required fields" });
-      }
+    await newOrder.save();
+    console.log("✅ Order stored successfully in DB.");
 
-      // Store order in e-commerce database
-      const newOrder = new Order({
-        username,
-          paymentId,
-          amount,
-          productName,
-          quantity,
-          totalPrice,
-          status: "Paid",
-      });
+    // Prepare order data to sync with the admin dashboard
+    const orderToSync = {
+      username: username || "Unknown User",
+      email: email || "N/A",
+      deliveryAddress: {
+        firstName: deliveryAddress.firstName || "N/A",
+        lastName: deliveryAddress.lastName || "N/A",
+        address: deliveryAddress.address || "N/A",
+        state: deliveryAddress.state || "N/A",
+        zip: deliveryAddress.zip || "N/A",
+        country: deliveryAddress.country || "N/A",
+      },
+      paymentId: paymentId || "N/A",
+          amount: amount || 0,
+          products,
+      status: "Paid",
+    };
 
-      await newOrder.save();
-
-      // ✅ Explicitly structure the order data before syncing
-      const orderToSync = {
-        username,
-          paymentId,
-          amount,
-          productName,
-          quantity,
-          totalPrice,
-          status: "Paid",
+    // Sync order with the admin dashboard
+    try {
+      const response = await axios.post(ADMIN_DASHBOARD_API, orderToSync);
+      console.log("✅ Order synced successfully with admin dashboard:", response.data);
+    } catch (syncError) {
+      console.error("❌ Failed to sync order with admin dashboard:", syncError.message);
+    }
+  }catch(err){
+    console.error("❌ Error extracting request data:", err.message);
+  }
+    // Send email to admin
+    try {
+      console.log("📧 Preparing to send email to admin...");
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: adminEmail, // Admin email from environment variables
+        subject: "New Order Received",
+        html: `
+          <h2>New Order Placed</h2>
+          <p><strong>Customer:</strong> ${username || "Unknown User"}</p>
+          <p><strong>Email:</strong> ${email || "N/A"}</p>
+          <p><strong>Delivery Address:</strong></p>
+          <p>${deliveryAddress.firstName || "N/A"} ${deliveryAddress.lastName || "N/A"}</p>
+          <p>${deliveryAddress.address || "N/A"}</p>
+          <p>${deliveryAddress.city || "N/A"}, ${deliveryAddress.state || "N/A"}, ${deliveryAddress.zip || "N/A"}, ${deliveryAddress.country || "N/A"}</p>
+          <p><strong>Products:</strong> ${products}</p>
+          <p><strong>Payment ID:</strong> ${paymentId}</p>
+          <p>Status: Paid</p>
+        `,
       };
 
-      // Send order data to the admin dashboard
-      const response = await axios.post(ADMIN_DASHBOARD_API, orderToSync);
-      console.log('Sync Response:', response.data);
+      await transporter.sendMail(mailOptions);
+      console.log("✅ Admin email sent successfully.");
+    } catch (emailError) {
+      console.error("❌ Failed to send email to admin:", emailError.message);
+    }
 
-      res.json({ message: 'Order stored and synced successfully!', order: newOrder });
-  } catch (err) {
-      console.error('Error syncing order with admin dashboard:', err.message);
-      res.status(500).json({ error: 'Failed to sync with admin dashboard', details: err.message });
-  }
+    // Send success response to the frontend
+    res.json({ message: "Order stored, email sent, admin sync attempted." });
+  
 });
+
 
 // Rate Limiter for sensitive routes
 const forgotPasswordLimiter = rateLimit({
