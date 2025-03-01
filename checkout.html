@@ -478,77 +478,132 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="orderConfirmationModalLabel">Order Confirmation</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <h5 class="modal-title" id="orderConfirmationModalLabel" style="color: green; font-size: 1.5rem;">Order Confirmation</h5>
+                                                <button type="button" class="btn-close" style="color: lightcoral;" data-bs-dismiss="modal" aria-label="Close" ></button>
                                             </div>
                                             <div class="modal-body">
                                                 <p>🎉 Your order has been successfully placed!</p>
                                                 <p>🚚 Estimated delivery is in 3 to 4 days.</p>
+                                                <p><strong>Payment ID:</strong> <span id="payment-id"></span></p>
+                                                <p><strong>Order ID:</strong> <span id="order-id"></span></p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary" style="background-color: lightcoral; color: white;" data-bs-dismiss="modal" >Close</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <script>
+
                                     document.getElementById('rzp-button').onclick = function (e) {
                                         e.preventDefault();
-                                
-                                        // Get grand total from the text content and clean it
+                                        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
                                         const priceElement = document.getElementById("grand-total");
                                         const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
                                         const amount = parseFloat(grandTotal) * 100; // Convert to paise
-                                
                                         if (amount <= 0 || isNaN(amount)) {
                                             console.error("Invalid amount detected. Grand Total:", grandTotal);
                                             return;
                                         }
-                                
-                                        // Send request to backend for order creation
-                                        fetch("http://127.0.0.1:5000/api/create-order", {
+                                        const username = localStorage.getItem("username"); // Retrieve username
+                                        console.log("Retrieved username from localStorage:", username); // Debugging
+
+                                        if (!username) {
+                                            alert("You need to log in before making a purchase.");
+                                            return;
+                                        }
+                                        fetch(`http://127.0.0.1:5000/api/create-order`, { // Use backticks here
                                             method: 'POST',
                                             headers: {
                                                 'Content-Type': 'application/json',
                                             },
                                             body: JSON.stringify({ amount: amount }) // Amount in paise
                                         })
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error('Network response was not ok');
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(data => {
-                                            console.log("Order ID from API:", data.id);
-                                
-                                            var options = {
-                                                key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
-                                                amount: data.amount,
-                                                currency: "INR",
-                                                name: "6SeasonsOrganic",
-                                                description: "Test Transaction",
-                                                order_id: data.id,
-                                                handler: function (response) {
-                                                    console.log("Payment successful! Payment ID:", response.razorpay_payment_id);
-                                                    // Handle successful payment here
-                                                },
-                                                prefill: {
-                                                    name: "Your Name",
-                                                    email: "your.email@example.com",
-                                                    contact: "9999999999"
+                                            .then(response => {
+                                                if (!response.ok) {
+                                                    throw new Error('Network response was not ok');
                                                 }
-                                            };
-                                
-                                            var rzp1 = new Razorpay(options);
-                                            rzp1.open();
-                                        })
-                                        .catch(error => {
-                                            console.error("Error in payment:", error);
-                                        });
+                                                return response.json();
+                                            })
+                                            .then(data => {
+                                                console.log("Order ID from API:", data.id);
+
+                                                var options = {
+                                                    key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
+                                                    amount: data.amount,
+                                                    currency: "INR",
+                                                    name: "6SeasonsOrganic",
+                                                    description: "Test Transaction",
+                                                    order_id: data.id,
+                                                    handler: function (response) {
+                                                        // Populate the modal with payment ID and order ID
+                                                    document.getElementById("payment-id").innerText = response.razorpay_payment_id;
+                                                    document.getElementById("order-id").innerText = data.id;
+
+                                                        // Show the modal on successful payment
+                                                    $('#orderConfirmationModal').modal('show');
+                                                   console.log("Payment successful! Payment ID: " + response.razorpay_payment_id);
+                                                    // Map cart items to match backend schema
+const formattedProducts = cartItems.map(item => ({
+        productName: item.name,  // Change "name" to "productName"
+        image: item.image, 
+        price: item.price,
+        weight: item.weight,
+        quantity: item.quantity,
+        totalPrice: item.total  // Change "total" to "totalPrice"
+    }));
+                                                        // Get order details from the UI
+                                                        const orderDetails = {
+                                                            orderId:data.id,
+        username: localStorage.getItem("username") || "Unknown User",
+        email: document.getElementById("email").value,
+        paymentId: response.razorpay_payment_id,
+        amount: parseFloat(grandTotal), 
+    products:formattedProducts,
+        deliveryAddress: {
+          firstName: document.getElementById("firstName").value,
+          lastName: document.getElementById("lastName").value,
+          address: document.getElementById("address").value,
+          state: document.getElementById("state").value,
+          zip: document.getElementById("zip").value,
+          country: document.getElementById("country").value,
+        }, // Replace with dynamic total price if needed
+      };
+
+                                                        // Send order details to the backend
+                                                        fetch(`http://127.0.0.1:5000/api/store-order`, {
+                                                            method: "POST",
+                                                            headers: {
+                                                                "Content-Type": "application/json"
+                                                            },
+                                                            body: JSON.stringify(orderDetails)
+                                                        })
+                                                            .then(response => response.json())
+                                                            .then(data => {
+                                                                console.log("Order stored successfully:", data);
+                                                                
+                                                            })
+                                                            .catch(error => {
+                                                                console.error("Error storing order:", error);
+                                                                alert("Error storing order details.");
+                                                            });
+                                                    }
+                                                    ,
+                                                    prefill: {
+                                                        name: "Your Name",
+                                                        email: "your.email@example.com",
+                                                        contact: "9999999999"
+                                                    }
+                                                };
+                                                var rzp1 = new Razorpay(options);
+                                                rzp1.open();
+                                            })
+                                            .catch(function (error) {
+                                                console.error('Error:', error);
+                                                alert("Error in payment: " + (error.message || error));
+                                            });
                                     };
                                 </script>
-    
 
                             </div>
                         </div>

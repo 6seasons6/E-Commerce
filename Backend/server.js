@@ -55,6 +55,7 @@ const User = mongoose.models.User || mongoose.model("User", userSchema);
 // Order Schema
 // Order Schema
 const OrderSchema = new mongoose.Schema({
+  orderId: { type: String, required: true },
   username: { type: String, required: true },
   email: { type: String, required: true },
   deliveryAddress: {
@@ -100,104 +101,144 @@ const transporter = nodemailer.createTransport({
 app.post('/api/store-order', async (req, res) => {
   console.log('Received create order request');
   console.log('Request body:', req.body);
- 
-  let username, email, deliveryAddress, paymentId, amount, productName, quantity, totalPrice;
+
+  let orderId, username, email, deliveryAddress, paymentId, amount, products;
+  
   // Destructure and validate required fields
-  try{
-   ({
-    username,
-    email,
-    deliveryAddress,
-    paymentId,
-    amount,
-    products,
-  } = req.body);
-  console.log("Extracted Order Data:", { deliveryAddress,products });
-  // Validate required fields
-  if (!paymentId || !amount || !products || !deliveryAddress) {
-    console.warn("⚠️ Missing required fields in the request body.");
-  }
-
-    // Store order in the database
-    const newOrder = new Order({
-      username: username || "Unknown User",
-      email: email || "N/A",
-      deliveryAddress: {
-        firstName: deliveryAddress.firstName || "N/A",
-        lastName: deliveryAddress.lastName || "N/A",
-        address: deliveryAddress.address || "N/A",
-        city: deliveryAddress.city || "N/A",
-        state: deliveryAddress.state || "N/A",
-        zip: deliveryAddress.zip || "N/A",
-        country: deliveryAddress.country || "N/A",
-      },
-      paymentId: paymentId || "N/A",
-      amount: amount || 0,
+  try {
+      ({
+        orderId,
+          username,
+          email,
+          deliveryAddress,
+          paymentId,
+          amount,
           products,
-      status: "Paid",
-    });
+      } = req.body);
+      
+      console.log("Extracted Order Data:", { orderId,deliveryAddress, products });
+      
+      // Validate required fields
+      if (!orderId || !paymentId || !amount || !products || !deliveryAddress) {
+          console.warn("⚠ Missing required fields in the request body.");
+          return res.status(400).json({ message: "Missing required fields." });
+      }
 
-    await newOrder.save();
-    console.log("✅ Order stored successfully in DB.");
-
-    // Prepare order data to sync with the admin dashboard
-    const orderToSync = {
-      username: username || "Unknown User",
-      email: email || "N/A",
-      deliveryAddress: {
-        firstName: deliveryAddress.firstName || "N/A",
-        lastName: deliveryAddress.lastName || "N/A",
-        address: deliveryAddress.address || "N/A",
-        state: deliveryAddress.state || "N/A",
-        zip: deliveryAddress.zip || "N/A",
-        country: deliveryAddress.country || "N/A",
-      },
-      paymentId: paymentId || "N/A",
+      // Store order in the database
+      const newOrder = new Order({
+          orderId: orderId || "N/A",
+          username: username || "Unknown User",
+          email: email || "N/A",
+          deliveryAddress: {
+              firstName: deliveryAddress.firstName || "N/A",
+              lastName: deliveryAddress.lastName || "N/A",
+              address: deliveryAddress.address || "N/A",
+              city: deliveryAddress.city || "N/A",
+              state: deliveryAddress.state || "N/A",
+              zip: deliveryAddress.zip || "N/A",
+              country: deliveryAddress.country || "N/A",
+          },
+          paymentId: paymentId || "N/A",
           amount: amount || 0,
           products,
-      status: "Paid",
-    };
+          status: "Paid",
+      });
 
-    // Sync order with the admin dashboard
-    try {
-      const response = await axios.post(ADMIN_DASHBOARD_API, orderToSync);
-      console.log("✅ Order synced successfully with admin dashboard:", response.data);
-    } catch (syncError) {
-      console.error("❌ Failed to sync order with admin dashboard:", syncError.message);
-    }
-  }catch(err){
-    console.error("❌ Error extracting request data:", err.message);
+      await newOrder.save();
+      console.log("✅ Order stored successfully in DB.");
+
+      // Prepare order data to sync with the admin dashboard
+      const orderToSync = {
+        orderId: orderId || "N/A",
+          username: username || "Unknown User",
+          email: email || "N/A",
+          deliveryAddress: {
+              firstName: deliveryAddress.firstName || "N/A",
+              lastName: deliveryAddress.lastName || "N/A",
+              address: deliveryAddress.address || "N/A",
+              state: deliveryAddress.state || "N/A",
+              zip: deliveryAddress.zip || "N/A",
+              country: deliveryAddress.country || "N/A",
+          },
+          paymentId: paymentId || "N/A",
+          amount: amount || 0,
+          products,
+          status: "Paid",
+      };
+
+      // Sync order with the admin dashboard
+      try {
+          const response = await axios.post(ADMIN_DASHBOARD_API, orderToSync);
+          console.log("✅ Order synced successfully with admin dashboard:", response.data);
+      } catch (syncError) {
+          console.error("❌ Failed to sync order with admin dashboard:", syncError.message);
+      }
+  } catch (err) {
+      console.error("❌ Error extracting request data:", err.message);
+      return res.status(500).json({ message: "Internal server error." });
   }
-    // Send email to admin
-    try {
+
+  // Prepare the HTML for the email
+  let productsTable = `
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;">Product Name</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Weight</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Quantity</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  products.forEach(product => {
+      productsTable += `
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">${product.productName || "N/A"}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${product.weight || "N/A"}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${product.quantity || "N/A"}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${product.price || "N/A"}</td>
+        </tr>
+      `;
+  });
+
+  productsTable += `
+      </tbody>
+    </table>
+  `;
+
+  // Send email to admin
+  try {
       console.log("📧 Preparing to send email to admin...");
       const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: adminEmail, // Admin email from environment variables
-        subject: "New Order Received",
-        html: `
-          <h2>New Order Placed</h2>
-          <p><strong>Customer:</strong> ${username || "Unknown User"}</p>
-          <p><strong>Email:</strong> ${email || "N/A"}</p>
-          <p><strong>Delivery Address:</strong></p>
-          <p>${deliveryAddress.firstName || "N/A"} ${deliveryAddress.lastName || "N/A"}</p>
-          <p>${deliveryAddress.address || "N/A"}</p>
-          <p>${deliveryAddress.city || "N/A"}, ${deliveryAddress.state || "N/A"}, ${deliveryAddress.zip || "N/A"}, ${deliveryAddress.country || "N/A"}</p>
-          <p><strong>Products:</strong> ${products}</p>
-          <p><strong>Payment ID:</strong> ${paymentId}</p>
-          <p>Status: Paid</p>
-        `,
+          from: process.env.EMAIL_USER,
+          to: adminEmail, // Admin email from environment variables
+          subject: "New Order Received",
+          html: `
+            <h2>New Order Placed</h2>
+            <p><strong>Order ID:</strong> ${orderId}</p>
+            <p><strong>Customer:</strong> ${username || "Unknown User"}</p>
+            <p><strong>Email:</strong> ${email || "N/A"}</p>
+            <p><strong>Delivery Address:</strong></p>
+            <p>${deliveryAddress.firstName || "N/A"} ${deliveryAddress.lastName || "N/A"}</p>
+            <p>${deliveryAddress.address || "N/A"}</p>
+            <p>${deliveryAddress.city || "N/A"}, ${deliveryAddress.state || "N/A"}, ${deliveryAddress.zip || "N/A"}, ${deliveryAddress.country || "N/A"}</p>
+            <p><strong>Products:</strong></p>
+            ${productsTable}
+            <p><strong>Payment ID:</strong> ${paymentId}</p>
+            <p>Status: Paid</p>
+          `,
       };
 
       await transporter.sendMail(mailOptions);
       console.log("✅ Admin email sent successfully.");
-    } catch (emailError) {
+  } catch (emailError) {
       console.error("❌ Failed to send email to admin:", emailError.message);
-    }
+  }
 
-    // Send success response to the frontend
-    res.json({ message: "Order stored, email sent, admin sync attempted." });
-  
+  // Send success response to the frontend
+  res.json({ message: "Order stored, email sent, admin sync attempted." });
 });
 
 
@@ -358,3 +399,4 @@ app.use("/api", paymentRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://127.0.0.1:${PORT}`);
 });
+
