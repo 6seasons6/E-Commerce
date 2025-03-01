@@ -55,9 +55,9 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="custom-select-box">
                         <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-							<option>INR</option>
-							<option>USD</option>
-							<option>EUR</option>
+							<option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
 						</select>
                     </div>
 
@@ -237,7 +237,7 @@
                                 <tr>
                                     <th>Images</th>
                                     <th>Product Name</th>
-                                    <th>Unit Price</th>
+                                    <th  class="price" data-price="150">Unit Price</th>
                                     <th>Stock</th>
                                     <th>Add Item</th>
                                     <th>Remove</th>
@@ -340,17 +340,21 @@
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-12 col-sm-12">
-						<div class="footer-top-box">
-							<h3>Newsletter</h3>
-							<form class="newsletter-box">
-								<div class="form-group">
-									<input class="" type="email" name="Email" placeholder="Email Address*" />
-									<i class="fa fa-envelope"></i>
-								</div>
-								<button class="btn hvr-hover" type="submit">Submit</button>
-							</form>
-						</div>
-					</div>
+                        <div class="footer-top-box">
+                            <h3>Newsletter</h3>
+                            <form class="newsletter-box" id="subscribeForm">
+                                <div class="form-group">
+                                    <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <button class="btn hvr-hover" type="submit">Submit</button>
+                            </form>
+                            <div id="statusMessage" style="display: none;">
+                                <span id="statusMessageText"></span>
+                                <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                            </div>
+                        </div>
+                    </div>
 					<div class="col-lg-4 col-md-12 col-sm-12">
 						<div class="footer-top-box">
                             <h3>Social Media</h3>
@@ -366,6 +370,7 @@
 						</div>
 					</div>
 				</div>
+        
 				<hr>
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -409,6 +414,99 @@
         </div>
     </footer>
     <!-- End Footer  -->
+    <script>
+        // Exchange rates from INR (Indian Rupee) to other currencies
+        const rates = {
+            INR: 1,    // Base currency
+            USD: 0.012, // 1 INR = 0.012 USD
+            EUR: 0.011 // 1 INR = 0.011 EUR
+        };
+    
+        // Function to handle the currency change
+        function changeCurrency(currency) {
+            const prices = document.querySelectorAll('.price');
+            
+            prices.forEach((priceElement) => {
+                const basePrice = priceElement.getAttribute('data-price');
+                const convertedPrice = (basePrice * rates[currency]).toFixed(2);
+                
+                if (currency === 'INR') {
+                    priceElement.textContent = `Price: ₹${convertedPrice}`;
+                } else if (currency === 'USD') {
+                    priceElement.textContent = `Price: $${convertedPrice}`;
+                } else if (currency === 'EUR') {
+                    priceElement.textContent = `Price: €${convertedPrice}`;
+                }
+            });
+        }
+    
+        // Event listener for the select dropdown
+        document.getElementById('basic').addEventListener('change', function() {
+            const selectedCurrency = this.value;
+            changeCurrency(selectedCurrency);
+        });
+    </script>
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        const email = document.getElementById('email').value;
+    
+        if (email) {
+            fetch('http://127.0.0.1:5000/subscribe', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+                
+                // Set message text
+                statusMessageText.textContent = data.message;
+    
+                // Apply green style for success
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'green';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            })
+            .catch(error => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+    
+                // Set error message
+                statusMessageText.textContent = "There was an error. Please try again.";
+    
+                // Apply red style for error
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'red';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            });
+        }
+    });
+    
+     </script>
 
     <!-- Start copyright  -->
     <div class="footer-copyright">

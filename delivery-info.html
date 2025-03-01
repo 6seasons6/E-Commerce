@@ -49,6 +49,39 @@
     .container1 h2 {
         text-align: center;       
     }
+    h1{
+        color:#0e0d0c;
+        font-weight: bold;
+    }
+    h1:hover{
+        color: rgb(212, 229, 23);
+    }
+    h2{
+        color:#0e0d0c;
+        font-weight: bold;
+    }
+    p{
+        color:#0d0d0c;
+        font-size: 18px;
+        font-style: normal;
+    }
+    .card {
+    background-image: url('../E-Commerce/images/Delivery.jpg'); /* Background image for the card */
+    background-size: cover; /* Ensure the background image covers the entire card */
+    background-position: center; /* Center the background image */
+    padding: 40px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:white;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.insta{
+    margin-top: 60px;
+}
+
     </style>
 </head>
 <body>
@@ -224,7 +257,7 @@
         <div class="container1">
             <h2>Delivery Information</h2>
         </div>
-        
+        <div class="card">
         <section>
             <h2>Shipping Policy</h2>
             <p>We strive to deliver fresh and organic products to your doorstep promptly. Orders placed before 2 PM will be dispatched the same day.</p>
@@ -241,6 +274,7 @@
             <h2>Tracking Your Order</h2>
             <p>You will receive a tracking link via email once your order is shipped. For any inquiries, please contact our support team.</p>
         </section>
+        </div>
     </main>
         <!-- Start Instagram Feed  -->
         <div class="instagram-box">
@@ -332,13 +366,17 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
                             <h3>Newsletter</h3>
-                            <form class="newsletter-box">
+                            <form class="newsletter-box" id="subscribeForm">
                                 <div class="form-group">
-                                    <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                    <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
                                     <i class="fa fa-envelope"></i>
                                 </div>
                                 <button class="btn hvr-hover" type="submit">Submit</button>
                             </form>
+                            <div id="statusMessage" style="display: none;">
+                                <span id="statusMessageText"></span>
+                                <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -400,6 +438,67 @@
     </footer>
     
     <!-- End Footer  -->
+<script>
+    document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+
+    if (email) {
+        fetch('http://127.0.0.1:5000/subscribe', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const statusMessageDiv = document.getElementById('statusMessage');
+            const statusMessageText = document.getElementById('statusMessageText');
+            const closeButton = document.getElementById('closeMessage');
+            
+            // Set message text
+            statusMessageText.textContent = data.message;
+
+            // Apply green style for success
+            statusMessageDiv.style.color = 'white';
+            statusMessageDiv.style.backgroundColor = 'green';
+            statusMessageDiv.style.padding = '10px';
+            statusMessageDiv.style.borderRadius = '5px';
+            statusMessageDiv.style.textAlign = 'center';
+            statusMessageDiv.style.display = 'block';  // Make the message visible
+
+            // Close button functionality
+            closeButton.addEventListener('click', () => {
+                statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+            });
+        })
+        .catch(error => {
+            const statusMessageDiv = document.getElementById('statusMessage');
+            const statusMessageText = document.getElementById('statusMessageText');
+            const closeButton = document.getElementById('closeMessage');
+
+            // Set error message
+            statusMessageText.textContent = "There was an error. Please try again.";
+
+            // Apply red style for error
+            statusMessageDiv.style.color = 'white';
+            statusMessageDiv.style.backgroundColor = 'red';
+            statusMessageDiv.style.padding = '10px';
+            statusMessageDiv.style.borderRadius = '5px';
+            statusMessageDiv.style.textAlign = 'center';
+            statusMessageDiv.style.display = 'block';  // Make the message visible
+
+            // Close button functionality
+            closeButton.addEventListener('click', () => {
+                statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+            });
+        });
+    }
+});
+
+ </script>
 
     <!-- Start copyright  -->
     <div class="footer-copyright">
