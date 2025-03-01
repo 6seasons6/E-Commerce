@@ -64,9 +64,9 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="custom-select-box">
                         <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-							<option>INR</option>
-							<option>USD</option>
-							<option>EUR</option>
+							<option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
 						</select>
                     </div>
                 </div>
@@ -345,6 +345,7 @@
                                         <select class="wide w-100" id="country">
                                             <option value="Choose..." data-display="Select">Choose...</option>
                                             <option value="United States">United States</option>
+                                            <option value="United States">India</option>
                                         </select>
                                         <div class="invalid-feedback"> Please select a valid country. </div>
                                     </div>
@@ -436,28 +437,28 @@
                                     <hr class="my-1">
                                     <div class="total-price-heading d-flex">
                                         <h4>Sub total</h4>
-                                        <p id="order-total-price" class="ml-auto font-weight-bold">₹0.00</p>
+                                        <p id="order-total-price" class="ml-auto font-weight-bold price" data-price="0">₹0.00</p>
                                     </div>
                                     <div class="d-flex">
                                         <h4>Discount</h4>
-                                        <div id="order-discount" class="ml-auto font-weight-bold">₹40</div>
+                                        <div id="order-discount" class="ml-auto font-weight-bold price" data-price="40">₹40</div>
                                     </div>
                                     <div class="d-flex">
                                         <h4>Coupon Discount</h4>
-                                        <div id="coupon-discount" class="ml-auto font-weight-bold">₹10</div>
+                                        <div id="coupon-discount" class="ml-auto font-weight-bold price" data-price="10">₹10</div>
                                     </div>
                                     <div class="d-flex">
                                         <h4>Tax</h4>
-                                        <div id="order-tax" class="ml-auto font-weight-bold">₹2</div>
+                                        <div id="order-tax" class="ml-auto font-weight-bold price" data-price="2">₹2</div>
                                     </div>
                                     <div class="d-flex">
                                         <h4>Shipping Cost</h4>
-                                        <div id="shipping-cost" class="ml-auto font-weight-bold">₹0</div>
+                                        <div id="shipping-cost" class="ml-auto font-weight-bold price" data-price="0">₹0</div>
                                     </div>
                                     <hr>
                                     <div class="d-flex gr-total">
                                         <h5>Grand Total</h5>
-                                        <div id="grand-total" class="ml-auto h5">₹0.00</div>
+                                        <div id="grand-total" class="ml-auto h5 price" data-price="0">₹0.00</div>
                                     </div>
                                     <!-- <div>
                                         <label>
@@ -711,15 +712,17 @@ const formattedProducts = cartItems.map(item => ({
                         <div class="col-lg-4 col-md-12 col-sm-12">
                             <div class="footer-top-box">
                                 <h3>Newsletter</h3>
-                                <form id="newsletter-form" class="newsletter-box">
+                                <form class="newsletter-box" id="subscribeForm">
                                     <div class="form-group">
-                                        <input id="email-input" class="form-control" type="email" name="Email"
-                                            placeholder="Email Address*" required />
+                                        <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
                                         <i class="fa fa-envelope"></i>
                                     </div>
-                                    <button id="submit-button" class="btn hvr-hover" type="submit">Submit</button>
+                                    <button class="btn hvr-hover" type="submit">Submit</button>
                                 </form>
-                                <div id="response-message" style="display:none;"></div>
+                                <div id="statusMessage" style="display: none;">
+                                    <span id="statusMessageText"></span>
+                                    <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12">
@@ -798,6 +801,99 @@ const formattedProducts = cartItems.map(item => ({
             </div>
         </footer>
         <!-- End Footer  -->
+        <script>
+            // Exchange rates from INR (Indian Rupee) to other currencies
+            const rates = {
+                INR: 1,    // Base currency
+                USD: 0.012, // 1 INR = 0.012 USD
+                EUR: 0.011 // 1 INR = 0.011 EUR
+            };
+        
+            // Function to handle the currency change
+            function changeCurrency(currency) {
+                const prices = document.querySelectorAll('.price');
+                
+                prices.forEach((priceElement) => {
+                    const basePrice = priceElement.getAttribute('data-price');
+                    const convertedPrice = (basePrice * rates[currency]).toFixed(2);
+                    
+                    if (currency === 'INR') {
+                        priceElement.textContent = `Price: ₹${convertedPrice}`;
+                    } else if (currency === 'USD') {
+                        priceElement.textContent = `Price: $${convertedPrice}`;
+                    } else if (currency === 'EUR') {
+                        priceElement.textContent = `Price: €${convertedPrice}`;
+                    }
+                });
+            }
+        
+            // Event listener for the select dropdown
+            document.getElementById('basic').addEventListener('change', function() {
+                const selectedCurrency = this.value;
+                changeCurrency(selectedCurrency);
+            });
+        </script>
+        <script>
+            document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+        
+            const email = document.getElementById('email').value;
+        
+            if (email) {
+                fetch('http://127.0.0.1:5000/subscribe', { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const statusMessageDiv = document.getElementById('statusMessage');
+                    const statusMessageText = document.getElementById('statusMessageText');
+                    const closeButton = document.getElementById('closeMessage');
+                    
+                    // Set message text
+                    statusMessageText.textContent = data.message;
+        
+                    // Apply green style for success
+                    statusMessageDiv.style.color = 'white';
+                    statusMessageDiv.style.backgroundColor = 'green';
+                    statusMessageDiv.style.padding = '10px';
+                    statusMessageDiv.style.borderRadius = '5px';
+                    statusMessageDiv.style.textAlign = 'center';
+                    statusMessageDiv.style.display = 'block';  // Make the message visible
+        
+                    // Close button functionality
+                    closeButton.addEventListener('click', () => {
+                        statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                    });
+                })
+                .catch(error => {
+                    const statusMessageDiv = document.getElementById('statusMessage');
+                    const statusMessageText = document.getElementById('statusMessageText');
+                    const closeButton = document.getElementById('closeMessage');
+        
+                    // Set error message
+                    statusMessageText.textContent = "There was an error. Please try again.";
+        
+                    // Apply red style for error
+                    statusMessageDiv.style.color = 'white';
+                    statusMessageDiv.style.backgroundColor = 'red';
+                    statusMessageDiv.style.padding = '10px';
+                    statusMessageDiv.style.borderRadius = '5px';
+                    statusMessageDiv.style.textAlign = 'center';
+                    statusMessageDiv.style.display = 'block';  // Make the message visible
+        
+                    // Close button functionality
+                    closeButton.addEventListener('click', () => {
+                        statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                    });
+                });
+            }
+        });
+        
+         </script>
 
         <!-- Start copyright  -->
         <div class="footer-copyright">

@@ -43,12 +43,40 @@
         .container1 {
         display: flex;
         justify-content: center;  
-        align-items: center;      
+        align-items: center; 
+        margin-top: 40px;        
         }
     
     .container1 h2 {
         text-align: center;       
     }
+    h2{
+        color:#0e0d0c;
+        font-weight: bold;
+    }
+    p,li{
+        color:#0d0d0c;
+        font-size: 18px;
+        font-style: normal;
+    }
+    .card {
+    background-image: url('../E-Commerce/images/Refund.jpg');
+    background-size: cover; 
+    background-position: center;
+    padding: 40px; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white; 
+    margin: 40px auto; 
+    max-width: 1200px; 
+    min-height: 550px; 
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.insta{
+    margin-top: 60px;
+}
     </style>
 
 </head>
@@ -221,7 +249,7 @@
         <div class="container1">
             <h2>Refund Policy</h2>
         </div>
-        
+        <div class="card">
         <section>
             <h2>Introduction</h2>
             <p>We at 6seasonsorganic are committed to ensuring your satisfaction. If you are not entirely happy with your purchase, we’re here to help.</p>
@@ -264,9 +292,10 @@
             <h2>Need Help?</h2>
             <p>If you have any questions about our refund policy, feel free to contact us at <a href="mailto:info@6seasonsorganic.com">info@6seasonsorganic.com</a>.</p>
         </section>
+        </div>
     </main>
     <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
+    <div class="instagram-box insta">
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
@@ -355,13 +384,17 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
                             <h3>Newsletter</h3>
-                            <form class="newsletter-box">
+                            <form class="newsletter-box" id="subscribeForm">
                                 <div class="form-group">
-                                    <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                    <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
                                     <i class="fa fa-envelope"></i>
                                 </div>
                                 <button class="btn hvr-hover" type="submit">Submit</button>
                             </form>
+                            <div id="statusMessage" style="display: none;">
+                                <span id="statusMessageText"></span>
+                                <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -423,6 +456,68 @@
     </footer>
     
     <!-- End Footer  -->
+
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        const email = document.getElementById('email').value;
+    
+        if (email) {
+            fetch('http://127.0.0.1:5000/subscribe', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+                
+                // Set message text
+                statusMessageText.textContent = data.message;
+    
+                // Apply green style for success
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'green';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            })
+            .catch(error => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+    
+                // Set error message
+                statusMessageText.textContent = "There was an error. Please try again.";
+    
+                // Apply red style for error
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'red';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            });
+        }
+    });
+    
+     </script>
 
     <!-- Start copyright  -->
     <div class="footer-copyright">

@@ -412,81 +412,65 @@
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
+                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
+                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
+                    <img src="images/insta3.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
+                    <img src="images/insta4.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
+                    <img src="images/insta5.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
+                    <img src="images/insta6.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
+                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
+                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -506,18 +490,22 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-4 col-md-12 col-sm-12">
-						<div class="footer-top-box">
-							<h3>Newsletter</h3>
-							<form class="newsletter-box">
-								<div class="form-group">
-									<input class="" type="email" name="Email" placeholder="Email Address*" />
-									<i class="fa fa-envelope"></i>
-								</div>
-								<button class="btn hvr-hover" type="submit">Submit</button>
-							</form>
-						</div>
-					</div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Newsletter</h3>
+                            <form class="newsletter-box" id="subscribeForm">
+                                <div class="form-group">
+                                    <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <button class="btn hvr-hover" type="submit">Submit</button>
+                            </form>
+                            <div id="statusMessage" style="display: none;">
+                                <span id="statusMessageText"></span>
+                                <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                            </div>
+                        </div>
+                    </div>
 					<div class="col-lg-4 col-md-12 col-sm-12">
 						<div class="footer-top-box">
 							<h3>Social Media</h3>
@@ -576,13 +564,74 @@
         </div>
     </footer>
     <!-- End Footer  -->
-
-    <!-- Start copyright  -->
-    <div class="footer-copyright">
-        <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
-            <a href="https://html.design/">html design</a></p>
-    </div>
-    <!-- End copyright  -->
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        const email = document.getElementById('email').value;
+    
+        if (email) {
+            fetch('http://127.0.0.1:5000/subscribe', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+                
+                // Set message text
+                statusMessageText.textContent = data.message;
+    
+                // Apply green style for success
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'green';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            })
+            .catch(error => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+    
+                // Set error message
+                statusMessageText.textContent = "There was an error. Please try again.";
+    
+                // Apply red style for error
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'red';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            });
+        }
+    });
+    
+     </script>
+<!-- Start copyright  -->
+<div class="footer-copyright">
+    <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
+        <a href="https://html.design/">6SeasonsOrganic</a>
+    </p>
+</div>
+<!-- End copyright  -->
 
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 

@@ -419,13 +419,17 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
                             <h3>Newsletter</h3>
-                            <form class="newsletter-box">
+                            <form class="newsletter-box" id="subscribeForm">
                                 <div class="form-group">
-                                    <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                    <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
                                     <i class="fa fa-envelope"></i>
                                 </div>
                                 <button class="btn hvr-hover" type="submit">Submit</button>
                             </form>
+                            <div id="statusMessage" style="display: none;">
+                                <span id="statusMessageText"></span>
+                                <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -486,6 +490,67 @@
         </div>
     </footer>
     <!-- End Footer  -->
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        const email = document.getElementById('email').value;
+    
+        if (email) {
+            fetch('http://127.0.0.1:5000/subscribe', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+                
+                // Set message text
+                statusMessageText.textContent = data.message;
+    
+                // Apply green style for success
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'green';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            })
+            .catch(error => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+    
+                // Set error message
+                statusMessageText.textContent = "There was an error. Please try again.";
+    
+                // Apply red style for error
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'red';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            });
+        }
+    });
+    
+     </script>
 
     <!-- Start copyright  -->
     <div class="footer-copyright">
