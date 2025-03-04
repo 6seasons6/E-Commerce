@@ -9,6 +9,9 @@ const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const { google } = require("googleapis");
 const axios = require('axios');
+const path = require('path');
+
+
 
 // Import Routes
 const authRoutes = require("./routes/auth");
@@ -33,6 +36,9 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+// Serve static files from 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // MongoDB Connection
 mongoose
@@ -354,13 +360,38 @@ app.post("/api/auth/signin", forgotPasswordLimiter, async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 });
+// POST /subscribe route
+app.post('/subscribe', (req, res) => {
+  const email = req.body.email;
 
-app.post("/api/logout", (req, res) => {
-  // ✅ If using JWT: Logout is client-side (just remove the token)
-  res.json({ message: "Logged out successfully" });
+  if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+  }
+
+  // Setup Nodemailer transport (configure as per your email service)
+  const transporter = nodemailer.createTransport({
+      service: 'gmail',  // Or any other service you're using
+      auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+      }
+  });
+
+  const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: 'info@6seasonsorganic.com',
+      subject: 'New Newsletter Subscription',
+      text: `A new subscriber has signed up: ${email}`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.log('Error:', error);
+          return res.status(500).json({ message: 'Error sending email' });
+      }
+      res.status(200).json({ message: 'Thank you for subscribing!' });
+  });
 });
-
-
 // Forgot Password Route
 app.post("/api/auth/forgot-password", forgotPasswordLimiter, async (req, res) => {
   const { email } = req.body;
@@ -411,6 +442,11 @@ const user = await User.findOne({ email: decoded.email });
     res.status(400).json({ message: "Invalid or expired token." });
   }
 });
+// Serve the reset-password.html file directly
+app.get('/reset-password.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'reset-password.html'));
+});
+
  
 // Google OAuth 2.0 configuration
 const oauth2Client = new google.auth.OAuth2(
