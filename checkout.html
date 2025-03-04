@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Responsive CSS -->
@@ -35,6 +35,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         function searchText() {
             let text = document.getElementById("search").value;
@@ -81,6 +82,7 @@
                             <ul class="dropdown-menu" aria-labelledby="accountDropdown">
                                 <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
                                 <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                <li><a class="dropdown-item" href="signout.html">Sign Out</a></li>
                             </ul>
                         </div>
 
@@ -351,11 +353,10 @@
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="state">State *</label>
-                                        <select class="wide w-100" id="state">
-                                            <option data-display="Select">Choose...</option>
-                                            <option>California</option>
+                                        <select class="wide w-100" id="state" required>
+                                            <option value="" data-display="Select">Choose...</option>
                                         </select>
-                                        <div class="invalid-feedback"> Please provide a valid state. </div>
+                                        <div class="invalid-feedback"> Please select a valid state. </div>
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label for="zip">Zip *</label>
@@ -365,15 +366,19 @@
                                 </div>
                                 <hr class="mb-4">
                                 <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="use-previous-address">
+                                    <label class="custom-control-label" for="use-previous-address">Use previous billing address</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="same-address">
                                     <label class="custom-control-label" for="same-address">Shipping address is the same
                                         as my billing address</label>
                                 </div>
-                                <div class="custom-control custom-checkbox">
+                                <!-- <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="save-info">
                                     <label class="custom-control-label" for="save-info">Save this information for next
                                         time</label>
-                                </div>
+                                </div> -->
                                 <hr class="mb-4">
                         </div>
                     </div>
@@ -495,117 +500,133 @@
                                     </div>
                                 </div>
                                 <script>
-
                                     document.getElementById('rzp-button').onclick = function (e) {
-                                        e.preventDefault();
-                                        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                                        const priceElement = document.getElementById("grand-total");
-                                        const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
-                                        const amount = parseFloat(grandTotal) * 100; // Convert to paise
-                                        if (amount <= 0 || isNaN(amount)) {
-                                            console.error("Invalid amount detected. Grand Total:", grandTotal);
-                                            return;
-                                        }
-                                        const username = localStorage.getItem("username"); // Retrieve username
-                                        console.log("Retrieved username from localStorage:", username); // Debugging
+    e.preventDefault();
 
-                                        if (!username) {
-                                            alert("You need to log in before making a purchase.");
-                                            return;
-                                        }
-                                        fetch(`http://127.0.0.1:5000/api/create-order`, { // Use backticks here
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                            },
-                                            body: JSON.stringify({ amount: amount }) // Amount in paise
-                                        })
-                                            .then(response => {
-                                                if (!response.ok) {
-                                                    throw new Error('Network response was not ok');
-                                                }
-                                                return response.json();
-                                            })
-                                            .then(data => {
-                                                console.log("Order ID from API:", data.id);
+    const billingAddress = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        username: localStorage.getItem('username') || "Unknown User",
+        email: document.getElementById('email').value,
+        address: document.getElementById('address').value,
+        address2: document.getElementById('address2').value,
+        state: document.getElementById('state').value,
+        zip: document.getElementById('zip').value,
+        country: document.getElementById('country').value,
+    };
 
-                                                var options = {
-                                                    key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
-                                                    amount: data.amount,
-                                                    currency: "INR",
-                                                    name: "6SeasonsOrganic",
-                                                    description: "Test Transaction",
-                                                    order_id: data.id,
-                                                    handler: function (response) {
-                                                        // Populate the modal with payment ID and order ID
-                                                    document.getElementById("payment-id").innerText = response.razorpay_payment_id;
+    localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
+
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    if (cartItems.length === 0) {
+        alert("Your cart is empty. Please add items to your cart before proceeding.");
+        return;
+    }
+
+    const priceElement = document.getElementById("grand-total");
+    const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
+    const amount = parseFloat(grandTotal) * 100; // Convert to paise
+
+    if (amount <= 0 || isNaN(amount)) {
+        console.error("Invalid amount detected. Grand Total:", grandTotal);
+        return;
+    }
+
+    const username = localStorage.getItem("username");
+    if (!username) {
+        alert("You need to log in before making a purchase.");
+        return;
+    }
+
+    // **Create Order on Backend**
+    fetch(`http://127.0.0.1:5000/api/create-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: amount }) 
+    })
+    .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+    })
+    .then(data => {
+        console.log("Order ID from API:", data.id);
+
+        var options = {
+            key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
+            amount: data.amount,
+            currency: "INR",
+            name: "6SeasonsOrganic",
+            description: "Test Transaction",
+            order_id: data.id,
+            handler: function (response) {
+                 // Populate the modal with payment ID and order ID
+                 document.getElementById("payment-id").innerText = response.razorpay_payment_id;
                                                     document.getElementById("order-id").innerText = data.id;
 
                                                         // Show the modal on successful payment
                                                     $('#orderConfirmationModal').modal('show');
-                                                   console.log("Payment successful! Payment ID: " + response.razorpay_payment_id);
-                                                    // Map cart items to match backend schema
-const formattedProducts = cartItems.map(item => ({
-        productName: item.name,  // Change "name" to "productName"
-        image: item.image, 
-        price: item.price,
-        weight: item.weight,
-        quantity: item.quantity,
-        totalPrice: item.total  // Change "total" to "totalPrice"
-    }));
-                                                        // Get order details from the UI
-                                                        const orderDetails = {
-                                                            orderId:data.id,
-        username: localStorage.getItem("username") || "Unknown User",
-        email: document.getElementById("email").value,
-        paymentId: response.razorpay_payment_id,
-        amount: parseFloat(grandTotal), 
-    products:formattedProducts,
-        deliveryAddress: {
-          firstName: document.getElementById("firstName").value,
-          lastName: document.getElementById("lastName").value,
-          address: document.getElementById("address").value,
-          state: document.getElementById("state").value,
-          zip: document.getElementById("zip").value,
-          country: document.getElementById("country").value,
-        }, // Replace with dynamic total price if needed
-      };
+                console.log("Payment successful! Payment ID:", response.razorpay_payment_id);
 
-                                                        // Send order details to the backend
-                                                        fetch(`http://127.0.0.1:5000/api/store-order`, {
-                                                            method: "POST",
-                                                            headers: {
-                                                                "Content-Type": "application/json"
-                                                            },
-                                                            body: JSON.stringify(orderDetails)
-                                                        })
-                                                            .then(response => response.json())
-                                                            .then(data => {
-                                                                console.log("Order stored successfully:", data);
-                                                                
-                                                            })
-                                                            .catch(error => {
-                                                                console.error("Error storing order:", error);
-                                                                alert("Error storing order details.");
-                                                            });
-                                                    }
-                                                    ,
-                                                    prefill: {
-                                                        name: "Your Name",
-                                                        email: "your.email@example.com",
-                                                        contact: "9999999999"
-                                                    }
-                                                };
-                                                var rzp1 = new Razorpay(options);
-                                                rzp1.open();
-                                            })
-                                            .catch(function (error) {
-                                                console.error('Error:', error);
-                                                alert("Error in payment: " + (error.message || error));
-                                            });
-                                    };
-                                </script>
+                localStorage.removeItem('cartItems'); // Clear cart items
+                // Clear billing address fields (but keep data in localStorage)
+                const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'country', 'state', 'username'];
+                fields.forEach(id => {
+                    const field = document.getElementById(id);
+                    if (field) field.value = ''; // Clear the input fields
+                });
 
+                // Uncheck the "Use previous billing address" checkbox
+                const usePreviousAddressCheckbox = document.getElementById('use-previous-address');
+                if (usePreviousAddressCheckbox) {
+                    usePreviousAddressCheckbox.checked = false; // Uncheck the checkbox
+                }
+
+                const formattedProducts = cartItems.map(item => ({
+                    productName: item.name,
+                    image: item.image,
+                    price: item.price,
+                    weight: item.weight,
+                    quantity: item.quantity,
+                    totalPrice: item.total
+                }));
+
+                const orderDetails = {
+                    orderId: data.id,
+                    username: localStorage.getItem("username") || "Unknown User",
+                    email: billingAddress.email,
+                    paymentId: response.razorpay_payment_id,
+                    amount: parseFloat(grandTotal),
+                    products: formattedProducts,
+                    deliveryAddress: billingAddress 
+                };
+
+                // **Store Order & Billing Address in Database**
+                fetch(`http://127.0.0.1:5000/api/store-order`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(orderDetails)
+                })
+                .then(response => response.json())
+                .then(data => console.log("Order stored successfully:", data))
+                .catch(error => console.error("Error storing order:", error));
+            },
+            prefill: {
+                name: "Your Name",
+                email: "your.email@example.com",
+                contact: "9999999999"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    })
+    .catch(function (error) {
+        console.error('Error:', error);
+        alert("Error in payment: " + (error.message || error));
+    });
+};
+    </script>
                             </div>
                         </div>
                     </div>
@@ -953,6 +974,141 @@ const formattedProducts = cartItems.map(item => ({
                     quantityElement.textContent = quantity ? `Quantity: ${quantity}` : "Quantity Not Available";
                 }
             });
+
+            $(document).ready(function() {
+    $.getJSON('json/countries.json', function(countries) {
+        // Populate the dropdown
+        countries.forEach(function(country) {
+            $('#country').append(new Option(country.text, country.id));
+        });
+
+        // Initialize Select2
+        $('#country').select2({
+            placeholder: "Choose...",
+            allowClear: true
+        });
+    }).fail(function() {
+        console.error("Error loading countries.json");
+    });
+
+// Load states
+$.getJSON('json/states.json', function(data) {
+        $('#country').change(function() {
+            const selectedCountry = $(this).val();
+            $('#state').empty().append(new Option("Choose...", ""));
+
+            if (selectedCountry && data[selectedCountry]) {
+                data[selectedCountry].forEach(function(state) {
+                    $('#state').append(new Option(state.text, state.id));
+                });
+            }
+            $('#state').select2({
+                placeholder: "Choose...",
+                allowClear: true
+            });
+        });
+    }).fail(function() {
+        console.error("Error loading states.json");
+    });
+    
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const usePreviousAddressCheckbox = document.getElementById('use-previous-address');
+    const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'username'];
+
+    // Ensure checkbox is unchecked on page load
+    if (usePreviousAddressCheckbox) {
+        usePreviousAddressCheckbox.checked = false;
+    }
+
+    // Clear fields on page load
+    fields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field) field.value = '';
+    });
+    
+    // Load previous address from localStorage
+    const previousAddress = JSON.parse(localStorage.getItem('billingAddress')) || {};
+
+    // Handle checkbox toggle
+    if (usePreviousAddressCheckbox) {
+        usePreviousAddressCheckbox.addEventListener('change', function () {
+            if (this.checked && previousAddress) {
+                // Populate fields with stored values
+                fields.forEach(id => {
+                    const field = document.getElementById(id);
+                    if (field) field.value = previousAddress[id] || '';
+                });
+
+                // Set the country value and trigger change event
+                const countryDropdown = document.getElementById('country');
+                if (countryDropdown && previousAddress.country) {
+                    countryDropdown.value = previousAddress.country;
+                    $(countryDropdown).trigger('change'); // Trigger change event to populate states
+                }
+
+                // Set the state value after the states are populated
+                setTimeout(() => {
+                    const stateDropdown = document.getElementById('state');
+                    if (stateDropdown && previousAddress.state) {
+                        stateDropdown.value = previousAddress.state;
+                    }
+                }, 500); // Add a small delay to ensure states are populated
+            } else {
+                // Clear fields if unchecked
+                fields.forEach(id => {
+                    const field = document.getElementById(id);
+                    if (field) field.value = '';
+                });
+
+                // Clear country and state dropdowns
+                const countryDropdown = document.getElementById('country');
+                if (countryDropdown) countryDropdown.value = '';
+
+                const stateDropdown = document.getElementById('state');
+                if (stateDropdown) stateDropdown.value = '';
+            }
+        });
+    }
+
+    function populateBillingAddress(address) {
+        if (!address) return;
+
+        document.getElementById('firstName').value = address.firstName || '';
+        document.getElementById('lastName').value = address.lastName || '';
+        document.getElementById('email').value = address.email || '';
+        document.getElementById('address').value = address.address || '';
+        document.getElementById('address2').value = address.address2 || '';
+        document.getElementById('zip').value = address.zip || '';
+        document.getElementById('country').value = address.country || '';
+        
+        if (address.state) {
+            loadStates(address.country, function () {
+                document.getElementById('state').value = address.state;
+            });
+        }
+    }
+
+    usePreviousAddressCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            const storedAddress = JSON.parse(localStorage.getItem('billingAddress'));
+            if (storedAddress) {
+                populateBillingAddress(storedAddress);
+            } else {
+                fetch('http://127.0.0.1:5000/api/get-billing-address', { 
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then(response => response.json())
+                .then(data => populateBillingAddress(data))
+                .catch(error => console.error("Error retrieving billing address:", error));
+            }
+        } else {
+            document.querySelectorAll("#checkout-form input").forEach(input => input.value = '');
+        }
+    });
+});
         </script>
 
     </div>

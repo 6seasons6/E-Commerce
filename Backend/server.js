@@ -68,6 +68,7 @@ const OrderSchema = new mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     address: { type: String, required: true },
+    address2: { type: String, required: true },
     state: { type: String, required: true },
     zip: { type: String, required: true },
     country: { type: String, required: true },
@@ -88,6 +89,23 @@ const OrderSchema = new mongoose.Schema({
 },{timestamps:true});
 
 const Order = mongoose.model("Order", OrderSchema);
+
+// Billing Address Schema
+const billingAddressSchema = new mongoose.Schema({
+  username: { type: String, required: true },
+  email: { type: String, required: true },
+  deliveryAddress: {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    address: { type: String, required: true },
+    address2: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+    country: { type: String, required: true },
+  },
+}, { timestamps: true });
+
+const BillingAddress = mongoose.model("BillingAddress", billingAddressSchema);
 
 // Admin Dashboard API URL
 const ADMIN_DASHBOARD_API = "http://127.0.0.1:5000/api/sync-order";
@@ -139,6 +157,7 @@ app.post('/api/store-order', async (req, res) => {
               firstName: deliveryAddress.firstName || "N/A",
               lastName: deliveryAddress.lastName || "N/A",
               address: deliveryAddress.address || "N/A",
+              address2: deliveryAddress.address2 || "N/A",
               city: deliveryAddress.city || "N/A",
               state: deliveryAddress.state || "N/A",
               zip: deliveryAddress.zip || "N/A",
@@ -151,6 +170,21 @@ app.post('/api/store-order', async (req, res) => {
       });
 
       await newOrder.save();
+      const billingAddress = new BillingAddress({
+        username,
+        email,
+        deliveryAddress: {
+          firstName: deliveryAddress.firstName || "N/A",
+          lastName: deliveryAddress.lastName || "N/A",
+          address: deliveryAddress.address || "N/A",  
+          address2: deliveryAddress.address2 || "N/A",
+          state: deliveryAddress.state || "N/A",   
+          zip: deliveryAddress.zip || "N/A",
+          country: deliveryAddress.country || "N/A",
+      }
+    });
+
+    await billingAddress.save();
       console.log("✅ Order stored successfully in DB.");
 
       // Prepare order data to sync with the admin dashboard
@@ -162,6 +196,7 @@ app.post('/api/store-order', async (req, res) => {
               firstName: deliveryAddress.firstName || "N/A",
               lastName: deliveryAddress.lastName || "N/A",
               address: deliveryAddress.address || "N/A",
+              address2: deliveryAddress.address2 || "N/A",
               state: deliveryAddress.state || "N/A",
               zip: deliveryAddress.zip || "N/A",
               country: deliveryAddress.country || "N/A",
@@ -229,7 +264,8 @@ app.post('/api/store-order', async (req, res) => {
             <p><strong>Delivery Address:</strong></p>
             <p>${deliveryAddress.firstName || "N/A"} ${deliveryAddress.lastName || "N/A"}</p>
             <p>${deliveryAddress.address || "N/A"}</p>
-            <p>${deliveryAddress.city || "N/A"}, ${deliveryAddress.state || "N/A"}, ${deliveryAddress.zip || "N/A"}, ${deliveryAddress.country || "N/A"}</p>
+            <p>${deliveryAddress.address2 || "N/A"}</p>
+            <p>${deliveryAddress.state || "N/A"}, ${deliveryAddress.zip || "N/A"}, ${deliveryAddress.country || "N/A"}</p>
             <p><strong>Products:</strong></p>
             ${productsTable}
             <p><strong>Payment ID:</strong> ${paymentId}</p>
@@ -247,6 +283,15 @@ app.post('/api/store-order', async (req, res) => {
   res.json({ message: "Order stored, email sent, admin sync attempted." });
 });
 
+app.get('/api/get-billing-address', async (req, res) => {
+  const username = req.query.username;
+  if (!username) return res.status(400).json({ message: "Username required." });
+
+  const billingAddress = await BillingAddress.findOne({ username }).sort({ createdAt: -1 });
+  if (!billingAddress) return res.status(404).json({ message: "No previous billing address found." });
+
+  res.json(billingAddress.deliveryAddress);
+});
 
 // Rate Limiter for sensitive routes
 const forgotPasswordLimiter = rateLimit({
