@@ -8,6 +8,10 @@ const rateLimit = require("express-rate-limit");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const { google } = require("googleapis");
+const axios = require('axios');
+const path = require('path');
+
+
 
 // Import Routes
 const authRoutes = require("./routes/auth");
@@ -33,6 +37,9 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+// Serve static files from 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // MongoDB Connection
 mongoose
@@ -51,6 +58,241 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
+//orders
+// Order Schema
+// Order Schema
+const OrderSchema = new mongoose.Schema({
+  orderId: { type: String, required: true },
+  username: { type: String, required: true },
+  email: { type: String, required: true },
+  deliveryAddress: {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    address: { type: String, required: true },
+    address2: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+    country: { type: String, required: true },
+  },
+  paymentId: { type: String, required: true },
+  amount: { type: Number, required: true },
+  products: [
+    {
+        productName: { type: String, required: true },  // Change "name" to "productName"
+        image: { type: String, required: true },
+        price: { type: Number, required: true },
+        weight: { type: Number, required: true },
+        quantity: { type: Number, required: true },
+        totalPrice: { type: Number, required: true }  // Change "total" to "totalPrice"
+    }
+],
+  status: { type: String, default: "Paid" },
+},{timestamps:true});
+
+const Order = mongoose.model("Order", OrderSchema);
+
+// Billing Address Schema
+const billingAddressSchema = new mongoose.Schema({
+  username: { type: String, required: true },
+  email: { type: String, required: true },
+  deliveryAddress: {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    address: { type: String, required: true },
+    address2: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+    country: { type: String, required: true },
+  },
+}, { timestamps: true });
+
+const BillingAddress = mongoose.model("BillingAddress", billingAddressSchema);
+
+// Admin Dashboard API URL
+const ADMIN_DASHBOARD_API = "http://127.0.0.1:5000/api/sync-order";
+
+
+// Admin Email Configuration
+const adminEmail = process.env.ADMIN_EMAIL; // Set this in .env
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER, // Your email
+    pass: process.env.EMAIL_PASS, // Your app password
+  },
+});
+
+// Store Order Route
+app.post('/api/store-order', async (req, res) => {
+  console.log('Received create order request');
+  console.log('Request body:', req.body);
+
+  let orderId, username, email, deliveryAddress, paymentId, amount, products;
+  
+  // Destructure and validate required fields
+  try {
+      ({
+        orderId,
+          username,
+          email,
+          deliveryAddress,
+          paymentId,
+          amount,
+          products,
+      } = req.body);
+      
+      console.log("Extracted Order Data:", { orderId,deliveryAddress, products });
+      
+      // Validate required fields
+      if (!orderId || !paymentId || !amount || !products || !deliveryAddress) {
+          console.warn("⚠ Missing required fields in the request body.");
+          return res.status(400).json({ message: "Missing required fields." });
+      }
+
+      // Store order in the database
+      const newOrder = new Order({
+          orderId: orderId || "N/A",
+          username: username || "Unknown User",
+          email: email || "N/A",
+          deliveryAddress: {
+              firstName: deliveryAddress.firstName || "N/A",
+              lastName: deliveryAddress.lastName || "N/A",
+              address: deliveryAddress.address || "N/A",
+              address2: deliveryAddress.address2 || "N/A",
+              city: deliveryAddress.city || "N/A",
+              state: deliveryAddress.state || "N/A",
+              zip: deliveryAddress.zip || "N/A",
+              country: deliveryAddress.country || "N/A",
+          },
+          paymentId: paymentId || "N/A",
+          amount: amount || 0,
+          products,
+          status: "Paid",
+      });
+
+      await newOrder.save();
+      const billingAddress = new BillingAddress({
+        username,
+        email,
+        deliveryAddress: {
+          firstName: deliveryAddress.firstName || "N/A",
+          lastName: deliveryAddress.lastName || "N/A",
+          address: deliveryAddress.address || "N/A",  
+          address2: deliveryAddress.address2 || "N/A",
+          state: deliveryAddress.state || "N/A",   
+          zip: deliveryAddress.zip || "N/A",
+          country: deliveryAddress.country || "N/A",
+      }
+    });
+
+    await billingAddress.save();
+      console.log("✅ Order stored successfully in DB.");
+
+      // Prepare order data to sync with the admin dashboard
+      const orderToSync = {
+        orderId: orderId || "N/A",
+          username: username || "Unknown User",
+          email: email || "N/A",
+          deliveryAddress: {
+              firstName: deliveryAddress.firstName || "N/A",
+              lastName: deliveryAddress.lastName || "N/A",
+              address: deliveryAddress.address || "N/A",
+              address2: deliveryAddress.address2 || "N/A",
+              state: deliveryAddress.state || "N/A",
+              zip: deliveryAddress.zip || "N/A",
+              country: deliveryAddress.country || "N/A",
+          },
+          paymentId: paymentId || "N/A",
+          amount: amount || 0,
+          products,
+          status: "Paid",
+      };
+
+      // Sync order with the admin dashboard
+      try {
+          const response = await axios.post(ADMIN_DASHBOARD_API, orderToSync);
+          console.log("✅ Order synced successfully with admin dashboard:", response.data);
+      } catch (syncError) {
+          console.error("❌ Failed to sync order with admin dashboard:", syncError.message);
+      }
+  } catch (err) {
+      console.error("❌ Error extracting request data:", err.message);
+      return res.status(500).json({ message: "Internal server error." });
+  }
+
+  // Prepare the HTML for the email
+  let productsTable = `
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;">Product Name</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Weight</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Quantity</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  products.forEach(product => {
+      productsTable += `
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">${product.productName || "N/A"}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${product.weight || "N/A"}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${product.quantity || "N/A"}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${product.price || "N/A"}</td>
+        </tr>
+      `;
+  });
+
+  productsTable += `
+      </tbody>
+    </table>
+  `;
+
+  // Send email to admin
+  try {
+      console.log("📧 Preparing to send email to admin...");
+      const mailOptions = {
+          from: process.env.EMAIL_USER,
+          to: adminEmail, // Admin email from environment variables
+          subject: "New Order Received",
+          html: `
+            <h2>New Order Placed</h2>
+            <p><strong>Order ID:</strong> ${orderId}</p>
+            <p><strong>Customer:</strong> ${username || "Unknown User"}</p>
+            <p><strong>Email:</strong> ${email || "N/A"}</p>
+            <p><strong>Delivery Address:</strong></p>
+            <p>${deliveryAddress.firstName || "N/A"} ${deliveryAddress.lastName || "N/A"}</p>
+            <p>${deliveryAddress.address || "N/A"}</p>
+            <p>${deliveryAddress.address2 || "N/A"}</p>
+            <p>${deliveryAddress.state || "N/A"}, ${deliveryAddress.zip || "N/A"}, ${deliveryAddress.country || "N/A"}</p>
+            <p><strong>Products:</strong></p>
+            ${productsTable}
+            <p><strong>Payment ID:</strong> ${paymentId}</p>
+            <p>Status: Paid</p>
+          `,
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log("✅ Admin email sent successfully.");
+  } catch (emailError) {
+      console.error("❌ Failed to send email to admin:", emailError.message);
+  }
+
+  // Send success response to the frontend
+  res.json({ message: "Order stored, email sent, admin sync attempted." });
+});
+
+app.get('/api/get-billing-address', async (req, res) => {
+  const username = req.query.username;
+  if (!username) return res.status(400).json({ message: "Username required." });
+
+  const billingAddress = await BillingAddress.findOne({ username }).sort({ createdAt: -1 });
+  if (!billingAddress) return res.status(404).json({ message: "No previous billing address found." });
+
+  res.json(billingAddress.deliveryAddress);
+});
 
 // Rate Limiter for sensitive routes
 const forgotPasswordLimiter = rateLimit({
@@ -119,6 +361,47 @@ app.post("/api/auth/signin", forgotPasswordLimiter, async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 });
+
+// ✅ Logout API (Clears JWT token)
+app.post("/api/logout", (req, res) => {
+  // Destroy token from client storage (handled in frontend)
+  res.clearCookie("authToken"); // Clears the token if stored in cookies
+  console.log("Logout successful")
+  res.status(200).json({ message: "Logged out successfully" });
+});
+
+// POST /subscribe route
+app.post('/subscribe', (req, res) => {
+  const email = req.body.email;
+
+  if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+  }
+
+  // Setup Nodemailer transport (configure as per your email service)
+  const transporter = nodemailer.createTransport({
+      service: 'gmail',  // Or any other service you're using
+      auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+      }
+  });
+
+  const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: 'info@6seasonsorganic.com',
+      subject: 'New Newsletter Subscription',
+      text: `A new subscriber has signed up: ${email}`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.log('Error:', error);
+          return res.status(500).json({ message: 'Error sending email' });
+      }
+      res.status(200).json({ message: 'Thank you for subscribing!' });
+  });
+});
 // Forgot Password Route
 app.post("/api/auth/forgot-password", forgotPasswordLimiter, async (req, res) => {
   const { email } = req.body;
@@ -169,6 +452,11 @@ const user = await User.findOne({ email: decoded.email });
     res.status(400).json({ message: "Invalid or expired token." });
   }
 });
+// Serve the reset-password.html file directly
+app.get('/reset-password.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'reset-password.html'));
+});
+
  
 // Google OAuth 2.0 configuration
 const oauth2Client = new google.auth.OAuth2(
@@ -209,3 +497,4 @@ app.use("/api", paymentRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://127.0.0.1:${PORT}`);
 });
+

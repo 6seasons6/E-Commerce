@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -43,12 +46,47 @@
         .container1 {
         display: flex;
         justify-content: center;  
-        align-items: center;      
+        align-items: center;
+        margin-top: 40px;      
         }
     
     .container1 h2 {
         text-align: center;       
     }
+    h1{
+        color:#0e0d0c;
+        font-weight: bold;
+    }
+    h1:hover{
+        color: rgb(212, 229, 23);
+    }
+    h2{
+        color:#0e0d0c;
+        font-weight: bold;
+    }
+    p{
+        color:#0d0d0c;
+        font-size: 18px;
+        font-style: normal;
+    }
+    .card {
+    background-image: url('../E-Commerce/images/privacy.jpg'); /* Background image for the card */
+    background-size: cover; /* Ensure the background image covers the entire card */
+    background-position: center; /* Center the background image */
+    padding: 40px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:white;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.insta{
+    margin-top: 60px;
+}
+
+
     </style>
 </head>
 <body>
@@ -65,26 +103,25 @@
 							<option>EUR</option>
 						</select>
                     </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a href="signin.html"><i class="fa fa-user s_color"></i> My Account</a></li>
-                            <li>
-                                <a href=" https://maps.app.goo.gl/WAmF8TErCU9FDNVj9" target="_blank">
-                                  <i class="fas fa-location-arrow"></i> Our location
-                                </a>
-                              </li>
-                              
-                            <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
+
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="login-box">
-                        <select id="account-dropdown" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                            <option value="">My Account</option>
-                            <option value="signup.html">Sign Up</option>
-                            <option value="signin.html">Sign In</option>
-                        </select>
+                    <div class="login-box">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-user s_color"></i> My Account
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                                <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Bootstrap JS (for dropdown functionality) -->
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
                         <script>
                             document.getElementById('account-dropdown').addEventListener('change', function() {
                                 const selectedValue = this.value;
@@ -231,9 +268,9 @@
     <!-- End Top Search -->
     <main>
         <div class="container1">
-            <h2>Privacy Policy</h2>
+            <h1>Privacy Policy</h1>
         </div>
-        
+        <div class="card">
         <section>
             <h2>Introduction</h2>
             <p>Your privacy is critically important to us. At 6seasonsorganic, we are committed to protecting your personal information.</p>
@@ -250,9 +287,10 @@
             <h2>Your Rights</h2>
             <p>You have the right to access, update, or delete your personal information. Contact us at <a href="mailto:info@6seasonsorganic.com">support@6seasonsorganic.com</a> for assistance.</p>
         </section>
+        </div>
     </main>
          <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
+    <div class="instagram-box insta">
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
@@ -341,13 +379,17 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
                             <h3>Newsletter</h3>
-                            <form class="newsletter-box">
+                            <form class="newsletter-box" id="subscribeForm">
                                 <div class="form-group">
-                                    <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                    <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
                                     <i class="fa fa-envelope"></i>
                                 </div>
                                 <button class="btn hvr-hover" type="submit">Submit</button>
                             </form>
+                            <div id="statusMessage" style="display: none;">
+                                <span id="statusMessageText"></span>
+                                <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -377,7 +419,7 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-link">
                             <h4>Information</h4>
-                            <ul>
+                            <ul class="dot-list">
                                 <li><a href="about.html">About Us</a></li>
                                 <li><a href="contact-us.html">Customer Service</a></li>
                                 <li><a href="https://maps.app.goo.gl/WAmF8TErCU9FDNVj9">Our Sitemap</a></li>
@@ -409,6 +451,67 @@
     </footer>
     
     <!-- End Footer  -->
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        const email = document.getElementById('email').value;
+    
+        if (email) {
+            fetch('http://127.0.0.1:5000/subscribe', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+                
+                // Set message text
+                statusMessageText.textContent = data.message;
+    
+                // Apply green style for success
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'green';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            })
+            .catch(error => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+    
+                // Set error message
+                statusMessageText.textContent = "There was an error. Please try again.";
+    
+                // Apply red style for error
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'red';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            });
+        }
+    });
+    
+     </script>
 
     <!-- Start copyright  -->
     <div class="footer-copyright">

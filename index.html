@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -29,13 +28,13 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheeet" href="./css/bootstrap-select.css">
-<script src="//code.tidio.co/ovtfllffazluz5bfwz4twio2pxsbfpd2.js" async></script>
+    <script src="//code.tidio.co/ovtfllffazluz5bfwz4twio2pxsbfpd2.js" async></script>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<style>
-.text-center {
+    <style>
+        .text-center {
             position: relative;
         }
 
@@ -75,7 +74,8 @@
         }
 
         iframe#popupFrame {
-            display: flex; /* Initially hidden */
+            display: flex;
+            /* Initially hidden */
             width: 100%;
             height: 100vh;
             border: none;
@@ -84,15 +84,13 @@
             left: 0;
             z-index: 999;
         }
-
-
     </style>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             const popupFrame = document.getElementById("popupFrame");
             popupFrame.style.display = "flex";
         };
-        
+
 
         function hidePopup() {
             const popupFrame = document.getElementById("popupFrame");
@@ -100,669 +98,1109 @@
         }
     </script>
 </head>
+
 <body>
 
     <iframe id="popupFrame" src="popup.html"></iframe>
 
-   <!--<iframe src="popup.html" style="width:100%; height:100vh; border:none;"></iframe>--> 
+    <!--<iframe src="popup.html" style="width:100%; height:100vh; border:none;"></iframe>-->
 
 
-</style>
-<script>
-    function searchText(){
-        let text=document.getElementById("search").value;
-        let find=document.getElementById("searchWord");
-        text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
-        let pattern = new RegExp(`${text}`, "gi");
-        find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
-    }
-</script>
-</head>
-<body>
-
-    <div id="searchWord">
- 
-
-    <!-- Start Main Top -->
-    <div class="main-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-							<option>INR</option>
-							<option>USD</option>
-							<option>EUR</option>
-						</select>
-                    </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a href="signin.html"><i class="fa fa-user s_color"></i> My Account</a></li>
-                            <li>
-                                <a href=" https://maps.app.goo.gl/WAmF8TErCU9FDNVj9" target="_blank">
-                                  <i class="fas fa-location-arrow"></i> Our location
-                                </a>
-                              </li>
-                            <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="login-box">
-                        <select id="account-dropdown" class="selectpicker show-tick form-control" data-placeholder="My account">
-                            <option value="">My Account</option>
-                            <option value="signup.html">Sign Up</option>
-                            <option value="signin.html">Sign In</option>
-                        </select>
-                        <script>
-                           document.getElementById('account-dropdown').addEventListener('change', function() {
-                                const selectedValue = this.value;
-                                if (selectedValue) {
-                                    window.location.href = selectedValue;
-                                }
-                            });
-                        </script>
-                    </div>
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now 
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Main Top -->
-
-    <!-- Start Main Top -->
-    <header class="main-header">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" alt=""></a>
-                </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="index.html" >Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-                            <ul class="dropdown-menu">
-								<li><a href="shop.html">Sidebar Shop</a></li>
-                               <!-- <li><a href="cart.html">Cart</a></li>-->
-                                <li><a href="checkout.html">Checkout</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-                        <li class="nav-item">
-                            <div class="input-group">
-                              <input type="text" id="search" style=" border: solid 3px black;  height: 40px;  font-size:18px; vertical-align:9px" placeholder="Search" size="10" width="5"/>
-                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-
-                 <!-- Start Top Search -->
-                  <div class="top-search">
-                     <div class="container">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="text" class="form-control"   placeholder="Search"/>
-                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-                        </div>
-                     </div>
-                    </div>
-                 <!-- End Top Search -->
-
-                <!-- Start Atribute Navigation -->
-                <div class="topnav">
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
-
-                        <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i></a></li>                       
-
-                        <li class="nav-item"><a href="cart.html">
-						<i class="fa fa-shopping-bag"></i>
-                        <span class="badge"></span>
-						<span>My Cart</span>
-                        </a></li>
-                    </ul>
-                </div>
-                </div>
-                <!-- End Atribute Navigation -->
-            </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <!-- End Side Menu -->
-        </nav>
-        <!-- End Navigation -->
-    </header>
-    <!-- End Main Top -->
-
-    <!-- Start Slider -->
-    <div id="slides-shop" class="cover-slides">
-        <ul class="slides-container">
-            <li class="text-center">
-                <img src="images/masalas.jpg" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> 6 Seasons Organic</strong></h1>
-                            <p class="m-b-40">Experience the freshness of organic products in real-time. Track our journey and explore trends that shape healthier choices over time.</p>
-                            <p><a class="btn hvr-hover" href="shop.html">Shop Now</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="text-center">
-                <img src="images/spice.jpg" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> 6 Seasons Organic</strong></h1>
-                            <p class="m-b-40">Experience the freshness of organic products in real-time. Track our journey and explore trends that shape healthier choices over time.</p>
-                            <p><a class="btn hvr-hover" href="shop.html">Shop Now</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="text-center position-relative">
-                <video class="img-fluid" autoplay loop muted playsinline>
-                    <source src="images/honey.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <!-- Overlay Container -->
-                <div class="video-overlay">
-                    <h1 class="m-b-20"><strong>Welcome To <br>6 Seasons Organic</strong></h1>
-                    <p class="m-b-40">Experience the freshness of organic products in real-time. Track our journey and explore trends that shape healthier choices over time.</p>
-                    <p><a class="btn hvr-hover" href="shop.html">Shop Now</a></p>
-                </div>
-            </li>
-            
-        </ul>
-        <div class="slides-navigation">
-            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-        </div>
-    </div>
-    <!-- End Slider -->
-
-    <!-- Start Categories  -->
-    <div class="categories-shop">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/honey.jpg" alt="" />
-                        <a class="btn hvr-hover" href="shop.html">Sweet Essentials</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/pulses.png" alt="" />
-                        <a class="btn hvr-hover" href="shop.html">Healthy Staples</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/ghee.jpg" alt="" />
-                        <a class="btn hvr-hover" href="shop.html">Flavor Boosters</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Categories -->
-
-    <!-- Start Products  -->
-    <div class="products-box" >
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="title-all text-center">
-                        <h1>Groceries & Staples</h1>
-                        <p>Pure and wholesome essentials for your kitchen, straight from nature!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="special-menu text-center">
-                        <div class="button-group filter-button-group">
-                            <button class="active" data-filter="*">All</button>
-                            <button data-filter=".top-featured">Top featured</button>
-                            <button data-filter=".best-seller">Best seller</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row special-list">
-                <div class="col-lg-3 col-md-6 special-grid best-seller">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Carrot</h4>
-                            <h5>&#8377; 75</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 special-grid top-featured">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="new">New</p>
-                            </div>
-                            <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Tomato</h4>
-                            <h5> &#8377; 50</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 special-grid top-featured">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Green Grapes</h4>
-                            <h5> &#8377; 85</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 special-grid best-seller">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="images/img-pro-04.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Papaya</h4>
-                            <h5> &#8377; 80</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Products  -->
-
-    <!-- Start Blog  -->
-    <div class="latest-blog">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="title-all text-center">
-                        <h1>Latest Blog</h1>
-                        <p>Discover insights, tips, and stories about organic living, straight from the heart of 6seasonsorganic.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4 col-xl-4">
-                    <div class="blog-box">
-                        <div class="blog-img">
-                            <img class="img-fluid" src="images/blog.jpg" alt="" />
-                        </div>
-                        <div class="blog-content">
-                            <div class="title-blog">
-                                <h3>6 Seasons Organic</h3>
-                                <p>At 6seasonsorganic, we bring you the finest organic products, cultivated with care and packed with goodness. Experience the essence of nature in every bite and transform your lifestyle with our wholesome offerings.</p>
-                            </div>
-                            <ul class="option-blog">
-                                <li><a href="https://6seasonsorganic.com/favorites"><i class="far fa-heart"></i></a></li>
-                                <li><a href="https://6seasonsorganic.blogspot.com/2023/11/6seasons-organic.html"><i class="fas fa-eye"></i></a></li>
-                                <li><a href="contact-us.html"><i class="far fa-comments"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Blog  -->
-
-
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div> 
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta3.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta4.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta5.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta6.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
-
-
-    <!-- Start Footer  -->
-    <footer>
-        <div class="footer-main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Business Time</h3>
-                            <ul class="list-time">
-                                <li>Monday - Friday: 08.00am to 05.00pm</li> 
-                                <li>Saturday: 10.00am to 08.00pm</li> 
-                                <li>Sunday: <span>Closed</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Newsletter</h3>
-                            <form id="newsletter-form" class="newsletter-box">
-                                <div class="form-group">
-                                    <input id="email-input" class="form-control" type="email" name="Email" placeholder="Email Address*" required />
-                                    <i class="fa fa-envelope"></i>
-                                </div>
-                                <button id="submit-button" class="btn hvr-hover" type="submit">Submit</button>
-                            </form>
-                            <div id="response-message" style="display:none;"></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Social Media</h3>
-                            <p>Follow us for updates on seasonal and organic products.</p>
-                            <ul>
-                                <li><a href="https://www.facebook.com/people/6-seasons/61552154805127/?sfnsn=wiwspmo&mibextid=vk8aRt"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="https://twitter.com/i/flow/login?redirect_after_login=%2F6seasonsorganic"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.linkedin.com/in/6seasons-organic-286223299?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.instagram.com/6_seasons_organic/?hl=en"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.youtube.com/@6seasonsorganics"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
-                                <li>
-                                    <a href="https://wa.me/919100066659" target="_blank">
-                                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-widget">
-                            <h4>About 6seasonsorganic</h4>
-                            <p>6seasonsorganic is dedicated to providing the highest quality organic and seasonal products. Our mission is to bring health and sustainability to every customer.</p> 
-                            <p>Our organic products are sourced with care, ensuring the best for you and your family.</p> 							
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link">
-                            <h4>Information</h4>
-                            <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact-us.html">Customer Service</a></li>
-                                <li><a href="https://maps.app.goo.gl/WAmF8TErCU9FDNVj9">Our Sitemap</a></li>
-                                <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="delivery-info.html">Delivery Information</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link-contact">
-                            <h4>Contact Us</h4>
-                            <ul>
-                                <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic H.no 4-59/6/19,<br>Srinivasa Nagar Colony Mandaipally Road<br>Thumukunta, Shamirpet<br>Secunderabad, Telangana 500078</p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+91-9100066659">+91-9100066659</a></p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:info@6seasonsorganic.com">info@6seasonsorganic.com</a></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
-
-    <!-- End Footer  -->
-
-    <!-- Start copyright  -->
-    <div class="footer-copyright">
-        <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
-            <a href="https://html.design/">6SeasonsOrganic</a></p>
-    </div>
-    <!-- End copyright  -->
-
-    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-
-    <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.superslides.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="E-Commerce/js/bootsnav.js."></script>
-    <script>document.getElementById("newsletter-form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent form from submitting normally
-    
-        // Get the email value from the input field
-        var email = document.getElementById("email-input").value;
-    
-        // Validate the email format
-        if (!validateEmail(email)) {
-            showMessage("Please enter a valid email address.", "error");
-            return;
+    </style>
+    <script>
+        function searchText() {
+            let text = document.getElementById("search").value;
+            let find = document.getElementById("searchWord");
+            text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
+            let pattern = new RegExp(`${text}`, "gi");
+            find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
         }
-    
-        // Simulate a form submission (no real server call yet)
-        // In real-world, this is where you'd use AJAX to send the data to your server.
-        setTimeout(function() {
-            // Simulate a success message
-            showMessage("Thank you for subscribing!", "success");
-            document.getElementById("newsletter-form").reset(); // Reset the form after successful submission
-        }, 1000); // Simulating server processing delay
-    });
-    
-    // Email validation function
-    function validateEmail(email) {
-        var re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return re.test(email);
-    }
-    
-    // Function to show success or error message
-    function showMessage(message, type) {
-        var responseMessage = document.getElementById("response-message");
-        responseMessage.style.display = "block";
-        responseMessage.textContent = message;
-    
-        if (type === "success") {
-            responseMessage.style.color = "green";
-        } else {
-            responseMessage.style.color = "red";
-        }
-    }
     </script>
-    </div>
+    </head>
+
+    <body>
+
+        <div id="searchWord">
+
+
+            <!-- Start Main Top -->
+            <div class="main-top">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="custom-select-box">
+                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                                    <option value="INR">INR</option>
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="login-box">
+                                <link rel="stylesheet"
+                                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-user s_color"></i> My Account
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                        <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                                        <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Bootstrap JS (for dropdown functionality) -->
+                                <script
+                                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                                <script>
+                                    document.getElementById('account-dropdown').addEventListener('change', function () {
+                                        const selectedValue = this.value;
+                                        if (selectedValue) {
+                                            window.location.href = selectedValue;  // Redirect to the selected page
+                                        }
+                                    });
+                                </script>
+                            </div>
+                            <div class="text-slid-box">
+                                <div id="offer-box" class="carouselTicker">
+                                    <ul class="offer-box">
+                                        <li>
+                                            <i class="fab fa-opencart"></i> 1kg honey,get 250g FREE for ₹899! 🍯
+                                        </li>
+                                        <li>
+                                            <i class="fab fa-opencart"></i> Buy 2kg pulses, get 15% OFF with code
+                                            PULSE15! 🌱
+                                        </li>
+                                        <li>
+                                            <i class="fab fa-opencart"></i> Get ₹100 OFF on 500g & ₹250 OFF on 1kg ghee!
+                                            🧈
+                                        </li>
+                                        <li>
+                                            <i class="fab fa-opencart"></i> Buy 3 masalas, get 1 FREE + 10% OFF on
+                                            ₹999+! 🌶️
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Main Top -->
+
+            <!-- Start Main Top -->
+            <header class="main-header">
+                <!-- Start Navigation -->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+                    <div class="container">
+                        <!-- Start Header Navigation -->
+                        <div class="navbar-header">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo"
+                                    alt=""></a>
+                        </div>
+                        <!-- End Header Navigation -->
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="navbar-menu">
+                            <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="shop.html">Sidebar Shop</a></li>
+                                        <!-- <li><a href="cart.html">Cart</a></li>-->
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                                <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                                <li class="nav-item">
+                                    <div class="input-group">
+                                        <input type="text" id="search"
+                                            style=" border: solid 3px black;  height: 40px;  font-size:18px; vertical-align:9px"
+                                            placeholder="Search" size="10" width="5" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+
+                        <!-- Start Top Search -->
+                        <div class="top-search">
+                            <div class="container">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                    <input type="text" class="form-control" placeholder="Search" />
+                                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Top Search -->
+
+                        <!-- Start Atribute Navigation -->
+                        <div class="topnav">
+                            <div class="attr-nav">
+                                <ul>
+                                    <li class="search"><a href="#"><i class="fa fa-search"
+                                                onclick="searchText()"></i></a></li>
+
+                                    <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i
+                                                class="far fa-heart"> </i></a></li>
+
+                                    <li class="nav-item"><a href="cart.html">
+                                            <i class="fa fa-shopping-bag"></i>
+                                            <span class="badge"></span>
+                                            <span>My Cart</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Atribute Navigation -->
+                    </div>
+                    <!-- Start Side Menu -->
+                    <div class="side">
+                        <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+                        <li class="cart-box">
+                            <ul class="cart-list">
+                                <li>
+                                    <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb"
+                                            alt="" /></a>
+                                    <h6><a href="#">Delica omtantur </a></h6>
+                                    <p>1x - <span class="price">$80.00</span></p>
+                                </li>
+                                <li>
+                                    <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb"
+                                            alt="" /></a>
+                                    <h6><a href="#">Omnes ocurreret</a></h6>
+                                    <p>1x - <span class="price">$60.00</span></p>
+                                </li>
+                                <li>
+                                    <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb"
+                                            alt="" /></a>
+                                    <h6><a href="#">Agam facilisis</a></h6>
+                                    <p>1x - <span class="price">$40.00</span></p>
+                                </li>
+                                <li class="total">
+                                    <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                                    <span class="float-right"><strong>Total</strong>: $180.00</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                    <!-- End Side Menu -->
+                </nav>
+                <!-- End Navigation -->
+            </header>
+            <!-- End Main Top -->
+
+            <!-- Start Slider -->
+            <div id="slides-shop" class="cover-slides">
+                <ul class="slides-container">
+                    <li class="text-center">
+                        <img src="images/masalas.jpg" alt="">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1 class="m-b-20"><strong>Welcome To <br> 6 Seasons Organic</strong></h1>
+                                    <p class="m-b-40">Experience the freshness of organic products in real-time. Track
+                                        our journey and explore trends that shape healthier choices over time.</p>
+                                    <p><a class="btn hvr-hover" href="shop.html">Shop Now</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <img src="images/spice.jpg" alt="">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1 class="m-b-20"><strong>Welcome To <br> 6 Seasons Organic</strong></h1>
+                                    <p class="m-b-40">Experience the freshness of organic products in real-time. Track
+                                        our journey and explore trends that shape healthier choices over time.</p>
+                                    <p><a class="btn hvr-hover" href="shop.html">Shop Now</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="text-center position-relative">
+                        <video class="img-fluid" autoplay loop muted playsinline>
+                            <source src="images/honey.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- Overlay Container -->
+                        <div class="video-overlay">
+                            <h1 class="m-b-20"><strong>Welcome To <br>6 Seasons Organic</strong></h1>
+                            <p class="m-b-40">Experience the freshness of organic products in real-time. Track our
+                                journey and explore trends that shape healthier choices over time.</p>
+                            <p><a class="btn hvr-hover" href="shop.html">Shop Now</a></p>
+                        </div>
+                    </li>
+
+                </ul>
+                <div class="slides-navigation">
+                    <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <!-- End Slider -->
+
+            <!-- Start Categories  -->
+            <div class="categories-shop">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="shop-cat-box">
+                                <img class="img-fluid" src="images/honey.jpg" alt="" />
+                                <a href="shop.html">Sweet Essentials</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="shop-cat-box">
+                                <img class="img-fluid" src="images/pulses.png" alt="" />
+                                <a href="shop.html">Healthy Staples</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="shop-cat-box">
+                                <img class="img-fluid" src="images/ghee.jpg" alt="" />
+                                <a href="shop.html">Flavor Boosters</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Start Products  -->
+            <div class="products-box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="title-all text-center">
+                                <h1>Groceries & Staples</h1>
+                                <p>Pure and wholesome essentials for your kitchen, straight from nature!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="special-menu text-center">
+                                <div class="button-group filter-button-group">
+                                    <button class="active" data-filter="*">All</button>
+                                    <button data-filter=".top-featured">Top featured</button>
+                                    <button data-filter=".best-seller">Best seller</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row special-list">
+                        <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/honey.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a  data-toggle="tooltip" data-placement="right" title="View" href="shop-detail.html?productID=1"><i
+                                                        class="fas fa-eye"></i></a></li>
+                                            
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                    title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Honey</h4>
+                                    <h5 class="price" data-price="80">&#8377; 80.00</h5>
+                                    <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                        <!-- Weight Selection -->
+                                        <div style="margin-right: 1rem; width: 2rem;">
+                                            <label for="weight-select-1">Weight</label>
+                                            <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                                                <option value="250g">250 gms</option>
+                                                <option value="500g">500 gms</option>
+                                                <option value="1000g">1 kg</option>
+                                                <option value="2000g">2 kg</option>
+                                            </select>
+                                        </div>
     
-</body>
+                                        <!-- Quantity Input -->
+                                        <div>
+                                            <label for="quantity-input-1" class="control-label"
+                                                style="font-weight: 700;width:2rem">Quantity</label>
+                                            <input id="quantity-input-1" class="form-control" value="1" min="1" max="20"
+                                                type="number" style="width: 5rem;">
+                                        </div>
+                                    </div>
+                                    <div class="cart-and-bay-btn">
+                                        <a class="btn hvr-hover add-to-cart-btn"
+                                            data-product-id="1" href="#">Add to
+                                            cart</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 special-grid top-featured">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="new">New</p>
+                                    </div>
+                                    <img src="images/ghee.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="shop-detail.html?productID=2&name=Ghee&price=30.00&desc=Fresh+ghee&second=Organic+ghee+is+ pure+and +natural +product&img=logo1.png" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                        class="fas fa-eye"></i></a></li>
+                                            
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                    title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Ghee</h4>
+                                    <h5 class="price" data-price="200"> &#8377; 200.00</h5>
+                                    <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                        <!-- Weight Selection -->
+                                        <div style="margin-right: 1rem; width: 2rem;">
+                                            <label for="weight-select-1">Weight</label>
+                                            <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                                                <option value="250g">250 gms</option>
+                                                <option value="500g">500 gms</option>
+                                                <option value="1000g">1 kg</option>
+                                                <option value="2000g">2 kg</option>
+                                            </select>
+                                        </div>
+    
+                                        <!-- Quantity Input -->
+                                        <div>
+                                            <label for="quantity-input-1" class="control-label"
+                                                style="font-weight: 700;width:2rem">Quantity</label>
+                                            <input id="quantity-input-1" class="form-control" value="1" min="1" max="20"
+                                                type="number" style="width: 5rem;">
+                                        </div>
+                                    </div>
+                                    <div class="cart-and-bay-btn">
+                                        <a class="btn hvr-hover add-to-cart-btn"
+                                            data-product-id="2" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 special-grid top-featured">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/brown sugar.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="shop-detail.html?productID=3&name=Brown Sugar&price=10.00&desc=Fresh+ brown sugar&second=Organic+brown sugar+is+pure+ and +natural +product&img=logo1.png" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                        class="fas fa-eye"></i></a></li>
+                                           
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                    title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Brown Sugar</h4>
+                                    <h5 class="price" data-price="80"> &#8377; 80.00</h5>
+                                    <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                        <!-- Weight Selection -->
+                                        <div style="margin-right: 1rem; width: 2rem;">
+                                            <label for="weight-select-1">Weight</label>
+                                            <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                                                <option value="250g">250 gms</option>
+                                                <option value="500g">500 gms</option>
+                                                <option value="1000g">1 kg</option>
+                                                <option value="2000g">2 kg</option>
+                                            </select>
+                                        </div>
+    
+                                        <!-- Quantity Input -->
+                                        <div>
+                                            <label for="quantity-input-1" class="control-label"
+                                                style="font-weight: 700;width:2rem">Quantity</label>
+                                            <input id="quantity-input-1" class="form-control" value="1" min="1" max="20"
+                                                type="number" style="width: 5rem;">
+                                        </div>
+                                    </div>
+                                    <div class="cart-and-bay-btn">
+                                        <a class="btn hvr-hover add-to-cart-btn"
+                                            data-product-id="3" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/crystal sugar.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="shop-detail.html?productID=4&name=Crystal Sugar&price=20.00&desc=Fresh+crystal sugar&second=Organic+crystal sugar+is+pure+ and +natural +product&\&img=logo1.png" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                        class="fas fa-eye"></i></a></li>
+                                            
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                    title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Crystal Sugar</h4>
+                                    <h5 class="price" data-price="80"> &#8377; 80.00</h5>
+                                    <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                        <!-- Weight Selection -->
+                                        <div style="margin-right: 1rem; width: 2rem;">
+                                            <label for="weight-select-1">Weight</label>
+                                            <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                                                <option value="250g">250 gms</option>
+                                                <option value="500g">500 gms</option>
+                                                <option value="1000g">1 kg</option>
+                                                <option value="2000g">2 kg</option>
+                                            </select>
+                                        </div>
+    
+                                        <!-- Quantity Input -->
+                                        <div>
+                                            <label for="quantity-input-1" class="control-label"
+                                                style="font-weight: 700;width:2rem">Quantity</label>
+                                            <input id="quantity-input-1" class="form-control" value="1" min="1" max="20"
+                                                type="number" style="width: 5rem;">
+                                        </div>
+                                    </div>
+                                    <div class="cart-and-bay-btn">
+                                        <a class="btn hvr-hover add-to-cart-btn"
+                                            data-product-id="4" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row special-list">
+                        <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/dal.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                        class="fas fa-eye"></i></a></li>
+                                            
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                    title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Organtior Dal</h4>
+                                    <h5 class="price" data-price="200">&#8377; 200.00</h5>
+                                    <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                        <!-- Weight Selection -->
+                                        <div style="margin-right: 1rem; width: 2rem;">
+                                            <label for="weight-select-1">Weight</label>
+                                            <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                                                <option value="250g">250 gms</option>
+                                                <option value="500g">500 gms</option>
+                                                <option value="1000g">1 kg</option>
+                                                <option value="2000g">2 kg</option>
+                                            </select>
+                                        </div>
+    
+                                        <!-- Quantity Input -->
+                                        <div>
+                                            <label for="quantity-input-1" class="control-label"
+                                                style="font-weight: 700;width:2rem">Quantity</label>
+                                            <input id="quantity-input-1" class="form-control" value="1" min="1" max="20"
+                                                type="number" style="width: 5rem;">
+                                        </div>
+                                    </div>
+                                    <div class="cart-and-bay-btn">
+                                        <a class="btn hvr-hover add-to-cart-btn"
+                                            data-product-id="5" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 special-grid top-featured">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="new">New</p>
+                                    </div>
+                                    <img src="images/masala tea.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="shop-detail.html?productID=6&name=Masala Tea&price=10.00&desc=Fresh+masala tea&second=Organic+masala tea+is+pure+ and +natural +product&img=logo1.png" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                        class="fas fa-eye"></i></a></li>
+                                            
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                    title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Masala Tea</h4>
+                                    <h5 class="price" data-price="100"> &#8377; 100.00</h5>
+                                    <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                        <!-- Weight Selection -->
+                                        <div style="margin-right: 1rem; width: 2rem;">
+                                            <label for="weight-select-1">Weight</label>
+                                            <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                                                <option value="250g">250 gms</option>
+                                                <option value="500g">500 gms</option>
+                                                <option value="1000g">1 kg</option>
+                                                <option value="2000g">2 kg</option>
+                                            </select>
+                                        </div>
+    
+                                        <!-- Quantity Input -->
+                                        <div>
+                                            <label for="quantity-input-1" class="control-label"
+                                                style="font-weight: 700;width:2rem">Quantity</label>
+                                            <input id="quantity-input-1" class="form-control" value="1" min="1" max="20"
+                                                type="number" style="width: 5rem;">
+                                        </div>
+                                    </div>
+                                    <div class="cart-and-bay-btn">
+                                        <a class="btn hvr-hover add-to-cart-btn"
+                                            data-product-id="6" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 special-grid top-featured">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/pink salt.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="shop-detail.html?productID=8&name=Pink Salt&price=20.00&desc=Fresh+pink salt&second=Organic+pink salt+is+ pure+and +natural +product&img=logo1.png" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                        class="fas fa-eye"></i></a></li>
+                                           
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                    title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Pink Salt</h4>
+                                    <h5 class="price" data-price="100"> &#8377; 100.00</h5>
+                                    <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                        <!-- Weight Selection -->
+                                        <div style="margin-right: 1rem; width: 2rem;">
+                                            <label for="weight-select-1">Weight</label>
+                                            <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                                                <option value="250g">250 gms</option>
+                                                <option value="500g">500 gms</option>
+                                                <option value="1000g">1 kg</option>
+                                                <option value="2000g">2 kg</option>
+                                            </select>
+                                        </div>
+    
+                                        <!-- Quantity Input -->
+                                        <div>
+                                            <label for="quantity-input-1" class="control-label"
+                                                style="font-weight: 700;width:2rem">Quantity</label>
+                                            <input id="quantity-input-1" class="form-control" value="1" min="1" max="20"
+                                                type="number" style="width: 5rem;">
+                                        </div>
+                                    </div>
+                                    <div class="cart-and-bay-btn">
+                                        <a class="btn hvr-hover add-to-cart-btn"
+                                            data-product-id="8" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/toor dal.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="shop-detail.html?productID=9&name=Toor Dal&price=20.00&desc=Fresh+toor dal&second=Organic+tool dal+is+pure+ and +natural +product&img=logo1.png" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                        class="fas fa-eye"></i></a></li>
+                                            
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                    title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Toor Dal</h4>
+                                    <h5 class="price" data-price="150"> &#8377; 150.00</h5>
+                                    <div class="form-group d-flex align-items-center" style="gap: 4rem;">
+                                        <!-- Weight Selection -->
+                                        <div style="margin-right: 1rem; width: 2rem;">
+                                            <label for="weight-select-1">Weight</label>
+                                            <select id="weight-select-1" class="form-control" style="width:6.5rem;">
+                                                <option value="250g">250 gms</option>
+                                                <option value="500g">500 gms</option>
+                                                <option value="1000g">1 kg</option>
+                                                <option value="2000g">2 kg</option>
+                                            </select>
+                                        </div>
+    
+                                        <!-- Quantity Input -->
+                                        <div>
+                                            <label for="quantity-input-1" class="control-label"
+                                                style="font-weight: 700;width:2rem">Quantity</label>
+                                            <input id="quantity-input-1" class="form-control" value="1" min="1" max="20"
+                                                type="number" style="width: 5rem;">
+                                        </div>
+                                    </div>
+                                    <div class="cart-and-bay-btn">
+                                        <a class="btn hvr-hover add-to-cart-btn"
+                                            data-product-id="9" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- End Products  -->
+
+            <!-- Start Blog  -->
+            <div class="latest-blog">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="title-all text-center">
+                                <h1>Latest Blog</h1>
+                                <p>Discover insights, tips, and stories about organic living, straight from the heart of
+                                    6seasonsorganic.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-lg-4 col-xl-4">
+                            <div class="blog-box">
+                                <div class="blog-img">
+                                    <img class="img-fluid" src="images/blog.jpg" alt="" />
+                                </div>
+                                <div class="blog-content">
+                                    <div class="title-blog">
+                                        <h3>6 Seasons Organic</h3>
+                                        <p>At 6seasonsorganic, we bring you the finest organic products, cultivated with
+                                            care and packed with goodness. Experience the essence of nature in every
+                                            bite and transform your lifestyle with our wholesome offerings.</p>
+                                    </div>
+                                    <ul class="option-blog">
+                                        <li><a href="https://6seasonsorganic.com/favorites"><i
+                                                    class="far fa-heart"></i></a></li>
+                                        <li><a
+                                                href="https://6seasonsorganic.blogspot.com/2023/11/6seasons-organic.html"><i
+                                                    class="fas fa-eye"></i></a></li>
+                                        <li><a href="contact-us.html"><i class="far fa-comments"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Blog  -->
+
+
+            <!-- Start Instagram Feed  -->
+            <div class="instagram-box">
+                <div class="main-instagram owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="ins-inner-box">
+                            <img src="images/insta1.jpeg" alt="Instagram Image 1" />
+                            <div class="hov-in">
+                                <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ins-inner-box">
+                            <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                            <div class="hov-in">
+                                <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ins-inner-box">
+                            <img src="images/insta3.jpeg" alt="Instagram Image 1" />
+                            <div class="hov-in">
+                                <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ins-inner-box">
+                            <img src="images/insta4.jpeg" alt="Instagram Image 1" />
+                            <div class="hov-in">
+                                <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ins-inner-box">
+                            <img src="images/insta5.jpeg" alt="Instagram Image 1" />
+                            <div class="hov-in">
+                                <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ins-inner-box">
+                            <img src="images/insta6.jpeg" alt="Instagram Image 1" />
+                            <div class="hov-in">
+                                <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ins-inner-box">
+                            <img src="images/insta1.jpeg" alt="Instagram Image 1" />
+                            <div class="hov-in">
+                                <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ins-inner-box">
+                            <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                            <div class="hov-in">
+                                <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Instagram Feed  -->
+
+
+            <!-- Start Footer  -->
+            <footer>
+                <div class="footer-main">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="footer-top-box">
+                                    <h3>Business Time</h3>
+                                    <ul class="list-time">
+                                        <li>Monday - Friday: 08.00am to 05.00pm</li>
+                                        <li>Saturday: 10.00am to 08.00pm</li>
+                                        <li>Sunday: <span>Closed</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="footer-top-box">
+                                    <h3>Newsletter</h3>
+                                    <form class="newsletter-box" id="subscribeForm">
+                                        <div class="form-group">
+                                            <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <button class="btn hvr-hover" type="submit">Submit</button>
+                                    </form>
+                                    <div id="statusMessage" style="display: none;">
+                                        <span id="statusMessageText"></span>
+                                        <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="footer-top-box">
+                                    <h3>Social Media</h3>
+                                    <p>Follow us for updates on seasonal and organic products.</p>
+                                    <ul>
+                                        <li><a
+                                                href="https://www.facebook.com/people/6-seasons/61552154805127/?sfnsn=wiwspmo&mibextid=vk8aRt"><i
+                                                    class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a
+                                                href="https://twitter.com/i/flow/login?redirect_after_login=%2F6seasonsorganic"><i
+                                                    class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                        <li><a
+                                                href="https://www.linkedin.com/in/6seasons-organic-286223299?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                                                    class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://www.instagram.com/6_seasons_organic/?hl=en"><i
+                                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://www.youtube.com/@6seasonsorganics"><i
+                                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                                        <li>
+                                            <a href="https://wa.me/919100066659" target="_blank">
+                                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="footer-widget">
+                                    <h4>About 6seasonsorganic</h4>
+                                    <p>6seasonsorganic is dedicated to providing the highest quality organic and
+                                        seasonal products. Our mission is to bring health and sustainability to every
+                                        customer.</p>
+                                    <p>Our organic products are sourced with care, ensuring the best for you and your
+                                        family.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="footer-link">
+                                    <h4>Information</h4>
+                                    <ul>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="contact-us.html">Customer Service</a></li>
+                                        <li><a href="https://maps.app.goo.gl/WAmF8TErCU9FDNVj9">Our Sitemap</a></li>
+                                        <li><a href="E-Commerce\terms-and-conditions.html">Terms &amp; Conditions</a></li>
+                                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                        <li><a href="delivery-info.html">Delivery Information</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="footer-link-contact">
+                                    <h4>Contact Us</h4>
+                                    <ul>
+                                        <li>
+                                            <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic H.no
+                                                4-59/6/19,<br>Srinivasa Nagar Colony Mandaipally Road<br>Thumukunta,
+                                                Shamirpet<br>Secunderabad, Telangana 500078</p>
+                                        </li>
+                                        <li>
+                                            <p><i class="fas fa-phone-square"></i>Phone: <a
+                                                    href="tel:+91-9100066659">+91-9100066659</a></p>
+                                        </li>
+                                        <li>
+                                            <p><i class="fas fa-envelope"></i>Email: <a
+                                                    href="mailto:info@6seasonsorganic.com">info@6seasonsorganic.com</a>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+
+            <!-- End Footer  -->
+            <script>
+                // Exchange rates from INR (Indian Rupee) to other currencies
+                const rates = {
+                    INR: 1,    // Base currency
+                    USD: 0.012, // 1 INR = 0.012 USD
+                    EUR: 0.011 // 1 INR = 0.011 EUR
+                };
+            
+                // Function to handle the currency change
+                function changeCurrency(currency) {
+                    const prices = document.querySelectorAll('.price');
+                    
+                    prices.forEach((priceElement) => {
+                        const basePrice = priceElement.getAttribute('data-price');
+                        const convertedPrice = (basePrice * rates[currency]).toFixed(2);
+                        
+                        if (currency === 'INR') {
+                            priceElement.textContent = `Price: ₹${convertedPrice}`;
+                        } else if (currency === 'USD') {
+                            priceElement.textContent = `Price: $${convertedPrice}`;
+                        } else if (currency === 'EUR') {
+                            priceElement.textContent = `Price: €${convertedPrice}`;
+                        }
+                    });
+                }
+            
+                // Event listener for the select dropdown
+                document.getElementById('basic').addEventListener('change', function() {
+                    const selectedCurrency = this.value;
+                    changeCurrency(selectedCurrency);
+                });
+            </script>
+            <script>
+                document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+            
+                const email = document.getElementById('email').value;
+            
+                if (email) {
+                    fetch('http://127.0.0.1:5000/subscribe', { 
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: email })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const statusMessageDiv = document.getElementById('statusMessage');
+                        const statusMessageText = document.getElementById('statusMessageText');
+                        const closeButton = document.getElementById('closeMessage');
+                        
+                        // Set message text
+                        statusMessageText.textContent = data.message;
+            
+                        // Apply green style for success
+                        statusMessageDiv.style.color = 'white';
+                        statusMessageDiv.style.backgroundColor = 'green';
+                        statusMessageDiv.style.padding = '10px';
+                        statusMessageDiv.style.borderRadius = '5px';
+                        statusMessageDiv.style.textAlign = 'center';
+                        statusMessageDiv.style.display = 'block';  // Make the message visible
+            
+                        // Close button functionality
+                        closeButton.addEventListener('click', () => {
+                            statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                        });
+                    })
+                    .catch(error => {
+                        const statusMessageDiv = document.getElementById('statusMessage');
+                        const statusMessageText = document.getElementById('statusMessageText');
+                        const closeButton = document.getElementById('closeMessage');
+            
+                        // Set error message
+                        statusMessageText.textContent = "There was an error. Please try again.";
+            
+                        // Apply red style for error
+                        statusMessageDiv.style.color = 'white';
+                        statusMessageDiv.style.backgroundColor = 'red';
+                        statusMessageDiv.style.padding = '10px';
+                        statusMessageDiv.style.borderRadius = '5px';
+                        statusMessageDiv.style.textAlign = 'center';
+                        statusMessageDiv.style.display = 'block';  // Make the message visible
+            
+                        // Close button functionality
+                        closeButton.addEventListener('click', () => {
+                            statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                        });
+                    });
+                }
+            });
+            
+             </script>
+        
+
+            <!-- Start copyright  -->
+            <div class="footer-copyright">
+                <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
+                    <a href="https://html.design/">6SeasonsOrganic</a>
+                </p>
+            </div>
+            <!-- End copyright  -->
+
+            <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+            <!-- ALL JS FILES -->
+            <script src="js/jquery-3.2.1.min.js"></script>
+            <script src="js/popper.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/jquery.superslides.min.js"></script>
+            <!-- ALL PLUGINS -->
+            <script src="js/bootstrap-select.js"></script>
+            <script src="js/inewsticker.js"></script>
+            <script src="js/images-loded.min.js"></script>
+            <script src="js/isotope.min.js"></script>
+            <script src="js/owl.carousel.min.js"></script>
+            <script src="js/baguetteBox.min.js"></script>
+            <script src="js/form-validator.min.js"></script>
+            <script src="js/contact-form-script.js"></script>
+            <script src="js/custom.js"></script>
+            <script src="E-Commerce/js/bootsnav.js."></script>
+            <script src="js/shopdescription.js"></script>
+            <script>document.getElementById("newsletter-form").addEventListener("submit", function (event) {
+                    event.preventDefault(); // Prevent form from submitting normally
+
+                    // Get the email value from the input field
+                    var email = document.getElementById("email-input").value;
+
+                    // Validate the email format
+                    if (!validateEmail(email)) {
+                        showMessage("Please enter a valid email address.", "error");
+                        return;
+                    }
+
+                    // Simulate a form submission (no real server call yet)
+                    // In real-world, this is where you'd use AJAX to send the data to your server.
+                    setTimeout(function () {
+                        // Simulate a success message
+                        showMessage("Thank you for subscribing!", "success");
+                        document.getElementById("newsletter-form").reset(); // Reset the form after successful submission
+                    }, 1000); // Simulating server processing delay
+                });
+
+                // Email validation function
+                function validateEmail(email) {
+                    var re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                    return re.test(email);
+                }
+
+                // Function to show success or error message
+                function showMessage(message, type) {
+                    var responseMessage = document.getElementById("response-message");
+                    responseMessage.style.display = "block";
+                    responseMessage.textContent = message;
+
+                    if (type === "success") {
+                        responseMessage.style.color = "green";
+                    } else {
+                        responseMessage.style.color = "red";
+                    }
+                }
+            </script>
+        </div>
+
+    </body>
 
 </html>

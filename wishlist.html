@@ -55,31 +55,30 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="custom-select-box">
                         <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-							<option>INR</option>
-							<option>USD</option>
-							<option>EUR</option>
+							<option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
 						</select>
                     </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a href="signin.html"><i class="fa fa-user s_color"></i> My Account</a></li>
-                            <li>
-                                <a href=" https://maps.app.goo.gl/WAmF8TErCU9FDNVj9" target="_blank">
-                                  <i class="fas fa-location-arrow"></i> Our location
-                                </a>
-                              </li>
-                              
-                            <li><a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
+
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="login-box">
-                        <select id="account-dropdown" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                            <option value="">My Account</option>
-                            <option value="signup.html">Sign Up</option>
-                            <option value="signin.html">Sign In</option>
-                        </select>
+                    <div class="login-box">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-user s_color"></i> My Account
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                                <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Bootstrap JS (for dropdown functionality) -->
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
                         <script>
                             document.getElementById('account-dropdown').addEventListener('change', function() {
                                 const selectedValue = this.value;
@@ -94,28 +93,16 @@
                         <div id="offer-box" class="carouselTicker">
                             <ul class="offer-box">
                                 <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
+                                    <i class="fab fa-opencart"></i> 1kg honey,get 250g FREE for ₹899! 🍯
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                                    <i class="fab fa-opencart"></i> Buy 2kg pulses, get 15% OFF with code PULSE15! 🌱
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                                    <i class="fab fa-opencart"></i> Get ₹100 OFF on 500g & ₹250 OFF on 1kg ghee! 🧈
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now 
+                                    <i class="fab fa-opencart"></i> Buy 3 masalas, get 1 FREE + 10% OFF on ₹999+! 🌶️
                                 </li>
                             </ul>
                         </div>
@@ -250,7 +237,7 @@
                                 <tr>
                                     <th>Images</th>
                                     <th>Product Name</th>
-                                    <th>Unit Price</th>
+                                    <th  class="price" data-price="150">Unit Price</th>
                                     <th>Stock</th>
                                     <th>Add Item</th>
                                     <th>Remove</th>
@@ -353,17 +340,21 @@
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-12 col-sm-12">
-						<div class="footer-top-box">
-							<h3>Newsletter</h3>
-							<form class="newsletter-box">
-								<div class="form-group">
-									<input class="" type="email" name="Email" placeholder="Email Address*" />
-									<i class="fa fa-envelope"></i>
-								</div>
-								<button class="btn hvr-hover" type="submit">Submit</button>
-							</form>
-						</div>
-					</div>
+                        <div class="footer-top-box">
+                            <h3>Newsletter</h3>
+                            <form class="newsletter-box" id="subscribeForm">
+                                <div class="form-group">
+                                    <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <button class="btn hvr-hover" type="submit">Submit</button>
+                            </form>
+                            <div id="statusMessage" style="display: none;">
+                                <span id="statusMessageText"></span>
+                                <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                            </div>
+                        </div>
+                    </div>
 					<div class="col-lg-4 col-md-12 col-sm-12">
 						<div class="footer-top-box">
                             <h3>Social Media</h3>
@@ -379,6 +370,7 @@
 						</div>
 					</div>
 				</div>
+        
 				<hr>
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -391,7 +383,7 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-link">
                             <h4>Information</h4>
-                            <ul>
+                            <ul class="dot-list">
                                 <li><a href="#">About Us</a></li>
                                 <li><a href="#">Customer Service</a></li>
                                 <li><a href="#">Our Sitemap</a></li>
@@ -422,6 +414,99 @@
         </div>
     </footer>
     <!-- End Footer  -->
+    <script>
+        // Exchange rates from INR (Indian Rupee) to other currencies
+        const rates = {
+            INR: 1,    // Base currency
+            USD: 0.012, // 1 INR = 0.012 USD
+            EUR: 0.011 // 1 INR = 0.011 EUR
+        };
+    
+        // Function to handle the currency change
+        function changeCurrency(currency) {
+            const prices = document.querySelectorAll('.price');
+            
+            prices.forEach((priceElement) => {
+                const basePrice = priceElement.getAttribute('data-price');
+                const convertedPrice = (basePrice * rates[currency]).toFixed(2);
+                
+                if (currency === 'INR') {
+                    priceElement.textContent = `Price: ₹${convertedPrice}`;
+                } else if (currency === 'USD') {
+                    priceElement.textContent = `Price: $${convertedPrice}`;
+                } else if (currency === 'EUR') {
+                    priceElement.textContent = `Price: €${convertedPrice}`;
+                }
+            });
+        }
+    
+        // Event listener for the select dropdown
+        document.getElementById('basic').addEventListener('change', function() {
+            const selectedCurrency = this.value;
+            changeCurrency(selectedCurrency);
+        });
+    </script>
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        const email = document.getElementById('email').value;
+    
+        if (email) {
+            fetch('http://127.0.0.1:5000/subscribe', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+                
+                // Set message text
+                statusMessageText.textContent = data.message;
+    
+                // Apply green style for success
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'green';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            })
+            .catch(error => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+    
+                // Set error message
+                statusMessageText.textContent = "There was an error. Please try again.";
+    
+                // Apply red style for error
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'red';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            });
+        }
+    });
+    
+     </script>
 
     <!-- Start copyright  -->
     <div class="footer-copyright">
