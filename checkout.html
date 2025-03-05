@@ -303,7 +303,7 @@
                             <div class="title-left">
                                 <h3>Billing address</h3>
                             </div>
-                            <form class="needs-validation" novalidate>
+                            <form class="needs-validation" id="billingForm" novalidate>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="firstName">First name *</label>
@@ -338,16 +338,15 @@
                                     <div class="invalid-feedback"> Please enter your shipping address. </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="address2">Address 2 *</label>
-                                    <input type="text" class="form-control" id="address2" placeholder="">
+                                    <label for="address2">Address 2 </label>
+                                    <input type="text" class="form-control" id="address2" placeholder="" required>
+                                    <div class="invalid-feedback"> please enter your another shiping address. </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5 mb-3">
                                         <label for="country">Country *</label>
-                                        <select class="wide w-100" id="country">
-                                            <option value="Choose..." data-display="Select">Choose...</option>
-                                            <option value="United States">United States</option>
-                                            <option value="United States">India</option>
+                                        <select class="wide w-100" id="country" required>
+                                            <option value="" data-display="Select">Choose...</option>
                                         </select>
                                         <div class="invalid-feedback"> Please select a valid country. </div>
                                     </div>
@@ -503,17 +502,69 @@
                                     document.getElementById('rzp-button').onclick = function (e) {
     e.preventDefault();
 
+    // Clear any previous error messages
+    clearErrorMessages();
+
+    // Get all required billing address fields
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const address2 = document.getElementById('address2').value.trim();
+    const country = document.getElementById('country').value.trim();
+    const state = document.getElementById('state').value.trim();
+    const zip = document.getElementById('zip').value.trim(); 
+
+    // Validate each field and display error messages if empty
+    let isValid = true;
+    
+    if (!firstName) {
+        showError('firstName', 'First name is required.');
+        isValid = false;
+    }
+    if (!lastName) {
+        showError('lastName', 'Last name is required.');
+        isValid = false;
+    }
+    if (!email) {
+        showError('email', 'Email address is required.');
+        isValid = false;
+    }
+    if (!address && !address2) {
+        showError('address', 'Address is required.');
+        isValid = false;
+    }
+    if (!country) {
+        showError('country', 'Country is required.');
+        isValid = false;
+    }
+    if (!state) {
+        showError('state', 'State is required.');
+        isValid = false;
+    }
+    if (!zip) {
+        showError('zip', 'Zip code is required.');
+        isValid = false;
+    }
+
+    // If any field is invalid, stop further execution
+    if (!isValid) {
+        return;
+    }
+
+    // Proceed with payment if all fields are filled
     const billingAddress = {
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
+        firstName: firstName,
+        lastName: lastName,
         username: localStorage.getItem('username') || "Unknown User",
-        email: document.getElementById('email').value,
-        address: document.getElementById('address').value,
-        address2: document.getElementById('address2').value,
-        state: document.getElementById('state').value,
-        zip: document.getElementById('zip').value,
-        country: document.getElementById('country').value,
+        email: email,
+        address: address,
+        address2: address2,
+        state: state,
+        zip: zip,
+        country: country,
     };
+
 
     localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
 
@@ -626,6 +677,30 @@
         alert("Error in payment: " + (error.message || error));
     });
 };
+
+// Function to display error messages below specific fields
+function showError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    if (field) {
+        // Create or update the error message element
+        let errorElement = field.nextElementSibling;
+        if (!errorElement || !errorElement.classList.contains('error-message')) {
+            errorElement = document.createElement('div');
+            errorElement.className = 'error-message';
+            errorElement.style.color = 'red';
+            errorElement.style.fontSize = '0.875rem';
+            errorElement.style.marginTop = '0.25rem';
+            field.parentNode.insertBefore(errorElement, field.nextSibling);
+        }
+        errorElement.textContent = message;
+    }
+}
+
+// Function to clear all error messages
+function clearErrorMessages() {
+    const errorMessages = document.querySelectorAll('.error-message');
+    errorMessages.forEach(error => error.remove());
+}
     </script>
                             </div>
                         </div>
@@ -1109,6 +1184,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
         </script>
 
     </div>
