@@ -360,6 +360,15 @@ app.post("/api/auth/signin", forgotPasswordLimiter, async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 });
+
+// ✅ Logout API (Clears JWT token)
+app.post("/api/logout", (req, res) => {
+  // Destroy token from client storage (handled in frontend)
+  res.clearCookie("authToken"); // Clears the token if stored in cookies
+  console.log("Logout successful")
+  res.status(200).json({ message: "Logged out successfully" });
+});
+
 // POST /subscribe route
 app.post('/subscribe', (req, res) => {
   const email = req.body.email;
