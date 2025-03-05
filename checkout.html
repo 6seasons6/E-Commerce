@@ -568,11 +568,6 @@
 
     localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
 
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    if (cartItems.length === 0) {
-        alert("Your cart is empty. Please add items to your cart before proceeding.");
-        return;
-    }
 
     const priceElement = document.getElementById("grand-total");
     const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
