@@ -506,6 +506,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             <script>
                                 document.getElementById('rzp-button').onclick = function (e) {
@@ -618,6 +619,118 @@
                                                 handler: function (response) {
                                                     // Populate the modal with payment ID and order ID
                                                     document.getElementById("payment-id").innerText = response.razorpay_payment_id;
+
+                                <script>
+                                    document.getElementById('rzp-button').onclick = function (e) {
+    e.preventDefault();
+
+    // Clear any previous error messages
+    clearErrorMessages();
+
+    // Get all required billing address fields
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const address2 = document.getElementById('address2').value.trim();
+    const country = document.getElementById('country').value.trim();
+    const state = document.getElementById('state').value.trim();
+    const zip = document.getElementById('zip').value.trim(); 
+
+    // Validate each field and display error messages if empty
+    let isValid = true;
+    
+    if (!firstName) {
+        showError('firstName', 'First name is required.');
+        isValid = false;
+    }
+    if (!lastName) {
+        showError('lastName', 'Last name is required.');
+        isValid = false;
+    }
+    if (!email) {
+        showError('email', 'Email address is required.');
+        isValid = false;
+    }
+    if (!address && !address2) {
+        showError('address', 'Address is required.');
+        isValid = false;
+    }
+    if (!country) {
+        showError('country', 'Country is required.');
+        isValid = false;
+    }
+    if (!state) {
+        showError('state', 'State is required.');
+        isValid = false;
+    }
+    if (!zip) {
+        showError('zip', 'Zip code is required.');
+        isValid = false;
+    }
+
+    // If any field is invalid, stop further execution
+    if (!isValid) {
+        return;
+    }
+
+    // Proceed with payment if all fields are filled
+    const billingAddress = {
+        firstName: firstName,
+        lastName: lastName,
+        username: localStorage.getItem('username') || "Unknown User",
+        email: email,
+        address: address,
+        address2: address2,
+        state: state,
+        zip: zip,
+        country: country,
+    };
+
+
+    localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const priceElement = document.getElementById("grand-total");
+    const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
+    const amount = parseFloat(grandTotal) * 100; // Convert to paise
+
+    if (amount <= 0 || isNaN(amount)) {
+        console.error("Invalid amount detected. Grand Total:", grandTotal);
+        return;
+    }
+
+    const username = localStorage.getItem("username");
+    if (!username) {
+        alert("You need to log in before making a purchase.");
+        return;
+    }
+
+    // **Create Order on Backend**
+    fetch(`http://127.0.0.1:5000/api/create-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: amount }) 
+    })
+    .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+    })
+    .then(data => {
+        console.log("Order ID from API:", data.id);
+
+        var options = {
+            key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
+            amount: data.amount,
+            currency: "INR",
+            name: "6SeasonsOrganic",
+            description: "Test Transaction",
+            order_id: data.id,
+            handler: function (response) {
+                 // Populate the modal with payment ID and order ID
+                 document.getElementById("payment-id").innerText = response.razorpay_payment_id;
+
                                                     document.getElementById("order-id").innerText = data.id;
 
                                                     // Show the modal on successful payment
