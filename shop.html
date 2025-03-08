@@ -78,10 +78,9 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="custom-select-box">
                             <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                                <option value="INR">INR</option>
-                                <option value="USD">USD</option>
-                                
-                                <option value="EUR">EUR</option>
+                                <option>INR</option>
+                                <option>USD</option>
+                                <option>EUR</option>
                             </select>
                         </div>
                         
@@ -290,10 +289,10 @@
                                     <div class="filter-container" >
                                         <label for="filterPrice">Filter by Price:</label>
                                         <select id="filterPrice">
-                                            <option value="all" >All</option>
-                                            <option value="low" class="price" data-price="0-100">₹0 - ₹100</option>
-                                            <option value="medium" class="price" data-price="101-500">₹101 - ₹500</option>
-                                            <option value="high" class="price" data-price="1000">Above ₹1000</option>
+                                            <option value="all">All</option>
+                                            <option value="low">₹0 - ₹100</option>
+                                            <option value="medium">₹101 - ₹500</option>
+                                            <option value="high">Above ₹1000</option>
                                         </select>
                                     </div>
                                   </div>
@@ -1767,17 +1766,13 @@
                         <div class="col-lg-4 col-md-12 col-sm-12">
                             <div class="footer-top-box">
                                 <h3>Newsletter</h3>
-                                <form class="newsletter-box" id="subscribeForm">
+                                <form class="newsletter-box">
                                     <div class="form-group">
-                                        <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
+                                        <input class="" type="email" name="Email" placeholder="Email Address*" />
                                         <i class="fa fa-envelope"></i>
                                     </div>
                                     <button class="btn hvr-hover" type="submit">Submit</button>
                                 </form>
-                                <div id="statusMessage" style="display: none;">
-                                    <span id="statusMessageText"></span>
-                                    <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
-                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12">
