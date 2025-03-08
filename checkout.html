@@ -420,6 +420,11 @@
                                             <span>|</span>
                                             <p id="total-price"></p>
                                         </div>
+                                        <div id="product-details-container" class="product-details">
+                                            <!-- Product details will be dynamically inserted here -->
+    
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -496,37 +501,102 @@
                                 <script>
 
                                     document.getElementById('rzp-button').onclick = function (e) {
-                                        e.preventDefault();
-                                        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                                        const priceElement = document.getElementById("grand-total");
-                                        const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
-                                        const amount = parseFloat(grandTotal) * 100; // Convert to paise
-                                        if (amount <= 0 || isNaN(amount)) {
-                                            console.error("Invalid amount detected. Grand Total:", grandTotal);
-                                            return;
-                                        }
-                                        const username = localStorage.getItem("username"); // Retrieve username
-                                        console.log("Retrieved username from localStorage:", username); // Debugging
+    e.preventDefault();
 
-                                        if (!username) {
-                                            alert("You need to log in before making a purchase.");
-                                            return;
-                                        }
-                                        fetch(`http://127.0.0.1:5000/api/create-order`, { // Use backticks here
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                            },
-                                            body: JSON.stringify({ amount: amount }) // Amount in paise
-                                        })
-                                            .then(response => {
-                                                if (!response.ok) {
-                                                    throw new Error('Network response was not ok');
-                                                }
-                                                return response.json();
-                                            })
-                                            .then(data => {
-                                                console.log("Order ID from API:", data.id);
+    // Clear any previous error messages
+    clearErrorMessages();
+
+    // Get all required billing address fields
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const address2 = document.getElementById('address2').value.trim();
+    const country = document.getElementById('country').value.trim();
+    const state = document.getElementById('state').value.trim();
+    const zip = document.getElementById('zip').value.trim(); 
+
+    // Validate each field and display error messages if empty
+    let isValid = true;
+    
+    if (!firstName) {
+        showError('firstName', 'First name is required.');
+        isValid = false;
+    }
+    if (!lastName) {
+        showError('lastName', 'Last name is required.');
+        isValid = false;
+    }
+    if (!email) {
+        showError('email', 'Email address is required.');
+        isValid = false;
+    }
+    if (!address && !address2) {
+        showError('address', 'Address is required.');
+        isValid = false;
+    }
+    if (!country) {
+        showError('country', 'Country is required.');
+        isValid = false;
+    }
+    if (!state) {
+        showError('state', 'State is required.');
+        isValid = false;
+    }
+    if (!zip) {
+        showError('zip', 'Zip code is required.');
+        isValid = false;
+    }
+
+    // If any field is invalid, stop further execution
+    if (!isValid) {
+        return;
+    }
+
+    // Proceed with payment if all fields are filled
+    const billingAddress = {
+        firstName: firstName,
+        lastName: lastName,
+        username: localStorage.getItem('username') || "Unknown User",
+        email: email,
+        address: address,
+        address2: address2,
+        state: state,
+        zip: zip,
+        country: country,
+    };
+
+
+    localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const priceElement = document.getElementById("grand-total");
+    const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
+    const amount = parseFloat(grandTotal) * 100; // Convert to paise
+
+    if (amount <= 0 || isNaN(amount)) {
+        console.error("Invalid amount detected. Grand Total:", grandTotal);
+        return;
+    }
+    const username = localStorage.getItem("username");
+    if (!username) {
+        alert("You need to log in before making a purchase.");
+        return;
+    }
+
+    // **Create Order on Backend**
+    fetch(`http://127.0.0.1:5000/api/create-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: amount }) 
+    })
+    .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+    })
+    .then(data => {
+        console.log("Order ID from API:", data.id);
 
                                                 var options = {
                                                     key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
@@ -857,7 +927,198 @@ const formattedProducts = cartItems.map(item => ({
                     quantityElement.textContent = quantity ? `Quantity: ${quantity}` : "Quantity Not Available";
                 }
             });
-        </script>
+
+            $(document).ready(function() {
+    $.getJSON('json/countries.json', function(countries) {
+        // Populate the dropdown
+        countries.forEach(function(country) {
+            $('#country').append(new Option(country.text, country.id));
+        });
+
+        // Initialize Select2
+        $('#country').select2({
+            placeholder: "Choose...",
+            allowClear: true
+        });
+    }).fail(function() {
+        console.error("Error loading countries.json");
+    });
+
+// Load states
+$.getJSON('json/states.json', function(data) {
+        $('#country').change(function() {
+            const selectedCountry = $(this).val();
+            $('#state').empty().append(new Option("Choose...", ""));
+
+            if (selectedCountry && data[selectedCountry]) {
+                data[selectedCountry].forEach(function(state) {
+                    $('#state').append(new Option(state.text, state.id));
+                });
+            }
+            $('#state').select2({
+                placeholder: "Choose...",
+                allowClear: true
+            });
+        });
+    }).fail(function() {
+        console.error("Error loading states.json");
+    });
+    
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const usePreviousAddressCheckbox = document.getElementById('use-previous-address');
+    const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'username'];
+
+    // Ensure checkbox is unchecked on page load
+    if (usePreviousAddressCheckbox) {
+        usePreviousAddressCheckbox.checked = false;
+    }
+
+    // Clear fields on page load
+    fields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field) field.value = '';
+    });
+    
+    // Load previous address from localStorage
+    const previousAddress = JSON.parse(localStorage.getItem('billingAddress')) || {};
+
+    // Handle checkbox toggle
+    if (usePreviousAddressCheckbox) {
+        usePreviousAddressCheckbox.addEventListener('change', function () {
+            if (this.checked && previousAddress) {
+                // Populate fields with stored values
+                fields.forEach(id => {
+                    const field = document.getElementById(id);
+                    if (field) field.value = previousAddress[id] || '';
+                });
+
+                // Set the country value and trigger change event
+                const countryDropdown = document.getElementById('country');
+                if (countryDropdown && previousAddress.country) {
+                    countryDropdown.value = previousAddress.country;
+                    $(countryDropdown).trigger('change'); // Trigger change event to populate states
+                }
+
+                // Set the state value after the states are populated
+                setTimeout(() => {
+                    const stateDropdown = document.getElementById('state');
+                    if (stateDropdown && previousAddress.state) {
+                        stateDropdown.value = previousAddress.state;
+                    }
+                }, 500); // Add a small delay to ensure states are populated
+            } else {
+                // Clear fields if unchecked
+                fields.forEach(id => {
+                    const field = document.getElementById(id);
+                    if (field) field.value = '';
+                });
+
+                // Clear country and state dropdowns
+                const countryDropdown = document.getElementById('country');
+                if (countryDropdown) countryDropdown.value = '';
+
+                const stateDropdown = document.getElementById('state');
+                if (stateDropdown) stateDropdown.value = '';
+            }
+        });
+    }
+
+    function populateBillingAddress(address) {
+        if (!address) return;
+
+        document.getElementById('firstName').value = address.firstName || '';
+        document.getElementById('lastName').value = address.lastName || '';
+        document.getElementById('email').value = address.email || '';
+        document.getElementById('address').value = address.address || '';
+        document.getElementById('address2').value = address.address2 || '';
+        document.getElementById('zip').value = address.zip || '';
+        document.getElementById('country').value = address.country || '';
+        
+        if (address.state) {
+            loadStates(address.country, function () {
+                document.getElementById('state').value = address.state;
+            });
+        }
+    }
+
+    usePreviousAddressCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            const storedAddress = JSON.parse(localStorage.getItem('billingAddress'));
+            if (storedAddress) {
+                populateBillingAddress(storedAddress);
+            } else {
+                fetch('http://127.0.0.1:5000/api/get-billing-address', { 
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then(response => response.json())
+                .then(data => populateBillingAddress(data))
+                .catch(error => console.error("Error retrieving billing address:", error));
+            }
+        } else {
+            document.querySelectorAll("#checkout-form input").forEach(input => input.value = '');
+        }
+    });
+});
+  //lavanya  checkout code 
+  document.addEventListener("DOMContentLoaded", function () {
+            let storedTotalPrice = localStorage.getItem("totalPrice");
+
+            if (storedTotalPrice) {
+                let orderTotalElement = document.getElementById("order-subtotal");
+
+                if (orderTotalElement) {
+                    orderTotalElement.textContent = `$${parseFloat(storedTotalPrice).toFixed(2)}`;
+                } else {
+                    console.error("Error: Order subtotal element not found in checkout page!");
+                }
+            }
+        });
+
+        //checkoooutt
+        document.addEventListener("DOMContentLoaded", function () {
+            const totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+            document.getElementById('order-total-price').textContent = `₹${totalPrice.toFixed(2)}`;
+
+            const discount = parseFloat(document.getElementById('order-discount')?.textContent.replace('₹', '') || 0);
+            const couponDiscount = parseFloat(document.getElementById('coupon-discount')?.textContent.replace('₹', '') || 0);
+            const tax = parseFloat(document.getElementById('order-tax')?.textContent.replace('₹', '') || 0);
+            const shippingCost = parseFloat(document.getElementById('shipping-cost')?.textContent.replace('₹', '') || 0);
+
+            const grandTotal = totalPrice - discount - couponDiscount + tax + shippingCost;
+            document.getElementById('grand-total').textContent = `₹${grandTotal.toFixed(2)}`;
+
+            localStorage.setItem("grandTotal", grandTotal.toFixed(2));
+        });
+
+        //cart items showing code
+        document.addEventListener('DOMContentLoaded', function () {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const productDetailsContainer = document.getElementById('product-details-container');
+
+            if (cartItems.length > 0 && productDetailsContainer) {
+                cartItems.forEach(item => {
+                    const productDetail = document.createElement('div');
+                    productDetail.classList.add('product-detail-item');
+                    productDetail.innerHTML = `
+                <h1>${item.name}</h1>
+                <span>|</span>
+                <p>Quantity: ${item.quantity}</p>
+                <span>|</span>
+                <p>Total Price: ₹${(item.price * item.quantity).toFixed(2)}</p>
+                <br>
+            `;
+                    productDetailsContainer.appendChild(productDetail);
+                });
+            } else {
+                productDetailsContainer.innerHTML = '';
+            }
+
+
+        });
+</script>
 
     </div>
 </body>
