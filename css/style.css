@@ -766,25 +766,7 @@
  .cover-slides{
      height: 100vh;
 }
- .slides-navigation a {
-     background: #b0b435;
-     position: absolute;
-     height: 70px;
-     width: 70px;
-     top: 50%;
-     font-size: 20px;
-     display: block;
-     color: #fff;
-     line-height: 90px;
-     text-align: center;
-     transition: all .3s ease-in-out;
-}
- .slides-navigation a i{
-     font-size: 40px;
-}
- .slides-navigation a:hover {
-     background: #000000;
-}
+ 
  .cover-slides .container{
      height: 100%;
      position: relative;
@@ -821,6 +803,7 @@
  .slides-pagination a{
      border: 2px solid #ffffff;
 	 border-radius: 6px;
+     color: transparent;
 }
  .slides-pagination a.current{
      background: #b0b435;
