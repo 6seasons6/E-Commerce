@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 const { google } = require("googleapis");
 const axios = require('axios');
 const path = require('path');
-
+const twilio = require('twilio');
 
 
 // Import Routes
@@ -73,6 +73,7 @@ const OrderSchema = new mongoose.Schema({
     zip: { type: String, required: true },
     country: { type: String, required: true },
   },
+  phoneNumber: { type: Number, required: true },
   paymentId: { type: String, required: true },
   amount: { type: Number, required: true },
   products: [
@@ -103,6 +104,7 @@ const billingAddressSchema = new mongoose.Schema({
     zip: { type: String, required: true },
     country: { type: String, required: true },
   },
+  phoneNumber: { type: Number, required: true },
 }, { timestamps: true });
 
 const BillingAddress = mongoose.model("BillingAddress", billingAddressSchema);
@@ -121,12 +123,42 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
+// Twilio Credentials from .env file
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const whatsappNumber = process.env.TWILIO_WHATSAPP_NUMBER;
+
+// Initialize Twilio client
+const client = twilio(accountSid, authToken);
+
+// Function to send WhatsApp message
+const sendWhatsAppMessage = async (phoneNumber, username, orderId) => {
+  try {
+      console.log("📲 Sending WhatsApp message to user...");
+      // Ensure the phone number starts with +91
+    const formattedPhoneNumber = phoneNumber.startsWith("+91") 
+    ? phoneNumber 
+    : `+91${phoneNumber}`;
+
+  console.log("Formatted Recipient Number:", formattedPhoneNumber);
+      const message = await client.messages.create({
+          from: whatsappNumber, // Twilio WhatsApp number
+          to: `whatsapp:${formattedPhoneNumber}`, // User's WhatsApp number
+          body: `Hello ${username || "Customer"}, your order (ID: ${orderId}) has been placed successfully! We will notify you once it's shipped. Thank you for shopping with us!`,
+      });
+      console.log("✅ WhatsApp message sent successfully:", message.sid);
+  } catch (error) {
+      console.error("❌ Failed to send WhatsApp message:", error.message);
+  }
+};
+
 // Store Order Route
 app.post('/api/store-order', async (req, res) => {
   console.log('Received create order request');
   console.log('Request body:', req.body);
 
-  let orderId, username, email, deliveryAddress, paymentId, amount, products;
+  let orderId, username, email, deliveryAddress, paymentId, amount, products, phoneNumber;
   
   // Destructure and validate required fields
   try {
@@ -138,12 +170,13 @@ app.post('/api/store-order', async (req, res) => {
           paymentId,
           amount,
           products,
+          phoneNumber,
       } = req.body);
       
-      console.log("Extracted Order Data:", { orderId,deliveryAddress, products });
+      console.log("Extracted Order Data:", { orderId,deliveryAddress, products ,phoneNumber});
       
       // Validate required fields
-      if (!orderId || !paymentId || !amount || !products || !deliveryAddress) {
+      if (!orderId || !paymentId || !amount || !products || !deliveryAddress || !phoneNumber) {
           console.warn("⚠ Missing required fields in the request body.");
           return res.status(400).json({ message: "Missing required fields." });
       }
@@ -163,6 +196,7 @@ app.post('/api/store-order', async (req, res) => {
               zip: deliveryAddress.zip || "N/A",
               country: deliveryAddress.country || "N/A",
           },
+          phoneNumber:phoneNumber || "N/A",
           paymentId: paymentId || "N/A",
           amount: amount || 0,
           products,
@@ -181,7 +215,8 @@ app.post('/api/store-order', async (req, res) => {
           state: deliveryAddress.state || "N/A",   
           zip: deliveryAddress.zip || "N/A",
           country: deliveryAddress.country || "N/A",
-      }
+      },
+      phoneNumber:phoneNumber || "N/A",
     });
 
     await billingAddress.save();
@@ -201,6 +236,7 @@ app.post('/api/store-order', async (req, res) => {
               zip: deliveryAddress.zip || "N/A",
               country: deliveryAddress.country || "N/A",
           },
+          phoneNumber:phoneNumber || "N/A",
           paymentId: paymentId || "N/A",
           amount: amount || 0,
           products,
@@ -278,9 +314,41 @@ app.post('/api/store-order', async (req, res) => {
   } catch (emailError) {
       console.error("❌ Failed to send email to admin:", emailError.message);
   }
+   // Send order confirmation email to user
+  try {
+    console.log("📧 Preparing to send order confirmation email to user...");
+    const userMailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email, // User's email from the request body
+        subject: "Order Placed Successfully",
+        html: `
+            <h2>Thank You for Your Order!</h2>
+            <p>Dear ${username || "Customer"},</p>
+            <p>Your order <strong>${orderId}</strong> has been placed successfully. Below are the order details:</p>
+            <p><strong>Delivery Address:</strong></p>
+            <p>${deliveryAddress.firstName || "N/A"} ${deliveryAddress.lastName || "N/A"}</p>
+            <p>${deliveryAddress.address || "N/A"}</p>
+            <p>${deliveryAddress.address2 || "N/A"}</p>
+            <p>${deliveryAddress.state || "N/A"}, ${deliveryAddress.zip || "N/A"}, ${deliveryAddress.country || "N/A"}</p>
+            <p><strong>Phonenumber:</strong> ${phoneNumber || "N/A"}</p>
+            <p><strong>Products Ordered:</strong></p>
+            ${productsTable}
+            <p><strong>Total Amount Paid:</strong> ₹${amount}</p>
+            <p><strong>Payment ID:</strong> ${paymentId}</p>
+            <p>Your order is being processed, and we will notify you once it's shipped.</p>
+            <p>Thank you for shopping with us!</p>
+        `,
+    };
 
+    await transporter.sendMail(userMailOptions);
+    console.log("✅ User order confirmation email sent successfully.");
+} catch (userEmailError) {
+    console.error("❌ Failed to send order confirmation email to user:", userEmailError.message);
+}
+// Send WhatsApp message to user
+await sendWhatsAppMessage(phoneNumber, username, orderId);
   // Send success response to the frontend
-  res.json({ message: "Order stored, email sent, admin sync attempted." });
+  res.json({ message: "Order stored, email sent to admin and user, admin sync attempted." });
 });
 
 app.get('/api/get-billing-address', async (req, res) => {

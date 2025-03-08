@@ -9,6 +9,7 @@
             try {
                 // ✅ Remove token before sending request (to ensure it's cleared)
                 localStorage.removeItem("authToken");
+                localStorage.removeItem("isLoggedIn");
                 localStorage.removeItem('username');
                 console.log("Removed token from localStorage");
                 
