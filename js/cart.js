@@ -98,8 +98,11 @@ function updateCartPage() {
             <td class="total-pr">
                 <p>₹${itemTotalPrice.toFixed(2)}</p> <!-- Display total price -->
             </td>
-            <td><button class="remove-item" data-index="${index}">X</button></td>
+  <td><button class="remove-item" data-index="${index}">Remove</button>
+            <a class="btn hvr-hover buy-now-btn" data-fancybox-close="" href="#">Buy Now</a>
+</td>
         `;
+        updateSubtotal();
         cartBody.appendChild(cartRow);
     });
     totalAmountElement.textContent = `₹${totalAmount.toFixed(2)}`;
@@ -159,7 +162,7 @@ function calculatePrice(price, weight) {
     const multiplier = weight / 250; 
     return price * multiplier;
 }
-//buy now button code
+/*//buy now button code
   // Cart Page Script
   document.addEventListener('DOMContentLoaded', function() {
     const totalPrice = localStorage.getItem('totalPrice');
@@ -180,4 +183,128 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Update the Grand Total in the DOM
     document.getElementById("grand-total").textContent = `₹${grandTotal.toFixed(2)}`;
+});*/
+//lavany code cart and buy now
+//buy-now button code from cart page
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".buy-now-btn").forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            let cartRow = this.closest("tr");
+            let productName = cartRow.querySelector("td:nth-child(2)").textContent.trim();
+            let totalPriceElement = cartRow.querySelector(".total-pr p");
+            let quantityElement = cartRow.querySelector(".quantity-pr p"); 
+
+            if (!totalPriceElement || !quantityElement) return;
+
+            let itemTotalPrice = parseFloat(totalPriceElement.textContent.replace("₹", ""));
+            let quantity = parseInt(quantityElement.textContent.trim());
+
+            // Store data in localStorage
+            localStorage.setItem("productName", productName);
+            localStorage.setItem("totalPrice", itemTotalPrice.toFixed(2));
+            localStorage.setItem("quantity", quantity);
+
+            // Redirect to checkout
+            window.location.href = "checkout.html";
+        });
+    });
+
+
+    if (window.location.pathname.includes("checkout.html")) {
+        let storedTotalPrice = parseFloat(localStorage.getItem("totalPrice")) || 0;
+        let orderTotalElement = document.getElementById("order-total-price");
+        orderTotalElement.textContent = `₹${storedTotalPrice.toFixed(2)}`;
+        orderTotalElement.setAttribute("data-price", storedTotalPrice);
+        updateGrandTotal();
+    }
 });
+function updateGrandTotal() {
+    let subtotal = parseFloat(document.getElementById("order-total-price").getAttribute("data-price")) || 0;
+    let discount = parseFloat(document.getElementById("order-discount").getAttribute("data-price")) || 0;
+    let coupon = parseFloat(document.getElementById("coupon-discount").getAttribute("data-price")) || 0;
+    let tax = parseFloat(document.getElementById("order-tax").getAttribute("data-price")) || 0;
+    let grandTotal = subtotal - discount - coupon + tax;
+    let grandTotalElement = document.getElementById("grand-total");
+    grandTotalElement.textContent = `₹${grandTotal.toFixed(2)}`;
+    grandTotalElement.setAttribute("data-price", grandTotal);
+}
+
+//total amount code to summary
+document.addEventListener("DOMContentLoaded", function () {
+    updateSubtotal();
+});
+
+function updateSubtotal() {
+    let cartTotalElement = document.querySelector(".cart-total-amount");
+    let orderTotalElement = document.getElementById("order-total-price");
+
+    if (cartTotalElement && orderTotalElement) {
+        let cartTotal = parseFloat(cartTotalElement.textContent.replace('₹', '')) || 0;
+
+        // Ensure cart total is valid before updating
+        if (!isNaN(cartTotal) && cartTotal > 0) {
+            cartTotalElement.setAttribute("data-price", cartTotal);
+            orderTotalElement.setAttribute("data-price", cartTotal);
+            orderTotalElement.textContent = `₹${cartTotal.toFixed(2)}`;
+
+            // Update the grand total
+            updateGrandTotal();
+        }
+    }
+}
+
+
+function updateGrandTotal() {
+    let subtotal = parseFloat(document.getElementById("order-total-price").getAttribute("data-price")) || 0;
+    let discount = parseFloat(document.getElementById("order-discount").getAttribute("data-price")) || 0;
+    let coupon = parseFloat(document.getElementById("coupon-discount").getAttribute("data-price")) || 0;
+    let tax = parseFloat(document.getElementById("order-tax").getAttribute("data-price")) || 0;
+
+    // Calculate Grand Total
+    let grandTotal = subtotal - discount - coupon + tax;
+
+    // Update the grand total element
+    let grandTotalElement = document.getElementById("grand-total");
+    if (grandTotalElement) {
+        grandTotalElement.setAttribute("data-price", grandTotal);
+        grandTotalElement.textContent = `₹${grandTotal.toFixed(2)}`;
+    }
+}
+//chsdjslk
+document.getElementById("checkout-button").addEventListener("click", function () {
+    let subtotal = document.getElementById("order-total-price").getAttribute("data-price");
+    let discount = document.getElementById("order-discount").getAttribute("data-price");
+    let couponDiscount = document.getElementById("coupon-discount").getAttribute("data-price");
+    let tax = document.getElementById("order-tax").getAttribute("data-price");
+    let shipping = document.getElementById("order-shipping").getAttribute("data-price") === "Free" ? 0 : document.getElementById("order-shipping").getAttribute("data-price");
+    let grandTotal = document.getElementById("grand-total").getAttribute("data-price");
+
+    // Store values in localStorage
+    localStorage.setItem("subtotal", subtotal);
+    localStorage.setItem("discount", discount);
+    localStorage.setItem("couponDiscount", couponDiscount);
+    localStorage.setItem("tax", tax);
+    localStorage.setItem("shipping", shipping);
+    localStorage.setItem("grandTotal", grandTotal);
+});
+//checkout
+document.getElementById("checkout-button").addEventListener("click", function () {
+    let cartTotal = parseFloat(document.querySelector(".cart-total-amount").textContent.replace('₹', '')) || 0;
+    let discount = parseFloat(document.getElementById("order-discount")?.textContent.replace('₹', '') || 0);
+    let couponDiscount = parseFloat(document.getElementById("coupon-discount")?.textContent.replace('₹', '') || 0);
+    let tax = parseFloat(document.getElementById("order-tax")?.textContent.replace('₹', '') || 0);
+    let shippingCost = parseFloat(document.getElementById("shipping-cost")?.textContent.replace('₹', '') || 0);
+
+    // Calculate new grand total
+    let grandTotal = cartTotal - discount - couponDiscount + tax + shippingCost;
+
+    // Store values in localStorage
+    localStorage.setItem("totalPrice", cartTotal.toFixed(2));  // Store updated subtotal
+    localStorage.setItem("grandTotal", grandTotal.toFixed(2));
+
+    // Redirect to checkout page
+    window.location.href = "checkout.html";
+});
+//

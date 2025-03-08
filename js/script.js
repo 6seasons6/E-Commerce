@@ -282,7 +282,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //cart page buy now total
 // Product Page Script
-document.getElementById('buy-now-button').addEventListener('click', function() {
+document.querySelectorAll('.buy-now-btn').forEach(button => {
+    button.addEventListener('click', function() {
     const productName = product.name; 
     const selectedWeight = parseInt(document.getElementById('weight-select').value, 10);
     const quantity = parseInt(document.getElementById('quantity-input').value, 10) || 1;
@@ -292,22 +293,11 @@ document.getElementById('buy-now-button').addEventListener('click', function() {
     localStorage.setItem('productName', productName);
     localStorage.setItem('totalPrice', totalPrice.toFixed(2));
     localStorage.setItem('quantity', quantity);
-    window.location.href = 'cart.html'; 
+    window.location.href = 'checkout.html'; 
     });
 function calculateTotalPrice(pricePer250Grams, selectedWeight, quantity) {
     const priceForSelectedWeight = (pricePer250Grams / 250) * selectedWeight;
     return priceForSelectedWeight * quantity;
 }
-//checkpout paage total
-document.getElementById('checkout-button').addEventListener('click', function(event) {
-    const productName = product.name; 
-    localStorage.setItem('productName', productName);
-    localStorage.setItem('totalPrice', totalPrice.toFixed(2));
-    const totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
-    if (totalPrice > 0) {
-        window.location.href = 'checkout.html'; 
-    } else {
-        event.preventDefault(); 
-        alert('Your cart is empty. Please add items to proceed to checkout.');
-    }
-});
+
+})

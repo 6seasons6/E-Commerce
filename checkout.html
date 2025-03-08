@@ -425,6 +425,11 @@
                                             <span>|</span>
                                             <p id="total-price"></p>
                                         </div>
+                                        <div id="product-details-container" class="product-details">
+                                            <!-- Product details will be dynamically inserted here -->
+    
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -568,6 +573,10 @@
 
     localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+
+
+ 
     const priceElement = document.getElementById("grand-total");
     const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
     const amount = parseFloat(grandTotal) * 100; // Convert to paise
@@ -576,7 +585,6 @@
         console.error("Invalid amount detected. Grand Total:", grandTotal);
         return;
     }
-
     const username = localStorage.getItem("username");
     if (!username) {
         alert("You need to log in before making a purchase.");
@@ -1178,8 +1186,63 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+  //lavanya  checkout code 
+  document.addEventListener("DOMContentLoaded", function () {
+            let storedTotalPrice = localStorage.getItem("totalPrice");
 
-        </script>
+            if (storedTotalPrice) {
+                let orderTotalElement = document.getElementById("order-subtotal");
+
+                if (orderTotalElement) {
+                    orderTotalElement.textContent = `$${parseFloat(storedTotalPrice).toFixed(2)}`;
+                } else {
+                    console.error("Error: Order subtotal element not found in checkout page!");
+                }
+            }
+        });
+
+        //checkoooutt
+        document.addEventListener("DOMContentLoaded", function () {
+            const totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+            document.getElementById('order-total-price').textContent = `₹${totalPrice.toFixed(2)}`;
+
+            const discount = parseFloat(document.getElementById('order-discount')?.textContent.replace('₹', '') || 0);
+            const couponDiscount = parseFloat(document.getElementById('coupon-discount')?.textContent.replace('₹', '') || 0);
+            const tax = parseFloat(document.getElementById('order-tax')?.textContent.replace('₹', '') || 0);
+            const shippingCost = parseFloat(document.getElementById('shipping-cost')?.textContent.replace('₹', '') || 0);
+
+            const grandTotal = totalPrice - discount - couponDiscount + tax + shippingCost;
+            document.getElementById('grand-total').textContent = `₹${grandTotal.toFixed(2)}`;
+
+            localStorage.setItem("grandTotal", grandTotal.toFixed(2));
+        });
+
+        //cart items showing code
+        document.addEventListener('DOMContentLoaded', function () {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const productDetailsContainer = document.getElementById('product-details-container');
+
+            if (cartItems.length > 0 && productDetailsContainer) {
+                cartItems.forEach(item => {
+                    const productDetail = document.createElement('div');
+                    productDetail.classList.add('product-detail-item');
+                    productDetail.innerHTML = `
+                <h1>${item.name}</h1>
+                <span>|</span>
+                <p>Quantity: ${item.quantity}</p>
+                <span>|</span>
+                <p>Total Price: ₹${(item.price * item.quantity).toFixed(2)}</p>
+                <br>
+            `;
+                    productDetailsContainer.appendChild(productDetail);
+                });
+            } else {
+                productDetailsContainer.innerHTML = '';
+            }
+
+
+        });
+</script>
 
     </div>
 </body>
