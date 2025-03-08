@@ -84,34 +84,34 @@
                                 <option value="EUR">EUR</option>
                             </select>
                         </div>
-                       
+                        
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="login-box">
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-                        <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user s_color"></i> My Account
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                                <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-                                <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Bootstrap JS (for dropdown functionality) -->
+                        <div class="login-box">
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-user s_color"></i> My Account
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                    <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                                    <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                </ul>
+                            </div>
+    
+                           <!-- Bootstrap JS (for dropdown functionality) -->
                         <script
-                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-                        <script>
-                            document.getElementById('account-dropdown').addEventListener('change', function() {
-                                const selectedValue = this.value;
-                                if (selectedValue) {
-                                    window.location.href = selectedValue;  // Redirect to the selected page
-                                }
-                            });
-                        </script>
-					</div>
+                        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                    <script>
+                        document.getElementById('account-dropdown').addEventListener('change', function() {
+                            const selectedValue = this.value;
+                            if (selectedValue) {
+                                window.location.href = selectedValue;  // Redirect to the selected page
+                            }
+                        });
+                    </script>
+                </div>
                         <div class="text-slid-box">
                             <div id="offer-box" class="carouselTicker">
                                 <ul class="offer-box">
@@ -127,6 +127,7 @@
                                     <li>
                                         <i class="fab fa-opencart"></i> Buy 3 masalas, get 1 FREE + 10% OFF on ₹999+! 🌶️
                                     </li>
+                                   
                                 </ul>
                             </div>
                         </div>
@@ -179,14 +180,24 @@
                     <!-- Start Atribute Navigation -->
                     <div class="attr-nav">
                         <ul>
-                            <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
-                            <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i>
+                            
+                                        <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="wishlist.html">    
+                                                <i class="far fa-heart" ></i>
+                                                <span id="wishlist-count" class="wishlist-count badge wishlist-badge"></span>
+                                            </a>
+                            </li>
+                   
+                                   <li class="nav-item"><a href="cart.html">
+                                                <i class="fa fa-shopping-bag"></i>
+                                                <span class="badge" class="cart-count" id="cart-count"></span>
+                                                <span>My Cart</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
                                 </a></li>
-                            <li class="nav-item"><a href="cart.html">
-                                    <i class="fa fa-shopping-bag"></i>
-                                    <span class="badge" class="cart-count" id="cart-count"></span>
-                                    <span>My Cart</span>
-                                </a></li>
+                           
                         </ul>
                     </div>
                     <!-- End Atribute Navigation -->
@@ -274,9 +285,9 @@
                                             <option value="4">Best Selling</option>
                                         </select>
                                     </div>
-                                    <p>Showing all 4 results</p>
-
-                                    <div class="filter-container">
+                                    
+                                    <div class="col12- col-sm-8 text-center text-sm-right">
+                                    <div class="filter-container" >
                                         <label for="filterPrice">Filter by Price:</label>
                                         <select id="filterPrice">
                                             <option value="all" >All</option>
@@ -285,7 +296,7 @@
                                             <option value="high" class="price" data-price="1000">Above ₹1000</option>
                                         </select>
                                     </div>
-
+                                  </div>
                                 </div>
                                 <div class="col-12 col-sm-4 text-center text-sm-right">
                                     <ul class="nav nav-tabs ml-auto">
@@ -300,7 +311,7 @@
                                     </ul>
                                 </div>
                             </div>
-
+                       
                             <div class="product-categorie-box">
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
@@ -309,7 +320,7 @@
 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
                                                     data-price="80" id="product-item-1" class="product-item"
-                                                    data-product-id="1">
+                                                    data-product-id="1" data-category="sweet-essentials" data-subcategory="honey" >
                                                     <div id="product-item">
                                                         <div class="products-single fix">
                                                             <div class="box-img-hover">
@@ -325,14 +336,10 @@
                                                                                 data-toggle="tooltip"
                                                                                 data-placement="right" title="View">
                                                                                 <i class="fas fa-eye"></i>
+
                                                                             </a>
                                                                         </li>
-                                                                        <li><a href="#" data-toggle="tooltip"
-                                                                                data-placement="right"
-                                                                                title="Compare"><i
-                                                                                    class="fas fa-sync-alt"></i>
-                                                                            </a>
-                                                                        </li>
+                                                                        
                                                                         <li><a href="#" data-toggle="tooltip"
                                                                                 data-placement="right"
                                                                                 title="Add to Wishlist"><i
@@ -342,7 +349,7 @@
                                                             </div>
                                                             <div class="why-text">
                                                                 <h4>Honey</h4>
-                                                                <h5 id="price-display-1" class="price" data-price="80">&#8377;80.00</h5>
+                                                                <h5 id="price-display-1">&#8377;80.00</h5>
                                                                 <div class="form-group d-flex align-items-center"
                                                                     style="gap: 4rem;">
                                                                     <!-- Weight Selection -->
@@ -369,19 +376,22 @@
                                                                 </div>
 
 
-                                                                <div class="cart-and-bay-btn">
-                                                                    <a class="btn hvr-hover add-to-cart-btn"
-                                                                        data-product-id="1" href="#">Add to cart</a>
+                                                                <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                    <!-- Add to Cart Button -->
+                                                                    <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                    <!-- Buy Now Button -->
+                                                                    <a class="btn hvr-hover buy-now-button" data-product-id="1"  href="checkout.html"
+                                                                    >Buy Now</a> 
                                                                 </div>
 
-                                                            </div>
+                                                            </div>    
 
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    data-price="200" id="product-item-2">
+                                                    data-price="200" id="product-item-2" data-category="pooja-essentials"  data-subcategory="ghee">
                                                     <div id="product-item">
                                                         <div class="products-single fix">
                                                             <div class="box-img-hover">
@@ -399,11 +409,7 @@
                                                                                 <i class="fas fa-eye"></i>
                                                                             </a>
                                                                         </li>
-                                                                        <li><a href="#" data-toggle="tooltip"
-                                                                                data-placement="right"
-                                                                                title="Compare"><i
-                                                                                    class="fas fa-sync-alt"></i></a>
-                                                                        </li>
+                                                                        
                                                                         <li><a href="#" data-toggle="tooltip"
                                                                                 data-placement="right"
                                                                                 title="Add to Wishlist"><i
@@ -413,7 +419,7 @@
                                                             </div>
                                                             <div class="why-text">
                                                                 <h4>Ghee</h4>
-                                                                <h5 id="price-display-2" class="price" data-price="200">&#8377;200.00</h5>
+                                                                <h5 id="price-display-2">&#8377;200.00</h5>
                                                                 <div class="form-group d-flex align-items-center"
                                                                     style="gap: 4rem;">
                                                                     <!-- Weight Selection -->
@@ -440,16 +446,19 @@
                                                                 </div>
 
 
-                                                                <div class="cart-and-bay-btn">
-                                                                    <a class="btn hvr-hover add-to-cart-btn"
-                                                                        data-product-id="2" href="#">Add to cart</a>
+                                                                <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                    <!-- Add to Cart Button -->
+                                                                    <a class="btn hvr-hover add-to-cart-btn" data-product-id="2" href="#">Add to cart</a>
+                                                                    <!-- Buy Now Button -->
+                                                                    <a class="btn hvr-hover buy-now-button" data-product-id="2" href="checkout.html"
+                                                                    >Buy Now</a> 
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="80" id="product-item-3">
+                                                    product-sortable data-price="80" id="product-item-3" data-category="sweet-essentials"  data-subcategory="brown-sugar">
                                                     <div id="product-item">
                                                         <div class="products-single fix">
                                                             <div class="box-img-hover">
@@ -468,11 +477,7 @@
                                                                                 <i class="fas fa-eye"></i>
                                                                             </a>
                                                                         </li>
-                                                                        <li><a href="#" data-toggle="tooltip"
-                                                                                data-placement="right"
-                                                                                title="Compare"><i
-                                                                                    class="fas fa-sync-alt"></i></a>
-                                                                        </li>
+                                                                        
                                                                         <li><a href="#" data-toggle="tooltip"
                                                                                 data-placement="right"
                                                                                 title="Add to Wishlist"><i
@@ -482,7 +487,7 @@
                                                             </div>
                                                             <div class="why-text">
                                                                 <h4>Brown Sugar</h4>
-                                                                <h5 id="price-display-3" class="price" data-price="80">&#8377;80.00</h5>
+                                                                <h5 id="price-display-3">&#8377;80.00</h5>
                                                                 <div class="form-group d-flex align-items-center"
                                                                     style="gap: 4rem;">
                                                                     <!-- Weight Selection -->
@@ -507,16 +512,19 @@
                                                                             max="20" type="number" style="width: 5rem;">
                                                                     </div>
                                                                 </div>
-                                                                <div class="cart-and-bay-btn">
-                                                                    <a class="btn hvr-hover add-to-cart-btn"
-                                                                        data-product-id="3" href="#">Add to cart</a>
+                                                                <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                    <!-- Add to Cart Button -->
+                                                                    <a class="btn hvr-hover add-to-cart-btn" data-product-id="3" href="cart.html">Add to cart</a>
+                                                                    <!-- Buy Now Button -->
+                                                                    <a class="btn hvr-hover buy-now-button"  data-product-id="3" href="checkout.html"
+                                                                    >Buy Now</a> 
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="80" id="product-item-4">
+                                                    product-sortable data-price="80" id="product-item-4" data-category="sweet-essentials" data-subcategory="crystal-sugar">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -533,10 +541,7 @@
                                                                             <i class="fas fa-eye"></i>
                                                                         </a>
                                                                     </li>
-                                                                    <li><a href="#" data-toggle="tooltip"
-                                                                            data-placement="right" title="Compare"><i
-                                                                                class="fas fa-sync-alt"></i></a>
-                                                                    </li>
+                                                                    
                                                                     <li><a href="#" data-toggle="tooltip"
                                                                             data-placement="right"
                                                                             title="Add to Wishlist"><i
@@ -546,7 +551,7 @@
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Crystal Sugar</h4>
-                                                            <h5 id="price-display-4" class="price" data-price="80">&#8377;80.00</h5>
+                                                            <h5 id="price-display-4">&#8377;80.00</h5>
                                                             <div class="form-group d-flex align-items-center"
                                                                 style="gap: 4rem;">
                                                                 <!-- Weight Selection -->
@@ -570,16 +575,20 @@
                                                                         style="width: 5rem;">
                                                                 </div>
                                                             </div>
-                                                            <div class="cart-and-bay-btn">
-                                                                <a class="btn hvr-hover add-to-cart-btn"
-                                                                    data-product-id="4" href="#">Add to cart</a>
+                                                            <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                <!-- Add to Cart Button -->
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="4" href="#">Add to cart</a>
+                                                                <!-- Buy Now Button -->
+                                                                <a class="btn hvr-hover buy-now-button"  data-product-id="4" href="checkout.html"
+                                                                >Buy Now</a> 
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="200" id="product-item-5">
+                                                    product-sortable data-price="200" id="product-item-5" data-category="pulses" data-subcategory="Organtior Dal">
+                                                    
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -595,10 +604,7 @@
                                                                             <i class="fas fa-eye"></i>
                                                                         </a>
                                                                     </li>
-                                                                    <li><a href="#" data-toggle="tooltip"
-                                                                            data-placement="right" title="Compare"><i
-                                                                                class="fas fa-sync-alt"></i></a>
-                                                                    </li>
+                                                                   
                                                                     <li><a href="#" data-toggle="tooltip"
                                                                             data-placement="right"
                                                                             title="Add to Wishlist"><i
@@ -608,7 +614,7 @@
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Organtior Dal</h4>
-                                                            <h5 id="price-display-5" class="price" data-price="200">&#8377;200.00</h5>
+                                                            <h5 id="price-display-5">&#8377;200.00</h5>
                                                             <div class="form-group d-flex align-items-center"
                                                                 style="gap: 4rem;">
                                                                 <!-- Weight Selection -->
@@ -632,16 +638,19 @@
                                                                         style="width: 5rem;">
                                                                 </div>
                                                             </div>
-                                                            <div class="cart-and-bay-btn">
-                                                                <a class="btn hvr-hover add-to-cart-btn"
-                                                                    data-product-id="5" href="#">Add to cart</a>
+                                                            <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                <!-- Add to Cart Button -->
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="5" href="#">Add to cart</a>
+                                                                <!-- Buy Now Button -->
+                                                                <a class="btn hvr-hover buy-now-button"  data-product-id="5" href="checkout.html"
+                                                                >Buy Now</a> 
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    data-price="100" id="product-item-6">
+                                                    data-price="100" id="product-item-6" data-category="spices-masalas" data-subcategory="Masala Tea">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -658,10 +667,7 @@
                                                                             <i class="fas fa-eye"></i>
                                                                         </a>
                                                                     </li>
-                                                                    <li><a href="#" data-toggle="tooltip"
-                                                                            data-placement="right" title="Compare"><i
-                                                                                class="fas fa-sync-alt"></i></a>
-                                                                    </li>
+                                                                   
                                                                     <li><a href="#" data-toggle="tooltip"
                                                                             data-placement="right"
                                                                             title="Add to Wishlist"><i
@@ -671,7 +677,7 @@
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Masala Tea</h4>
-                                                            <h5 id="price-display-6" class="price" data-price="100">&#8377;100.00</h5>
+                                                            <h5 id="price-display-6">&#8377;100.00</h5>
                                                             <div class="form-group d-flex align-items-center"
                                                                 style="gap: 4rem;">
                                                                 <!-- Weight Selection -->
@@ -695,9 +701,12 @@
                                                                         style="width: 5rem;">
                                                                 </div>
                                                             </div>
-                                                            <div class="cart-and-bay-btn">
-                                                                <a class="btn hvr-hover add-to-cart-btn"
-                                                                    data-product-id="6" href="#">Add to cart</a>
+                                                            <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                <!-- Add to Cart Button -->
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="6" href="#">Add to cart</a>
+                                                                <!-- Buy Now Button -->
+                                                                <a class="btn hvr-hover buy-now-button" data-product-id="6" href="checkout.html"
+                                                                >Buy Now</a> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -717,10 +726,7 @@
                                                                             data-toggle="tooltip" data-placement="right"
                                                                             title="View"><i class="fas fa-eye"></i></a>
                                                                     </li>
-                                                                    <li><a href="#" data-toggle="tooltip"
-                                                                            data-placement="right" title="Compare"><i
-                                                                                class="fas fa-sync-alt"></i></a>
-                                                                    </li>
+                                                                    
                                                                     <li><a href="#" data-toggle="tooltip"
                                                                             data-placement="right"
                                                                             title="Add to Wishlist"><i
@@ -730,7 +736,7 @@
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Organtior Dal</h4>
-                                                            <h5 id="price-display-7" class="price" data-price="250">&#8377;250.00</h5>
+                                                            <h5 id="price-display-7">&#8377;250.00</h5>
                                                             <div class="form-group d-flex align-items-center"
                                                                 style="gap: 4rem;">
                                                                 <!-- Weight Selection -->
@@ -754,16 +760,19 @@
                                                                         style="width: 5rem;">
                                                                 </div>
                                                             </div>
-                                                            <div class="cart-and-bay-btn">
-                                                                <a class="btn hvr-hover add-to-cart-btn"
-                                                                    data-product-id="7" href="#">Add to cart</a>
+                                                            <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                <!-- Add to Cart Button -->
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="7" href="#">Add to cart</a>
+                                                                <!-- Buy Now Button -->
+                                                                <a class="btn hvr-hover buy-now-button"  data-product-id="7" href="checkout.html"
+                                                                >Buy Now</a> 
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="100" id="product-item-8">
+                                                    product-sortable data-price="100" id="product-item-8" data-category="spices-masalas" data-subcategory="pink salt">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -777,10 +786,7 @@
                                                                             data-toggle="tooltip" data-placement="right"
                                                                             title="View"><i class="fas fa-eye"></i></a>
                                                                     </li>
-                                                                    <li><a href="#" data-toggle="tooltip"
-                                                                            data-placement="right" title="Compare"><i
-                                                                                class="fas fa-sync-alt"></i></a>
-                                                                    </li>
+                                                                   
                                                                     <li><a href="#" data-toggle="tooltip"
                                                                             data-placement="right"
                                                                             title="Add to Wishlist"><i
@@ -790,7 +796,7 @@
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Pink Salt</h4>
-                                                            <h5 id="price-display-8" class="price" data-price="100">&#8377;100.00</h5>
+                                                            <h5 id="price-display-8">&#8377;100.00</h5>
                                                             <div class="form-group d-flex align-items-center"
                                                                 style="gap: 4rem;">
                                                                 <!-- Weight Selection -->
@@ -814,16 +820,19 @@
                                                                         style="width: 5rem;">
                                                                 </div>
                                                             </div>
-                                                            <div class="cart-and-bay-btn">
-                                                                <a class="btn hvr-hover add-to-cart-btn"
-                                                                    data-product-id="8" href="#">Add to cart</a>
+                                                            <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                <!-- Add to Cart Button -->
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="8" href="#">Add to cart</a>
+                                                                <!-- Buy Now Button -->
+                                                                <a class="btn hvr-hover buy-now-button" data-product-id="8" href="checkout.html"
+                                                                >Buy Now</a> 
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 product-sortable"
-                                                    product-sortable data-price="150" id="product-item-9">
+                                                    product-sortable data-price="150" id="product-item-9" data-category="pulses" data-subcategory="toor-dal">
                                                     <div class="products-single fix">
                                                         <div class="box-img-hover">
                                                             <div class="type-lb">
@@ -837,10 +846,7 @@
                                                                             data-toggle="tooltip" data-placement="right"
                                                                             title="View"><i class="fas fa-eye"></i></a>
                                                                     </li>
-                                                                    <li><a href="#" data-toggle="tooltip"
-                                                                            data-placement="right" title="Compare"><i
-                                                                                class="fas fa-sync-alt"></i></a>
-                                                                    </li>
+                                                                    
                                                                     <li><a href="#" data-toggle="tooltip"
                                                                             data-placement="right"
                                                                             title="Add to Wishlist"><i
@@ -850,7 +856,7 @@
                                                         </div>
                                                         <div class="why-text">
                                                             <h4>Toor Dal</h4>
-                                                            <h5 id="price-display-9" class="price" data-price="150">&#8377;150.00</h5>
+                                                            <h5 id="price-display-9">&#8377;150.00</h5>
                                                             <div class="form-group d-flex align-items-center"
                                                                 style="gap: 4rem;">
                                                                 <!-- Weight Selection -->
@@ -874,9 +880,12 @@
                                                                         style="width: 5rem;">
                                                                 </div>
                                                             </div>
-                                                            <div class="cart-and-bay-btn">
-                                                                <a class="btn hvr-hover add-to-cart-btn"
-                                                                    data-product-id="9" href="#">Add to cart</a>
+                                                            <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                <!-- Add to Cart Button -->
+                                                                <a class="btn hvr-hover add-to-cart-btn" data-product-id="9" href="#">Add to cart</a>
+                                                                <!-- Buy Now Button -->
+                                                                <a class="btn hvr-hover buy-now-button"  data-product-id="9" href="checkout"
+                                                                >Buy Now</a> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -917,11 +926,7 @@
                                                                                         title="View"><i
                                                                                             class="fas fa-eye"></i></a>
                                                                                 </li>
-                                                                                <li><a href="#" data-toggle="tooltip"
-                                                                                        data-placement="right"
-                                                                                        title="Compare"><i
-                                                                                            class="fas fa-sync-alt"></i></a>
-                                                                                </li>
+                                                                                
                                                                                 <li><a href="#" data-toggle="tooltip"
                                                                                         data-placement="right"
                                                                                         title="Add to Wishlist"><i
@@ -932,7 +937,7 @@
                                                                     </div>
                                                                     <div class="why-text">
                                                                         <h4>Honey</h4>
-                                                                        <h5 class="price" data-price="80">&#8377;80.00</h5>
+                                                                        <h5>&#8377;80.00</h5>
                                                                         <div class="form-group d-flex align-items-center"
                                                                             style="gap: 4rem;">
                                                                             <!-- Weight Selection -->
@@ -962,10 +967,12 @@
                                                                                     style="width: 5rem;">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="cart-and-bay-btn">
-                                                                            <a class="btn hvr-hover add-to-cart-btn"
-                                                                                data-product-id="1" href="#">Add to
-                                                                                cart</a>
+                                                                        <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                            <!-- Add to Cart Button -->
+                                                                            <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                            <!-- Buy Now Button -->
+                                                                            <a class="btn hvr-hover buy-now-button" 
+                                                                               >Buy Now</a> 
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -987,11 +994,7 @@
                                                                                         title="View"><i
                                                                                             class="fas fa-eye"></i></a>
                                                                                 </li>
-                                                                                <li><a href="#" data-toggle="tooltip"
-                                                                                        data-placement="right"
-                                                                                        title="Compare"><i
-                                                                                            class="fas fa-sync-alt"></i></a>
-                                                                                </li>
+                                                                                
                                                                                 <li><a href="#" data-toggle="tooltip"
                                                                                         data-placement="right"
                                                                                         title="Add to Wishlist"><i
@@ -1002,7 +1005,7 @@
                                                                     </div>
                                                                     <div class="why-text">
                                                                         <h4>Ghee</h4>
-                                                                        <h5 class="price" data-price="200">&#8377;200.00</h5>
+                                                                        <h5>&#8377;200.00</h5>
                                                                         <div class="form-group d-flex align-items-center"
                                                                             style="gap: 4rem;">
                                                                             <!-- Weight Selection -->
@@ -1032,10 +1035,12 @@
                                                                                     style="width: 5rem;">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="cart-and-bay-btn">
-                                                                            <a class="btn hvr-hover add-to-cart-btn"
-                                                                                data-product-id="1" href="#">Add to
-                                                                                cart</a>
+                                                                        <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                            <!-- Add to Cart Button -->
+                                                                            <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                            <!-- Buy Now Button -->
+                                                                            <a class="btn hvr-hover buy-now-button"  
+                                                                               >Buy Now</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1056,11 +1061,7 @@
                                                                                         title="View"><i
                                                                                             class="fas fa-eye"></i></a>
                                                                                 </li>
-                                                                                <li><a href="#" data-toggle="tooltip"
-                                                                                        data-placement="right"
-                                                                                        title="Compare"><i
-                                                                                            class="fas fa-sync-alt"></i></a>
-                                                                                </li>
+                                                                               
                                                                                 <li><a href="#" data-toggle="tooltip"
                                                                                         data-placement="right"
                                                                                         title="Add to Wishlist"><i
@@ -1071,7 +1072,7 @@
                                                                     </div>
                                                                     <div class="why-text">
                                                                         <h4>Brown Sugar</h4>
-                                                                        <h5 class="price" data-price="80">&#8377;80.00</h5>
+                                                                        <h5>&#8377;80.00</h5>
                                                                         <div class="form-group d-flex align-items-center"
                                                                             style="gap: 4rem;">
                                                                             <!-- Weight Selection -->
@@ -1101,10 +1102,12 @@
                                                                                     style="width: 5rem;">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="cart-and-bay-btn">
-                                                                            <a class="btn hvr-hover add-to-cart-btn"
-                                                                                data-product-id="1" href="#">Add to
-                                                                                cart</a>
+                                                                        <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                            <!-- Add to Cart Button -->
+                                                                            <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                            <!-- Buy Now Button -->
+                                                                            <a class="btn hvr-hover buy-now-button"  
+                                                                               >Buy Now</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1131,11 +1134,7 @@
                                                                                         title="View"><i
                                                                                             class="fas fa-eye"></i></a>
                                                                                 </li>
-                                                                                <li><a href="#" data-toggle="tooltip"
-                                                                                        data-placement="right"
-                                                                                        title="Compare"><i
-                                                                                            class="fas fa-sync-alt"></i></a>
-                                                                                </li>
+                                                                                
                                                                                 <li><a href="#" data-toggle="tooltip"
                                                                                         data-placement="right"
                                                                                         title="Add to Wishlist"><i
@@ -1146,7 +1145,7 @@
                                                                     </div>
                                                                     <div class="why-text">
                                                                         <h4>Crystal Sugar</h4>
-                                                                        <h5 class="price" data-price="80">&#8377;80.00</h5>
+                                                                        <h5>&#8377;80.00</h5>
                                                                         <div class="form-group d-flex align-items-center"
                                                                             style="gap: 4rem;">
                                                                             <!-- Weight Selection -->
@@ -1176,10 +1175,12 @@
                                                                                     style="width: 5rem;">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="cart-and-bay-btn">
-                                                                            <a class="btn hvr-hover add-to-cart-btn"
-                                                                                data-product-id="1" href="#">Add to
-                                                                                cart</a>
+                                                                        <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                            <!-- Add to Cart Button -->
+                                                                            <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                            <!-- Buy Now Button -->
+                                                                            <a class="btn hvr-hover buy-now-btn" href="checkout.html" 
+                                                                               >Buy Now</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1201,11 +1202,7 @@
                                                                                         title="View"><i
                                                                                             class="fas fa-eye"></i></a>
                                                                                 </li>
-                                                                                <li><a href="#" data-toggle="tooltip"
-                                                                                        data-placement="right"
-                                                                                        title="Compare"><i
-                                                                                            class="fas fa-sync-alt"></i></a>
-                                                                                </li>
+                                                                                
                                                                                 <li><a href="#" data-toggle="tooltip"
                                                                                         data-placement="right"
                                                                                         title="Add to Wishlist"><i
@@ -1216,7 +1213,7 @@
                                                                     </div>
                                                                     <div class="why-text">
                                                                         <h4>Organtior Dal</h4>
-                                                                        <h5 class="price" data-price="200">&#8377;200.00</h5>
+                                                                        <h5>&#8377;200.00</h5>
                                                                         <div class="form-group d-flex align-items-center"
                                                                             style="gap: 4rem;">
                                                                             <!-- Weight Selection -->
@@ -1246,10 +1243,12 @@
                                                                                     style="width: 5rem;">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="cart-and-bay-btn">
-                                                                            <a class="btn hvr-hover add-to-cart-btn"
-                                                                                data-product-id="1" href="#">Add to
-                                                                                cart</a>
+                                                                        <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                            <!-- Add to Cart Button -->
+                                                                            <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                            <!-- Buy Now Button -->
+                                                                            <a class="btn hvr-hover buy-now-btn" href="checkout.html" 
+                                                                               >Buy Now</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1271,11 +1270,7 @@
                                                                                         title="View"><i
                                                                                             class="fas fa-eye"></i></a>
                                                                                 </li>
-                                                                                <li><a href="#" data-toggle="tooltip"
-                                                                                        data-placement="right"
-                                                                                        title="Compare"><i
-                                                                                            class="fas fa-sync-alt"></i></a>
-                                                                                </li>
+                                                                                
                                                                                 <li><a href="#" data-toggle="tooltip"
                                                                                         data-placement="right"
                                                                                         title="Add to Wishlist"><i
@@ -1286,7 +1281,7 @@
                                                                     </div>
                                                                     <div class="why-text">
                                                                         <h4>Masala Tea</h4>
-                                                                        <h5 class="price" data-price="100">&#8377;100.00</h5>
+                                                                        <h5>&#8377;100.00</h5>
                                                                         <div class="form-group d-flex align-items-center"
                                                                             style="gap: 4rem;">
                                                                             <!-- Weight Selection -->
@@ -1316,10 +1311,12 @@
                                                                                     style="width: 5rem;">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="cart-and-bay-btn">
-                                                                            <a class="btn hvr-hover add-to-cart-btn"
-                                                                                data-product-id="1" href="#">Add to
-                                                                                cart</a>
+                                                                        <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                            <!-- Add to Cart Button -->
+                                                                            <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                            <!-- Buy Now Button -->
+                                                                            <a class="btn hvr-hover buy-now-btn" href="checkout.html" 
+                                                                               >Buy Now</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1346,11 +1343,7 @@
                                                                                         title="View"><i
                                                                                             class="fas fa-eye"></i></a>
                                                                                 </li>
-                                                                                <li><a href="#" data-toggle="tooltip"
-                                                                                        data-placement="right"
-                                                                                        title="Compare"><i
-                                                                                            class="fas fa-sync-alt"></i></a>
-                                                                                </li>
+                                                                               
                                                                                 <li><a href="#" data-toggle="tooltip"
                                                                                         data-placement="right"
                                                                                         title="Add to Wishlist"><i
@@ -1361,7 +1354,7 @@
                                                                     </div>
                                                                     <div class="why-text">
                                                                         <h4>Organtior Dal</h4>
-                                                                        <h5 class="price" data-price="250">&#8377;250.00</h5>
+                                                                        <h5>&#8377;250.00</h5>
                                                                         <div class="form-group d-flex align-items-center"
                                                                             style="gap: 4rem;">
                                                                             <!-- Weight Selection -->
@@ -1391,10 +1384,12 @@
                                                                                     style="width: 5rem;">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="cart-and-bay-btn">
-                                                                            <a class="btn hvr-hover add-to-cart-btn"
-                                                                                data-product-id="1" href="#">Add to
-                                                                                cart</a>
+                                                                        <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                            <!-- Add to Cart Button -->
+                                                                            <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                            <!-- Buy Now Button -->
+                                                                            <a class="btn hvr-hover buy-now-btn" href="checkout.html" 
+                                                                               >Buy Now</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1416,11 +1411,7 @@
                                                                                         title="View"><i
                                                                                             class="fas fa-eye"></i></a>
                                                                                 </li>
-                                                                                <li><a href="#" data-toggle="tooltip"
-                                                                                        data-placement="right"
-                                                                                        title="Compare"><i
-                                                                                            class="fas fa-sync-alt"></i></a>
-                                                                                </li>
+                                                                                
                                                                                 <li><a href="#" data-toggle="tooltip"
                                                                                         data-placement="right"
                                                                                         title="Add to Wishlist"><i
@@ -1431,7 +1422,7 @@
                                                                     </div>
                                                                     <div class="why-text">
                                                                         <h4>Pink Salt</h4>
-                                                                        <h5 class="price" data-price="100">&#8377;100.00</h5>
+                                                                        <h5>&#8377;100.00</h5>
                                                                         <div class="form-group d-flex align-items-center"
                                                                             style="gap: 4rem;">
                                                                             <!-- Weight Selection -->
@@ -1461,10 +1452,12 @@
                                                                                     style="width: 5rem;">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="cart-and-bay-btn">
-                                                                            <a class="btn hvr-hover add-to-cart-btn"
-                                                                                data-product-id="1" href="#">Add to
-                                                                                cart</a>
+                                                                        <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                            <!-- Add to Cart Button -->
+                                                                            <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                            <!-- Buy Now Button -->
+                                                                            <a class="btn hvr-hover buy-now-btn"  data-product-id=""="checkout.html" 
+                                                                               >Buy Now</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1486,11 +1479,7 @@
                                                                                         title="View"><i
                                                                                             class="fas fa-eye"></i></a>
                                                                                 </li>
-                                                                                <li><a href="#" data-toggle="tooltip"
-                                                                                        data-placement="right"
-                                                                                        title="Compare"><i
-                                                                                            class="fas fa-sync-alt"></i></a>
-                                                                                </li>
+                                                                                
                                                                                 <li><a href="#" data-toggle="tooltip"
                                                                                         data-placement="right"
                                                                                         title="Add to Wishlist"><i
@@ -1501,7 +1490,7 @@
                                                                     </div>
                                                                     <div class="why-text">
                                                                         <h4>Toor Dal</h4>
-                                                                        <h5 class="price" data-price="150">&#8377;150.00</h5>
+                                                                        <h5>&#8377;150.00</h5>
                                                                         <div class="form-group d-flex align-items-center"
                                                                             style="gap: 4rem;">
                                                                             <!-- Weight Selection -->
@@ -1531,10 +1520,12 @@
                                                                                     style="width: 5rem;">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="cart-and-bay-btn">
-                                                                            <a class="btn hvr-hover add-to-cart-btn"
-                                                                                data-product-id="1" href="#">Add to
-                                                                                cart</a>
+                                                                        <div class="cart-and-bay-btn d-flex justify-content-between">
+                                                                            <!-- Add to Cart Button -->
+                                                                            <a class="btn hvr-hover add-to-cart-btn" data-product-id="1" href="#">Add to cart</a>
+                                                                            <!-- Buy Now Button -->
+                                                                            <a class="btn hvr-hover buy-now-btn"  class="buy-now-button"
+                                                                               >Buy Now</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1561,9 +1552,6 @@
                                                         style="font-size: 24px; color: rgb(207, 39, 39);"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -1572,88 +1560,120 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Categories section  -->
                     <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
-                        <div class="product-categori">
-                            <div class="search-product">
-                                <form action="#">
-                                    <input class="form-control" placeholder="Search here..." type="text">
-                                    <button type="submit"> <i class="fa fa-search"></i> </button>
-                                </form>
-                            </div>
+                        <div class="product-category">
+                            <!-- Search Box -->
+                            
+                            
+                            <!-- Categories Filter -->
                             <div class="filter-sidebar-left">
                                 <div class="title-left">
                                     <h3>Categories</h3>
                                 </div>
-                                <div class="list-group list-group-collapse list-group-sm list-group-tree"
-                                    id="list-group-men" data-children=".sub-men">
+                                <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men">
+                                    
+                                    <!-- Pulses Category -->
                                     <div class="list-group-collapse sub-men">
-                                        <a class="list-group-item list-group-item-action" href="#sub-men1"
-                                            data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Fruits
-                                            &
-                                            Drinks <small class="text-muted">(100)</small>
+                                        <a class="list-group-item list-group-item-action"   data-category="pulses" href="#sub-men-pulses" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men-pulses">
+                                            Pulses <small class="text-muted">(2)</small>
                                         </a>
-                                        <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                                        <div class="collapse" id="sub-men-pulses" data-parent="#list-group-men">
                                             <div class="list-group">
-                                                <a href="#" class="list-group-item list-group-item-action active">Fruits
-                                                    1
-                                                    <small class="text-muted">(50)</small></a>
-                                                <a href="#" class="list-group-item list-group-item-action">Fruits 2
-                                                    <small class="text-muted">(30)</small></a>
-                                                <a href="#" class="list-group-item list-group-item-action">Fruits 3
-                                                    <small class="text-muted">(10)</small></a>
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="pulses" data-subcategory="toor-dal">
+                                                    Toor Dal <small class="text-muted">(1)</small>
+                                                </a>
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="pulses" data-subcategory="Organtior Dal">
+                                                    organtior Dal <small class="text-muted">(1)</small>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
+                            
+                                    <!-- Spices and Masalas Category -->
                                     <div class="list-group-collapse sub-men">
-                                        <a class="list-group-item list-group-item-action" href="#sub-men2"
-                                            data-toggle="collapse" aria-expanded="false"
-                                            aria-controls="sub-men2">Vegetables
-                                            <small class="text-muted">(50)</small>
+                                        <a class="list-group-item list-group-item-action"  data-category="spices-masalas"      href="#sub-men-spices" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men-spices">
+                                            Spices and Masalas <small class="text-muted">(3)</small>
                                         </a>
-                                        <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+                                        <div class="collapse" id="sub-men-spices" data-parent="#list-group-men">
                                             <div class="list-group">
-                                                <a href="#" class="list-group-item list-group-item-action">Vegetables 1
-                                                    <small class="text-muted">(10)</small></a>
-                                                <a href="#" class="list-group-item list-group-item-action">Vegetables 2
-                                                    <small class="text-muted">(20)</small></a>
-                                                <a href="#" class="list-group-item list-group-item-action">Vegetables 3
-                                                    <small class="text-muted">(20)</small></a>
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="spices-masalas" data-subcategory="pink salt">
+                                                    Pink Salt <small class="text-muted">(1)</small>
+                                                </a>
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="spices-masalas" data-subcategory="Masala Tea">
+                                                    Masala Tea<small class="text-muted">(1)</small>
+                                                </a>
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="spices-masalas" data-subcategory="garam-masala">
+                                                    Garam Masala <small class="text-muted">(1)</small>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small
-                                            class="text-muted">(150) </small></a>
-                                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small
-                                            class="text-muted">(11)</small></a>
-                                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small
-                                            class="text-muted">(22)</small></a>
+                            
+                                    <!-- Sweet Essentials Category -->
+                                    <div class="list-group-collapse sub-men">
+                                        <a class="list-group-item list-group-item-action"  data-category="sweet-essentials"     href="#sub-men-sweet" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men-sweet">
+                                            Sweet Essentials <small class="text-muted">(4)</small>
+                                        </a>
+                                        <div class="collapse show" id="sub-men-sweet" data-parent="#list-group-men">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="sweet-essentials" data-subcategory="honey">
+                                                    Honey <small class="text-muted">(1)</small>
+                                                </a>
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="sweet-essentials" data-subcategory="sugar">
+                                                    Sugar <small class="text-muted">(1)</small>
+                                                </a>
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="sweet-essentials" data-subcategory="crystal-sugar">
+                                                    Crystal Sugar <small class="text-muted">(1)</small>
+                                                </a>
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="sweet-essentials" data-subcategory="brown-sugar">
+                                                    Brown Sugar <small class="text-muted">(1)</small>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Pooja Essentials Category -->
+                                    <div class="list-group-collapse sub-men">
+                                        <a class="list-group-item list-group-item-action"   data-category="pooja-essentials" href="#sub-men-pooja" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men-pooja">
+                                            Pooja Essentials <small class="text-muted">(3)</small>
+                                        </a>
+                                        <div class="collapse" id="sub-men-pooja" data-parent="#list-group-men">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="pooja-essentials" data-subcategory="camphor">
+                                                    Camphor <small class="text-muted">(1)</small>
+                                                </a>
+                                                <a href="#" class="list-group-item list-group-item-action" data-category="pooja-essentials" data-subcategory="ghee">
+                                                    Ghee <small class="text-muted">(1)</small>
+                                                </a>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                            
                                 </div>
                             </div>
-                            <div class="filter-price-left">
-                                <div class="title-left">
-                                    <h3>Price</h3>
-                                </div>
-                                <div class="price-box-slider">
-                                    <div id="slider-range"></div>
-                                    <p>
-                                        <input type="text" id="amount" readonly
-                                            style="border:0; color:#fbb714; font-weight:bold;">
-                                        <button class="btn hvr-hover" type="submit">Filter</button>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            
+                        
+                    
+
+                    
+                    
+                    
+           </div> 
+         </div>
+
+          </div>
+
+
         <!-- End Shop Page -->
 
         <!-- Start Instagram Feed  -->
         <div class="instagram-box">
             <div class="main-instagram owl-carousel owl-theme">
                 <div class="item">
-                    <div class="ins-inner-box">
+                    
+                        <div class="ins-inner-box">            
                         <img src="images/insta1.jpeg" alt="Instagram Image 1" />
                         <div class="hov-in">
                             <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i
@@ -1923,7 +1943,6 @@
         });
         
          </script>
-    
 
         <!-- Start copyright  -->
         <div class="footer-copyright">
@@ -1959,6 +1978,14 @@
         <!--filtering functionality-->
         <script src="js/filtering.js"></script>
         <script src="js/shopdescription.js"></script>
+        <script src="js/shopdetailswishlist.js"></script>
+        <script src="js/category.js"> </script>
+        <script src="js/script.js"></script>
+         <script src="js/wishlist.js"></script> 
+        <script src="js/cart.js"></script>
+        
+
+
 
 
 

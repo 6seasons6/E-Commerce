@@ -573,7 +573,6 @@
 
     localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
     const priceElement = document.getElementById("grand-total");
     const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
     const amount = parseFloat(grandTotal) * 100; // Convert to paise
