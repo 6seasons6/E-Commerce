@@ -119,6 +119,7 @@
             list-style: none;
             flex-direction: column;
             box-shadow: 0 0 2px 2px #f1efef;
+            width:250px;
         }
         
         .card-wrapper{
@@ -129,6 +130,9 @@
         .card-list .card-item {
             list-style: none;
             
+        }
+        .card-list{
+            animation: slide 5s infinite linear;
         }
 
         .card-list .card-item img {
@@ -202,12 +206,18 @@
                 height: 70vh;
                 margin-top: 200px;
             }
+            .card-list .card-item .card-box {
+                width:120px;
+            }
         } 
         @media screen and (min-width:600px) and (max-width:900px){
                 .popup{
                     margin-top: 200px;
                     height:70vh;
                 }
+                .card-list .card-item .card-box {
+                width:200px;
+            }
         }
 
         /* Footer Styling */
@@ -236,6 +246,15 @@
         ::-webkit-scrollbar-thumb {
             background-color: #2b7a3a;
             border-radius: 4px;
+        }
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-680px);
+            }
         }
     </style>
 </head>
@@ -305,11 +324,7 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="swiper-pagination"></div>
-
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
+                    
                 </div>
 
             </div>
