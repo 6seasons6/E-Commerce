@@ -75,14 +75,14 @@
                     <div class="login-box">
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
                         <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user s_color"></i> My Account
+                            <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-user s_color"></i> 
+                                <span id="userNameDisplay">My Account</span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                                <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-                                <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
-                                <li><a class="dropdown-item" href="signout.html">Sign Out</a></li>
+                                <li id="signUpOption"><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                                <li id="signInOption"><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                <li id="signOutOption" style="display: none;"><a class="dropdown-item" href="signout.html">Sign Out</a></li>
                             </ul>
                         </div>
 
@@ -318,14 +318,19 @@
                                         <div class="invalid-feedback"> Valid last name is required. </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="username">Username *</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="username" placeholder="" required>
-                                        <div class="invalid-feedback" style="width: 100%;"> Your username is required.
-                                        </div>
-                                    </div>
+                                <!-- Country Code and Phone Number Fields -->
+                               <div class="col-md-6 mb-3">
+                                <label for="phoneNumber">Phone Number *</label>
+                                <div class="d-flex align-items-center">
+                                    <select class="form-control w-25 " id="countryCode" required>
+                                        <option value="" data-display="Code">Code</option>
+                                    </select>
+                                    <input type="tel" class="form-control " id="phoneNumber" placeholder="Phone Number" required>
                                 </div>
+                                <div id="phoneNumberError" class="invalid-feedback">
+                                    Phone number is required and should be 10 digits.
+                                </div>
+                            </div>
                                 <div class="mb-3">
                                     <label for="email">Email Address *</label>
                                     <input type="email" class="form-control" id="email" placeholder="">
@@ -413,6 +418,26 @@
                                     </div>
                                 </div>
                             </div> -->
+                            <div class="col-md-12 col-lg-12">
+                                <div class="shipping-method-box">
+                                    <div class="title-left">
+                                        <h3>Payment Mode</h3>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="custom-control custom-radio">
+                                            <input id="shippingOption1" name="shipping-option"
+                                                class="custom-control-input" checked="checked" type="radio">
+                                            <label class="custom-control-label" for="shippingOption1">Cash on Delivery
+                                    </label> 
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input id="shippingOption2" name="shipping-option"
+                                                class="custom-control-input" type="radio">
+                                            <label class="custom-control-label" for="shippingOption2">Online
+                                                Payment</label> 
+                                        </div>
+                                        </div>
+
                             <div class="col-md-12 col-lg-12">
                                 <div class="odr-box">
                                     <div class="title-left">
@@ -503,6 +528,25 @@
                                         </div>
                                     </div>
                                 </div>
+                                 <!-- Modal for Login Alert -->
+<div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginAlertModalLabel" style="color: black; font-size: 1.5rem;">Login Required</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
+            </div>
+            <div class="modal-body">
+                You need to log in before making a purchase.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: lightcoral; color: white;">Close</button>
+                <button type="button" class="btn btn-primary" id="signInButton"><a href="signin.html" >Sign In</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
                                 <script>
                                     document.getElementById('rzp-button').onclick = function (e) {
     e.preventDefault();
@@ -519,7 +563,9 @@
     const country = document.getElementById('country').value.trim();
     const state = document.getElementById('state').value.trim();
     const zip = document.getElementById('zip').value.trim(); 
-
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const countryCode= document.getElementById('countryCode').value;
+    const phoneRegex = /^\d{10}$/; // Example: 10 digits
     // Validate each field and display error messages if empty
     let isValid = true;
     
@@ -529,6 +575,10 @@
     }
     if (!lastName) {
         showError('lastName', 'Last name is required.');
+        isValid = false;
+    }
+    if (!phoneRegex.test(phoneNumber)) {
+        showError('phoneNumber', 'PhoneNumber is required and it should be of 10 digits.');
         isValid = false;
     }
     if (!email) {
@@ -568,6 +618,8 @@
         state: state,
         zip: zip,
         country: country,
+        phoneNumber:phoneNumber,
+        countryCode:countryCode,
     };
 
 
@@ -583,8 +635,9 @@
     }
     const username = localStorage.getItem("username");
     if (!username) {
-        alert("You need to log in before making a purchase.");
-        return;
+        // Show the modal instead of alert
+    $('#loginAlertModal').modal('show');
+    return;
     }
 
     // **Create Order on Backend**
@@ -620,7 +673,7 @@
 
                 localStorage.removeItem('cartItems'); // Clear cart items
                 // Clear billing address fields (but keep data in localStorage)
-                const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'country', 'state', 'username'];
+                const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'country', 'state', 'username','phoneNumber','countryCode'];
                 fields.forEach(id => {
                     const field = document.getElementById(id);
                     if (field) field.value = ''; // Clear the input fields
@@ -648,7 +701,9 @@
                     paymentId: response.razorpay_payment_id,
                     amount: parseFloat(grandTotal),
                     products: formattedProducts,
-                    deliveryAddress: billingAddress 
+                    deliveryAddress: billingAddress,
+                    phoneNumber:billingAddress.phoneNumber, 
+                    countryCode:billingAddress.countryCode, 
                 };
 
                 // **Store Order & Billing Address in Database**
@@ -691,6 +746,7 @@ function showError(fieldId, message) {
             field.parentNode.insertBefore(errorElement, field.nextSibling);
         }
         errorElement.textContent = message;
+        errorElement.style.display = 'block'; // Show the error message
     }
 }
 
@@ -1016,6 +1072,7 @@ function clearErrorMessages() {
         <script src="js/contact-form-script.js"></script>
         <script src="js/custom.js"></script>
         <script src="js/script.js"></script>
+        <script src="js/myaccount.js"></script>
         <script>
             //checkout grand total code
             document.addEventListener('DOMContentLoaded', function () {
@@ -1085,10 +1142,38 @@ $.getJSON('json/states.json', function(data) {
     });
     
 });
+document.addEventListener('DOMContentLoaded', function () {
+    // Fetch country codes from the JSON file
+    fetch('json/countryCodes.json') // Update the path to your JSON file
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const countryCodeDropdown = document.getElementById('countryCode');
+            if (countryCodeDropdown) {
+                // Clear existing options (except the first one)
+                countryCodeDropdown.innerHTML = '<option value="" data-display="Code">Code</option>';
+
+                // Populate the dropdown with country codes
+                data.forEach(country => {
+                    const option = document.createElement('option');
+                    option.value = country.code; // Set the value to the country code
+                    option.textContent = `${country.code} (${country.name})`; // Display code and name
+                    countryCodeDropdown.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching country codes:', error);
+        });
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     const usePreviousAddressCheckbox = document.getElementById('use-previous-address');
-    const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'username'];
+    const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'username',,'phoneNumber','countryCode'];
 
     // Ensure checkbox is unchecked on page load
     if (usePreviousAddressCheckbox) {
@@ -1113,7 +1198,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     const field = document.getElementById(id);
                     if (field) field.value = previousAddress[id] || '';
                 });
-
+                // Populate Country Code Dropdown Correctly
+                const countryCodeDropdown = document.getElementById('countryCode');
+                if (countryCodeDropdown && previousAddress.countryCode) {
+                    setTimeout(() => {
+                        countryCodeDropdown.value = previousAddress.countryCode;
+                        countryCodeDropdown.dispatchEvent(new Event('change')); // Ensure it updates correctly
+                    }, 300); // Small delay to allow dropdown to load
+                }
                 // Set the country value and trigger change event
                 const countryDropdown = document.getElementById('country');
                 if (countryDropdown && previousAddress.country) {
@@ -1141,6 +1233,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const stateDropdown = document.getElementById('state');
                 if (stateDropdown) stateDropdown.value = '';
+
+                const countryCodeDropdown = document.getElementById('countryCode');
+                if (countryCodeDropdown) countryCodeDropdown.value = '';
             }
         });
     }
@@ -1155,6 +1250,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('address2').value = address.address2 || '';
         document.getElementById('zip').value = address.zip || '';
         document.getElementById('country').value = address.country || '';
+        document.getElementById('phoneNumber').value = address.phoneNumber || '';
+        document.getElementById('countryCode').value = address.countryCode || '';
         
         if (address.state) {
             loadStates(address.country, function () {
