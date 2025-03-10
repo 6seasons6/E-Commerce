@@ -281,23 +281,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //cart page buy now total
-// Product Page Script
-document.querySelectorAll('.buy-now-btn').forEach(button => {
-    button.addEventListener('click', function() {
-    const productName = product.name; 
-    const selectedWeight = parseInt(document.getElementById('weight-select').value, 10);
-    const quantity = parseInt(document.getElementById('quantity-input').value, 10) || 1;
-    const pricePer250Grams = parseFloat(product.price);  
-    const totalPrice = calculateTotalPrice(pricePer250Grams, selectedWeight, quantity);
 
-    localStorage.setItem('productName', productName);
-    localStorage.setItem('totalPrice', totalPrice.toFixed(2));
-    localStorage.setItem('quantity', quantity);
-    window.location.href = 'checkout.html'; 
+//latest code
+document.querySelectorAll('.buy-now-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        const productName = product.name;
+        const selectedWeight = parseInt(document.getElementById('weight-select').value, 10);
+        const quantity = parseInt(document.getElementById('quantity-input').value, 10) || 1;
+        const pricePer250Grams = parseFloat(product.price);
+        const totalPrice = calculateTotalPrice(pricePer250Grams, selectedWeight, quantity);
+
+        const buyNowItem = {
+            name: productName,                                                                                                                                                              
+            total: parseFloat(totalPrice.toFixed(2)), 
+            quantity: quantity
+        };
+
+        localStorage.setItem('buyNowItems', JSON.stringify(buyNowItem)); // Store in localStorage as an object
+        window.location.href = 'checkout.html';
     });
+});
+
 function calculateTotalPrice(pricePer250Grams, selectedWeight, quantity) {
     const priceForSelectedWeight = (pricePer250Grams / 250) * selectedWeight;
     return priceForSelectedWeight * quantity;
 }
-
-})

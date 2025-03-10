@@ -22,8 +22,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Bootstrap 5 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Responsive CSS -->
@@ -47,13 +47,12 @@
     </script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
-        @media screen and (width<600px){
-            .all-title-box{
+        @media screen and (width<600px) {
+            .all-title-box {
                 display: none;
             }
 
         }
-
     </style>
 </head>
 
@@ -63,26 +62,29 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="custom-select-box">
+                    <div class="custom-select-box">
                         <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-							<option value="INR">INR</option>
+                            <option value="INR">INR</option>
                             <option value="USD">USD</option>
                             <option value="EUR">EUR</option>
-						</select>
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="login-box">
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
                         <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user s_color"></i> 
+                            <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-user s_color"></i>
                                 <span id="userNameDisplay">My Account</span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="accountDropdown">
                                 <li id="signUpOption"><a class="dropdown-item" href="signup.html">Sign Up</a></li>
                                 <li id="signInOption"><a class="dropdown-item" href="signin.html">Sign In</a></li>
-                                <li id="signOutOption" style="display: none;"><a class="dropdown-item" href="signout.html">Sign Out</a></li>
+                                <li id="signOutOption" style="display: none;"><a class="dropdown-item"
+                                        href="signout.html">Sign Out</a></li>
                             </ul>
                         </div>
 
@@ -90,14 +92,14 @@
                         <script
                             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
                         <script>
-                            document.getElementById('account-dropdown').addEventListener('change', function() {
+                            document.getElementById('account-dropdown').addEventListener('change', function () {
                                 const selectedValue = this.value;
                                 if (selectedValue) {
                                     window.location.href = selectedValue;  // Redirect to the selected page
                                 }
                             });
                         </script>
-					</div>
+                    </div>
                     <div class="text-slid-box">
                         <div id="offer-box" class="carouselTicker">
                             <ul class="offer-box">
@@ -122,273 +124,270 @@
     </div>
     <!-- End Main Top -->
 
-        <!-- Start Main Top -->
-        <header class="main-header">
-            <!-- Start Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-                <div class="container">
-                    <!-- Start Header Navigation -->
-                    <div class="navbar-header">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
-                            aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" alt=""></a>
-                    </div>
-                    <!-- End Header Navigation -->
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="navbar-menu">
-                        <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="shop.html">Sidebar Shop</a></li>
-                                    <!--  <li><a href="cart.html">Cart</a></li>-->
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-                            <li class="nav-item">
-                                <div class="input-group">
-                                    <input type="text" id="search"
-                                        style=" border: solid 3px black;  height: 40px;  font-size:18px; vertical-align:9px"
-                                        placeholder="Search" size="10" width="5" />
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
-
-                    <!-- Start Atribute Navigation -->
-                    <div class="attr-nav">
-                        <ul>
-                            <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
-                            <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i>
-                                </a></li>
-                            <li class="nav-item"><a href="cart.html">
-                                    <i class="fa fa-shopping-bag"></i>
-                                    <span class="badge"></span>
-                                    <span>My Cart</span>
-                                </a></li>
-                        </ul>
-                    </div>
-                    <!-- End Atribute Navigation -->
-                </div>
-                <!-- Start Side Menu -->
-                <div class="side">
-                    <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                    <li class="cart-box">
-                        <ul class="cart-list">
-                            <li>
-                                <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb"
-                                        alt="" /></a>
-                                <h6><a href="#">Delica omtantur </a></h6>
-                                <p>1x - <span class="price">$80.00</span></p>
-                            </li>
-                            <li>
-                                <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb"
-                                        alt="" /></a>
-                                <h6><a href="#">Omnes ocurreret</a></h6>
-                                <p>1x - <span class="price">$60.00</span></p>
-                            </li>
-                            <li>
-                                <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb"
-                                        alt="" /></a>
-                                <h6><a href="#">Agam facilisis</a></h6>
-                                <p>1x - <span class="price">$40.00</span></p>
-                            </li>
-                            <li class="total">
-                                <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                                <span class="float-right"><strong>Total</strong>: $180.00</span>
-                            </li>
-                        </ul>
-                    </li>
-                </div>
-                <!-- End Side Menu -->
-            </nav>
-            <!-- End Navigation -->
-        </header>
-        <!-- End Main Top -->
-
-        <!-- Start Top Search -->
-        <div class="top-search">
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
             <div class="container">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                    <input type="text" class="form-control" id="searchInput" placeholder="Enter a word to Search">
-                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" alt=""></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="dropdown active">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="shop.html">Sidebar Shop</a></li>
+                                <!--  <li><a href="cart.html">Cart</a></li>-->
+                                <li><a href="checkout.html">Checkout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                        <li class="nav-item">
+                            <div class="input-group">
+                                <input type="text" id="search"
+                                    style=" border: solid 3px black;  height: 40px;  font-size:18px; vertical-align:9px"
+                                    placeholder="Search" size="10" width="5" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="wishlist.html"> <i class="far fa-heart"> </i>
+                            </a></li>
+                        <li class="nav-item"><a href="cart.html">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="badge"></span>
+                                <span>My Cart</span>
+                            </a></li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+            <!-- Start Side Menu -->
+            <div class="side">
+                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+                <li class="cart-box">
+                    <ul class="cart-list">
+                        <li>
+                            <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Delica omtantur </a></h6>
+                            <p>1x - <span class="price">$80.00</span></p>
+                        </li>
+                        <li>
+                            <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Omnes ocurreret</a></h6>
+                            <p>1x - <span class="price">$60.00</span></p>
+                        </li>
+                        <li>
+                            <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Agam facilisis</a></h6>
+                            <p>1x - <span class="price">$40.00</span></p>
+                        </li>
+                        <li class="total">
+                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <span class="float-right"><strong>Total</strong>: $180.00</span>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <!-- End Side Menu -->
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" id="searchInput" placeholder="Enter a word to Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Checkout</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">Checkout</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <!-- End Top Search -->
+    </div>
+    <!-- End All Title Box -->
 
-        <!-- Start All Title Box -->
-        <div class="all-title-box">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Checkout</h2>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                            <li class="breadcrumb-item active">Checkout</li>
-                        </ul>
+    <!-- Start Cart  -->
+    <div class="cart-box-main">
+        <div class="container">
+            <div class="row new-account-login">
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="title-left">
+                        <h3>Account Login</h3>
                     </div>
+                    <h5><a data-toggle="collapse" href="#formLogin" role="button" aria-expanded="false">Click here
+                            to Login</a></h5>
+                    <form class="mt-3 collapse review-form-box" id="formLogin">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="InputEmail" class="mb-0">Email Address</label>
+                                <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="InputPassword" class="mb-0">Password</label>
+                                <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn hvr-hover">Login</button>
+                    </form>
+                </div>
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="title-left">
+                        <h3>Create New Account</h3>
+                    </div>
+                    <h5><a data-toggle="collapse" href="#formRegister" role="button" aria-expanded="false">Click
+                            here to Register</a></h5>
+                    <form class="mt-3 collapse review-form-box" id="formRegister">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="InputName" class="mb-0">First Name</label>
+                                <input type="text" class="form-control" id="InputName" placeholder="First Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="InputLastname" class="mb-0">Last Name</label>
+                                <input type="text" class="form-control" id="InputLastname" placeholder="Last Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="InputEmail1" class="mb-0">Email Address</label>
+                                <input type="email" class="form-control" id="InputEmail1" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="InputPassword1" class="mb-0">Password</label>
+                                <input type="password" class="form-control" id="InputPassword1" placeholder="Password">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn hvr-hover">Register</button>
+                    </form>
                 </div>
             </div>
-        </div>
-        <!-- End All Title Box -->
-
-        <!-- Start Cart  -->
-        <div class="cart-box-main">
-            <div class="container">
-                <div class="row new-account-login">
-                    <div class="col-sm-6 col-lg-6 mb-3">
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="checkout-address">
                         <div class="title-left">
-                            <h3>Account Login</h3>
+                            <h3>Billing address</h3>
                         </div>
-                        <h5><a data-toggle="collapse" href="#formLogin" role="button" aria-expanded="false">Click here
-                                to Login</a></h5>
-                        <form class="mt-3 collapse review-form-box" id="formLogin">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="InputEmail" class="mb-0">Email Address</label>
-                                    <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email">
+                        <form class="needs-validation" id="billingForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName">First name *</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                        required>
+                                    <div class="invalid-feedback"> Valid first name is required. </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="InputPassword" class="mb-0">Password</label>
-                                    <input type="password" class="form-control" id="InputPassword"
-                                        placeholder="Password">
-                                </div>
-                            </div>
-                            <button type="submit" class="btn hvr-hover">Login</button>
-                        </form>
-                    </div>
-                    <div class="col-sm-6 col-lg-6 mb-3">
-                        <div class="title-left">
-                            <h3>Create New Account</h3>
-                        </div>
-                        <h5><a data-toggle="collapse" href="#formRegister" role="button" aria-expanded="false">Click
-                                here to Register</a></h5>
-                        <form class="mt-3 collapse review-form-box" id="formRegister">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="InputName" class="mb-0">First Name</label>
-                                    <input type="text" class="form-control" id="InputName" placeholder="First Name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="InputLastname" class="mb-0">Last Name</label>
-                                    <input type="text" class="form-control" id="InputLastname" placeholder="Last Name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="InputEmail1" class="mb-0">Email Address</label>
-                                    <input type="email" class="form-control" id="InputEmail1" placeholder="Enter Email">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="InputPassword1" class="mb-0">Password</label>
-                                    <input type="password" class="form-control" id="InputPassword1"
-                                        placeholder="Password">
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName">Last name *</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                        required>
+                                    <div class="invalid-feedback"> Valid last name is required. </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn hvr-hover">Register</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 col-lg-6 mb-3">
-                        <div class="checkout-address">
-                            <div class="title-left">
-                                <h3>Billing address</h3>
-                            </div>
-                            <form class="needs-validation" id="billingForm" novalidate>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="firstName">First name *</label>
-                                        <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                            required>
-                                        <div class="invalid-feedback"> Valid first name is required. </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="lastName">Last name *</label>
-                                        <input type="text" class="form-control" id="lastName" placeholder="" value=""
-                                            required>
-                                        <div class="invalid-feedback"> Valid last name is required. </div>
-                                    </div>
-                                </div>
-                                <!-- Country Code and Phone Number Fields -->
-                               <div class="col-md-6 mb-3">
+                            <!-- Country Code and Phone Number Fields -->
+                            <div class="col-md-6 mb-3">
                                 <label for="phoneNumber">Phone Number *</label>
                                 <div class="d-flex align-items-center">
                                     <select class="form-control w-25 " id="countryCode" required>
                                         <option value="" data-display="Code">Code</option>
                                     </select>
-                                    <input type="tel" class="form-control " id="phoneNumber" placeholder="Phone Number" required>
+                                    <input type="tel" class="form-control " id="phoneNumber" placeholder="Phone Number"
+                                        required>
                                 </div>
                                 <div id="phoneNumberError" class="invalid-feedback">
                                     Phone number is required and should be 10 digits.
                                 </div>
                             </div>
-                                <div class="mb-3">
-                                    <label for="email">Email Address *</label>
-                                    <input type="email" class="form-control" id="email" placeholder="">
-                                    <div class="invalid-feedback"> Please enter a valid email address for shipping
-                                        updates. </div>
+                            <div class="mb-3">
+                                <label for="email">Email Address *</label>
+                                <input type="email" class="form-control" id="email" placeholder="">
+                                <div class="invalid-feedback"> Please enter a valid email address for shipping
+                                    updates. </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address">Address *</label>
+                                <input type="text" class="form-control" id="address" placeholder="" required>
+                                <div class="invalid-feedback"> Please enter your shipping address. </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address2">Address 2 </label>
+                                <input type="text" class="form-control" id="address2" placeholder="" required>
+                                <div class="invalid-feedback"> please enter your another shiping address. </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 mb-3">
+                                    <label for="country">Country *</label>
+                                    <select class="wide w-100" id="country" required>
+                                        <option value="" data-display="Select">Choose...</option>
+                                    </select>
+                                    <div class="invalid-feedback"> Please select a valid country. </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="address">Address *</label>
-                                    <input type="text" class="form-control" id="address" placeholder="" required>
-                                    <div class="invalid-feedback"> Please enter your shipping address. </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="state">State *</label>
+                                    <select class="wide w-100" id="state" required>
+                                        <option value="" data-display="Select">Choose...</option>
+                                    </select>
+                                    <div class="invalid-feedback"> Please select a valid state. </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="address2">Address 2 </label>
-                                    <input type="text" class="form-control" id="address2" placeholder="" required>
-                                    <div class="invalid-feedback"> please enter your another shiping address. </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="zip">Zip *</label>
+                                    <input type="text" class="form-control" id="zip" placeholder="" required>
+                                    <div class="invalid-feedback"> Zip code required. </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-5 mb-3">
-                                        <label for="country">Country *</label>
-                                        <select class="wide w-100" id="country" required>
-                                            <option value="" data-display="Select">Choose...</option>
-                                        </select>
-                                        <div class="invalid-feedback"> Please select a valid country. </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="state">State *</label>
-                                        <select class="wide w-100" id="state" required>
-                                            <option value="" data-display="Select">Choose...</option>
-                                        </select>
-                                        <div class="invalid-feedback"> Please select a valid state. </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="zip">Zip *</label>
-                                        <input type="text" class="form-control" id="zip" placeholder="" required>
-                                        <div class="invalid-feedback"> Zip code required. </div>
-                                    </div>
-                                </div>
-                                <hr class="mb-4">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="use-previous-address">
-                                    <label class="custom-control-label" for="use-previous-address">Use previous billing address</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="same-address">
-                                    <label class="custom-control-label" for="same-address">Shipping address is the same
-                                        as my billing address</label>
-                                </div>
-                                <!-- <div class="custom-control custom-checkbox">
+                            </div>
+                            <hr class="mb-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="use-previous-address">
+                                <label class="custom-control-label" for="use-previous-address">Use previous billing
+                                    address</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="same-address">
+                                <label class="custom-control-label" for="same-address">Shipping address is the same
+                                    as my billing address</label>
+                            </div>
+                            <!-- <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="save-info">
                                     <label class="custom-control-label" for="save-info">Save this information for next
                                         time</label>
                                 </div> -->
-                                <hr class="mb-4">
-                        </div>
+                            <hr class="mb-4">
                     </div>
-                    <div class="col-sm-6 col-lg-6 mb-3">
-                        <div class="row">
-                            <!-- <div class="col-md-12 col-lg-12">
+                </div>
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="row">
+                        <!-- <div class="col-md-12 col-lg-12">
                                 <div class="shipping-method-box">
                                     <div class="title-left">
                                         <h3>Shipping Method</h3>
@@ -418,42 +417,39 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <div class="col-md-12 col-lg-12">
-                                <div class="shipping-method-box">
-                                    <div class="title-left">
-                                        <h3>Payment Mode</h3>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="shipping-method-box">
+                                <div class="title-left">
+                                    <h3>Payment Mode</h3>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="custom-control custom-radio">
+                                        <input id="shippingOption1" name="shipping-option" class="custom-control-input"
+                                            checked="checked" type="radio">
+                                        <label class="custom-control-label" for="shippingOption1">Cash on Delivery
+                                        </label>
                                     </div>
-                                    <div class="mb-4">
-                                        <div class="custom-control custom-radio">
-                                            <input id="shippingOption1" name="shipping-option"
-                                                class="custom-control-input" checked="checked" type="radio">
-                                            <label class="custom-control-label" for="shippingOption1">Cash on Delivery
-                                    </label> 
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input id="shippingOption2" name="shipping-option"
-                                                class="custom-control-input" type="radio">
-                                            <label class="custom-control-label" for="shippingOption2">Online
-                                                Payment</label> 
-                                        </div>
-                                        </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="shippingOption2" name="shipping-option" class="custom-control-input"
+                                            type="radio">
+                                        <label class="custom-control-label" for="shippingOption2">Online
+                                            Payment</label>
+                                    </div>
+                                </div>
 
-                            <div class="col-md-12 col-lg-12">
-                                <div class="odr-box">
-                                    <div class="title-left">
-                                        <h3>Your Cart Items</h3>
-                                        <div class="product-details">
-                                            <br>
-                                            <h1 id="product-name">Product Name</h1>
-                                            <span>|</span>
-                                            <p id="product-quantity"></p>
-                                            <span>|</span>
-                                            <p id="total-price"></p>
-                                        </div>
-                                        <div id="product-details-container" class="product-details">
-                                            <!-- Product details will be dynamically inserted here -->
-    
-                                        </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="odr-box">
+                                        <div class="title-left">
+                                            <h3>Your Cart Items</h3>
+                                            <div class="product-details">
+                                                <br>
+                                                <h1 id="product-name">Product Name</h1>
+                                                <span>|</span>
+                                                <p id="product-quantity"></p>
+                                                <span>|</span>
+                                                <p id="total-price"></p>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -471,23 +467,28 @@
                                     <hr class="my-1">
                                     <div class="total-price-heading d-flex">
                                         <h4>Sub total</h4>
-                                        <p id="order-total-price" class="ml-auto font-weight-bold price" data-price="0">₹0.00</p>
+                                        <p id="order-total-price" class="ml-auto font-weight-bold price" data-price="0">
+                                            ₹0.00</p>
                                     </div>
                                     <div class="d-flex">
                                         <h4>Discount</h4>
-                                        <div id="order-discount" class="ml-auto font-weight-bold price" data-price="40">₹40</div>
+                                        <div id="order-discount" class="ml-auto font-weight-bold price" data-price="40">
+                                            ₹40</div>
                                     </div>
                                     <div class="d-flex">
                                         <h4>Coupon Discount</h4>
-                                        <div id="coupon-discount" class="ml-auto font-weight-bold price" data-price="10">₹10</div>
+                                        <div id="coupon-discount" class="ml-auto font-weight-bold price"
+                                            data-price="10">₹10</div>
                                     </div>
                                     <div class="d-flex">
                                         <h4>Tax</h4>
-                                        <div id="order-tax" class="ml-auto font-weight-bold price" data-price="2">₹2</div>
+                                        <div id="order-tax" class="ml-auto font-weight-bold price" data-price="2">₹2
+                                        </div>
                                     </div>
                                     <div class="d-flex">
                                         <h4>Shipping Cost</h4>
-                                        <div id="shipping-cost" class="ml-auto font-weight-bold price" data-price="0">₹0</div>
+                                        <div id="shipping-cost" class="ml-auto font-weight-bold price" data-price="0">₹0
+                                        </div>
                                     </div>
                                     <hr>
                                     <div class="d-flex gr-total">
@@ -509,12 +510,15 @@
                             <div class="col-12 d-flex shopping-box mt-4">
                                 <button id="rzp-button" class="ml-auto btn hvr-hover">Pay Now</button>
                                 <div id="payment-message"></div>
-                                <div class="modal fade" id="orderConfirmationModal" tabindex="-1" aria-labelledby="orderConfirmationModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="orderConfirmationModal" tabindex="-1"
+                                    aria-labelledby="orderConfirmationModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="orderConfirmationModalLabel" style="color: green; font-size: 1.5rem;">Order Confirmation</h5>
-                                                <button type="button" class="btn-close" style="color: lightcoral;" data-bs-dismiss="modal" aria-label="Close" ></button>
+                                                <h5 class="modal-title" id="orderConfirmationModalLabel"
+                                                    style="color: green; font-size: 1.5rem;">Order Confirmation</h5>
+                                                <button type="button" class="btn-close" style="color: lightcoral;"
+                                                    data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <p>🎉 Your order has been successfully placed!</p>
@@ -523,239 +527,256 @@
                                                 <p><strong>Order ID:</strong> <span id="order-id"></span></p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" style="background-color: lightcoral; color: white;" data-bs-dismiss="modal" >Close</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    style="background-color: lightcoral; color: white;"
+                                                    data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                 <!-- Modal for Login Alert -->
-<div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlertModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginAlertModalLabel" style="color: black; font-size: 1.5rem;">Login Required</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
-            </div>
-            <div class="modal-body">
-                You need to log in before making a purchase.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: lightcoral; color: white;">Close</button>
-                <button type="button" class="btn btn-primary" id="signInButton"><a href="signin.html" >Sign In</a>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+                                <!-- Modal for Login Alert -->
+                                <div class="modal fade" id="loginAlertModal" tabindex="-1"
+                                    aria-labelledby="loginAlertModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="loginAlertModalLabel"
+                                                    style="color: black; font-size: 1.5rem;">Login Required</h5>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                You need to log in before making a purchase.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                    style="background-color: lightcoral; color: white;">Close</button>
+                                                <button type="button" class="btn btn-primary" id="signInButton"><a
+                                                        href="signin.html">Sign In</a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <script>
                                     document.getElementById('rzp-button').onclick = function (e) {
-    e.preventDefault();
+                                        e.preventDefault();
 
-    // Clear any previous error messages
-    clearErrorMessages();
+                                        // Clear any previous error messages
+                                        clearErrorMessages();
 
-    // Get all required billing address fields
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const address2 = document.getElementById('address2').value.trim();
-    const country = document.getElementById('country').value.trim();
-    const state = document.getElementById('state').value.trim();
-    const zip = document.getElementById('zip').value.trim(); 
-    const phoneNumber = document.getElementById('phoneNumber').value;
-    const countryCode= document.getElementById('countryCode').value;
-    const phoneRegex = /^\d{10}$/; // Example: 10 digits
-    // Validate each field and display error messages if empty
-    let isValid = true;
-    
-    if (!firstName) {
-        showError('firstName', 'First name is required.');
-        isValid = false;
-    }
-    if (!lastName) {
-        showError('lastName', 'Last name is required.');
-        isValid = false;
-    }
-    if (!phoneRegex.test(phoneNumber)) {
-        showError('phoneNumber', 'PhoneNumber is required and it should be of 10 digits.');
-        isValid = false;
-    }
-    if (!email) {
-        showError('email', 'Email address is required.');
-        isValid = false;
-    }
-    if (!address && !address2) {
-        showError('address', 'Address is required.');
-        isValid = false;
-    }
-    if (!country) {
-        showError('country', 'Country is required.');
-        isValid = false;
-    }
-    if (!state) {
-        showError('state', 'State is required.');
-        isValid = false;
-    }
-    if (!zip) {
-        showError('zip', 'Zip code is required.');
-        isValid = false;
-    }
+                                        // Get all required billing address fields
+                                        const firstName = document.getElementById('firstName').value.trim();
+                                        const lastName = document.getElementById('lastName').value.trim();
+                                        const email = document.getElementById('email').value.trim();
+                                        const address = document.getElementById('address').value.trim();
+                                        const address2 = document.getElementById('address2').value.trim();
+                                        const country = document.getElementById('country').value.trim();
+                                        const state = document.getElementById('state').value.trim();
+                                        const zip = document.getElementById('zip').value.trim();
+                                        const phoneNumber = document.getElementById('phoneNumber').value;
+                                        const countryCode = document.getElementById('countryCode').value;
+                                        const phoneRegex = /^\d{10}$/; // Example: 10 digits
+                                        // Validate each field and display error messages if empty
+                                        let isValid = true;
 
-    // If any field is invalid, stop further execution
-    if (!isValid) {
-        return;
-    }
+                                        if (!firstName) {
+                                            showError('firstName', 'First name is required.');
+                                            isValid = false;
+                                        }
+                                        if (!lastName) {
+                                            showError('lastName', 'Last name is required.');
+                                            isValid = false;
+                                        }
+                                        if (!phoneRegex.test(phoneNumber)) {
+                                            showError('phoneNumber', 'PhoneNumber is required and it should be of 10 digits.');
+                                            isValid = false;
+                                        }
+                                        if (!email) {
+                                            showError('email', 'Email address is required.');
+                                            isValid = false;
+                                        }
+                                        if (!address && !address2) {
+                                            showError('address', 'Address is required.');
+                                            isValid = false;
+                                        }
+                                        if (!country) {
+                                            showError('country', 'Country is required.');
+                                            isValid = false;
+                                        }
+                                        if (!state) {
+                                            showError('state', 'State is required.');
+                                            isValid = false;
+                                        }
+                                        if (!zip) {
+                                            showError('zip', 'Zip code is required.');
+                                            isValid = false;
+                                        }
 
-    // Proceed with payment if all fields are filled
-    const billingAddress = {
-        firstName: firstName,
-        lastName: lastName,
-        username: localStorage.getItem('username') || "Unknown User",
-        email: email,
-        address: address,
-        address2: address2,
-        state: state,
-        zip: zip,
-        country: country,
-        phoneNumber:phoneNumber,
-        countryCode:countryCode,
-    };
+                                        // If any field is invalid, stop further execution
+                                        if (!isValid) {
+                                            return;
+                                        }
+
+                                        // Proceed with payment if all fields are filled
+                                        const billingAddress = {
+                                            firstName: firstName,
+                                            lastName: lastName,
+                                            username: localStorage.getItem('username') || "Unknown User",
+                                            email: email,
+                                            address: address,
+                                            address2: address2,
+                                            state: state,
+                                            zip: zip,
+                                            country: country,
+                                            phoneNumber: phoneNumber,
+                                            countryCode: countryCode,
+                                        };
 
 
-    localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const priceElement = document.getElementById("grand-total");
-    const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
-    const amount = parseFloat(grandTotal) * 100; // Convert to paise
+                                        localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
+                                        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                                        const priceElement = document.getElementById("grand-total");
+                                        const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
+                                        const amount = parseFloat(grandTotal) * 100; // Convert to paise
 
-    if (amount <= 0 || isNaN(amount)) {
-        console.error("Invalid amount detected. Grand Total:", grandTotal);
-        return;
-    }
-    const username = localStorage.getItem("username");
-    if (!username) {
-        // Show the modal instead of alert
-    $('#loginAlertModal').modal('show');
-    return;
-    }
+                                        if (amount <= 0 || isNaN(amount)) {
+                                            console.error("Invalid amount detected. Grand Total:", grandTotal);
+                                            return;
+                                        }
+                                        const username = localStorage.getItem("username");
+                                        if (!username) {
+                                            // Show the modal instead of alert
+                                            $('#loginAlertModal').modal('show');
+                                            return;
+                                        }
 
-    // **Create Order on Backend**
-    fetch(`http://127.0.0.1:5000/api/create-order`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: amount }) 
-    })
-    .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-    })
-    .then(data => {
-        console.log("Order ID from API:", data.id);
+                                        // **Create Order on Backend**
+                                        fetch(`http://127.0.0.1:5000/api/create-order`, {
+                                            method: 'POST',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ amount: amount })
+                                        })
+                                            .then(response => {
+                                                if (!response.ok) {
+                                                    throw new Error('Network response was not ok');
+                                                }
+                                                return response.json();
+                                            })
+                                            .then(data => {
+                                                console.log("Order ID from API:", data.id);
 
-        var options = {
-            key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
-            amount: data.amount,
-            currency: "INR",
-            name: "6SeasonsOrganic",
-            description: "Test Transaction",
-            order_id: data.id,
-            handler: function (response) {
-                 // Populate the modal with payment ID and order ID
-                 document.getElementById("payment-id").innerText = response.razorpay_payment_id;
-                                                    document.getElementById("order-id").innerText = data.id;
+                                                var options = {
+                                                    key: "rzp_test_8Ic05YIxwCqwyr", // Test Key ID
+                                                    amount: data.amount,
+                                                    currency: "INR",
+                                                    name: "6SeasonsOrganic",
+                                                    description: "Test Transaction",
+                                                    order_id: data.id,
+                                                    handler: function (response) {
+                                                        // Populate the modal with payment ID and order ID
+                                                        document.getElementById("payment-id").innerText = response.razorpay_payment_id;
+                                                        document.getElementById("order-id").innerText = data.id;
 
                                                         // Show the modal on successful payment
-                                                    $('#orderConfirmationModal').modal('show');
-                console.log("Payment successful! Payment ID:", response.razorpay_payment_id);
+                                                        $('#orderConfirmationModal').modal('show');
+                                                        console.log("Payment successful! Payment ID:", response.razorpay_payment_id);
 
-                localStorage.removeItem('cartItems'); // Clear cart items
-                // Clear billing address fields (but keep data in localStorage)
-                const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'country', 'state', 'username','phoneNumber','countryCode'];
-                fields.forEach(id => {
-                    const field = document.getElementById(id);
-                    if (field) field.value = ''; // Clear the input fields
-                });
+                                                        localStorage.removeItem('cartItems'); // Clear cart items
+                                                        // Clear billing address fields (but keep data in localStorage)
+                                                        const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'country', 'state', 'username', 'phoneNumber', 'countryCode'];
+                                                        fields.forEach(id => {
+                                                            const field = document.getElementById(id);
+                                                            if (field) field.value = ''; // Clear the input fields
+                                                        });
 
-                // Uncheck the "Use previous billing address" checkbox
-                const usePreviousAddressCheckbox = document.getElementById('use-previous-address');
-                if (usePreviousAddressCheckbox) {
-                    usePreviousAddressCheckbox.checked = false; // Uncheck the checkbox
-                }
+                                                        // Uncheck the "Use previous billing address" checkbox
+                                                        const usePreviousAddressCheckbox = document.getElementById('use-previous-address');
+                                                        if (usePreviousAddressCheckbox) {
+                                                            usePreviousAddressCheckbox.checked = false; // Uncheck the checkbox
+                                                        }
 
-                const formattedProducts = cartItems.map(item => ({
-                    productName: item.name,
-                    image: item.image,
-                    price: item.price,
-                    weight: item.weight,
-                    quantity: item.quantity,
-                    totalPrice: item.total
-                }));
+                                                        const formattedProducts = cartItems.map(item => ({
+                                                            productName: item.name,
+                                                            image: item.image,
+                                                            price: item.price,
+                                                            weight: item.weight,
+                                                            quantity: item.quantity,
+                                                            totalPrice: item.total
+                                                        }));
 
-                const orderDetails = {
-                    orderId: data.id,
-                    username: localStorage.getItem("username") || "Unknown User",
-                    email: billingAddress.email,
-                    paymentId: response.razorpay_payment_id,
-                    amount: parseFloat(grandTotal),
-                    products: formattedProducts,
-                    deliveryAddress: billingAddress,
-                    phoneNumber:billingAddress.phoneNumber, 
-                    countryCode:billingAddress.countryCode, 
-                };
+                                                        const orderDetails = {
+                                                            orderId: data.id,
+                                                            username: localStorage.getItem("username") || "Unknown User",
+                                                            email: billingAddress.email,
+                                                            paymentId: response.razorpay_payment_id,
+                                                            amount: parseFloat(grandTotal),
+                                                            products: formattedProducts,
+                                                            deliveryAddress: billingAddress,
+                                                            phoneNumber: billingAddress.phoneNumber,
+                                                            countryCode: billingAddress.countryCode,
+                                                        };
 
-                // **Store Order & Billing Address in Database**
-                fetch(`http://127.0.0.1:5000/api/store-order`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(orderDetails)
-                })
-                .then(response => response.json())
-                .then(data => console.log("Order stored successfully:", data))
-                .catch(error => console.error("Error storing order:", error));
-            },
-            prefill: {
-                name: "Your Name",
-                email: "your.email@example.com",
-                contact: "9999999999"
-            }
-        };
-        var rzp1 = new Razorpay(options);
-        rzp1.open();
-    })
-    .catch(function (error) {
-        console.error('Error:', error);
-        alert("Error in payment: " + (error.message || error));
-    });
-};
+                                                        // **Store Order & Billing Address in Database**
+                                                        fetch(`http://127.0.0.1:5000/api/store-order`, {
+                                                            method: "POST",
+                                                            headers: { "Content-Type": "application/json" },
+                                                            body: JSON.stringify(orderDetails)
+                                                        })
+                                                            .then(response => response.json())
+                                                            .then(data => {
+                                                                console.log("Order stored successfully:", data);
 
-// Function to display error messages below specific fields
-function showError(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    if (field) {
-        // Create or update the error message element
-        let errorElement = field.nextElementSibling;
-        if (!errorElement || !errorElement.classList.contains('error-message')) {
-            errorElement = document.createElement('div');
-            errorElement.className = 'error-message';
-            errorElement.style.color = 'red';
-            errorElement.style.fontSize = '0.875rem';
-            errorElement.style.marginTop = '0.25rem';
-            field.parentNode.insertBefore(errorElement, field.nextSibling);
-        }
-        errorElement.textContent = message;
-        errorElement.style.display = 'block'; // Show the error message
-    }
-}
+                                                                // Clear cart items
+                                                                localStorage.setItem("orderTotalItems", JSON.stringify([]));
+                                                                localStorage.setItem("cartSubtotal", "0.00");
+                                                                localStorage.setItem("grandTotal", "0.00");
 
-// Function to clear all error messages
-function clearErrorMessages() {
-    const errorMessages = document.querySelectorAll('.error-message');
-    errorMessages.forEach(error => error.remove());
-}
-    </script>
+                                                                // Refresh the checkout page
+                                                                window.location.reload();
+                                                            })
+                                                            .catch(error => console.error("Error storing order:", error));
+                                                    },
+                                                    prefill: {
+                                                        name: "Your Name",
+                                                        email: "your.email@example.com",
+                                                        contact: "9999999999"
+                                                    }
+                                                };
+                                                var rzp1 = new Razorpay(options);
+                                                rzp1.open();
+                                            })
+                                            .catch(function (error) {
+                                                console.error('Error:', error);
+                                                alert("Error in payment: " + (error.message || error));
+                                            });
+                                    };
+
+                                    // Function to display error messages below specific fields
+                                    function showError(fieldId, message) {
+                                        const field = document.getElementById(fieldId);
+                                        if (field) {
+                                            // Create or update the error message element
+                                            let errorElement = field.nextElementSibling;
+                                            if (!errorElement || !errorElement.classList.contains('error-message')) {
+                                                errorElement = document.createElement('div');
+                                                errorElement.className = 'error-message';
+                                                errorElement.style.color = 'red';
+                                                errorElement.style.fontSize = '0.875rem';
+                                                errorElement.style.marginTop = '0.25rem';
+                                                field.parentNode.insertBefore(errorElement, field.nextSibling);
+                                            }
+                                            errorElement.textContent = message;
+                                            errorElement.style.display = 'block'; // Show the error message
+                                        }
+                                    }
+
+                                    // Function to clear all error messages
+                                    function clearErrorMessages() {
+                                        const errorMessages = document.querySelectorAll('.error-message');
+                                        errorMessages.forEach(error => error.remove());
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -864,14 +885,16 @@ function clearErrorMessages() {
                                 <h3>Newsletter</h3>
                                 <form class="newsletter-box" id="subscribeForm">
                                     <div class="form-group">
-                                        <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
+                                        <input class="" type="email" name="Email" id="email"
+                                            placeholder="Email Address*" />
                                         <i class="fa fa-envelope"></i>
                                     </div>
                                     <button class="btn hvr-hover" type="submit">Submit</button>
                                 </form>
                                 <div id="statusMessage" style="display: none;">
                                     <span id="statusMessageText"></span>
-                                    <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                                    <button id="closeMessage"
+                                        style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
                                 </div>
                             </div>
                         </div>
@@ -958,15 +981,15 @@ function clearErrorMessages() {
                 USD: 0.012, // 1 INR = 0.012 USD
                 EUR: 0.011 // 1 INR = 0.011 EUR
             };
-        
+
             // Function to handle the currency change
             function changeCurrency(currency) {
                 const prices = document.querySelectorAll('.price');
-                
+
                 prices.forEach((priceElement) => {
                     const basePrice = priceElement.getAttribute('data-price');
                     const convertedPrice = (basePrice * rates[currency]).toFixed(2);
-                    
+
                     if (currency === 'INR') {
                         priceElement.textContent = `Price: ₹${convertedPrice}`;
                     } else if (currency === 'USD') {
@@ -976,74 +999,74 @@ function clearErrorMessages() {
                     }
                 });
             }
-        
+
             // Event listener for the select dropdown
-            document.getElementById('basic').addEventListener('change', function() {
+            document.getElementById('basic').addEventListener('change', function () {
                 const selectedCurrency = this.value;
                 changeCurrency(selectedCurrency);
             });
         </script>
         <script>
-            document.getElementById('subscribeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-        
-            const email = document.getElementById('email').value;
-        
-            if (email) {
-                fetch('http://127.0.0.1:5000/subscribe', { 
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email: email })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const statusMessageDiv = document.getElementById('statusMessage');
-                    const statusMessageText = document.getElementById('statusMessageText');
-                    const closeButton = document.getElementById('closeMessage');
-                    
-                    // Set message text
-                    statusMessageText.textContent = data.message;
-        
-                    // Apply green style for success
-                    statusMessageDiv.style.color = 'white';
-                    statusMessageDiv.style.backgroundColor = 'green';
-                    statusMessageDiv.style.padding = '10px';
-                    statusMessageDiv.style.borderRadius = '5px';
-                    statusMessageDiv.style.textAlign = 'center';
-                    statusMessageDiv.style.display = 'block';  // Make the message visible
-        
-                    // Close button functionality
-                    closeButton.addEventListener('click', () => {
-                        statusMessageDiv.style.display = 'none';  // Hide the message when clicked
-                    });
-                })
-                .catch(error => {
-                    const statusMessageDiv = document.getElementById('statusMessage');
-                    const statusMessageText = document.getElementById('statusMessageText');
-                    const closeButton = document.getElementById('closeMessage');
-        
-                    // Set error message
-                    statusMessageText.textContent = "There was an error. Please try again.";
-        
-                    // Apply red style for error
-                    statusMessageDiv.style.color = 'white';
-                    statusMessageDiv.style.backgroundColor = 'red';
-                    statusMessageDiv.style.padding = '10px';
-                    statusMessageDiv.style.borderRadius = '5px';
-                    statusMessageDiv.style.textAlign = 'center';
-                    statusMessageDiv.style.display = 'block';  // Make the message visible
-        
-                    // Close button functionality
-                    closeButton.addEventListener('click', () => {
-                        statusMessageDiv.style.display = 'none';  // Hide the message when clicked
-                    });
-                });
-            }
-        });
-        
-         </script>
+            document.getElementById('subscribeForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value;
+
+                if (email) {
+                    fetch('http://127.0.0.1:5000/subscribe', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: email })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            const statusMessageDiv = document.getElementById('statusMessage');
+                            const statusMessageText = document.getElementById('statusMessageText');
+                            const closeButton = document.getElementById('closeMessage');
+
+                            // Set message text
+                            statusMessageText.textContent = data.message;
+
+                            // Apply green style for success
+                            statusMessageDiv.style.color = 'white';
+                            statusMessageDiv.style.backgroundColor = 'green';
+                            statusMessageDiv.style.padding = '10px';
+                            statusMessageDiv.style.borderRadius = '5px';
+                            statusMessageDiv.style.textAlign = 'center';
+                            statusMessageDiv.style.display = 'block';  // Make the message visible
+
+                            // Close button functionality
+                            closeButton.addEventListener('click', () => {
+                                statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                            });
+                        })
+                        .catch(error => {
+                            const statusMessageDiv = document.getElementById('statusMessage');
+                            const statusMessageText = document.getElementById('statusMessageText');
+                            const closeButton = document.getElementById('closeMessage');
+
+                            // Set error message
+                            statusMessageText.textContent = "There was an error. Please try again.";
+
+                            // Apply red style for error
+                            statusMessageDiv.style.color = 'white';
+                            statusMessageDiv.style.backgroundColor = 'red';
+                            statusMessageDiv.style.padding = '10px';
+                            statusMessageDiv.style.borderRadius = '5px';
+                            statusMessageDiv.style.textAlign = 'center';
+                            statusMessageDiv.style.display = 'block';  // Make the message visible
+
+                            // Close button functionality
+                            closeButton.addEventListener('click', () => {
+                                statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                            });
+                        });
+                }
+            });
+
+        </script>
 
         <!-- Start copyright  -->
         <div class="footer-copyright">
@@ -1073,253 +1096,226 @@ function clearErrorMessages() {
         <script src="js/custom.js"></script>
         <script src="js/script.js"></script>
         <script src="js/myaccount.js"></script>
+        
+
         <script>
-            //checkout grand total code
+          
+            $(document).ready(function () {
+                $.getJSON('json/countries.json', function (countries) {
+                    // Populate the dropdown
+                    countries.forEach(function (country) {
+                        $('#country').append(new Option(country.text, country.id));
+                    });
+
+                    // Initialize Select2
+                    $('#country').select2({
+                        placeholder: "Choose...",
+                        allowClear: true
+                    });
+                }).fail(function () {
+                    console.error("Error loading countries.json");
+                });
+
+                // Load states
+                $.getJSON('json/states.json', function (data) {
+                    $('#country').change(function () {
+                        const selectedCountry = $(this).val();
+                        $('#state').empty().append(new Option("Choose...", ""));
+
+                        if (selectedCountry && data[selectedCountry]) {
+                            data[selectedCountry].forEach(function (state) {
+                                $('#state').append(new Option(state.text, state.id));
+                            });
+                        }
+                        $('#state').select2({
+                            placeholder: "Choose...",
+                            allowClear: true
+                        });
+                    });
+                }).fail(function () {
+                    console.error("Error loading states.json");
+                });
+
+            });
             document.addEventListener('DOMContentLoaded', function () {
-                const totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
-                document.getElementById('order-total-price').textContent = `₹${totalPrice.toFixed(2)}`;
-                const discount = parseFloat(document.getElementById('order-discount').textContent.replace('₹', '')) || 0;
-                const couponDiscount = parseFloat(document.getElementById('coupon-discount').textContent.replace('₹', '')) || 0;
-                const tax = parseFloat(document.getElementById('order-tax').textContent.replace('₹', '')) || 0;
-                const shippingCost = parseFloat(document.getElementById('shipping-cost').textContent.replace('₹', '')) || 0;
-                const grandTotal = totalPrice - discount - couponDiscount + tax + shippingCost;
-                document.getElementById('grand-total').textContent = `₹${grandTotal.toFixed(2)}`;
+                // Fetch country codes from the JSON file
+                fetch('json/countryCodes.json') // Update the path to your JSON file
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const countryCodeDropdown = document.getElementById('countryCode');
+                        if (countryCodeDropdown) {
+                            // Clear existing options (except the first one)
+                            countryCodeDropdown.innerHTML = '<option value="" data-display="Code">Code</option>';
+
+                            // Populate the dropdown with country codes
+                            data.forEach(country => {
+                                const option = document.createElement('option');
+                                option.value = country.code; // Set the value to the country code
+                                option.textContent = `${country.code} (${country.name})`; // Display code and name
+                                countryCodeDropdown.appendChild(option);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching country codes:', error);
+                    });
             });
-        </script>
-        <script>
+
             document.addEventListener('DOMContentLoaded', function () {
-                const productName = localStorage.getItem('productName');
-                const totalPrice = localStorage.getItem('totalPrice');
-                const quantity = localStorage.getItem('quantity');
-                const productNameElement = document.getElementById('product-name');
-                const totalPriceElement = document.getElementById('total-price');
-                const quantityElement = document.getElementById('product-quantity');
-                if (productNameElement) {
-                    productNameElement.textContent = productName || "Product Not Found";
-                }
-                if (totalPriceElement) {
-                    totalPriceElement.textContent = totalPrice ? `Total Price: ₹${totalPrice}` : "Total Price Not Available";
-                }
-                if (quantityElement) {
-                    quantityElement.textContent = quantity ? `Quantity: ${quantity}` : "Quantity Not Available";
-                }
-            });
+                const usePreviousAddressCheckbox = document.getElementById('use-previous-address');
+                const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'username', , 'phoneNumber', 'countryCode'];
 
-            $(document).ready(function() {
-    $.getJSON('json/countries.json', function(countries) {
-        // Populate the dropdown
-        countries.forEach(function(country) {
-            $('#country').append(new Option(country.text, country.id));
-        });
-
-        // Initialize Select2
-        $('#country').select2({
-            placeholder: "Choose...",
-            allowClear: true
-        });
-    }).fail(function() {
-        console.error("Error loading countries.json");
-    });
-
-// Load states
-$.getJSON('json/states.json', function(data) {
-        $('#country').change(function() {
-            const selectedCountry = $(this).val();
-            $('#state').empty().append(new Option("Choose...", ""));
-
-            if (selectedCountry && data[selectedCountry]) {
-                data[selectedCountry].forEach(function(state) {
-                    $('#state').append(new Option(state.text, state.id));
-                });
-            }
-            $('#state').select2({
-                placeholder: "Choose...",
-                allowClear: true
-            });
-        });
-    }).fail(function() {
-        console.error("Error loading states.json");
-    });
-    
-});
-document.addEventListener('DOMContentLoaded', function () {
-    // Fetch country codes from the JSON file
-    fetch('json/countryCodes.json') // Update the path to your JSON file
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const countryCodeDropdown = document.getElementById('countryCode');
-            if (countryCodeDropdown) {
-                // Clear existing options (except the first one)
-                countryCodeDropdown.innerHTML = '<option value="" data-display="Code">Code</option>';
-
-                // Populate the dropdown with country codes
-                data.forEach(country => {
-                    const option = document.createElement('option');
-                    option.value = country.code; // Set the value to the country code
-                    option.textContent = `${country.code} (${country.name})`; // Display code and name
-                    countryCodeDropdown.appendChild(option);
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching country codes:', error);
-        });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const usePreviousAddressCheckbox = document.getElementById('use-previous-address');
-    const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'username',,'phoneNumber','countryCode'];
-
-    // Ensure checkbox is unchecked on page load
-    if (usePreviousAddressCheckbox) {
-        usePreviousAddressCheckbox.checked = false;
-    }
-
-    // Clear fields on page load
-    fields.forEach(id => {
-        const field = document.getElementById(id);
-        if (field) field.value = '';
-    });
-    
-    // Load previous address from localStorage
-    const previousAddress = JSON.parse(localStorage.getItem('billingAddress')) || {};
-
-    // Handle checkbox toggle
-    if (usePreviousAddressCheckbox) {
-        usePreviousAddressCheckbox.addEventListener('change', function () {
-            if (this.checked && previousAddress) {
-                // Populate fields with stored values
-                fields.forEach(id => {
-                    const field = document.getElementById(id);
-                    if (field) field.value = previousAddress[id] || '';
-                });
-                // Populate Country Code Dropdown Correctly
-                const countryCodeDropdown = document.getElementById('countryCode');
-                if (countryCodeDropdown && previousAddress.countryCode) {
-                    setTimeout(() => {
-                        countryCodeDropdown.value = previousAddress.countryCode;
-                        countryCodeDropdown.dispatchEvent(new Event('change')); // Ensure it updates correctly
-                    }, 300); // Small delay to allow dropdown to load
-                }
-                // Set the country value and trigger change event
-                const countryDropdown = document.getElementById('country');
-                if (countryDropdown && previousAddress.country) {
-                    countryDropdown.value = previousAddress.country;
-                    $(countryDropdown).trigger('change'); // Trigger change event to populate states
+                // Ensure checkbox is unchecked on page load
+                if (usePreviousAddressCheckbox) {
+                    usePreviousAddressCheckbox.checked = false;
                 }
 
-                // Set the state value after the states are populated
-                setTimeout(() => {
-                    const stateDropdown = document.getElementById('state');
-                    if (stateDropdown && previousAddress.state) {
-                        stateDropdown.value = previousAddress.state;
-                    }
-                }, 500); // Add a small delay to ensure states are populated
-            } else {
-                // Clear fields if unchecked
+                // Clear fields on page load
                 fields.forEach(id => {
                     const field = document.getElementById(id);
                     if (field) field.value = '';
                 });
 
-                // Clear country and state dropdowns
-                const countryDropdown = document.getElementById('country');
-                if (countryDropdown) countryDropdown.value = '';
+                // Load previous address from localStorage
+                const previousAddress = JSON.parse(localStorage.getItem('billingAddress')) || {};
 
-                const stateDropdown = document.getElementById('state');
-                if (stateDropdown) stateDropdown.value = '';
+                // Handle checkbox toggle
+                if (usePreviousAddressCheckbox) {
+                    usePreviousAddressCheckbox.addEventListener('change', function () {
+                        if (this.checked && previousAddress) {
+                            // Populate fields with stored values
+                            fields.forEach(id => {
+                                const field = document.getElementById(id);
+                                if (field) field.value = previousAddress[id] || '';
+                            });
+                            // Populate Country Code Dropdown Correctly
+                            const countryCodeDropdown = document.getElementById('countryCode');
+                            if (countryCodeDropdown && previousAddress.countryCode) {
+                                setTimeout(() => {
+                                    countryCodeDropdown.value = previousAddress.countryCode;
+                                    countryCodeDropdown.dispatchEvent(new Event('change')); // Ensure it updates correctly
+                                }, 300); // Small delay to allow dropdown to load
+                            }
+                            // Set the country value and trigger change event
+                            const countryDropdown = document.getElementById('country');
+                            if (countryDropdown && previousAddress.country) {
+                                countryDropdown.value = previousAddress.country;
+                                $(countryDropdown).trigger('change'); // Trigger change event to populate states
+                            }
 
-                const countryCodeDropdown = document.getElementById('countryCode');
-                if (countryCodeDropdown) countryCodeDropdown.value = '';
-            }
-        });
-    }
+                            // Set the state value after the states are populated
+                            setTimeout(() => {
+                                const stateDropdown = document.getElementById('state');
+                                if (stateDropdown && previousAddress.state) {
+                                    stateDropdown.value = previousAddress.state;
+                                }
+                            }, 500); // Add a small delay to ensure states are populated
+                        } else {
+                            // Clear fields if unchecked
+                            fields.forEach(id => {
+                                const field = document.getElementById(id);
+                                if (field) field.value = '';
+                            });
 
-    function populateBillingAddress(address) {
-        if (!address) return;
+                            // Clear country and state dropdowns
+                            const countryDropdown = document.getElementById('country');
+                            if (countryDropdown) countryDropdown.value = '';
 
-        document.getElementById('firstName').value = address.firstName || '';
-        document.getElementById('lastName').value = address.lastName || '';
-        document.getElementById('email').value = address.email || '';
-        document.getElementById('address').value = address.address || '';
-        document.getElementById('address2').value = address.address2 || '';
-        document.getElementById('zip').value = address.zip || '';
-        document.getElementById('country').value = address.country || '';
-        document.getElementById('phoneNumber').value = address.phoneNumber || '';
-        document.getElementById('countryCode').value = address.countryCode || '';
-        
-        if (address.state) {
-            loadStates(address.country, function () {
-                document.getElementById('state').value = address.state;
-            });
-        }
-    }
+                            const stateDropdown = document.getElementById('state');
+                            if (stateDropdown) stateDropdown.value = '';
 
-    usePreviousAddressCheckbox.addEventListener('change', function () {
-        if (this.checked) {
-            const storedAddress = JSON.parse(localStorage.getItem('billingAddress'));
-            if (storedAddress) {
-                populateBillingAddress(storedAddress);
-            } else {
-                fetch('http://127.0.0.1:5000/api/get-billing-address', { 
-                    method: "GET",
-                    headers: { "Content-Type": "application/json" }
-                })
-                .then(response => response.json())
-                .then(data => populateBillingAddress(data))
-                .catch(error => console.error("Error retrieving billing address:", error));
-            }
-        } else {
-            document.querySelectorAll("#checkout-form input").forEach(input => input.value = '');
-        }
-    });
-});
-  //lavanya  checkout code 
-  document.addEventListener("DOMContentLoaded", function () {
-            let storedTotalPrice = localStorage.getItem("totalPrice");
-
-            if (storedTotalPrice) {
-                let orderTotalElement = document.getElementById("order-subtotal");
-
-                if (orderTotalElement) {
-                    orderTotalElement.textContent = `$${parseFloat(storedTotalPrice).toFixed(2)}`;
-                } else {
-                    console.error("Error: Order subtotal element not found in checkout page!");
+                            const countryCodeDropdown = document.getElementById('countryCode');
+                            if (countryCodeDropdown) countryCodeDropdown.value = '';
+                        }
+                    });
                 }
-            }
-        });
 
-        //checkoooutt
-        document.addEventListener("DOMContentLoaded", function () {
-            const totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
-            document.getElementById('order-total-price').textContent = `₹${totalPrice.toFixed(2)}`;
+                function populateBillingAddress(address) {
+                    if (!address) return;
 
-            const discount = parseFloat(document.getElementById('order-discount')?.textContent.replace('₹', '') || 0);
-            const couponDiscount = parseFloat(document.getElementById('coupon-discount')?.textContent.replace('₹', '') || 0);
-            const tax = parseFloat(document.getElementById('order-tax')?.textContent.replace('₹', '') || 0);
-            const shippingCost = parseFloat(document.getElementById('shipping-cost')?.textContent.replace('₹', '') || 0);
+                    document.getElementById('firstName').value = address.firstName || '';
+                    document.getElementById('lastName').value = address.lastName || '';
+                    document.getElementById('email').value = address.email || '';
+                    document.getElementById('address').value = address.address || '';
+                    document.getElementById('address2').value = address.address2 || '';
+                    document.getElementById('zip').value = address.zip || '';
+                    document.getElementById('country').value = address.country || '';
+                    document.getElementById('phoneNumber').value = address.phoneNumber || '';
+                    document.getElementById('countryCode').value = address.countryCode || '';
 
-            const grandTotal = totalPrice - discount - couponDiscount + tax + shippingCost;
-            document.getElementById('grand-total').textContent = `₹${grandTotal.toFixed(2)}`;
+                    if (address.state) {
+                        loadStates(address.country, function () {
+                            document.getElementById('state').value = address.state;
+                        });
+                    }
+                }
 
-            localStorage.setItem("grandTotal", grandTotal.toFixed(2));
-        });
+                usePreviousAddressCheckbox.addEventListener('change', function () {
+                    if (this.checked) {
+                        const storedAddress = JSON.parse(localStorage.getItem('billingAddress'));
+                        if (storedAddress) {
+                            populateBillingAddress(storedAddress);
+                        } else {
+                            fetch('http://127.0.0.1:5000/api/get-billing-address', {
+                                method: "GET",
+                                headers: { "Content-Type": "application/json" }
+                            })
+                                .then(response => response.json())
+                                .then(data => populateBillingAddress(data))
+                                .catch(error => console.error("Error retrieving billing address:", error));
+                        }
+                    } else {
+                        document.querySelectorAll("#checkout-form input").forEach(input => input.value = '');
+                    }
+                });
+            });
+            
+            //lavanya  checkout code 
+            document.addEventListener("DOMContentLoaded", function () {
+                let storedTotalPrice = localStorage.getItem("totalPrice");
 
-        //cart items showing code
-        document.addEventListener('DOMContentLoaded', function () {
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            const productDetailsContainer = document.getElementById('product-details-container');
+                if (storedTotalPrice) {
+                    let orderTotalElement = document.getElementById("order-subtotal");
 
-            if (cartItems.length > 0 && productDetailsContainer) {
-                cartItems.forEach(item => {
-                    const productDetail = document.createElement('div');
-                    productDetail.classList.add('product-detail-item');
-                    productDetail.innerHTML = `
+                    if (orderTotalElement) {
+                        orderTotalElement.textContent = `$${parseFloat(storedTotalPrice).toFixed(2)}`;
+                    } else {
+                        console.error("Error: Order subtotal element not found in checkout page!");
+                    }
+                }
+            });
+
+            //checkoooutt
+         /*   document.addEventListener("DOMContentLoaded", function () {
+                const totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+                document.getElementById('order-total-price').textContent = `₹${totalPrice.toFixed(2)}`;
+
+                const discount = parseFloat(document.getElementById('order-discount')?.textContent.replace('₹', '') || 0);
+                const couponDiscount = parseFloat(document.getElementById('coupon-discount')?.textContent.replace('₹', '') || 0);
+                const tax = parseFloat(document.getElementById('order-tax')?.textContent.replace('₹', '') || 0);
+                const shippingCost = parseFloat(document.getElementById('shipping-cost')?.textContent.replace('₹', '') || 0);
+
+                const grandTotal = totalPrice - discount - couponDiscount + tax + shippingCost;
+                document.getElementById('grand-total').textContent = `₹${grandTotal.toFixed(2)}`;
+
+                localStorage.setItem("grandTotal", grandTotal.toFixed(2));
+            });
+
+            //cart items showing code
+            document.addEventListener('DOMContentLoaded', function () {
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const productDetailsContainer = document.getElementById('product-details-container');
+
+                if (cartItems.length > 0 && productDetailsContainer) {
+                    cartItems.forEach(item => {
+                        const productDetail = document.createElement('div');
+                        productDetail.classList.add('product-detail-item');
+                        productDetail.innerHTML = `
                 <h1>${item.name}</h1>
                 <span>|</span>
                 <p>Quantity: ${item.quantity}</p>
@@ -1327,15 +1323,132 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Total Price: ₹${(item.price * item.quantity).toFixed(2)}</p>
                 <br>
             `;
-                    productDetailsContainer.appendChild(productDetail);
-                });
-            } else {
-                productDetailsContainer.innerHTML = '';
+                        productDetailsContainer.appendChild(productDetail);
+                    });
+                } else {
+                    productDetailsContainer.innerHTML = '';
+                }
+
+
+            });*/
+            ///recent code 
+            document.addEventListener("DOMContentLoaded", function () {
+            const buyNowItem = JSON.parse(localStorage.getItem("buyNowItems"));
+
+            if (!buyNowItem) {
+                document.querySelector(".product-details").innerHTML = "<p>No items found.</p>";
+                return;
             }
 
-
+            // Populate checkout page with the retrieved Buy Now item
+            document.getElementById("product-name").textContent = buyNowItem.productName;
+            document.getElementById("product-quantity").textContent = `Qty: ${buyNowItem.quantity}`;
+            document.getElementById("total-price").textContent = `Total: ₹${buyNowItem.totalPrice}`;
         });
-</script>
+
+        //
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.location.pathname.includes("checkout.html")) {
+                let checkoutItems = JSON.parse(localStorage.getItem("checkoutItems")) || [];
+                const checkoutBody = document.getElementById("checkout-body");
+                const orderTotalElement = document.getElementById("order-total-price");
+
+                checkoutBody.innerHTML = "";
+                let totalAmount = 0;
+
+                checkoutItems.forEach((item) => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                <td><img src="${item.image}" class="cart-thumb" alt="${item.name}" /></td>
+                <td>${item.name}</td>
+                <td>${item.quantity}</td>
+                <td class="total-pr"><p>₹${item.total.toFixed(2)}</p></td>
+            `;
+                    checkoutBody.appendChild(row);
+                    totalAmount += item.total;
+                });
+
+                orderTotalElement.textContent = `₹${totalAmount.toFixed(2)}`;
+                orderTotalElement.setAttribute("data-price", totalAmount);
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            let checkoutItems = JSON.parse(localStorage.getItem("orderTotalItems")) || [];
+            let buyNowItem = JSON.parse(localStorage.getItem("buyNowItems"));
+
+            // If "Buy Now" is used, replace checkoutItems with Buy Now item
+            if (buyNowItem) {
+                checkoutItems = [buyNowItem]; // Convert to array format
+                localStorage.removeItem("buyNowItems"); // Clear after use
+            }
+
+            // Store updated checkout items to maintain persistence
+            localStorage.setItem("checkoutItems", JSON.stringify(checkoutItems));
+
+            let productDetailsDiv = document.querySelector(".product-details");
+
+            if (checkoutItems.length === 0) {
+                productDetailsDiv.innerHTML = "<p>Your cart is empty.</p>";
+                return;
+            }
+
+            productDetailsDiv.innerHTML = ""; // Clear previous content
+            let totalAmount = 0;
+
+            checkoutItems.forEach(item => {
+                let itemTotal = parseFloat(item.total);
+                totalAmount += itemTotal;
+
+                const itemElement = document.createElement("div");
+                itemElement.classList.add("cart-item");
+                itemElement.innerHTML = `
+            <h4>${item.name}</h4>
+            <p>Quantity: ${item.quantity}</p>
+            <p>Total Price: ₹${itemTotal.toFixed(2)}</p>
+            
+        `;
+                productDetailsDiv.appendChild(itemElement);
+            });
+
+            // Update order total price
+            let orderTotalElement = document.getElementById("order-total-price");
+            if (orderTotalElement) {
+                orderTotalElement.textContent = `₹${totalAmount.toFixed(2)}`;
+                orderTotalElement.setAttribute("data-price", totalAmount);
+            }
+
+            // Call grand total update if function exists
+            if (typeof updateGrandTotal === "function") {
+                updateGrandTotal();
+            }
+        });
+
+        function updateGrandTotal() {
+            const orderTotal = parseFloat(document.getElementById("order-total-price").getAttribute("data-price")) || 0;
+            const discount = parseFloat(document.getElementById("order-discount").getAttribute("data-price")) || 0;
+            const couponDiscount = parseFloat(document.getElementById("coupon-discount").getAttribute("data-price")) || 0;
+            const tax = parseFloat(document.getElementById("order-tax").getAttribute("data-price")) || 0;
+            const shippingCost = parseFloat(document.getElementById("shipping-cost").getAttribute("data-price")) || 0;
+
+            // Calculate grand total
+            const grandTotal = orderTotal - discount - couponDiscount + tax + shippingCost;
+
+            // Update grand total element
+            const grandTotalElement = document.getElementById("grand-total");
+            if (grandTotalElement) {
+                grandTotalElement.textContent = `₹${grandTotal.toFixed(2)}`;
+                grandTotalElement.setAttribute("data-price", grandTotal);
+            }
+        }
+
+        // Ensure the function runs after the page loads
+        document.addEventListener("DOMContentLoaded", function () {
+            updateGrandTotal();
+        });
+
+
+        </script>
 
     </div>
 </body>
