@@ -2779,3 +2779,14 @@ font-size: 20px;
     list-style: none;
 }
 
+.product-details {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Adds spacing between items */
+}
+
+.cart-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin-right: 12rem;
+}

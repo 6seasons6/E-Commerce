@@ -77,6 +77,65 @@ document.addEventListener("DOMContentLoaded", function () {
         updatePrice(productId);
     });
 });
+//adding tocart
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault(); 
+            const productId = button.getAttribute('data-product-id'); 
+            addToCart(productId); 
+        });
+    });
+    function addToCart(productId) {
+        const productElement = document.getElementById(`product-item-${productId}`);
+        const image = productElement.querySelector('img').src; 
+        const name = productElement.querySelector('h4').textContent; 
+        const basePrice = parseFloat(productElement.getAttribute('data-price')); 
+        const weightSelect = productElement.querySelector(`#weight-select-${productId}`); 
+        const quantityInput = productElement.querySelector(`#quantity-input-${productId}`); 
+        const selectedWeight = parseInt(weightSelect.value.replace('g', '')); 
+        const quantity = parseInt(quantityInput.value); 
+        const totalPrice = calculatePrice(basePrice, selectedWeight) * quantity; 
+      // Create product object
+        const productDetails = {
+            image: image,
+            name: name,
+            price: basePrice,
+            weight: selectedWeight,
+            quantity: quantity,
+            total: totalPrice
+        };
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const existingItemIndex = cartItems.findIndex(item => item.name === name && item.weight === selectedWeight);
+    if (existingItemIndex !== -1) {
+            cartItems[existingItemIndex].quantity += quantity;
+            cartItems[existingItemIndex].total += totalPrice;
+        } else {
+            cartItems.push(productDetails);
+        }
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        showSuccessMessage('Product successfully added to cart');
+    }
+    function calculatePrice(basePrice, weight) {
+        const multiplier = weight / 250;
+        return basePrice * multiplier;
+    }
+    function showSuccessMessage(message) {
+        const successMessage = document.createElement('div');
+        successMessage.classList.add('success-message');
+        successMessage.innerText = message;
+
+        document.body.appendChild(successMessage);
+        setTimeout(() => {
+            successMessage.classList.add('show');
+        }, 10);
+
+        setTimeout(() => {
+            successMessage.classList.remove('show');
+            document.body.removeChild(successMessage);
+        }, 3000);
+    }
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.buy-now-button').forEach(button => {
@@ -162,63 +221,3 @@ window.onload = function() {
     renderWishlistItems(); // Render wishlist items when the page loads
  
 };
-//adding tocart
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        button.addEventListener('click', function (event) {
-            event.preventDefault(); 
-            const productId = button.getAttribute('data-product-id'); 
-            addToCart(productId); 
-        });
-    });
-    function addToCart(productId) {
-        const productElement = document.getElementById(`product-item-${productId}`);
-        const image = productElement.querySelector('img').src; 
-        const name = productElement.querySelector('h4').textContent; 
-        const basePrice = parseFloat(productElement.getAttribute('data-price')); 
-        const weightSelect = productElement.querySelector(`#weight-select-${productId}`); 
-        const quantityInput = productElement.querySelector(`#quantity-input-${productId}`); 
-        const selectedWeight = parseInt(weightSelect.value.replace('g', '')); 
-        const quantity = parseInt(quantityInput.value); 
-        const totalPrice = calculatePrice(basePrice, selectedWeight) * quantity; 
-      // Create product object
-        const productDetails = {
-            image: image,
-            name: name,
-            price: basePrice,
-            weight: selectedWeight,
-            quantity: quantity,
-            total: totalPrice
-        };
-        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const existingItemIndex = cartItems.findIndex(item => item.name === name && item.weight === selectedWeight);
-    if (existingItemIndex !== -1) {
-            cartItems[existingItemIndex].quantity += quantity;
-            cartItems[existingItemIndex].total += totalPrice;
-        } else {
-            cartItems.push(productDetails);
-        }
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        showSuccessMessage('Product successfully added to cart');
-    }
-    function calculatePrice(basePrice, weight) {
-        const multiplier = weight / 250;
-        return basePrice * multiplier;
-    }
-    function showSuccessMessage(message) {
-        const successMessage = document.createElement('div');
-        successMessage.classList.add('success-message');
-        successMessage.innerText = message;
-
-        document.body.appendChild(successMessage);
-        setTimeout(() => {
-            successMessage.classList.add('show');
-        }, 10);
-
-        setTimeout(() => {
-            successMessage.classList.remove('show');
-            document.body.removeChild(successMessage);
-        }, 3000);
-    }
-});
-

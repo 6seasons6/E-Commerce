@@ -162,64 +162,9 @@ function calculatePrice(price, weight) {
     const multiplier = weight / 250; 
     return price * multiplier;
 }
-/*//buy now button code
-  // Cart Page Script
-  document.addEventListener('DOMContentLoaded', function() {
-    const totalPrice = localStorage.getItem('totalPrice');
-    if (totalPrice) {
-        document.getElementById('order-total-price').textContent = '₹' + totalPrice;
-    } else {
-        document.getElementById('order-total-price').textContent = '₹0.00';
-    }
-});
-document.addEventListener("DOMContentLoaded", function() {
-    const totalProductPrice = parseFloat(document.getElementById("order-total-price").textContent.replace('₹', '')) || 0;
-    const discount = parseFloat(document.getElementById("order-discount").textContent.replace('₹', '')) || 0;
-    const couponDiscount = parseFloat(document.getElementById("coupon-discount").textContent.replace('₹', '')) || 0;
-    const tax = parseFloat(document.getElementById("order-tax").textContent.replace('₹', '')) || 0;
 
-    // Calculate the grand total (subtracting the discount)
-    const grandTotal = totalProductPrice - discount - couponDiscount + tax;
-
-    // Update the Grand Total in the DOM
-    document.getElementById("grand-total").textContent = `₹${grandTotal.toFixed(2)}`;
-});*/
 //lavany code cart and buy now
-//buy-now button code from cart page
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".buy-now-btn").forEach(button => {
-        button.addEventListener("click", function (event) {
-            event.preventDefault();
-            
-            let cartRow = this.closest("tr");
-            let productName = cartRow.querySelector("td:nth-child(2)").textContent.trim();
-            let totalPriceElement = cartRow.querySelector(".total-pr p");
-            let quantityElement = cartRow.querySelector(".quantity-pr p"); 
 
-            if (!totalPriceElement || !quantityElement) return;
-
-            let itemTotalPrice = parseFloat(totalPriceElement.textContent.replace("₹", ""));
-            let quantity = parseInt(quantityElement.textContent.trim());
-
-            // Store data in localStorage
-            localStorage.setItem("productName", productName);
-            localStorage.setItem("totalPrice", itemTotalPrice.toFixed(2));
-            localStorage.setItem("quantity", quantity);
-
-            // Redirect to checkout
-            window.location.href = "checkout.html";
-        });
-    });
-
-
-    if (window.location.pathname.includes("checkout.html")) {
-        let storedTotalPrice = parseFloat(localStorage.getItem("totalPrice")) || 0;
-        let orderTotalElement = document.getElementById("order-total-price");
-        orderTotalElement.textContent = `₹${storedTotalPrice.toFixed(2)}`;
-        orderTotalElement.setAttribute("data-price", storedTotalPrice);
-        updateGrandTotal();
-    }
-});
 function updateGrandTotal() {
     let subtotal = parseFloat(document.getElementById("order-total-price").getAttribute("data-price")) || 0;
     let discount = parseFloat(document.getElementById("order-discount").getAttribute("data-price")) || 0;
@@ -272,39 +217,63 @@ function updateGrandTotal() {
         grandTotalElement.textContent = `₹${grandTotal.toFixed(2)}`;
     }
 }
-//chsdjslk
-document.getElementById("checkout-button").addEventListener("click", function () {
-    let subtotal = document.getElementById("order-total-price").getAttribute("data-price");
-    let discount = document.getElementById("order-discount").getAttribute("data-price");
-    let couponDiscount = document.getElementById("coupon-discount").getAttribute("data-price");
-    let tax = document.getElementById("order-tax").getAttribute("data-price");
-    let shipping = document.getElementById("order-shipping").getAttribute("data-price") === "Free" ? 0 : document.getElementById("order-shipping").getAttribute("data-price");
-    let grandTotal = document.getElementById("grand-total").getAttribute("data-price");
 
-    // Store values in localStorage
-    localStorage.setItem("subtotal", subtotal);
-    localStorage.setItem("discount", discount);
-    localStorage.setItem("couponDiscount", couponDiscount);
-    localStorage.setItem("tax", tax);
-    localStorage.setItem("shipping", shipping);
-    localStorage.setItem("grandTotal", grandTotal);
+//recent code
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".buy-now-btn").forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            let cartRow = this.closest("tr");
+            let productName = cartRow.querySelector("td:nth-child(2)").textContent.trim();
+            let totalPriceElement = cartRow.querySelector(".total-pr p");
+            let quantityElement = cartRow.querySelector(".quantity-pr p");
+
+            if (!totalPriceElement || !quantityElement) return;
+
+            let itemTotalPrice = parseFloat(totalPriceElement.textContent.replace("₹", ""));
+            let quantity = parseInt(quantityElement.textContent.trim());
+            let productImage = cartRow.querySelector("td img").src;
+
+            let buyNowItem = {
+                name: productName,
+                quantity: quantity,
+                total: itemTotalPrice,
+                image: productImage
+            };
+
+            // Store Buy Now separately and replace checkout items
+            localStorage.setItem("buyNowItems", JSON.stringify(buyNowItem));
+
+            // Redirect to checkout page
+            window.location.href = "checkout.html";
+        });
+    });
 });
-//checkout
+
 document.getElementById("checkout-button").addEventListener("click", function () {
-    let cartTotal = parseFloat(document.querySelector(".cart-total-amount").textContent.replace('₹', '')) || 0;
-    let discount = parseFloat(document.getElementById("order-discount")?.textContent.replace('₹', '') || 0);
-    let couponDiscount = parseFloat(document.getElementById("coupon-discount")?.textContent.replace('₹', '') || 0);
-    let tax = parseFloat(document.getElementById("order-tax")?.textContent.replace('₹', '') || 0);
-    let shippingCost = parseFloat(document.getElementById("shipping-cost")?.textContent.replace('₹', '') || 0);
+    let cartItems = [];
+    let cartRows = document.querySelectorAll("#cart-body tr"); // Adjust the selector as needed
+    let subtotal = 0;
 
-    // Calculate new grand total
-    let grandTotal = cartTotal - discount - couponDiscount + tax + shippingCost;
+    cartRows.forEach((row) => {
+        let item = {
+            image: row.querySelector("img").src,
+            name: row.cells[1].textContent.trim(),
+            price: parseFloat(row.cells[2].querySelector(".price").textContent.replace("₹", "")),
+            weight: row.cells[3].textContent.trim(),
+            quantity: parseInt(row.cells[4].textContent.trim()),
+            total: parseFloat(row.cells[5].textContent.replace("₹", ""))
+        };
 
-    // Store values in localStorage
-    localStorage.setItem("totalPrice", cartTotal.toFixed(2));  // Store updated subtotal
-    localStorage.setItem("grandTotal", grandTotal.toFixed(2));
+        subtotal += item.total;
+        cartItems.push(item);
+    });
+
+    // Store in localStorage
+    localStorage.setItem("orderTotalItems", JSON.stringify(cartItems));
+    localStorage.setItem("cartSubtotal", subtotal.toFixed(2));
 
     // Redirect to checkout page
     window.location.href = "checkout.html";
 });
-//
