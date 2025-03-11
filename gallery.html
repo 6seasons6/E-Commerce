@@ -84,8 +84,11 @@
                                     <i class="fa fa-user s_color"></i> My Account
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                                    <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-                                    <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                    <li id="signUpOption"><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                                <li id="signInOption"><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                <li id="signOutOption"><a class="dropdown-item"
+                                        href="signout.html">Sign Out</a></li>
+                            </ul>
                                 </ul>
                             </div>
 
@@ -645,12 +648,12 @@
                             <div class="footer-link">
                                 <h4>Information</h4>
                                 <ul class="dot-list">
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Customer Service</a></li>
-                                    <li><a href="#">Our Sitemap</a></li>
-                                    <li><a href="#">Terms &amp; Conditions</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Delivery Information</a></li>
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="contact-us.html">Customer Service</a></li>
+                                    <li><a href="https://maps.app.goo.gl/WAmF8TErCU9FDNVj9">Our Sitemap</a></li>
+                                    <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>
+                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="delivery-info.html">Delivery Information</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -741,6 +744,37 @@
     });
     
      </script>
+      <script>
+        // Wait for the page content to load before adding event listener
+        document.addEventListener('DOMContentLoaded', function () {
+            // WhatsApp share button event listener
+            document.getElementById('whatsapp-share-btn').addEventListener('click', function () {
+                // Get the product details
+                const productName = document.getElementById('product-name').innerText;
+                const productPrice = document.getElementById('product-price').innerText.replace('₹', '').trim();
+                const selectedWeight = document.getElementById('weight-select-1').value;
+                const selectedQuantity = document.getElementById('quantity-input-1').value;
+                const productImageUrl = document.getElementById('product-image').src;
+    
+                // Construct the message to share
+                const whatsappMessage = `
+                    Check out this product:
+                    Name: ${productName}
+                    Weight: ${selectedWeight}
+                    Quantity: ${selectedQuantity}
+                    Price: ₹${productPrice} only
+                    Image: ${productImageUrl}
+                    For more details, visit: http://yourwebsite.com/product-detail/${productName}
+                `.trim();
+    
+                // WhatsApp URL to share the message
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+    
+                // Open WhatsApp share link in a new tab
+                window.open(whatsappUrl, '_blank');
+            });
+        });
+    </script>
 
         <!-- Start copyright  -->
         <div class="footer-copyright">
