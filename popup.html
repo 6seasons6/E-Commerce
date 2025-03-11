@@ -256,6 +256,9 @@
                 transform: translateX(-680px);
             }
         }
+        #currency{
+            background-color: #2b7a3a;
+        }
     </style>
 </head>
 
@@ -264,6 +267,11 @@
     <div class="popup" id="popup">
         <div class="popup-content">
             <!-- Close Button -->
+            <select id="currency" onchange="changeCurrency(this.value)">
+                <option value="INR">INR</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+            </select>
             <button id="close-btn" onclick="parent.hidePopup()">×</button>
             <!-- Header Section -->
             <div class="header">
@@ -279,7 +287,7 @@
                                 <span class="discount-tag">50% OFF</span>
                                 <img src="images/honey.jpg">
                                 <h3>Organic Honey</h3>
-                                <div class="offer-price">₹250 <span class="price"><del>₹500</del></span></div>
+                                <div class="offer-price price" data-price="250">₹250 <span class="price"><del>₹500</del></span></div>
                                 <a href="shop-detail.html?productID=1">Shop Now</a>
                             </div>
                         </li>
@@ -288,7 +296,7 @@
                                 <span class="discount-tag">40% OFF</span>
                                 <img src="images/ghee.jpg">
                                 <h3>Organic Ghee</h3>
-                                <div class="offer-price">₹480 <span class="price"><del>₹800</del></span></div>
+                                <div class="offer-price price" data-price="480">₹480 <span class="price"><del>₹800</del></span></div>
                                 <a
                                     href="shop-detail.html?productID=2&name=Ghee&price=30.00&desc=Fresh+ghee&second=Organic+ghee+is+ pure+and +natural +product&img=logo1.png">Shop
                                     Now</a>
@@ -299,7 +307,7 @@
                                 <span class="discount-tag">35% OFF</span>
                                 <img src="images/toor dal.jpg">
                                 <h3>Organic Toor Dal</h3>
-                                <div class="offer-price">₹195 <span class="price"><del>₹300</del></span></div>
+                                <div class="offer-price price" data-price="195">₹195 <span class="price"><del>₹300</del></span></div>
                                 <a
                                     href="shop-detail.html?productID=5&name=Organtior Dal&price=30.00&desc=Fresh+dal&second=Organic+organtior dal+is+pure+ and +natural +product&img=logo1.png">Shop
                                     Now</a>
@@ -310,7 +318,7 @@
                                 <span class="discount-tag">50% OFF</span>
                                 <img src="images/honey.jpg">
                                 <h3>Organic Honey</h3>
-                                <div class="offer-price">₹250 <span class="price"><del>₹500</del></span></div>
+                                <div class="offer-price price" data-price="250">₹250 <span class="price"><del>₹500</del></span></div>
                                 <a href="shop-detail.html?productID=1">Shop Now</a>
                             </div>
                         </li>
@@ -319,7 +327,7 @@
                                 <span class="discount-tag">50% OFF</span>
                                 <img src="images/honey.jpg">
                                 <h3>Organic Honey</h3>
-                                <div class="offer-price">₹250 <span class="price"><del>₹500</del></span></div>
+                                <div class="offer-price price" data-price="250">₹250 <span class="price"><del>₹500</del></span></div>
                                 <a href="shop-detail.html?productID=1">Shop Now</a>
                             </div>
                         </li>
@@ -353,6 +361,38 @@
 
 
 
+    </script>
+     <script>
+        // Exchange rates from INR (Indian Rupee) to other currencies
+        const rates = {
+            INR: 1,    // Base currency
+            USD: 0.012, // 1 INR = 0.012 USD
+            EUR: 0.011 // 1 INR = 0.011 EUR
+        };
+    
+        // Function to handle the currency change
+        function changeCurrency(currency) {
+            const prices = document.querySelectorAll('.price');
+            
+            prices.forEach((priceElement) => {
+                const basePrice = priceElement.getAttribute('data-price');
+                const convertedPrice = (basePrice * rates[currency]).toFixed(2);
+                
+                if (currency === 'INR') {
+                    priceElement.textContent = `Price: ₹${convertedPrice}`;
+                } else if (currency === 'USD') {
+                    priceElement.textContent = `Price: $${convertedPrice}`;
+                } else if (currency === 'EUR') {
+                    priceElement.textContent = `Price: €${convertedPrice}`;
+                }
+            });
+        }
+    
+        // Event listener for the select dropdown
+        document.getElementById('basic').addEventListener('change', function() {
+            const selectedCurrency = this.value;
+            changeCurrency(selectedCurrency);
+        });
     </script>
     <!-- linking swiper js -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

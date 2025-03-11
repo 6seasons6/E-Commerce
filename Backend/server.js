@@ -469,6 +469,27 @@ app.post('/subscribe', (req, res) => {
       res.status(200).json({ message: 'Thank you for subscribing!' });
   });
 });
+// POST endpoint to handle form data
+app.post('/send-message', (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  // Send the email to info@6seasonsorganic.com
+  const mailOptions = {
+      from: email,  // Sender's email
+      to: 'info@6seasonsorganic.com',  // Recipient's email
+      subject: subject,  // Subject from the form
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`  // Formatted message
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.error('Error:', error);
+          return res.status(500).send('Error in sending email');
+      }
+      console.log('Email sent: ' + info.response);
+      res.status(200).send('Message sent successfully!');
+  });
+});
 // Forgot Password Route
 app.post("/api/auth/forgot-password", forgotPasswordLimiter, async (req, res) => {
   const { email } = req.body;
@@ -552,6 +573,23 @@ app.get("/auth/google/callback", async (req, res) => {
     res.status(500).send("Authentication failed");
   }
 });
+const ShareLog = mongoose.model('ShareLog', new mongoose.Schema({
+  productName: String,
+  weight: String,
+  price: Number,
+  sharedAt: { type: Date, default: Date.now },
+}));
+
+// API to log share
+app.post('/log-share', async (req, res) => {
+  const { productName, weight, price } = req.body;
+  
+  const shareLog = new ShareLog({ productName, weight, price });
+  await shareLog.save();
+
+  res.status(200).json({ message: 'Share logged successfully!' });
+});
+
 
 // Additional Routes
 app.use("/api/auth", authRoutes);
