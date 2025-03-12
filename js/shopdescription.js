@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000);
     }
 });
-
+//products disaply in checkout page
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.buy-now-button').forEach(button => {
         button.addEventListener('click', function (event) {
@@ -144,26 +144,41 @@ document.addEventListener('DOMContentLoaded', function () {
             const productId = button.getAttribute('data-product-id');
 
             const productElement = document.getElementById(`product-item-${productId}`);
+            if (!productElement) {
+                console.error(`Product element with ID 'product-item-${productId}' not found.`);
+                return;
+            }
+
             const productName = productElement.querySelector('h4').textContent;
-            const selectedWeight = parseInt(document.getElementById(`weight-select-${productId}`).value, 10);
+            const selectedWeight = parseInt(document.getElementById(`weight-select-${productId}`).value.replace('g', ''), 10);
             const quantity = parseInt(document.getElementById(`quantity-input-${productId}`).value, 10) || 1;
             const pricePer250Grams = parseFloat(productElement.getAttribute('data-price'));
             const totalPrice = calculateTotalPrice(pricePer250Grams, selectedWeight, quantity);
- 
- 
-            localStorage.setItem('productName', productName);
-            localStorage.setItem('totalPrice', totalPrice.toFixed(2));
-            localStorage.setItem('quantity', quantity);
-            window.location.href = 'checkout.html';
+
+            // Store Buy Now item properly
+            const buyNowItem = {
+                name: productName,                                                                                                                                                              
+                quantity: quantity,
+                total: parseFloat(totalPrice.toFixed(2)), 
+            };
+
+            // Store buyNowItem for immediate checkout
+            localStorage.setItem('buyNowItems', JSON.stringify(buyNowItem));
+            localStorage.setItem('checkoutItems', JSON.stringify([buyNowItem])); // Ensure checkoutItems updates as well
+
+            // Redirect to checkout page
+            setTimeout(() => {
+                window.location.href = 'checkout.html';
+            }, 100);
         });
     });
 });
- 
- 
-function calculateTotalPrice(pricePer250Grams, selectedWeight, quantity) {
-    const priceForSelectedWeight = (pricePer250Grams / 250) * selectedWeight;
-    return priceForSelectedWeight * quantity;
+
+// Function to calculate the total price
+function calculateTotalPrice(pricePer250Grams, weight, quantity) {
+    return (pricePer250Grams * (weight / 250)) * quantity;
 }
+
 
 window.onload = function() {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
