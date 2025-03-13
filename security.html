@@ -25,6 +25,12 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+     <!-- security settings CSS -->
+     <link rel="stylesheet" href="css/security.css">
+      <!-- Font Awesome for icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
     <script>
         function searchText(){
             let text=document.getElementById("search").value;
@@ -247,38 +253,255 @@
     </div>
 </div>
 <!-- End All Title Box -->
-<div class="container my-5">
-    <h2 class="text-center mb-4">Login & Security Settings</h2>
 
-    <!-- Email Update Section -->
-     <div class="card">
-    <div class="security-box">
-        <div class="security-header d-flex justify-content-between align-items-center">
-            <h3>Email Address</h3>
-            <button class="btn btn-primary" onclick="showUpdateModal('email')">Edit</button>
-        </div>
-        <p class="mt-2">Current Email: <strong>user@example.com</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<body>
+    <div class="security-container">
+        <h2>Security Settings</h2>
+        <form id="securityForm">
+            <!-- Email Section -->
+            <div class="input-row">
+                <label for="current-email">Email Address</label>
+                <div class="field-with-edit">
+                    <input type="email" id="current-email" name="current-email" value="user@example.com" readonly>
+                    <span class="tooltip-icon" onclick="enableEdit('current-email')">
+                        <i class="fas fa-edit"></i> <!-- Only the icon is shown -->
+                    </span>
+                </div>
+            </div>
+
+            <!-- Phone Number Section -->
+            <div class="input-row">
+                <label for="phone-number">Phone Number</label>
+                <div class="field-with-edit">
+                    <div class="phone-input">
+                        <select id="country-code" name="country-code">
+                            <option value="+1">+1 (USA)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+91">+91 (IND)</option>
+                            <option value="+86">+86 (CHN)</option>
+                            <option value="+81">+81 (JPN)</option>
+                            <option value="+49">+49 (DEU)</option>
+                            <option value="+33">+33 (FRA)</option>
+                            <option value="+7">+7 (RUS)</option>
+                            <option value="+61">+61 (AUS)</option>
+                            <option value="+82">+82 (KOR)</option>
+                            <option value="+55">+55 (BRA)</option>
+                            <option value="+39">+39 (ITA)</option>
+                            <option value="+34">+34 (ESP)</option>
+                            <option value="+52">+52 (MEX)</option>
+                            <option value="+971">+971 (ARE)</option>
+                            <option value="+966">+966 (SAU)</option>
+                            <option value="+65">+65 (SGP)</option>
+                            <option value="+60">+60 (MYS)</option>
+                            <option value="+27">+27 (ZAF)</option>
+                        </select>
+                        <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number">
+                    </div>
+                    <span class="tooltip-icon" onclick="enableEdit('phone-number')">
+                        <i class="fas fa-edit"></i> <!-- Only the icon is shown -->
+                    </span>
+                </div>
+            </div>
+
+            <!-- Current Password Section -->
+            <div class="input-row">
+                <label for="current-password">Current Password</label>
+                <div class="field-with-edit">
+                    <input type="password" id="current-password" name="current-password" placeholder="Enter your current password" required>
+                </div>
+            </div>
+
+            <!-- New Password Section -->
+            <div class="input-row">
+                <label for="new-password">New Password</label>
+                <div class="field-with-edit">
+                    <input type="password" id="new-password" name="new-password" placeholder="Enter your new password" required>
+                </div>
+            </div>
+
+            <!-- Confirm Password Section -->
+            <div class="input-row">
+                <label for="confirm-password">Confirm New Password</label>
+                <div class="field-with-edit">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your new password" required>
+                </div>
+            </div>
+
+            <!-- Update Button -->
+            <button type="submit" class="update-btn">Update Settings</button>
+        </form>
     </div>
 
-    <!-- Password Update Section -->
-    <div class="security-box">
-        <div class="security-header d-flex justify-content-between align-items-center">
-            <h3>Password</h3>
-            <button class="btn btn-primary" onclick="showUpdateModal('password')">Change Password</button>
+    <!-- Custom Alert Box -->
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-content">
+            <span id="alertMessage"></span>
+            <button onclick="closeAlert()">OK</button>
         </div>
-        <p class="mt-2">Keep your account secure by choosing a strong password.</p>
     </div>
+    <br><br>
+    <script>
+        // Function to show the custom alert
+function showAlert(message) {
+    const alertBox = document.getElementById('customAlert');
+    const alertMessage = document.getElementById('alertMessage');
+    alertMessage.textContent = message;
+    alertBox.style.display = 'flex'; // Show the alert box
+}
 
-    <!-- Phone Number Update Section -->
-    <div class="security-box">
-        <div class="security-header d-flex justify-content-between align-items-center">
-            <h3>Phone Number</h3>
-            <button class="btn btn-primary" onclick="showUpdateModal('phone')">Edit</button>
-        </div>
-        <p class="mt-2">Current Phone Number: <strong>+1 (123) 456-7890</strong></p>
-    </div>
-</div>
-</div>
+// Function to close the custom alert
+function closeAlert() {
+    const alertBox = document.getElementById('customAlert');
+    alertBox.style.display = 'none'; // Hide the alert box
+}
+
+// Enable edit functionality
+function enableEdit(fieldId) {
+    const field = document.getElementById(fieldId);
+    field.removeAttribute('readonly');
+    field.focus();
+}
+
+// Form submission logic
+document.getElementById('securityForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('current-email').value;
+    const countryCode = document.getElementById('country-code').value;
+    const phoneNumber = document.getElementById('phone-number').value;
+    const newPassword = document.getElementById('new-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    if (newPassword !== confirmPassword) {
+        showAlert('New password and confirm password do not match.');
+        return;
+    }
+
+    // Example: Send updated information to the server
+    showAlert(`Settings updated:\nEmail: ${email}\nPhone: ${countryCode} ${phoneNumber}\nPassword: Updated`);
+});
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    async function fetchUserSettings(email) {
+    try {
+        const response = await fetch(`http://localhost:5000/api/get-settings/${email}`);
+        const data = await response.json();
+
+        if (data.email) {
+            document.getElementById('current-email').value = data.email;
+            document.getElementById('country-code').value = data.countryCode;
+            document.getElementById('phone-number').value = data.phoneNumber;
+        }
+    } catch (error) {
+        console.error('Error fetching settings:', error);
+    }
+}
+
+// Fetch settings when the page loads
+window.onload = () => {
+    const userEmail = 'user@example.com'; // Replace with the logged-in user's email
+    fetchUserSettings(userEmail);
+};
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+     document.getElementById('securityForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const email = document.getElementById('current-email').value;
+    const countryCode = document.getElementById('country-code').value;
+    const phoneNumber = document.getElementById('phone-number').value;
+    const newPassword = document.getElementById('new-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    if (newPassword !== confirmPassword) {
+        showAlert('New password and confirm password do not match.');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:5000/api/save-settings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                countryCode,
+                phoneNumber,
+                password: newPassword,
+            }),
+        });
+
+        const result = await response.json();
+        showAlert(result.message || 'Settings updated successfully!');
+
+        // Optionally, fetch and display updated settings
+        fetchUserSettings(email);
+    } catch (error) {
+        showAlert('Error updating settings. Please try again.');
+        console.error('Error:', error);
+    }
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="instagram-box">
     <div class="main-instagram owl-carousel owl-theme">

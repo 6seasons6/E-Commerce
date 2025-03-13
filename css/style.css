@@ -2377,7 +2377,7 @@
 }
  .contact-info-left{
      padding: 20px;
-     background: url(../images/contact-bg.jpg) no-repeat center;
+     background: url(../images/img_contact_us.png) no-repeat center;
 	 background-size: cover;
 }
  .contact-info-left h2{
@@ -2392,7 +2392,7 @@
 }
  .contact-info-left ul li p{
      font-size: 16px;
-     color: #222222;
+     color: #fdf6fd;
      font-weight: 300;
      padding-right: 16px;
      padding-left: 25px;
@@ -2407,7 +2407,7 @@
      color: #b0b435;
 }
  .contact-info-left ul li p a:hover{
-     color: #b0b435;
+     color: #fdf6fd;
 }
  .contact-form-right{
      padding: 20px;
