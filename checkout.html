@@ -682,7 +682,7 @@
                                                         $('#orderConfirmationModal').modal('show');
                                                         console.log("Payment successful! Payment ID:", response.razorpay_payment_id);
 
-                                                        localStorage.removeItem('cartItems'); // Clear cart items
+                                                       // localStorage.removeItem('cartItems'); // Clear cart items
                                                         // Clear billing address fields (but keep data in localStorage)
                                                         const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'country', 'state', 'username', 'phoneNumber', 'countryCode'];
                                                         fields.forEach(id => {
