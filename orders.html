@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+     <!-- orders CSS -->
+    <link rel="stylesheet" href="css/orders.css">
     <script>
         function searchText(){
             let text=document.getElementById("search").value;
@@ -205,65 +207,203 @@
     </div>
 </div>
 <!-- End All Title Box -->
-<div class="container my-5">
-    <h2 class="text-center mb-4">Your Orders</h2>
-    
-    <!-- Order Summary Section -->
-    <div class="order-summary text-center mb-4">
-        <p>Total Orders: <strong>5</strong></p>
-        <p>Last Order Date: <strong>October 12, 2024</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="my-orders-container">
+    <h1>My Orders</h1>
+
+    <!-- Filter and Sort Options -->
+    <div class="filter-sort-container">
+        <div class="filter">
+            <label for="filter">Filter by:</label>
+            <select id="filter">
+                <option value="all">All Orders</option>
+                <option value="delivered">Delivered</option>
+                <option value="pending">Pending</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+        </div>
+        <div class="sort">
+            <label for="sort">Sort by:</label>
+            <select id="sort">
+                <option value="date-desc">Date (Newest First)</option>
+                <option value="date-asc">Date (Oldest First)</option>
+                <option value="price-desc">Price (High to Low)</option>
+                <option value="price-asc">Price (Low to High)</option>
+            </select>
+        </div>
     </div>
 
-    <!-- List of Orders -->
-    <div id="order-list">
-        <!-- Example Order Item -->
-        <div class="order-box">
-            <div class="order-header d-flex justify-content-between">
-                <h5>Order #12345</h5>
-                <span>Placed on October 5, 2024</span>
-            </div>
-            <div class="order-content mt-3">
-                <div class="d-flex align-items-center">
-                    <img src="images/sample-product.jpg" alt="Product Image" width="80" height="80" class="mr-3">
-                    <div>
-                        <h6>Product Name</h6>
-                        <p>Price: $29.99</p>
-                        <p>Quantity: 1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="order-action mt-3">
-                <button class="btn btn-primary" onclick="viewOrderDetails('12345')">View Details</button>
-                <button class="btn btn-warning" onclick="returnItem('12345')">Return Item</button>
-                <button class="btn btn-success" onclick="buyAgain('12345')">Buy Again</button>
-            </div>
-        </div>
-
-        <!-- Repeat this structure for additional orders -->
-        <!-- Another Example Order -->
-        <div class="order-box">
-            <div class="order-header d-flex justify-content-between">
-                <h5>Order #67890</h5>
-                <span>Placed on September 25, 2024</span>
-            </div>
-            <div class="order-content mt-3">
-                <div class="d-flex align-items-center">
-                    <img src="images/sample-product-2.jpg" alt="Product Image" width="80" height="80" class="mr-3">
-                    <div>
-                        <h6>Another Product Name</h6>
-                        <p>Price: $49.99</p>
-                        <p>Quantity: 2</p>
-                    </div>
-                </div>
-            </div>
-            <div class="order-action mt-3">
-                <button class="btn btn-primary" onclick="viewOrderDetails('67890')">View Details</button>
-                <button class="btn btn-warning" onclick="returnItem('67890')">Return Item</button>
-                <button class="btn btn-success" onclick="buyAgain('67890')">Buy Again</button>
-            </div>
-        </div>
+    <!-- Orders List -->
+    <div class="orders-list" id="ordersList">
+        <!-- Orders will be dynamically inserted here -->
     </div>
 </div>
+
+<script>
+    // Sample Data
+const orders = [
+{
+    id: 1,
+    orderNo: "ORD123456",
+    date: "2023-10-01",
+    total: 120.5,
+    status: "delivered",
+    image: "https://via.placeholder.com/150",
+    tracking: {
+        status: "delivered",
+        progress: 100,
+    },
+},
+{
+    id: 2,
+    orderNo: "ORD789012",
+    date: "2023-10-05",
+    total: 75.0,
+    status: "pending",
+    image: "https://via.placeholder.com/150",
+    tracking: {
+        status: "shipped",
+        progress: 70,
+    },
+},
+{
+    id: 3,
+    orderNo: "ORD345678",
+    date: "2023-10-10",
+    total: 200.0,
+    status: "cancelled",
+    image: "https://via.placeholder.com/150",
+    tracking: {
+        status: "cancelled",
+        progress: 0,
+    },
+},
+];
+
+// Render Orders
+function renderOrders(filter = "all", sort = "date-desc") {
+const ordersList = document.getElementById("ordersList");
+ordersList.innerHTML = "";
+
+// Filter Orders
+let filteredOrders = orders;
+if (filter !== "all") {
+    filteredOrders = orders.filter((order) => order.status === filter);
+}
+
+// Sort Orders
+if (sort === "date-desc") {
+    filteredOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+} else if (sort === "date-asc") {
+    filteredOrders.sort((a, b) => new Date(a.date) - new Date(b.date));
+} else if (sort === "price-desc") {
+    filteredOrders.sort((a, b) => b.total - a.total);
+} else if (sort === "price-asc") {
+    filteredOrders.sort((a, b) => a.total - b.total);
+}
+
+// Display Orders
+filteredOrders.forEach((order) => {
+    const orderCard = document.createElement("div");
+    orderCard.className = "order-card";
+
+    const statusClass = `status-${order.status}`;
+    orderCard.innerHTML = `
+        <img src="${order.image}" alt="Order Image">
+        <h3>Order #${order.orderNo}</h3>
+        <p>Date: ${order.date}</p>
+        <p>Total: $${order.total.toFixed(2)}</p>
+        <div class="order-status ${statusClass}">${order.status}</div>
+        <div class="tracking-progress">
+            <div class="progress-bar">
+                <div class="progress" style="width: ${order.tracking.progress}%;"></div>
+            </div>
+            <div class="progress-labels">
+                <span>Ordered</span>
+                <span>Shipped</span>
+                <span>Delivered</span>
+            </div>
+        </div>
+        <div class="order-actions">
+            <button onclick="viewOrder(${order.id})">View Order</button>
+            <button onclick="trackOrder(${order.id})">Track Order</button>
+        </div>
+    `;
+
+    ordersList.appendChild(orderCard);
+});
+}
+
+// View Order Function
+function viewOrder(orderId) {
+const order = orders.find((o) => o.id === orderId);
+alert(`Viewing Order #${order.orderNo}\nStatus: ${order.status}\nTotal: $${order.total.toFixed(2)}`);
+}
+
+// Track Order Function
+function trackOrder(orderId) {
+const order = orders.find((o) => o.id === orderId);
+alert(`Tracking Order #${order.orderNo}\nProgress: ${order.tracking.progress}%`);
+}
+
+// Event Listeners
+document.getElementById("filter").addEventListener("change", (e) => {
+const sort = document.getElementById("sort").value;
+renderOrders(e.target.value, sort);
+});
+
+document.getElementById("sort").addEventListener("change", (e) => {
+const filter = document.getElementById("filter").value;
+renderOrders(filter, e.target.value);
+});
+
+// Initial Render
+renderOrders();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Start Instagram Feed  -->
     <div class="instagram-box">
         <div class="main-instagram owl-carousel owl-theme">

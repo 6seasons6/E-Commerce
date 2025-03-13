@@ -1,0 +1,124 @@
+.security-container {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px; /* Increased width for better alignment */
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    /* transform: translateY(-50%); */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+label {
+    width: 150px; /* Fixed width for labels */
+    white-space: nowrap; /* Prevent label from wrapping */
+    margin-right: 10px; /* Space between label and field */
+}
+
+.field-with-edit {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allow field to take remaining space */
+    gap: 10px; /* Space between field and edit icon */
+}
+
+input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.phone-input {
+    display: flex;
+    gap: 10px; /* Space between dropdown and input */
+}
+
+.phone-input select {
+    width: 80px; /* Smaller width for dropdown */
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.phone-input input {
+    flex-grow: 1; /* Allow input to take remaining space */
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width:190px;
+}
+
+.tooltip-icon {
+    cursor: pointer;
+    color: #007bff; /* Blue color for the icon */
+}
+
+.tooltip-icon:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+.update-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #b0b435;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.update-btn:hover {
+    background-color: #b0b435;
+}
+/* Custom Alert Box Styles */
+.custom-alert {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.alert-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+}
+
+.alert-content button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.alert-content button:hover {
+    background-color: #0056b3;
+}
