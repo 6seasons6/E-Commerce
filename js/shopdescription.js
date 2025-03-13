@@ -77,91 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updatePrice(productId);
     });
 });
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.buy-now-button').forEach(button => {
-        button.addEventListener('click', function (event) {
-            event.preventDefault();
-            const productId = button.getAttribute('data-product-id');
-
-            const productElement = document.getElementById(`product-item-${productId}`);
-            const productName = productElement.querySelector('h4').textContent;
-            const selectedWeight = parseInt(document.getElementById(`weight-select-${productId}`).value, 10);
-            const quantity = parseInt(document.getElementById(`quantity-input-${productId}`).value, 10) || 1;
-            const pricePer250Grams = parseFloat(productElement.getAttribute('data-price'));
-            const totalPrice = calculateTotalPrice(pricePer250Grams, selectedWeight, quantity);
- 
- 
-            localStorage.setItem('productName', productName);
-            localStorage.setItem('totalPrice', totalPrice.toFixed(2));
-            localStorage.setItem('quantity', quantity);
-            window.location.href = 'checkout.html';
-        });
-    });
-});
- 
- 
-function calculateTotalPrice(pricePer250Grams, selectedWeight, quantity) {
-    const priceForSelectedWeight = (pricePer250Grams / 250) * selectedWeight;
-    return priceForSelectedWeight * quantity;
-}
-
-window.onload = function() {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const wishlistBody = document.getElementById('wishlist-body');
-    const wishlistcount = document.getElementById('wishlist-count');
- 
-     
-        // Function to update the wishlist count
-    function updateWishlistcount() {
-        // Set the wishlist count in the icon
-        wishlistcount.textContent = wishlist.length > 0 ? wishlist.length : "";
-    }
-    // Loop through the wishlist and add each product to the table
-    wishlist.forEach(product => {
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-            <td><img src="${product.image}" alt="${product.name}" style="width: 100px; height: auto;"></td>
-            <td>${product.name}</td>
-            <td>${product.price}</td>
-            <td>In Stock</td>
-            <td><button class="btn btn-primary">Add Item</button></td>
-            <td><button class="btn btn-danger remove-wishlist-item">Remove</button></td>
-        `;
-         
-       
-        // Append the new row to the wishlist table
-        wishlistBody.appendChild(newRow);
- 
-        // Add event listener for "Remove" button
-        newRow.querySelector('.remove-wishlist-item').addEventListener('click', function () {
-            // Remove the product from localStorage
-            const updatedWishlist = wishlist.filter(p => p.name !== product.name);
-            localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
- 
-            // Remove the row from the table
-            wishlistBody.removeChild(newRow);
-            updateWishlistcount();
-        });
-    });
-}
-      // Update the wishlist count on the page
-    updateWishlistcount();
- 
-    // Function to update the wishlist count in the navigation
-function updateWishlistcount() {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const wishlistcount = document.getElementById('wishlist-count');
- 
-    // Update the wishlist count in the wishlist icon (in your navigation)
-    wishlistcount.textContent = wishlist.length > 0 ? wishlist.length : ''; // Display the count or hide if empty
-}
- 
-// Initial render on page load
-window.onload = function() {
-    renderWishlistItems(); // Render wishlist items when the page loads
- 
-};
 //adding tocart
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {
@@ -224,4 +139,103 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000);
     }
 });
+//products disaply in checkout page
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.buy-now-button').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            const productId = button.getAttribute('data-product-id');
 
+            const productElement = document.getElementById(`product-item-${productId}`);
+            if (!productElement) {
+                console.error(`Product element with ID 'product-item-${productId}' not found.`);
+                return;
+            }
+
+            const productName = productElement.querySelector('h4').textContent;
+            const selectedWeight = parseInt(document.getElementById(`weight-select-${productId}`).value.replace('g', ''), 10);
+            const quantity = parseInt(document.getElementById(`quantity-input-${productId}`).value, 10) || 1;
+            const pricePer250Grams = parseFloat(productElement.getAttribute('data-price'));
+            const totalPrice = calculateTotalPrice(pricePer250Grams, selectedWeight, quantity);
+
+            // Store Buy Now item properly
+            const buyNowItem = {
+                name: productName,                                                                                                                                                              
+                quantity: quantity,
+                total: parseFloat(totalPrice.toFixed(2)), 
+            };
+
+            // Store buyNowItem for immediate checkout
+            localStorage.setItem('buyNowItems', JSON.stringify(buyNowItem));
+            localStorage.setItem('checkoutItems', JSON.stringify([buyNowItem])); // Ensure checkoutItems updates as well
+
+            // Redirect to checkout page
+            setTimeout(() => {
+                window.location.href = 'checkout.html';
+            }, 100);
+        });
+    });
+});
+
+// Function to calculate the total price
+function calculateTotalPrice(pricePer250Grams, weight, quantity) {
+    return (pricePer250Grams * (weight / 250)) * quantity;
+}
+
+
+window.onload = function() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const wishlistBody = document.getElementById('wishlist-body');
+    const wishlistcount = document.getElementById('wishlist-count');
+ 
+     
+        // Function to update the wishlist count
+    function updateWishlistcount() {
+        // Set the wishlist count in the icon
+        wishlistcount.textContent = wishlist.length > 0 ? wishlist.length : "";
+    }
+    // Loop through the wishlist and add each product to the table
+    wishlist.forEach(product => {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><img src="${product.image}" alt="${product.name}" style="width: 100px; height: auto;"></td>
+            <td>${product.name}</td>
+            <td>${product.price}</td>
+            <td>In Stock</td>
+            <td><button class="btn btn-primary">Add Item</button></td>
+            <td><button class="btn btn-danger remove-wishlist-item">Remove</button></td>
+        `;
+         
+       
+        // Append the new row to the wishlist table
+        wishlistBody.appendChild(newRow);
+ 
+        // Add event listener for "Remove" button
+        newRow.querySelector('.remove-wishlist-item').addEventListener('click', function () {
+            // Remove the product from localStorage
+            const updatedWishlist = wishlist.filter(p => p.name !== product.name);
+            localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+ 
+            // Remove the row from the table
+            wishlistBody.removeChild(newRow);
+            updateWishlistcount();
+        });
+    });
+}
+      // Update the wishlist count on the page
+    updateWishlistcount();
+ 
+    // Function to update the wishlist count in the navigation
+function updateWishlistcount() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const wishlistcount = document.getElementById('wishlist-count');
+ 
+    // Update the wishlist count in the wishlist icon (in your navigation)
+    wishlistcount.textContent = wishlist.length > 0 ? wishlist.length : ''; // Display the count or hide if empty
+}
+ 
+// Initial render on page load
+window.onload = function() {
+    renderWishlistItems(); // Render wishlist items when the page loads
+ 
+};

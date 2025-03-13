@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Include the head section -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <!-- Site Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>6 Seasons Organic</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
@@ -29,23 +23,29 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
     <style>
-        .center-container{
+        .center-container {
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+           
         }
-        .weight{
+
+        .weight {
             font-weight: bold;
         }
-        #sign{
-            color:rgb(188, 179, 18) ;
-            font-size:15px;
+
+        #sign {
+            color: rgb(188, 179, 18);
+            font-size: 15px;
         }
-        .head:hover{
-            color:rgb(188, 179, 18)  ;
+
+        .head:hover {
+            color: rgb(188, 179, 18);
             font-weight: bold;
         }
-        .head{
+
+        .head {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -54,7 +54,8 @@
             font-weight: bold;
             font-size: 20px;
         }
-        .head1{
+
+        .head1 {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -62,9 +63,57 @@
             color: black;
             font-weight: bold;
         }
-        .card{
+
+        .card {
+            max-width: 100%;
             width: 450px;
-            height: 530px;
+            height: auto;
+            margin: 20px;
+            border-radius: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .card {
+                width: 90%;
+                height: auto;
+            }
+
+            .navbar-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-collapse {
+                background-color: #f8f9fa;
+                padding: 10px;
+            }
+
+            .input-group {
+                width: 100%;
+            }
+
+            .input-group input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .head {
+                font-size: 18px;
+            }
+
+            .head1 {
+                font-size: 16px;
+            }
+
+            .card-body input {
+                width: 100% !important;
+            }
+
+            .card-footer {
+                text-align: center;
+            }
         }
     </style>
 
@@ -73,22 +122,18 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
-        function searchText(){
-            let text=document.getElementById("search").value;
-            let find=document.getElementById("searchWord");
+        function searchText() {
+            let text = document.getElementById("search").value;
+            let find = document.getElementById("searchWord");
             text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
             let pattern = new RegExp(`${text}`, "gi");
             find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
         }
     </script>
-
 </head>
 
 <body>
     <!-- Include Header -->
-   
-
-    <!-- Start Main Top -->
     <header class="main-header">
         <!-- Start Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
@@ -96,8 +141,8 @@
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
+                        <i class="fa fa-bars"></i>
+                    </button>
                     <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
@@ -110,8 +155,7 @@
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                             <ul class="dropdown-menu">
-								<li><a href="shop.html">Sidebar Shop</a></li>
-                                <!--<li><a href="cart.html">Cart</a></li>-->
+                                <li><a href="shop.html">Sidebar Shop</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                             </ul>
                         </li>
@@ -119,8 +163,8 @@
                         <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
                         <li class="nav-item">
                             <div class="input-group">
-                              <input type="text" id="search" style=" border: solid 3px black; height: 40px; font-size:18px; vertical-align:9px" placeholder="Search" size="9" width="7"/>
-                             </div>
+                                <input type="text" id="search" style="border: solid 3px black; height: 40px; font-size: 18px; vertical-align: 9px" placeholder="Search" size="9" width="7" />
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -131,63 +175,24 @@
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
                         <li class="nav-item">
-							<a href="cart.html">
-								<i class="fa fa-shopping-bag"></i>
-								<span class="badge"></span>
-								<span>My Cart</span>
-							</a>
-						</li>
+                            <a href="cart.html">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="badge"></span>
+                                <span>My Cart</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- End Atribute Navigation -->
             </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">&#8377;80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <!-- End Side Menu -->
         </nav>
         <!-- End Navigation -->
     </header>
-    <!-- End Main Top -->
 
-    <!-- Start Top Search -->
-    <div class="top-search">
-        <div class="container">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-            </div>
-        </div>
-    </div>
-    <!-- End Top Search -->
+    <!-- Start Main Top -->
     <div class="center-container">
         <div class="row">
-            <div class="card me-5">
+            <div class="card">
                 <div class="card-header">
                     <h3 class="card-title content head">Sign Up</h3>
                     <h5 class="card-subtitle content head">for your 6SeasonsOrganic account</h5>
@@ -196,88 +201,35 @@
                 <form id="signup-form">
                     <div class="card-body container">
                         <label for="username"><h3 class="weight">Username</h3></label>
-                        <input type="text" class="card-text" style="width: 400px;height:35px" id="username" placeholder="Enter your username" required>
-    
+                        <input type="text" class="card-text" style="width: 100%; height: 35px" id="username" placeholder="Enter your username" required>
+
                         <div class="card-text">
-                            <label for="email"><h3 class="weight">Email address</h3></label><br/>
-                            <input type="email" class="card-text" id="email" style="width: 400px;height:35px" placeholder="Enter your email" required>
+                            <label for="email"><h3 class="weight">Email address</h3></label><br />
+                            <input type="email" class="card-text" id="email" style="width: 100%; height: 35px" placeholder="Enter your email" required>
                         </div>
-    
+
                         <div class="card-text">
-                            <label for="password"><h3 class="weight">Password</h3></label><br/>
-                            <input type="password" class="card-text" style="width: 400px;height:35px" id="password" placeholder="Enter your password" required>
+                            <label for="password"><h3 class="weight">Password</h3></label><br />
+                            <input type="password" class="card-text" style="width: 100%; height: 35px" id="password" placeholder="Enter your password" required>
                         </div>
-    
+
                         <div class="card-text">
-                            <label for="confirm-password"><h3 class="weight">Confirm Password</h3></label><br/>
-                            <input type="password" class="card-text" style="width: 400px;height:35px" id="confirm-password" placeholder="Re-enter your password" required>
+                            <label for="confirm-password"><h3 class="weight">Confirm Password</h3></label><br />
+                            <input type="password" class="card-text" style="width: 100%; height: 35px" id="confirm-password" placeholder="Re-enter your password" required>
                         </div>
-    
+
                         <button type="submit" class="btn btn-success btn-sm head mt-2">Sign Up</button>
                     </div>
-                <div class="card-footer">
-                    <p class="head1">Already have an account? <a href="signin.html" id="sign">Sign in</a></p>
-                </div>
-            </form>
-            <p id="response-message" class="mt-3 text-center"></p>
+                    <div class="card-footer">
+                        <p class="head1">Already have an account? <a href="../E-Commerce/signin.html" id="sign">Sign in</a></p>
+                    </div>
+                </form>
+                <p id="response-message" class="mt-3 text-center"></p>
             </div>
         </div>
     </div>
-    
-    <script>
-       document.getElementById("signup-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
 
-    console.log("Form submitted"); // Add this to debug
-
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const confirmPassword = document.getElementById("confirm-password").value.trim();
-
-    if (!username || !email || !password || !confirmPassword) {
-        document.getElementById("response-message").innerText = "All fields are required.";
-        return;
-    }
-
-    if (password !== confirmPassword) {
-        document.getElementById("response-message").innerText = "Passwords do not match.";
-        return;
-    }
-
-    try {
-        const response = await fetch("http://localhost:5000/api/auth/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, email, password, confirmPassword }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            if (data.user && data.user.username) {
-                localStorage.setItem("username", data.user.username); // ✅ Store username in localStorage
-                console.log("Stored username:", data.user.username);
-            } else {
-                console.warn("Username not found in response!");
-            }                   document.getElementById("response-message").innerText = "Sign up successful!";
-            document.getElementById("response-message").style.color = "green";
-            window.location.href = "signin.html";
-        } else {
-            document.getElementById("response-message").innerText = data.message;
-            document.getElementById("response-message").style.color = "red";
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        document.getElementById("response-message").innerText = "An error occurred. Please try again.";
-        document.getElementById("response-message").style.color = "red";
-    }
-});
-
-    </script>
-     <!-- Start Instagram Feed  -->
+    <!-- Start Instagram Feed  -->
     <div class="instagram-box mt-4">
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
@@ -287,10 +239,10 @@
                         <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                    <img src="images/insta2.jpeg" alt="Instagram Image 2" />
                     <div class="hov-in">
                         <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -298,7 +250,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/insta3.jpeg" alt="Instagram Image 1" />
+                    <img src="images/insta3.jpeg" alt="Instagram Image 3" />
                     <div class="hov-in">
                         <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -306,7 +258,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/insta4.jpeg" alt="Instagram Image 1" />
+                    <img src="images/insta4.jpeg" alt="Instagram Image 4" />
                     <div class="hov-in">
                         <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -314,7 +266,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/insta5.jpeg" alt="Instagram Image 1" />
+                    <img src="images/insta5.jpeg" alt="Instagram Image 5" />
                     <div class="hov-in">
                         <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -322,23 +274,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/insta6.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
-                    <div class="hov-in">
-                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                    <img src="images/insta6.jpeg" alt="Instagram Image 6" />
                     <div class="hov-in">
                         <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -347,7 +283,8 @@
         </div>
     </div>
     <!-- End Instagram Feed  -->
-     <!--start footer-->
+
+    <!-- Start Footer -->
     <footer>
         <div class="footer-main">
             <div class="container">
@@ -356,8 +293,8 @@
                         <div class="footer-top-box">
                             <h3>Business Time</h3>
                             <ul class="list-time">
-                                <li>Monday - Friday: 08.00am to 05.00pm</li> 
-                                <li>Saturday: 10.00am to 08.00pm</li> 
+                                <li>Monday - Friday: 08.00am to 05.00pm</li>
+                                <li>Saturday: 10.00am to 08.00pm</li>
                                 <li>Sunday: <span>Closed</span></li>
                             </ul>
                         </div>
@@ -365,17 +302,13 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
                             <h3>Newsletter</h3>
-                            <form class="newsletter-box" id="subscribeForm">
+                            <form class="newsletter-box">
                                 <div class="form-group">
-                                    <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
+                                    <input class="" type="email" name="Email" placeholder="Email Address*" />
                                     <i class="fa fa-envelope"></i>
                                 </div>
                                 <button class="btn hvr-hover" type="submit">Submit</button>
                             </form>
-                            <div id="statusMessage" style="display: none;">
-                                <span id="statusMessageText"></span>
-                                <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -398,8 +331,8 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
                             <h4>About 6seasonsorganic</h4>
-                            <p>6seasonsorganic is dedicated to providing the highest quality organic and seasonal products. Our mission is to bring health and sustainability to every customer.</p> 
-                            <p>Our organic products are sourced with care, ensuring the best for you and your family.</p> 							
+                            <p>6seasonsorganic is dedicated to providing the highest quality organic and seasonal products. Our mission is to bring health and sustainability to every customer.</p>
+                            <p>Our organic products are sourced with care, ensuring the best for you and your family.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -435,76 +368,14 @@
             </div>
         </div>
     </footer>
-    
     <!-- End Footer  -->
 
-    <script>
-        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-    
-        const email = document.getElementById('email').value;
-    
-        if (email) {
-            fetch('http://127.0.0.1:5000/subscribe', { 
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: email })
-            })
-            .then(response => response.json())
-            .then(data => {
-                const statusMessageDiv = document.getElementById('statusMessage');
-                const statusMessageText = document.getElementById('statusMessageText');
-                const closeButton = document.getElementById('closeMessage');
-                
-                // Set message text
-                statusMessageText.textContent = data.message;
-    
-                // Apply green style for success
-                statusMessageDiv.style.color = 'white';
-                statusMessageDiv.style.backgroundColor = 'green';
-                statusMessageDiv.style.padding = '10px';
-                statusMessageDiv.style.borderRadius = '5px';
-                statusMessageDiv.style.textAlign = 'center';
-                statusMessageDiv.style.display = 'block';  // Make the message visible
-    
-                // Close button functionality
-                closeButton.addEventListener('click', () => {
-                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
-                });
-            })
-            .catch(error => {
-                const statusMessageDiv = document.getElementById('statusMessage');
-                const statusMessageText = document.getElementById('statusMessageText');
-                const closeButton = document.getElementById('closeMessage');
-    
-                // Set error message
-                statusMessageText.textContent = "There was an error. Please try again.";
-    
-                // Apply red style for error
-                statusMessageDiv.style.color = 'white';
-                statusMessageDiv.style.backgroundColor = 'red';
-                statusMessageDiv.style.padding = '10px';
-                statusMessageDiv.style.borderRadius = '5px';
-                statusMessageDiv.style.textAlign = 'center';
-                statusMessageDiv.style.display = 'block';  // Make the message visible
-    
-                // Close button functionality
-                closeButton.addEventListener('click', () => {
-                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
-                });
-            });
-        }
-    });
-    
-     </script>
-    <!-- Start copyright  -->
+    <!-- Start Copyright  -->
     <div class="footer-copyright">
         <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
             <a href="https://html.design/">6SeasonsOrganic</a></p>
     </div>
-    <!-- End copyright  -->
+    <!-- End Copyright  -->
 
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -522,7 +393,6 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
-    </div>
 </body>
 
 </html>

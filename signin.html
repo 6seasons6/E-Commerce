@@ -72,7 +72,65 @@
         }
         .head:hover{
             color: rgb(169, 169, 17);
-            font-weight: bold;
+           
+        }
+        
+        .navbar-nav {
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navbar-nav .nav-item {
+                margin: 10px 0;
+            }
+
+            .card {
+                width: 90%;
+            }
+
+            .head {
+                font-size: 1.5rem;
+            }
+
+            .head1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card {
+                width: 100%;
+            }
+
+            .head {
+                font-size: 1.2rem;
+            }
+
+            .head1 {
+                font-size: 1rem;
+            }
+
+            .navbar-brand img {
+                width: 100px;
+            }
+
+            .input-group {
+                width: 100%;
+            }
+
+            .input-group input {
+                width: 100%;
+            }
         }
     </style>
     <!--[if lt IE 9]>
@@ -166,13 +224,13 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo img-fluid" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                    <ul class="nav navbar-nav ml-auto" >
                         <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
                         <li class="dropdown">
@@ -187,7 +245,7 @@
                         <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
                         <li class="nav-item">
                             <div class="input-group">
-                              <input type="text" id="search" style=" border: solid 3px black;  height: 40px;  font-size:18px; vertical-align:9px" placeholder="Search" size="10" width="5"/>
+                              <input type="text" id="search"class="form-control" placeholder="Search" />
                              </div>
                         </li>
                     </ul>
@@ -255,45 +313,37 @@
     </div>
     <!-- End Top Search -->
     <div class="center-container">
-        <div class="row">
-            <div class="card me-5">
-                <div class="card-header">
-                    <h3 class="card-title content head">Sign In</h3>
-                    <h5 class="card-subtitle content head">to your 6SeasonsOrganic Account</h5>
-                </div>
-                <!-- Form starts here -->
-                <form id="signin-form">
-                    <div class="card-body">
-                        <div class="card-text">
-                            <label for="email" style="margin: 0;">
-                                <h4 class="weight mt-2">Email address</h4>
-                            </label><br/>
-                            <input type="email" class="card-text" id="email" style="width:400px;height:35px;margin: 0;" placeholder="Enter your email" required onkeyup="convertData()">
-                        </div>
-                        <div class="card-text">
-                            <label for="password" style="margin: 0;">
-                                <h4 class="weight">Password</h4>
-                            </label>
-                            <input type="password" style="width: 400px;height:35px;margin: 0;" id="password" placeholder="Enter your password" required>
-                            <div class="pass">
-                                <button type="button" class="btn btn-white weight" onclick="myFunc()"><i class="bi bi-eye"></i></button>
-                            </div>
-                            <a href="forgot-password.html">Forgot Password?</a>
-                            <button type="submit" class="btn btn-success btn-sm head">Sign In</button>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <p class="head1">Don't have an account? <a href="signup.html" id="sign">Sign Up</a></p>
-                        <div class="center-container">
-                            <div class="g-signin2" style="height: 30px; width:150px;" data-onsuccess="onSignIn"></div>
-                        </div>
-                    </div>
-                </form>
-                <p id="message" class="mt-3 text-center"></p>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title head">Sign In</h3>
+                <h5 class="card-subtitle head">to your 6SeasonsOrganic Account</h5>
             </div>
+            <form id="signin-form">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="email" class="weight">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required onkeyup="convertData()">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="weight">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                        <div class="pass">
+                            <button type="button" class="btn btn-white weight" onclick="myFunc()"><i class="bi bi-eye"></i></button>
+                        </div>
+                        <a href="forgot-password.html">Forgot Password?</a>
+                        <button type="submit" class="btn btn-success btn-block head">Sign In</button>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p class="head1">Don't have an account? <a href="signup.html" id="sign">Sign Up</a></p>
+                    <div class="center-container">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                </div>
+            </form>
+            <p id="message" class="mt-3 text-center"></p>
         </div>
     </div>
-    
     <script>
     document.getElementById("signin-form").addEventListener("submit", async (e) => {
         e.preventDefault(); // Prevent default form submission
@@ -314,7 +364,6 @@
     
             if (response.ok) {
                 if (data.user && data.user.username) {
-                    localStorage.setItem("isLoggedIn", "true"); // Set login state
                 localStorage.setItem("username", data.user.username); // ✅ Store username in localStorage
                 console.log("Stored username:", data.user.username);
             } else {
@@ -422,7 +471,7 @@
                             <h3>Newsletter</h3>
                             <form class="newsletter-box" id="subscribeForm">
                                 <div class="form-group">
-                                    <input class="" type="email" name="Email" id="email"placeholder="Email Address*" />
+                                    <input class="form-control" type="email" name="Email" id="email"placeholder="Email Address*" />
                                     <i class="fa fa-envelope"></i>
                                 </div>
                                 <button class="btn hvr-hover" type="submit">Submit</button>

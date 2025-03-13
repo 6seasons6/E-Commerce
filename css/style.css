@@ -2672,7 +2672,7 @@ font-size: 20px;
     font-size: 13px;
     font-weight: bold;
     text-align: center;
-    
+    margin-right: 1.4rem;
 }
 
 #product-quantity,
@@ -2779,3 +2779,72 @@ font-size: 20px;
     list-style: none;
 }
 
+.product-details {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Adds spacing between items */
+}
+
+.cart-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin-right: 12rem;
+}
+/*responsiveness*/
+.text-slid-box, .custom-select-box, .login-box {
+    display: inline !important;
+   
+}
+ 
+/*  on mobile */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: row;
+    }
+    .offer-box {
+        display: flex;
+        justify-content: flex-start;  
+       
+    }
+    .col-12 {
+        width: 100%;
+        text-align: center;
+     
+    }
+}
+@media (max-width: 320px) {
+    .text-slid-box {
+        max-width: 100%;
+       
+        white-space: nowrap;
+    }
+ 
+    .offer-box {
+        font-size: 12px;
+       
+    }
+ 
+    .offer-box li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 0;
+    }
+ 
+    #offer-box {
+        width: 100%;
+        overflow: hidden;
+    }
+}
+ 
+.attr-nav ul {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+ 
+.attr-nav ul li {
+    list-style: none;
+}
