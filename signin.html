@@ -1,65 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Include the head section -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-signin-client_id" content="23564592532-c5aceb9sq0dfkh68hnj66ur47qeqd505.apps.googleusercontent.com">
+
+    <!-- Site Metas -->
     <title>6 Seasons Organic</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <!-- Site Icons -->
     <link rel="shortcut icon" href="images/logo1.png" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="../E-Commerce/node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../E-Commerce/node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <style>
-        #sign {
-            color: rgb(169, 169, 17);
-            font-size: 15px;
+        #sign{
+            color:rgb(169, 169, 17) ;
+            font-size:15px;
             font-weight: bold;
         }
-
-        .center-container {
+        .center-container{
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
-        .pass {
+        .pass{
             display: flex;
             justify-content: right;
             align-items: center;
         }
-
-        .weight {
+        .weight{
             font-weight: bold;
             text-align: right;
         }
-
-        .card {
-            width: 100%;
-            max-width: 450px;
-            height: auto;
-            margin: 20px auto;
-            border-radius: 20px;
+        .card{
+            width: 450px;
+            height: 510px;
         }
-
-        .head {
+        .head{
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
             color: black;
             font-weight: bold;
         }
-
-        .head:hover {
-            color: rgb(169, 169, 17);
+        .head1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: black;
+            font-weight: bold;
         }
-
+        .head:hover{
+            color: rgb(169, 169, 17);
+           
+        }
+        
         .navbar-nav {
             flex-direction: row;
             justify-content: space-around;
@@ -124,218 +139,494 @@
     <![endif]-->
     <script src="../E-Commerce/node_modules/jquery/dist/jquery.js"></script>
     <script src="../E-Commerce/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+         const signinForm = document.getElementById('signin-Form');
+         const messageElement = document.getElementById('message');
+         if (signinForm) {
+             signinForm.addEventListener('submit', function (event) {
+                 event.preventDefault(); // Prevent the default form submission
+                 const email = document.getElementById('email').value.trim();
+                 const password = document.getElementById('password').value.trim();
+      
+                 // Retrieve user data from localStorage
+                 const userData = localStorage.getItem(email);
+                 if (userData) {
+                     const user = JSON.parse(userData);
+                     // Check if the password matches
+                     if (user.password === password) {
+                         window.location.href = 'index.html'; // Redirect to a welcome page or dashboard
+                     } else {
+                         messageElement.innerText = 'Incorrect password. Please try again.';
+                         messageElement.style.display = 'block';
+                     }
+                 } else {
+                     messageElement.innerText = 'No account found with this email. Please sign up.';
+                     messageElement.style.display = 'block';
+                 }
+             });
+         }
+     });
+     function onSignIn(googleUser) {
+       var profile = googleUser.getBasicProfile();
+       console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+       console.log('Name: ' + profile.getName());
+       console.log('Image URL: ' + profile.getImageUrl());
+       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+     }
+     function signOut() {
+         var auth2 = gapi.auth2.getAuthInstance();
+         auth2.signOut().then(function () {
+           console.log('User signed out.');
+         });
+       }
+     </script>
+      <script>
+        function myFunc(){
+            var pass=document.getElementById("password");
+            if(pass.type==="password"){
+                pass.type="text";
+            }else{
+                pass.type="password";
+            }
+        }
+      </script>
+    <script>
+        function searchText(){
+            let text=document.getElementById("search").value;
+            let find=document.getElementById("searchWord");
+            text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
+            let pattern = new RegExp(`${text}`, "gi");
+            find.innerHTML = find.innerHTML.replace(pattern, match => `<mark>${match}</mark>`);
+        }
+    </script>
+    <script>
+        function convertData(){
+            var emailid=document.getElementById("email").value;
+            var res=emailid.toLowerCase();
+            document.getElementById("email").value=res;
+        }
+    </script>
+    <script src="../E-Commerce/node_modules/jquery/dist/jquery.js"></script>
 </head>
-
 <body>
     <div id="searchWord">
-        <!-- Start Main Top -->
-        <header class="main-header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo img-fluid" alt=""></a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbar-menu">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="shop.html">Sidebar Shop</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-                            <li class="nav-item">
-                                <div class="input-group">
-                                    <input type="text" id="search" class="form-control" placeholder="Search">
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="attr-nav">
-                        <ul>
-                            <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
-                            <li class="nav-item">
-                                <a href="cart.html">
-                                    <i class="fa fa-shopping-bag"></i>
-                                    <span>My Cart</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <!-- End Main Top -->
+   
 
-        <!-- Start Top Search -->
-        <div class="top-search">
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
             <div class="container">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                    <input type="text" class="form-control" placeholder="Search">
-                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo img-fluid" alt=""></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" >
+                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="dropdown">
+							<a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+							<ul class="dropdown-menu">
+								<li><a href="shop.html">Sidebar Shop</a></li>
+								<!--<li><a href="cart.html">Cart</a></li>-->
+								<li><a href="checkout.html">Checkout</a></li>
+							</ul>
+						</li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                        <li class="nav-item">
+                            <div class="input-group">
+                              <input type="text" id="search"class="form-control" placeholder="Search" />
+                             </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="search"><a href="#"><i class="fa fa-search" onclick="searchText()"></i></a></li>
+                        <li class="nav-item">
+							<a href="cart.html">
+								<i class="fa fa-shopping-bag"></i>
+								<span class="badge"></span>
+								<span>My Cart</span>
+							</a>
+						</li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+            <!-- Start Side Menu -->
+            <div class="side">
+                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+                <li class="cart-box">
+                    <ul class="cart-list">
+                        <li>
+                            <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Delica omtantur </a></h6>
+                            <p>1x - <span class="price">$80.00</span></p>
+                        </li>
+                        <li>
+                            <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Omnes ocurreret</a></h6>
+                            <p>1x - <span class="price">$60.00</span></p>
+                        </li>
+                        <li>
+                            <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Agam facilisis</a></h6>
+                            <p>1x - <span class="price">$40.00</span></p>
+                        </li>
+                        <li class="total">
+                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <span class="float-right"><strong>Total</strong>: $180.00</span>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <!-- End Side Menu -->
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+    <div class="center-container">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title head">Sign In</h3>
+                <h5 class="card-subtitle head">to your 6SeasonsOrganic Account</h5>
+            </div>
+            <form id="signin-form">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="email" class="weight">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required onkeyup="convertData()">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="weight">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                        <div class="pass">
+                            <button type="button" class="btn btn-white weight" onclick="myFunc()"><i class="bi bi-eye"></i></button>
+                        </div>
+                        <a href="forgot-password.html">Forgot Password?</a>
+                        <button type="submit" class="btn btn-success btn-block head">Sign In</button>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p class="head1">Don't have an account? <a href="signup.html" id="sign">Sign Up</a></p>
+                    <div class="center-container">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                </div>
+            </form>
+            <p id="message" class="mt-3 text-center"></p>
+        </div>
+    </div>
+    <script>
+    document.getElementById("signin-form").addEventListener("submit", async (e) => {
+        e.preventDefault(); // Prevent default form submission
+    
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+    
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/signin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                if (data.user && data.user.username) {
+                localStorage.setItem("username", data.user.username); // ✅ Store username in localStorage
+                console.log("Stored username:", data.user.username);
+            } else {
+                console.warn("Username not found in response!");
+            }
+                document.getElementById("message").textContent = data.message;
+                document.getElementById("message").style.color = "green";
+                window.location.href = "my-account.html";  // Redirect to a new page after successful login
+            } else {
+                document.getElementById("message").textContent = data.message;
+                document.getElementById("message").style.color = "red";
+            }
+        } catch (error) {
+            document.getElementById("message").textContent = "Error: Unable to connect to the server.";
+            document.getElementById("message").style.color = "red";
+        }
+    });
+</script>
+    <div class="instagram-box mt-5">
+        <div class="main-instagram owl-carousel owl-theme">
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/insta3.jpeg" alt="Instagram Image 1" />
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/insta4.jpeg" alt="Instagram Image 1" />
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/insta5.jpeg" alt="Instagram Image 1" />
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/insta6.jpeg" alt="Instagram Image 1" />
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/insta1.jpeg" alt="Instagram Image 1" />
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/insta2.jpeg" alt="Instagram Image 1" />
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/6_seasons_organic/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- End Top Search -->
-
-        <!-- Sign In Form -->
-        <div class="center-container">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title head">Sign In</h3>
-                    <h5 class="card-subtitle head">to your 6SeasonsOrganic Account</h5>
+    </div>
+    <!-- End Instagram Feed  -->
+     <!--start footer-->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Business Time</h3>
+                            <ul class="list-time">
+                                <li>Monday - Friday: 08.00am to 05.00pm</li> 
+                                <li>Saturday: 10.00am to 08.00pm</li> 
+                                <li>Sunday: <span>Closed</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Newsletter</h3>
+                            <form class="newsletter-box" id="subscribeForm">
+                                <div class="form-group">
+                                    <input class="form-control" type="email" name="Email" id="email"placeholder="Email Address*" />
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <button class="btn hvr-hover" type="submit">Submit</button>
+                            </form>
+                            <div id="statusMessage" style="display: none;">
+                                <span id="statusMessageText"></span>
+                                <button id="closeMessage" style="background-color: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Social Media</h3>
+                            <p>Follow us for updates on seasonal and organic products.</p>
+                            <ul>
+                                <li><a href="https://www.facebook.com/6seasonsorganic"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.twitter.com/6seasonsorganic"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/6seasonsorganic"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.instagram.com/6_seasons_organic/?hl=en"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.youtube.com/@6seasonsorganics"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.whatsapp.com"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <form id="signin-form">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="email" class="weight">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required onkeyup="convertData()">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="weight">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                            <div class="pass">
-                                <button type="button" class="btn btn-white weight" onclick="myFunc()"><i class="bi bi-eye"></i></button>
-                            </div>
-                            <a href="forgot-password.html">Forgot Password?</a>
-                            <button type="submit" class="btn btn-success btn-block head">Sign In</button>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>About 6seasonsorganic</h4>
+                            <p>6seasonsorganic is dedicated to providing the highest quality organic and seasonal products. Our mission is to bring health and sustainability to every customer.</p> 
+                            <p>Our organic products are sourced with care, ensuring the best for you and your family.</p> 							
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <p class="head1">Don't have an account? <a href="signup.html" id="sign">Sign Up</a></p>
-                        <div class="center-container">
-                            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Information</h4>
+                            <ul class="dot-list">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="#">Our Sitemap</a></li>
+                                <li><a href="#">Terms &amp; Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                            </ul>
                         </div>
                     </div>
-                </form>
-                <p id="message" class="mt-3 text-center"></p>
-            </div>
-        </div>
-
-        <!-- Instagram Feed -->
-        <div class="instagram-box mt-5">
-            <div class="main-instagram owl-carousel owl-theme">
-                <!-- Add Instagram images here -->
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-main">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="footer-top-box">
-                                <h3>Business Time</h3>
-                                <ul class="list-time">
-                                    <li>Monday - Friday: 08.00am to 05.00pm</li>
-                                    <li>Saturday: 10.00am to 08.00pm</li>
-                                    <li>Sunday: <span>Closed</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="footer-top-box">
-                                <h3>Newsletter</h3>
-                                <form class="newsletter-box">
-                                    <div class="form-group">
-                                        <input class="form-control" type="email" name="Email" placeholder="Email Address*">
-                                        <i class="fa fa-envelope"></i>
-                                    </div>
-                                    <button class="btn hvr-hover" type="submit">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="footer-top-box">
-                                <h3>Social Media</h3>
-                                <p>Follow us for updates on seasonal and organic products.</p>
-                                <ul>
-                                    <li><a href="https://www.facebook.com/6seasonsorganic"><i class="fab fa-facebook"></i></a></li>
-                                    <li><a href="https://www.twitter.com/6seasonsorganic"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/company/6seasonsorganic"><i class="fab fa-linkedin"></i></a></li>
-                                    <li><a href="https://www.instagram.com/6_seasons_organic/?hl=en"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="https://www.youtube.com/@6seasonsorganics"><i class="fab fa-youtube"></i></a></li>
-                                    <li><a href="https://www.whatsapp.com"><i class="fab fa-whatsapp"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="footer-widget">
-                                <h4>About 6seasonsorganic</h4>
-                                <p>6seasonsorganic is dedicated to providing the highest quality organic and seasonal products. Our mission is to bring health and sustainability to every customer.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="footer-link">
-                                <h4>Information</h4>
-                                <ul class="dot-list">
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Customer Service</a></li>
-                                    <li><a href="#">Our Sitemap</a></li>
-                                    <li><a href="#">Terms &amp; Conditions</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Delivery Information</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="footer-link-contact">
-                                <h4>Contact Us</h4>
-                                <ul>
-                                    <li>
-                                        <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic H.no 4-59/6/19,<br>Srinivasa Nagar Colony Mandaipally Road<br>Thumukunta, Shamirpet<br>Secunderabad, Telangana 500078</p>
-                                    </li>
-                                    <li>
-                                        <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+91-9100066659">+91-9100066659</a></p>
-                                    </li>
-                                    <li>
-                                        <p><i class="fas fa-envelope"></i>Email: <a href="mailto:info@6seasonsorganic.com">info@6seasonsorganic.com</a></p>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: 6seasonsorganic H.no 4-59/6/19,<br>Srinivasa Nagar Colony Mandaipally Road<br>Thumukunta, Shamirpet<br>Secunderabad, Telangana 500078</p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+91-9100066659">+91-9100066659</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:info@6seasonsorganic.com">info@6seasonsorganic.com</a></p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- End Footer -->
-
-        <!-- Start copyright -->
-        <div class="footer-copyright">
-            <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
-                <a href="https://html.design/">6SeasonsOrganic</a></p>
         </div>
-        <!-- End copyright -->
+    </footer>
+    <!-- End Footer  -->
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        const email = document.getElementById('email').value;
+    
+        if (email) {
+            fetch('http://127.0.0.1:5000/subscribe', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+                
+                // Set message text
+                statusMessageText.textContent = data.message;
+    
+                // Apply green style for success
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'green';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            })
+            .catch(error => {
+                const statusMessageDiv = document.getElementById('statusMessage');
+                const statusMessageText = document.getElementById('statusMessageText');
+                const closeButton = document.getElementById('closeMessage');
+    
+                // Set error message
+                statusMessageText.textContent = "There was an error. Please try again.";
+    
+                // Apply red style for error
+                statusMessageDiv.style.color = 'white';
+                statusMessageDiv.style.backgroundColor = 'red';
+                statusMessageDiv.style.padding = '10px';
+                statusMessageDiv.style.borderRadius = '5px';
+                statusMessageDiv.style.textAlign = 'center';
+                statusMessageDiv.style.display = 'block';  // Make the message visible
+    
+                // Close button functionality
+                closeButton.addEventListener('click', () => {
+                    statusMessageDiv.style.display = 'none';  // Hide the message when clicked
+                });
+            });
+        }
+    });
+    
+     </script>
 
-        <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script src="../E-Commerce/node_modules/jquery/dist/jquery.min.js" crossorigin="anonymous"></script>
-        <script src="js/jquery.superslides.min.js"></script>
-        <script src="js/bootstrap-select.js"></script>
-        <script src="js/inewsticker.js"></script>
-        <script src="js/bootsnav.js."></script>
-        <script src="js/images-loded.min.js"></script>
-        <script src="js/isotope.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/baguetteBox.min.js"></script>
-        <script src="js/form-validator.min.js"></script>
-        <script src="js/contact-form-script.js"></script>
-        <script src="js/custom.js"></script>
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">6SeasonsOrganic</a> Design By :
+            <a href="https://html.design/">6SeasonsOrganic</a></p>
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="../E-Commerce/node_modules/jquery/dist/jquery.min.js" crossorigin="anonymous"></script>
+    <!-- ALL PLUGINS -->
+    <script src="js/jquery.superslides.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/inewsticker.js"></script>
+    <script src="js/bootsnav.js."></script>
+    <script src="js/images-loded.min.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/baguetteBox.min.js"></script>
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
     </div>
 </body>
 
