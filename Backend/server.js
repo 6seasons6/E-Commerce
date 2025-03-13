@@ -79,9 +79,9 @@ const OrderSchema = new mongoose.Schema({
   products: [
     {
         productName: { type: String, required: true },  // Change "name" to "productName"
-        image: { type: String, required: true },
+        
         price: { type: Number, required: true },
-        weight: { type: Number, required: true },
+        weight:{type:String, required:true},
         quantity: { type: Number, required: true },
         totalPrice: { type: Number, required: true }  // Change "total" to "totalPrice"
     }

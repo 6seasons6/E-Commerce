@@ -682,13 +682,22 @@
                                                         $('#orderConfirmationModal').modal('show');
                                                         console.log("Payment successful! Payment ID:", response.razorpay_payment_id);
 
-                                                       // localStorage.removeItem('cartItems'); // Clear cart items
-                                                        // Clear billing address fields (but keep data in localStorage)
-                                                        const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'country', 'state', 'username', 'phoneNumber', 'countryCode'];
-                                                        fields.forEach(id => {
-                                                            const field = document.getElementById(id);
-                                                            if (field) field.value = ''; // Clear the input fields
-                                                        });
+                // Check if the order was placed using cart items
+                 if (cartItems.length > 0) {
+                         localStorage.removeItem('cartItems'); // Clear cart items only if cart was used
+                     }else{
+                        const originalCartItems = JSON.parse(localStorage.getItem("originalCartItems")) || [];
+                        localStorage.removeItem('originalCartItems');
+                     }
+                     
+                     
+                // Clear cart items only if the order was placed via cart
+                // Clear billing address fields (but keep data in localStorage)
+                const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'country', 'state', 'username','phoneNumber','countryCode'];
+                fields.forEach(id => {
+                    const field = document.getElementById(id); 
+                    if (field) field.value = ''; // Clear the input fields
+                });
 
                                                         // Uncheck the "Use previous billing address" checkbox
                                                         const usePreviousAddressCheckbox = document.getElementById('use-previous-address');
@@ -697,8 +706,8 @@
                                                         }
 
                                                         const formattedProducts = cartItems.map(item => ({
-                                                            productName: item.name,
-                                                            image: item.image,
+                                                            productName: item.productName || item.name || "Unknown Product",
+                                                            
                                                             price: item.price,
                                                             weight: item.weight,
                                                             quantity: item.quantity,

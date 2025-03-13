@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('cart-count').innerText = cart.length;
     }
     function renderCartItems() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
         const cartBody = document.getElementById('cart-body');
         cartBody.innerHTML = '';
         if (cart.length === 0) {
@@ -76,6 +76,7 @@ function updateCartPage() {
     const cartBody = document.getElementById("cart-body");
     const totalAmountElement = document.querySelector(".cart-total-amount");
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    cartItems=cartItems.filter(item=>item.name && item.image);
     cartBody.innerHTML = "";
     let totalAmount = 0;
       cartItems.forEach((item, index) => {

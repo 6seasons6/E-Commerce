@@ -106,6 +106,9 @@ document.addEventListener('DOMContentLoaded', function () {
             total: totalPrice
         };
         let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        if (!Array.isArray(cartItems)) {
+            cartItems = [];  // Reset to an empty array if it is not valid
+        }
         const existingItemIndex = cartItems.findIndex(item => item.name === name && item.weight === selectedWeight);
     if (existingItemIndex !== -1) {
             cartItems[existingItemIndex].quantity += quantity;
