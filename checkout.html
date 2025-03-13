@@ -624,7 +624,11 @@
 
 
     localStorage.setItem('billingAddress', JSON.stringify(billingAddress)); // Store in localStorage
+   // const buyNowProduct = JSON.parse(localStorage.getItem('buyNowItem'));
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    //const originalCartItems = JSON.parse(localStorage.getItem("originalCartItems")) || [];
+    console.log(cartItems);
+    //console.log(originalCartItems);
     const priceElement = document.getElementById("grand-total");
     const grandTotal = priceElement ? priceElement.innerText.replace(/[^\d.]/g, "").trim() : "0";
     const amount = parseFloat(grandTotal) * 100; // Convert to paise
@@ -671,11 +675,20 @@
                                                     $('#orderConfirmationModal').modal('show');
                 console.log("Payment successful! Payment ID:", response.razorpay_payment_id);
 
-                localStorage.removeItem('cartItems'); // Clear cart items
+                // Check if the order was placed using cart items
+                 if (cartItems.length > 0) {
+                         localStorage.removeItem('cartItems'); // Clear cart items only if cart was used
+                     }else{
+                        const originalCartItems = JSON.parse(localStorage.getItem("originalCartItems")) || [];
+                        localStorage.removeItem('originalCartItems');
+                     }
+                     
+                     
+                // Clear cart items only if the order was placed via cart
                 // Clear billing address fields (but keep data in localStorage)
                 const fields = ['firstName', 'lastName', 'email', 'address', 'address2', 'zip', 'country', 'state', 'username','phoneNumber','countryCode'];
                 fields.forEach(id => {
-                    const field = document.getElementById(id);
+                    const field = document.getElementById(id); 
                     if (field) field.value = ''; // Clear the input fields
                 });
 
@@ -684,15 +697,24 @@
                 if (usePreviousAddressCheckbox) {
                     usePreviousAddressCheckbox.checked = false; // Uncheck the checkbox
                 }
+//                 let products = [];
 
-                const formattedProducts = cartItems.map(item => ({
-                    productName: item.name,
-                    image: item.image,
-                    price: item.price,
-                    weight: item.weight,
-                    quantity: item.quantity,
-                    totalPrice: item.total
-                }));
+//                 if (cartItems.length ) {
+//                     products = [...cartItems];// ✅ Use Buy Now product (cartItems is replaced with Buy Now item)
+// } else if (originalCartItems.length) {
+//     products = [...originalCartItems]; // ✅ Use previous cart items if Buy Now is not used
+// }
+
+// Now correctly format the selected `products`
+const formattedProducts = cartItems.map(item => ({
+    productName: item.productName || item.name || "Unknown Product",
+            // ✅ Prevent missing images
+    price: item.price,
+    weight:item.weight,      // ✅ Handle optional fields
+    quantity: item.quantity,
+    totalPrice: item.totalPrice || item.total
+}));
+
 
                 const orderDetails = {
                     orderId: data.id,
@@ -755,6 +777,8 @@ function clearErrorMessages() {
     const errorMessages = document.querySelectorAll('.error-message');
     errorMessages.forEach(error => error.remove());
 }
+
+ 
     </script>
                             </div>
                         </div>

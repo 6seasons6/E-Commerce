@@ -90,13 +90,14 @@
                         <div class="login-box">
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
                             <div class="dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-user s_color"></i> My Account
+                                <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-user s_color"></i> 
+                                    <span id="userNameDisplay">My Account</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                                    <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-                                    <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                    <li id="signUpOption"><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                                    <li id="signInOption"><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                    <li id="signOutOption" style="display: none;"><a class="dropdown-item" href="signout.html">Sign Out</a></li>
                                 </ul>
                             </div>
     
@@ -985,7 +986,7 @@
                                                                             <p class="New">New</p>
                                                                         </div>
                                                                         <img src="images/ghee.jpg" class="img-fluid"
-                                                                            alt="ghee">
+                                                                            alt="ghee" data-image="images/ghee.jpg">
                                                                         <div class="mask-icon">
                                                                             <ul>
                                                                                 <li><a href="shop-detail.html?productID=2"
@@ -1983,7 +1984,103 @@
         <script src="js/script.js"></script>
          <script src="js/wishlist.js"></script> 
         <script src="js/cart.js"></script>
+        <script src="js/myaccount.js"></script>
+        <script>
+           document.addEventListener('DOMContentLoaded', function () {
+             // **Backup the existing cart**
+       const existingCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+        localStorage.setItem("originalCartItems", JSON.stringify(existingCart)); // Save previous cart
+
+          document.querySelectorAll(".buy-now-button").forEach(button => {
+    button.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        // Extract product details
+        const productId = this.getAttribute("data-product-id");
+        const quantityInput = document.getElementById(`quantity-input-${productId}`);
+        const weightSelect = document.getElementById(`weight-select-${productId}`);
+        if (!quantityInput || !weightSelect) {
+            console.error(`❌ Quantity input NOT FOUND for product ID: ${productId}`);
+            return;
+        }
+
+        const quantity = parseInt(quantityInput.value);
+        const weight = weightSelect.value; // Get the selected weight
+        const productNameElement = document.querySelector(`#product-item-${productId} h4`);
+        const productPriceElement = document.querySelector(`#price-display-${productId}`);
+
+        if (!productNameElement || !productPriceElement) {
+            console.error("❌ Missing product details.");
+            return;
+        }
+
+        const productName = productNameElement.innerText;
+        console.log(`✅ Found Product Name: ${productName}`);
+        console.log(`✅ Found weight: ${weight}`);
+        const productPrice = parseFloat(productPriceElement.innerText.replace(/[^\d.]/g, ""));
+        const totalAmount = productPrice * quantity;
+
+        // Retrieve user details (assuming stored in localStorage)
+        const username = localStorage.getItem("username") || "Guest";
+        const billingAddress = JSON.parse(localStorage.getItem("billingAddress")) || {};
+        const phoneNumber = billingAddress.phoneNumber || "Unknown";
         
+       // **Backup the existing cart**
+       const existingCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+        localStorage.setItem("originalCartItems", JSON.stringify(existingCart)); // Save previous cart
+
+        // **Clear existing cart items and store only Buy Now product**
+        const newCartItem = [{
+            productName: productName,
+            price: productPrice,
+            quantity: quantity,
+             weight: weight, // Include the selected weight
+            total: totalAmount,
+            isBuyNow: true // Add this flag
+        }];
+// Append the "Buy Now" item to the existing cart items
+//cartItems.push(newCartItem);
+    localStorage.setItem("cartItems", JSON.stringify(newCartItem));  // Store Buy Now product in cartItems
+
+        // Prepare order details
+        const orderDetails = {
+            orderId:data.id,
+            username,
+            email: localStorage.getItem("email") || "N/A",
+            phoneNumber,
+            deliveryAddress: billingAddress,
+            amount: totalAmount,
+            products: newCartItem
+        };
+
+        // Send order details to the backend
+        fetch("http://127.0.0.1:5000/api/store-order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(orderDetails)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("✅ Order stored successfully:", data);
+            alert("Order placed successfully!");
+            // **Restore the original cart**
+            const originalCartItems = JSON.parse(localStorage.getItem("originalCartItems")) || [];
+            localStorage.setItem("cartItems", JSON.stringify(originalCartItems)); // Restore the cart
+            localStorage.removeItem("originalCartItems"); // Remove backup
+        })
+        .catch(error => console.error("❌ Error storing order:", error));
+        // **Ensure cart is restored in case of failure**
+        const originalCartItems = JSON.parse(localStorage.getItem("originalCartItems")) || [];
+            localStorage.setItem("cartItems", JSON.stringify(originalCartItems));
+            localStorage.removeItem("originalCartItems");
+    });
+});
+  });
+
+
+        </script>
+
+
 
 
 

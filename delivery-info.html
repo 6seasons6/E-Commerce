@@ -108,15 +108,17 @@
                     <div class="login-box">
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
                         <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user s_color"></i> My Account
+                            <button class="btn btn-light dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-user s_color"></i> 
+                                <span id="userNameDisplay">My Account</span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                                <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-                                <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                <li id="signUpOption"><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                                <li id="signInOption"><a class="dropdown-item" href="signin.html">Sign In</a></li>
+                                <li id="signOutOption" style="display: none;"><a class="dropdown-item" href="signout.html">Sign Out</a></li>
                             </ul>
                         </div>
+
 
                         <!-- Bootstrap JS (for dropdown functionality) -->
                         <script
@@ -525,6 +527,7 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/myaccount.js"></script>
     </div>
 </body>
 </html>
