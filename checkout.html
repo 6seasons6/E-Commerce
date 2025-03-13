@@ -706,8 +706,8 @@
                                                         }
 
                                                         const formattedProducts = cartItems.map(item => ({
-                                                            productName: item.name,
-                                                            image: item.image,
+                                                            productName: item.productName || item.name || "Unknown Product",
+                                                            
                                                             price: item.price,
                                                             weight: item.weight,
                                                             quantity: item.quantity,
