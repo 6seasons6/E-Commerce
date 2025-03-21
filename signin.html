@@ -352,7 +352,7 @@
         const password = document.getElementById("password").value.trim();
     
         try {
-            const response = await fetch("http://localhost:5000/api/auth/signin", {
+            const response = await fetch("https://e-commerce-backend-pl3y.onrender.com/api/auth/signin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -547,7 +547,7 @@
         const email = document.getElementById('email').value;
     
         if (email) {
-            fetch('http://127.0.0.1:5000/subscribe', { 
+            fetch('https://e-commerce-backend-pl3y.onrender.com/subscribe', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
