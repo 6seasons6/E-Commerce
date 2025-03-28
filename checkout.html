@@ -588,7 +588,7 @@
     }
 
     // **Create Order on Backend**
-    fetch(`http://127.0.0.1:5000/api/create-order`, {
+    fetch(`https://e-commerce-backend-pl3y.onrender.com/api/create-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: amount }) 
@@ -652,7 +652,7 @@
                 };
 
                 // **Store Order & Billing Address in Database**
-                fetch(`http://127.0.0.1:5000/api/store-order`, {
+                fetch(`https://e-commerce-backend-pl3y.onrender.com/api/store-order`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(orderDetails)
@@ -934,7 +934,7 @@ function clearErrorMessages() {
             const email = document.getElementById('email').value;
         
             if (email) {
-                fetch('http://127.0.0.1:5000/subscribe', { 
+                fetch('https://e-commerce-backend-pl3y.onrender.com/subscribe', { 
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -1169,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (storedAddress) {
                 populateBillingAddress(storedAddress);
             } else {
-                fetch('http://127.0.0.1:5000/api/get-billing-address', { 
+                fetch('https://e-commerce-backend-pl3y.onrender.com/api/get-billing-address', { 
                     method: "GET",
                     headers: { "Content-Type": "application/json" }
                 })

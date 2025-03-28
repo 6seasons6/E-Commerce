@@ -29,7 +29,7 @@ app.use(
   cors({
     origin: [
       "http://127.0.0.1:5500", // Local development
-      "http://127.0.0.1:5000", // Local development
+      "https://e-commerce-backend-pl3y.onrender.com", // Local development
       "https://euphonious-maamoul-f82320.netlify.app", // Production
     ],
     methods: ["GET", "POST"],
@@ -108,7 +108,7 @@ const billingAddressSchema = new mongoose.Schema({
 const BillingAddress = mongoose.model("BillingAddress", billingAddressSchema);
 
 // Admin Dashboard API URL
-const ADMIN_DASHBOARD_API = "http://127.0.0.1:5000/api/sync-order";
+const ADMIN_DASHBOARD_API = "https://e-commerce-backend-pl3y.onrender.com/api/sync-order";
 
 
 // Admin Email Configuration
